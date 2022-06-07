@@ -3,7 +3,7 @@ import React from "react";
 
 const InitialScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Register as a new user</Text>
       <Button title="REGISTER" />
       <Text>Already have an account?</Text>
