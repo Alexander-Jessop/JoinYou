@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config";
 
-const ClientRegInfo = () => {
+const ClientRegInfo = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const create = () => {
+    navigation.navigate("Tags");
     addDoc(collection(db, "users"), {
       email: email,
       password: password,

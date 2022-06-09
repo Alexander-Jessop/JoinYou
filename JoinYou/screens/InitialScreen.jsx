@@ -1,13 +1,16 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import React from "react";
 
-const InitialScreen = () => {
+const InitialScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Register as a new user</Text>
-      <Button title="REGISTER" />
+      <Button
+        title="REGISTER"
+        onPress={() => navigation.navigate("Register")}
+      />
       <Text>Already have an account?</Text>
-      <Button title="LOGIN" />
+      <Button title="LOGIN" onPress={() => navigation.navigate("Login")} />
     </View>
   );
 };
