@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>I am chenging to client branch!!!</Text>
+      <Text>Registrations</Text>
       <StatusBar style="auto" />
     </View>
   );
