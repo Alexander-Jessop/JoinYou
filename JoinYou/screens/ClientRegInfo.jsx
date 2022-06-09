@@ -39,9 +39,11 @@ const ClientRegInfo = () => {
       <View>
         <Text>Confirm your email address:</Text>
         <TextInput
-          value={email}
-          onChangeText={(enteredEmail) => setEmail(enteredEmail)}
-          placeholder="Email"
+          value={confirmEmail}
+          onChangeText={(enteredConfirmEmail) =>
+            setConfirmEmail(enteredConfirmEmail)
+          }
+          placeholder="Confirm Email"
           style={styles.textBoxes}
         ></TextInput>
       </View>
