@@ -18,7 +18,6 @@ export default function App() {
           options={{ title: "Welcome" }}
         />
         <Stack.Screen name="Register" component={ClientRegInfo} />
-        <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Tags" component={ClientRegTags} />
       </Stack.Navigator>
     </NavigationContainer>
