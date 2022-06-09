@@ -5,13 +5,13 @@ import { db } from "../config";
 
 const ClientRegInfo = () => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const create = () => {
     addDoc(collection(db, "users"), {
       email: email,
-      username: username,
       password: password,
     })
       .then(() => {
@@ -26,29 +26,47 @@ const ClientRegInfo = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Enter your email address:</Text>
-      <TextInput
-        value={email}
-        onChangeText={(enteredEmail) => setEmail(enteredEmail)}
-        placeholder="Email"
-        style={styles.textBoxes}
-      ></TextInput>
+      <View>
+        <Text>Enter your email address:</Text>
+        <TextInput
+          value={email}
+          onChangeText={(enteredEmail) => setEmail(enteredEmail)}
+          placeholder="Email"
+          style={styles.textBoxes}
+        ></TextInput>
+      </View>
 
-      <Text>Enter your username:</Text>
-      <TextInput
-        value={username}
-        onChangeText={(enteredUsername) => setUsername(enteredUsername)}
-        placeholder="Username"
-        style={styles.textBoxes}
-      ></TextInput>
+      <View>
+        <Text>Confirm your email address:</Text>
+        <TextInput
+          value={email}
+          onChangeText={(enteredEmail) => setEmail(enteredEmail)}
+          placeholder="Email"
+          style={styles.textBoxes}
+        ></TextInput>
+      </View>
 
-      <Text>Enter your password:</Text>
-      <TextInput
-        value={password}
-        onChangeText={(enteredPassword) => setPassword(enteredPassword)}
-        placeholder="Password"
-        style={styles.textBoxes}
-      ></TextInput>
+      <View>
+        <Text>Enter your password:</Text>
+        <TextInput
+          value={password}
+          onChangeText={(enteredPassword) => setPassword(enteredPassword)}
+          placeholder="Password"
+          style={styles.textBoxes}
+        ></TextInput>
+
+        <View>
+          <Text>Confirm your password:</Text>
+          <TextInput
+            value={confirmPassword}
+            onChangeText={(enteredConfirmPassword) =>
+              setConfirmPassword(enteredConfirmPassword)
+            }
+            placeholder="Confirm Password"
+            style={styles.textBoxes}
+          ></TextInput>
+        </View>
+      </View>
 
       <Button title="Continue" onPress={create} />
     </View>
@@ -66,9 +84,9 @@ const styles = StyleSheet.create({
     width: "90%",
     fontSize: 18,
     padding: 12,
-    //borderColor: "gray",
-    //borderWidth: 0.2,
-    //borderRadius: 10
+    borderColor: "gray",
+    borderWidth: 0.2,
+    borderRadius: 10,
   },
 });
 
