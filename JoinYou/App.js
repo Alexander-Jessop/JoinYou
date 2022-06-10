@@ -2,9 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import RestOfApp from "./components/RestOfApp";
+import FirebaseProvider from "./providers/FirebaseProvider";
 
 export default function App() {
-  return <RestOfApp />;
+  return (
+    <FirebaseProvider>
+      <RestOfApp />
+    </FirebaseProvider>
+  );
 }
 
 const styles = StyleSheet.create({
