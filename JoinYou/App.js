@@ -9,79 +9,80 @@ import { Colors } from "./constants/styles";
 import AllLoadedImgs from "./Screens/AllLoadedImgs";
 import AddImg from "./Screens/AddImg";
 import IconButton from "./components/ui/IconButton";
+import RestOfApp from "./components/RestOfApp";
+import FirebaseProvider from "./src/FirebaseProvider";
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
-function AuthStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary500 },
-        headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.primary100 },
-      }}
-    >
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Signup" component={SignupScreen} />
-    </Stack.Navigator>
-  );
-}
+// function AuthStack() {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerStyle: { backgroundColor: Colors.primary500 },
+//         headerTintColor: "white",
+//         contentStyle: { backgroundColor: Colors.primary100 },
+//       }}
+//     >
+//       <Stack.Screen name="Login" component={LoginScreen} />
+//       <Stack.Screen name="Signup" component={SignupScreen} />
+//     </Stack.Navigator>
+//   );
+// }
 
-function AuthenticatedStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary500 },
-        headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.primary100 },
-      }}
-    >
-      <Stack.Screen name="Welcome" component={WelcomeScreen} />
-    </Stack.Navigator>
-  );
-}
+// function AuthenticatedStack() {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerStyle: { backgroundColor: Colors.primary500 },
+//         headerTintColor: "white",
+//         contentStyle: { backgroundColor: Colors.primary100 },
+//       }}
+//     >
+//       <Stack.Screen name="Welcome" component={WelcomeScreen} />
+//     </Stack.Navigator>
+//   );
+// }
 
-function ImgUpload() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="All Images"
-        component={AllLoadedImgs}
-        options={({ navigation }) => ({
-          title: "All uploaded Images",
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="add"
-              size={24}
-              color={tintColor}
-              onPress={() => navigation.navigate("Add Image")}
-            />
-          ),
-        })}
-      />
-      <Stack.Screen
-        name="Add Image"
-        component={AddImg}
-        options={{ title: "Add a New Image" }}
-      />
-    </Stack.Navigator>
-  );
-}
+// function ImgUpload() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen
+//         name="All Images"
+//         component={AllLoadedImgs}
+//         options={({ navigation }) => ({
+//           title: "All uploaded Images",
+//           headerRight: ({ tintColor }) => (
+//             <IconButton
+//               icon="add"
+//               size={24}
+//               color={tintColor}
+//               onPress={() => navigation.navigate("Add Image")}
+//             />
+//           ),
+//         })}
+//       />
+//       <Stack.Screen
+//         name="Add Image"
+//         component={AddImg}
+//         options={{ title: "Add a New Image" }}
+//       />
+//     </Stack.Navigator>
+//   );
+// }
 
-function Navigation() {
-  return (
-    <NavigationContainer>
-      <ImgUpload />
-    </NavigationContainer>
-  );
-}
+// function Navigation() {
+//   return (
+//     <NavigationContainer>
+//       <ImgUpload />
+//     </NavigationContainer>
+//   );
+// }
 
 export default function App() {
   return (
-    <>
+    <FirebaseProvider>
       <StatusBar style="light" />
-
-      <Navigation />
-    </>
+      <RestOfApp />
+    </FirebaseProvider>
   );
 }
