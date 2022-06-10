@@ -1,10 +1,14 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { FirebaseContext } from "../providers/FirebaseProvider";
 
 const LoginPage = () => {
+  const fbContext = useContext(FirebaseContext);
+  const app = fbContext.app;
+
   return (
     <View>
-      <Text>LoginPage</Text>
+      <Text>{JSON.stringify(app)}</Text>
     </View>
   );
 };
