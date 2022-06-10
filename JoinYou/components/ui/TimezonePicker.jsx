@@ -21,7 +21,11 @@ const TimezonePicker = () => {
         itemStyle={{ fontSize: 12 }}
       >
         {timezones.map((timezone) => (
-          <Picker.Item label={timezone.text} value={timezone.utc[0]} />
+          <Picker.Item
+            label={timezone.text}
+            value={timezone.utc[0]}
+            key={timezone.utc[0]}
+          />
         ))}
       </Picker>
     </View>
