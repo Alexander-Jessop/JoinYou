@@ -1,14 +1,20 @@
 import { View, Text } from "react-native";
 import React, { useContext } from "react";
-import { FirebaseContext } from "../providers/FirebaseProvider";
+import { AuthContext } from "../src/AuthProvider";
+import LoginForm from "../components/LoginForm";
 
 const LoginPage = () => {
-  const fbContext = useContext(FirebaseContext);
-  const app = fbContext.app;
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
 
   return (
     <View>
-      <Text>{JSON.stringify(app)}</Text>
+      <Text>
+        {"\n"}
+        {"\n"}
+        {user ? "you are logged in!" : "not logged in 😔"}
+      </Text>
+      <LoginForm />
     </View>
   );
 };
