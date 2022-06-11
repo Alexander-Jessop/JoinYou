@@ -2,12 +2,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import RestOfApp from "./src/RestOfApp";
-import FirebaseProvider from "./providers/FirebaseProvider";
+import FirebaseProvider from "./src/FirebaseProvider";
+import AuthProvider from "./src/AuthProvider";
 
 export default function App() {
   return (
     <FirebaseProvider>
-      <RestOfApp />
+      <AuthProvider>
+        <RestOfApp />
+      </AuthProvider>
     </FirebaseProvider>
   );
 }
