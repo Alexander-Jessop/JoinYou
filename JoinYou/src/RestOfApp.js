@@ -1,15 +1,22 @@
 import React, { useContext } from "react";
 import { Text, View } from "react-native";
-import { AuthContext } from "./AuthProvider";
+import LoginPage from "../screens/LoginPage";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 const RestOfApp = () => {
-  const authContext = useContext(AuthContext);
-  const user = authContext.user;
-
   return (
-    <View>
-      <Text>{user ? "you are logged in!" : "not logged in 😔"}</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          options={{ title: "Welcome" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
