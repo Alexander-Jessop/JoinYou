@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { View, StyleSheet, Button, TextInput } from "react-native";
+import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { AuthContext } from "../src/AuthProvider";
 
 const LoginForm = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const loginFn = authContext.login;
   const logoutFn = authContext.logout;
+  const loginError = authContext.authError;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,8 +23,11 @@ const LoginForm = ({ navigation }) => {
         value={password}
         onChangeText={(e) => setPassword(e)}
       />
+      {loginError && <Text>{loginError}</Text>}
       <Button title="LOGIN" onPress={() => loginFn(email, password)} />
-      {/* <Button title="LOG OUT" onPress={() => logoutFn()} /> */}
+      <Button title="LOG OUT" onPress={() => logoutFn()} />
+      <Text>{"\n"}</Text>
+      <Text>{"\n"}</Text>
     </View>
   );
 };

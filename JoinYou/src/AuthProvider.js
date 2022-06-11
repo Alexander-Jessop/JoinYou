@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  createContext,
-  useContext,
-  useEffect,
-} from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import {
   signInWithEmailAndPassword,
@@ -17,24 +12,25 @@ export const AuthContext = createContext();
 const AuthProvider = (props) => {
   const children = props.children;
   const [user, setUser] = useState(null);
+  const [authError, setAuthError] = useState();
 
   const fbContext = useContext(FirebaseContext);
   const auth = fbContext.auth;
 
   const login = async (email, password) => {
     try {
-      let userCred = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      let userCred = await signInWithEmailAndPassword(auth, email, password);
+
       if (userCred) {
         console.log("Logged in!!", userCred.user);
+        setAuthError(null);
       } else {
         console.log("Login failed!");
+        setAuthError("Login FAILED");
       }
     } catch (ex) {
       console.log("AUTH FAILURE!", ex.message);
+      setAuthError(ex.message);
     }
   };
 
@@ -50,12 +46,10 @@ const AuthProvider = (props) => {
     return unsub;
   }, [auth]);
 
-  const theValues = { user, login, logout };
+  const theValues = { user, authError, login, logout };
 
   return (
-    <AuthContext.Provider value={theValues}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
   );
 };
 
