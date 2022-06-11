@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { Button, Text, TextInput, View, StyleSheet } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
-const RegisterPage = ({ navigation }) => {
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigation = useNavigation();
   const auth = getAuth();
 
   const onContinueHandler = () => {
-    navigation.navigate("Tags");
+    if (credentialsInvalid) navigation.replace("Tags");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
       });
   };
 
