@@ -9,8 +9,9 @@ import { Colors } from "./constants/styles";
 import AllLoadedImgs from "./Screens/AllLoadedImgs";
 import AddImg from "./Screens/AddImg";
 import IconButton from "./components/ui/IconButton";
-import RestOfApp from "./components/RestOfApp";
+import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
+import AuthProvider from "./src/AuthProvider";
 
 // const Stack = createNativeStackNavigator();
 
@@ -81,8 +82,10 @@ import FirebaseProvider from "./src/FirebaseProvider";
 export default function App() {
   return (
     <FirebaseProvider>
-      <StatusBar style="light" />
-      <RestOfApp />
+      <AuthProvider>
+        <StatusBar style="light" />
+        <RestOfApp />
+      </AuthProvider>
     </FirebaseProvider>
   );
 }
