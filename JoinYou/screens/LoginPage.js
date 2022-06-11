@@ -14,7 +14,7 @@ const LoginPage = () => {
       <Text>
         {"\n"}
         {"\n"}
-        {user ? "you are logged in!" : "not logged in 😔"}
+        {user ? "You are logged in!" : "You are not logged in."}
       </Text>
       <LoginForm />
 
