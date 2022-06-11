@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import React, { useContext } from "react";
 import { AuthContext } from "../src/AuthProvider";
 import LoginForm from "../components/LoginForm";
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
@@ -15,6 +15,11 @@ const LoginPage = () => {
         {user ? "you are logged in!" : "not logged in 😔"}
       </Text>
       <LoginForm />
+
+      <Button
+        title="REGISTER"
+        onPress={() => navigation.navigate("Register")}
+      />
     </View>
   );
 };
