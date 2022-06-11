@@ -10,7 +10,7 @@ const RegisterPage = () => {
   const auth = getAuth();
 
   const onContinueHandler = () => {
-    if (credentialsInvalid) navigation.replace("Tags");
+    navigation.replace("Tags");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
