@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import RestOfApp from "./components/RestOfApp";
+import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./providers/FirebaseProvider";
 
 export default function App() {
