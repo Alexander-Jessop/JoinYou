@@ -40,6 +40,7 @@ const AuthProvider = (props) => {
     await signOut(auth);
   };
 
+  //original function provided by Dani
   const createUserData = async (user) => {
     console.log(`db is: `, db);
     try {
@@ -56,6 +57,7 @@ const AuthProvider = (props) => {
     }
   };
 
+  //modified function with timezone / display name / interests
   const updateUserData = async (
     user,
     displayName,
@@ -80,6 +82,7 @@ const AuthProvider = (props) => {
     }
   };
 
+  // update function for interests (result should be an array of categories)
   const updateUserInterests = async (interests) => {
     const userRef = doc(db, "test-users", user.uid);
 
