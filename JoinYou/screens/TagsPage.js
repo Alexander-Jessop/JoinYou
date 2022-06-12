@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { AuthContext } from "../src/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const TagsPage = () => {
   const [checkedAquariums, setCheckedAquariums] = useState(false);
@@ -12,6 +13,8 @@ const TagsPage = () => {
   const [checkedTerrariums, setCheckedTerrariums] = useState(false);
   const [checkedVideography, setCheckedVideography] = useState(false);
   const [checkedOther, setCheckedOther] = useState(false);
+
+  const navigation = useNavigation();
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
@@ -47,6 +50,7 @@ const TagsPage = () => {
     }
 
     updateUserInterests(interestArray);
+    navigation.replace("Home");
   };
 
   return (
