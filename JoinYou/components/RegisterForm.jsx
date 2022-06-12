@@ -15,9 +15,11 @@ const RegisterForm = () => {
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
+  const login = authContext.login;
   const createUserData = authContext.createUserData;
 
   const onContinueHandler = () => {
+    login(user.email, user.password);
     Alert.alert("Account Created!");
     navigation.replace("Login");
     createUserWithEmailAndPassword(auth, email, password)

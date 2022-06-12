@@ -14,7 +14,9 @@ const LoginPage = ({ navigation }) => {
       <Text>
         {"\n"}
         {"\n"}
-        {user ? "You are logged in!" : "You are not logged in."}
+        {user
+          ? "You are logged in as: " + user.email
+          : "You are not logged in."}
       </Text>
       <LoginForm />
       <Text>
