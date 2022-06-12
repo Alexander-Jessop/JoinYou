@@ -14,9 +14,7 @@ const RegisterForm = () => {
   const auth = getAuth();
 
   const authContext = useContext(AuthContext);
-  const user = authContext.user;
   const login = authContext.login;
-  const createUserData = authContext.createUserData;
 
   const onContinueHandler = () => {
     const emailIsValid = email.includes("@");
@@ -41,7 +39,6 @@ const RegisterForm = () => {
           const errorMessage = error.message;
         });
       login(email, password);
-      //createUserData(user);
     } else {
       Alert.alert("Invalid Credentials!");
     }
