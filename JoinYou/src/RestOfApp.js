@@ -6,6 +6,7 @@ import InfoPage from "../screens/InfoPage";
 import TagsPage from "../screens/TagsPage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "../screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,8 @@ const RestOfApp = () => {
           component={TagsPage}
           options={{ title: "Select your interests:" }}
         />
+
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
