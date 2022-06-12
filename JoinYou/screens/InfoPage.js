@@ -17,7 +17,7 @@ const InfoPage = () => {
   const updateUserData = authContext.updateUserData;
 
   const onContinueHandler = async () => {
-    updateUserData(user, displayName, selectedTimezone);
+    updateUserData(user, displayName, selectedTimezone, []);
     navigation.replace("Tags");
   };
 

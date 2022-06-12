@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { FirebaseContext } from "./FirebaseProvider";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
@@ -56,7 +56,12 @@ const AuthProvider = (props) => {
     }
   };
 
-  const updateUserData = async (user, displayName, selectedTimezone) => {
+  const updateUserData = async (
+    user,
+    displayName,
+    selectedTimezone,
+    interests
+  ) => {
     console.log(`db is: `, db);
     try {
       const userData = {
@@ -64,6 +69,7 @@ const AuthProvider = (props) => {
         email: user.email,
         displayName: displayName,
         timezone: selectedTimezone,
+        interests: interests,
       };
       let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
       console.log("New user created!", newDoc);
@@ -72,6 +78,15 @@ const AuthProvider = (props) => {
       console.log("Error creating user data", error);
       return false;
     }
+  };
+
+  const updateUserInterests = async (interests) => {
+    const userRef = doc(db, "test-users", user.uid);
+
+    // Set the "interests" field of the user 'user.uid'
+    await updateDoc(userRef, {
+      interests: interests,
+    });
   };
 
   useEffect(() => {
@@ -89,6 +104,7 @@ const AuthProvider = (props) => {
     logout,
     createUserData,
     updateUserData,
+    updateUserInterests,
   };
 
   return (
