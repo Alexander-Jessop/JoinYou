@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Text, TextInput, Button, View, StyleSheet } from "react-native";
 import timezones from "../components/ui/timezones.json";
 import { Picker } from "@react-native-picker/picker";
-import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
@@ -13,9 +12,7 @@ const InfoPage = () => {
   const navigation = useNavigation();
 
   const authContext = useContext(AuthContext);
-  const db = authContext.db;
   const user = authContext.user;
-  // const uid = user.uid;
   const createUserData = authContext.createUserData;
   const updateUserData = authContext.updateUserData;
 
