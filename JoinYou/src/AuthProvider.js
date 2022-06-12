@@ -56,6 +56,24 @@ const AuthProvider = (props) => {
     }
   };
 
+  const updateUserData = async (user, displayName, selectedTimezone) => {
+    console.log(`db is: `, db);
+    try {
+      const userData = {
+        uid: user.uid,
+        email: user.email,
+        displayName: displayName,
+        timezone: selectedTimezone,
+      };
+      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      console.log("New user created!", newDoc);
+      return newDoc;
+    } catch (error) {
+      console.log("Error creating user data", error);
+      return false;
+    }
+  };
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       console.log("onAuthStateChanged() - new User!!", user);
@@ -64,7 +82,14 @@ const AuthProvider = (props) => {
     return unsub;
   }, [auth]);
 
-  const theValues = { user, authError, login, logout, createUserData };
+  const theValues = {
+    user,
+    authError,
+    login,
+    logout,
+    createUserData,
+    updateUserData,
+  };
 
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

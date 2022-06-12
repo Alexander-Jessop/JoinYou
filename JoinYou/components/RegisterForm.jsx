@@ -41,7 +41,7 @@ const RegisterForm = () => {
           const errorMessage = error.message;
         });
       login(email, password);
-      createUserData(user);
+      //createUserData(user);
     } else {
       Alert.alert("Invalid Credentials!");
     }

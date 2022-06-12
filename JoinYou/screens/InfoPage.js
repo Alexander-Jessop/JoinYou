@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, TextInput, Button, View, StyleSheet } from "react-native";
 import timezones from "../components/ui/timezones.json";
 import { Picker } from "@react-native-picker/picker";
+import { doc, setDoc } from "firebase/firestore";
+import { AuthContext } from "../src/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const InfoPage = () => {
   const [displayName, setDisplayName] = useState("");
   const [selectedTimezone, setSelectedTimezone] = useState(null);
 
-  const onContinueHandler = () => {};
+  const navigation = useNavigation();
+
+  const authContext = useContext(AuthContext);
+  const db = authContext.db;
+  const user = authContext.user;
+  // const uid = user.uid;
+  const createUserData = authContext.createUserData;
+  const updateUserData = authContext.updateUserData;
+
+  const onContinueHandler = async () => {
+    updateUserData(user, displayName, selectedTimezone);
+    navigation.replace("Tags");
+  };
 
   return (
     <View>
@@ -36,7 +51,7 @@ const InfoPage = () => {
           {timezones.map((timezone) => (
             <Picker.Item
               label={timezone.text}
-              value={timezone.utc[0]}
+              value={timezone.text}
               key={timezone.utc[0]}
             />
           ))}
