@@ -18,7 +18,35 @@ const TagsPage = () => {
   const updateUserInterests = authContext.updateUserInterests;
 
   const onFinishHandler = () => {
-    updateUserInterests(["Aquariums"]);
+    const interestArray = [];
+    console.log(interestArray);
+
+    if (checkedAquariums) {
+      interestArray.push("Aquariums");
+    }
+    if (checkedCooking) {
+      interestArray.push("Cooking");
+    }
+    if (checkedFashion) {
+      interestArray.push("Fashion");
+    }
+    if (checkedFitness) {
+      interestArray.push("Fitness");
+    }
+    if (checkedGardening) {
+      interestArray.push("Gardening");
+    }
+    if (checkedTerrariums) {
+      interestArray.push("Terrariums");
+    }
+    if (checkedVideography) {
+      interestArray.push("Videograhpy");
+    }
+    if (checkedOther) {
+      interestArray.push("Other");
+    }
+
+    updateUserInterests(interestArray);
   };
 
   return (
