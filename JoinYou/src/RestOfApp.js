@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Text, View } from "react-native";
 import LoginPage from "../screens/LoginPage";
 import RegisterPage from "../screens/RegisterPage";
+import InfoPage from "../screens/InfoPage";
 import TagsPage from "../screens/TagsPage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -21,6 +22,11 @@ const RestOfApp = () => {
           name="Register"
           component={RegisterPage}
           options={{ title: "Register as new user" }}
+        />
+        <Stack.Screen
+          name="InfoPage"
+          component={InfoPage}
+          options={{ title: "Enter your information" }}
         />
         <Stack.Screen
           name="Tags"

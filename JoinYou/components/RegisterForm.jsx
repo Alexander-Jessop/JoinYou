@@ -19,18 +19,32 @@ const RegisterForm = () => {
   const createUserData = authContext.createUserData;
 
   const onContinueHandler = () => {
-    login(user.email, user.password);
-    createUserData(user);
-    Alert.alert("Account Created!");
-    navigation.replace("Tags");
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    const emailIsValid = email.includes("@");
+    const passwordIsValid = password.length > 6;
+    const emailsAreEqual = email.toLowerCase() === confirmEmail.toLowerCase();
+    const passwordsAreEqual = password === confirmPassword;
+
+    if (
+      emailIsValid &&
+      passwordIsValid &&
+      emailsAreEqual &&
+      passwordsAreEqual
+    ) {
+      Alert.alert("Account Created Succesfully!");
+      navigation.replace("InfoPage");
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+      login(email, password);
+      createUserData(user);
+    } else {
+      Alert.alert("Invalid Credentials!");
+    }
   };
 
   return (
@@ -45,7 +59,7 @@ const RegisterForm = () => {
         ></TextInput>
       </View>
 
-      {/* <View>
+      <View>
         <Text>Confirm your email address:</Text>
         <TextInput
           value={confirmEmail}
@@ -53,7 +67,9 @@ const RegisterForm = () => {
           placeholder="Confirm Email"
           style={styles.textBoxes}
         ></TextInput>
-      </View> */}
+      </View>
+
+      <Text>{"\n"}</Text>
 
       <View>
         <Text>Enter your password:</Text>
@@ -65,7 +81,7 @@ const RegisterForm = () => {
         ></TextInput>
       </View>
 
-      {/* <View>
+      <View>
         <Text>Confirm your password:</Text>
         <TextInput
           value={confirmPassword}
@@ -73,7 +89,7 @@ const RegisterForm = () => {
           placeholder="Confirm Password"
           style={styles.textBoxes}
         ></TextInput>
-      </View> */}
+      </View>
 
       <Button title="Continue" onPress={onContinueHandler} />
     </View>
