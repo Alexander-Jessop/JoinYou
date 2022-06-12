@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Text, TextInput, View, StyleSheet } from "react-native";
+import { Alert, Button, Text, TextInput, View, StyleSheet } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { doc, setDoc } from "firebase/firestore";
@@ -18,6 +18,7 @@ const RegisterForm = () => {
   const createUserData = authContext.createUserData;
 
   const onContinueHandler = () => {
+    Alert.alert("Account Created!");
     navigation.replace("Login");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
