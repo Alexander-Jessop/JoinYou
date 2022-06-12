@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { FirebaseContext } from "./FirebaseProvider";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
@@ -16,6 +17,7 @@ const AuthProvider = (props) => {
 
   const fbContext = useContext(FirebaseContext);
   const auth = fbContext.auth;
+  const db = fbContext.db;
 
   const login = async (email, password) => {
     try {
@@ -38,6 +40,22 @@ const AuthProvider = (props) => {
     await signOut(auth);
   };
 
+  const createUserData = async (user) => {
+    console.log(`db is: `, db);
+    try {
+      const userData = {
+        uid: user.uid,
+        email: user.email,
+      };
+      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      console.log("New user created!", newDoc);
+      return newDoc;
+    } catch (error) {
+      console.log("Error creating user data", error);
+      return false;
+    }
+  };
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       console.log("onAuthStateChanged() - new User!!", user);
@@ -46,7 +64,7 @@ const AuthProvider = (props) => {
     return unsub;
   }, [auth]);
 
-  const theValues = { user, authError, login, logout };
+  const theValues = { user, authError, login, logout, createUserData };
 
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Text, TextInput, View, StyleSheet } from "react-native";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+import { doc, setDoc } from "firebase/firestore";
+import { AuthContext } from "../src/AuthProvider";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +13,12 @@ const RegisterForm = () => {
   const navigation = useNavigation();
   const auth = getAuth();
 
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const createUserData = authContext.createUserData;
+
   const onContinueHandler = () => {
-    navigation.replace("Tags");
+    navigation.replace("Login");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -29,7 +35,7 @@ const RegisterForm = () => {
         <Text>Enter your email address:</Text>
         <TextInput
           value={email}
-          onChangeText={(enteredEmail) => setEmail(enteredEmail)}
+          onChangeText={(e) => setEmail(e)}
           placeholder="Email"
           style={styles.textBoxes}
         ></TextInput>
@@ -39,9 +45,7 @@ const RegisterForm = () => {
         <Text>Confirm your email address:</Text>
         <TextInput
           value={confirmEmail}
-          onChangeText={(enteredConfirmEmail) =>
-            setConfirmEmail(enteredConfirmEmail)
-          }
+          onChangeText={(e) => setConfirmEmail(e)}
           placeholder="Confirm Email"
           style={styles.textBoxes}
         ></TextInput>
@@ -51,7 +55,7 @@ const RegisterForm = () => {
         <Text>Enter your password:</Text>
         <TextInput
           value={password}
-          onChangeText={(enteredPassword) => setPassword(enteredPassword)}
+          onChangeText={(e) => setPassword(e)}
           placeholder="Password"
           style={styles.textBoxes}
         ></TextInput>
@@ -61,9 +65,7 @@ const RegisterForm = () => {
         <Text>Confirm your password:</Text>
         <TextInput
           value={confirmPassword}
-          onChangeText={(enteredConfirmPassword) =>
-            setConfirmPassword(enteredConfirmPassword)
-          }
+          onChangeText={(e) => setConfirmPassword(e)}
           placeholder="Confirm Password"
           style={styles.textBoxes}
         ></TextInput>
