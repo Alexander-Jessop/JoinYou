@@ -18,7 +18,6 @@ const TagsPage = () => {
   const updateUserInterests = authContext.updateUserInterests;
 
   const onFinishHandler = () => {
-    console.log(user);
     updateUserInterests(["Aquariums"]);
   };
 
