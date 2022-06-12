@@ -20,8 +20,9 @@ const RegisterForm = () => {
 
   const onContinueHandler = () => {
     login(user.email, user.password);
+    createUserData(user);
     Alert.alert("Account Created!");
-    navigation.replace("Login");
+    navigation.replace("Tags");
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
