@@ -2,8 +2,6 @@ import { View, Text, Button } from "react-native";
 import React, { useContext } from "react";
 import { AuthContext } from "../src/AuthProvider";
 import LoginForm from "../components/LoginForm";
-import HeroesList from "../components/HeroesList";
-import TagsPage from "./TagsPage";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginPage = () => {
