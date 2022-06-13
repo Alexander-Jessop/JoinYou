@@ -90,7 +90,11 @@ const RegisterForm = () => {
           style={styles.textBoxes}
         ></TextInput>
       </View>
-      <Text>(password must be at least 7 characters) {"\n"} </Text>
+      <Text>
+        *password must be at least 7 characters {"\n"}
+        {"\n"}
+        {"\n"}
+      </Text>
 
       <Button title="Continue" onPress={onContinueHandler} />
     </View>
