@@ -8,6 +8,7 @@ const TimezonePicker = () => {
 
   return (
     <View>
+
       <Picker
         selectedValue={selectedTimezone}
         onValueChange={(itemValue, itemIndex) => setSelectedTimezone(itemValue)}

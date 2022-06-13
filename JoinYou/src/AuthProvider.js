@@ -8,6 +8,7 @@ import {
 import { FirebaseContext } from "./FirebaseProvider";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 
+
 export const AuthContext = createContext();
 
 const AuthProvider = (props) => {
@@ -102,6 +103,7 @@ const AuthProvider = (props) => {
       interests: interestsArray,
     });
   };
+
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
