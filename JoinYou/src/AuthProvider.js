@@ -21,7 +21,7 @@ const AuthProvider = (props) => {
   const db = fbContext.db;
 
   //Log in function
-  //https://firebase.google.com/docs/auth/web/password-auth
+  //https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
   const login = async (email, password) => {
     try {
       let userCred = await signInWithEmailAndPassword(auth, email, password);
@@ -40,12 +40,14 @@ const AuthProvider = (props) => {
   };
 
   //Logout function
+  //https://firebase.google.com/docs/auth/web/password-auth#next_steps
   const logout = async () => {
     await signOut(auth);
   };
 
   //Original function provided by Dani
   //Creates a Firestore db document with the same uid/email as the Firebase Authentication user
+  //https://firebase.google.com/docs/firestore/manage-data/add-data
   const createUserData = async (user) => {
     console.log(`db is: `, db);
     try {
@@ -91,6 +93,7 @@ const AuthProvider = (props) => {
 
   //Update function, for "interests" tags
   //Updates the "interests" array for Firestore db user
+  //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
   const updateUserInterests = async (interestsArray) => {
     const userRef = doc(db, "test-users", user.uid);
 
