@@ -85,7 +85,7 @@ export default function App() {
       <AuthProvider>
         <StatusBar style="light" />
         <RestOfApp />
-        high I am Zach
+        high I am Zach hi I'm nathaly
       </AuthProvider>
     </FirebaseProvider>
   );
