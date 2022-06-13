@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Button, Text, TextInput, View, StyleSheet } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigation } from "@react-navigation/native";
 import RegisterForm from "../components/RegisterForm";
 
 const RegisterPage = () => {
