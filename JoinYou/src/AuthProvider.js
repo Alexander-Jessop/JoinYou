@@ -94,7 +94,7 @@ const AuthProvider = (props) => {
   const updateUserInterests = async (interestsArray) => {
     const userRef = doc(db, "test-users", user.uid);
 
-    // Set the "interests" field of the user 'user.uid'
+    // Set the "interests" field of the user
     await updateDoc(userRef, {
       interests: interestsArray,
     });
