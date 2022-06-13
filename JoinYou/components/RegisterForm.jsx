@@ -74,6 +74,7 @@ const RegisterForm = () => {
           value={password}
           onChangeText={(e) => setPassword(e)}
           placeholder="Password"
+          secureTextEntry={true}
           style={styles.textBoxes}
         ></TextInput>
       </View>
@@ -84,9 +85,11 @@ const RegisterForm = () => {
           value={confirmPassword}
           onChangeText={(e) => setConfirmPassword(e)}
           placeholder="Confirm Password"
+          secureTextEntry={true}
           style={styles.textBoxes}
         ></TextInput>
       </View>
+      <Text>(password must be at least 7 characters) {"\n"} </Text>
 
       <Button title="Continue" onPress={onContinueHandler} />
     </View>

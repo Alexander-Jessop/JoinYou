@@ -4,10 +4,13 @@ import { AuthContext } from "../src/AuthProvider";
 import LoginForm from "../components/LoginForm";
 import HeroesList from "../components/HeroesList";
 import TagsPage from "./TagsPage";
+import { useNavigation } from "@react-navigation/native";
 
-const LoginPage = ({ navigation }) => {
+const LoginPage = () => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
+
+  const navigation = useNavigation();
 
   return (
     <View>
@@ -24,10 +27,7 @@ const LoginPage = ({ navigation }) => {
         {"\n"}
       </Text>
 
-      <Button
-        title="REGISTER"
-        onPress={() => navigation.navigate("Register")}
-      />
+      <Button title="REGISTER" onPress={() => navigation.replace("Register")} />
     </View>
   );
 };

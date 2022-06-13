@@ -25,6 +25,7 @@ const LoginForm = () => {
       <TextInput
         placeholder="password"
         value={password}
+        secureTextEntry={true}
         onChangeText={(e) => setPassword(e)}
       />
       {loginError && <Text>{loginError}</Text>}
