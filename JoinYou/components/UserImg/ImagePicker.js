@@ -41,6 +41,7 @@ const ImagePicker = () => {
       quality: 0.75,
     });
     setPickedImg(image.uri);
+    console.log(image, image.uri);
   };
 
   let imagePreview = <Text>No image taken yet.</Text>;
