@@ -85,6 +85,7 @@ export default function App() {
       <AuthProvider>
         <StatusBar style="light" />
         <RestOfApp />
+        <Text>Delete Me, no i wont i made a new change THIS IS A CHANGE BY NATHALY </Text>
       </AuthProvider>
     </FirebaseProvider>
   );
