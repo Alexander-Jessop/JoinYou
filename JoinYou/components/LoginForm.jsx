@@ -38,9 +38,7 @@ const LoginForm = () => {
           }
         }}
       />
-      <Button title="LOG OUT" onPress={() => logoutFn()} />
-      <Text>{"\n"}</Text>
-      <Text>{"\n"}</Text>
+      {/* <Button title="LOG OUT" onPress={() => logoutFn()} /> */}
     </View>
   );
 };

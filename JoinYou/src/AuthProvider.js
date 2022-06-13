@@ -15,10 +15,13 @@ const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
   const [authError, setAuthError] = useState();
 
+  //Firebase context
   const fbContext = useContext(FirebaseContext);
   const auth = fbContext.auth;
   const db = fbContext.db;
 
+  //Log in function
+  //https://firebase.google.com/docs/auth/web/password-auth
   const login = async (email, password) => {
     try {
       let userCred = await signInWithEmailAndPassword(auth, email, password);
@@ -36,11 +39,13 @@ const AuthProvider = (props) => {
     }
   };
 
+  //Logout function
   const logout = async () => {
     await signOut(auth);
   };
 
-  //original function provided by Dani
+  //Original function provided by Dani
+  //Creates a Firestore db document with the same uid/email as the Firebase Authentication user
   const createUserData = async (user) => {
     console.log(`db is: `, db);
     try {
@@ -57,7 +62,9 @@ const AuthProvider = (props) => {
     }
   };
 
-  //modified function with timezone / display name / interests
+  //Modified function with timezone / display name / interests
+  //Creates a Firestore db document with the same uid/email as the Firebase Authentication user
+  //Plus a Display Name and Timezone, Plus an empty array of "interests"
   const updateUserData = async (
     user,
     displayName,
@@ -82,13 +89,14 @@ const AuthProvider = (props) => {
     }
   };
 
-  // update function for interests (result should be an array of categories)
-  const updateUserInterests = async (interests) => {
+  //Update function, for "interests" tags
+  //Updates the "interests" array for Firestore db user
+  const updateUserInterests = async (interestsArray) => {
     const userRef = doc(db, "test-users", user.uid);
 
     // Set the "interests" field of the user 'user.uid'
     await updateDoc(userRef, {
-      interests: interests,
+      interests: interestsArray,
     });
   };
 

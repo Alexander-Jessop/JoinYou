@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Alert, Button, Text, TextInput, View, StyleSheet } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../src/AuthProvider";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+//https://firebase.google.com/docs/auth/web/start#sign_up_new_users
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
