@@ -8,15 +8,10 @@ const TimezonePicker = () => {
 
   return (
     <View>
-      <Text styles={{ justifyContent: "center" }}>
-        Select your timezone:
-      </Text>
 
       <Picker
         selectedValue={selectedTimezone}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedTimezone(itemValue)
-        }
+        onValueChange={(itemValue, itemIndex) => setSelectedTimezone(itemValue)}
         style={{ height: 30, width: 350 }}
         itemStyle={{ fontSize: 12 }}
       >
