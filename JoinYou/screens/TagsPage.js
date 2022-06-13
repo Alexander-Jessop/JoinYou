@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Button } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -54,103 +54,120 @@ const TagsPage = () => {
   };
 
   return (
-    <View>
-      <Text>Select your interests:</Text>
-      <View>
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedAquariums ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedAquariums(!checkedAquariums);
-            }}
-          />
-          <Text style={styles.label}>Aquariums</Text>
-        </View>
-        <Text>{"\n"}</Text>
+    <ScrollView>
+      <View style={styles.containter}>
+        <View>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedAquariums ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedAquariums(!checkedAquariums);
+              }}
+            />
+            <Text style={styles.label}>Aquariums</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedCooking ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedCooking(!checkedCooking);
-            }}
-          />
-          <Text style={styles.label}>Cooking</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedCooking ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedCooking(!checkedCooking);
+              }}
+            />
+            <Text style={styles.label}>Cooking</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedFashion ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedFashion(!checkedFashion);
-            }}
-          />
-          <Text style={styles.label}>Fashion</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedFashion ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedFashion(!checkedFashion);
+              }}
+            />
+            <Text style={styles.label}>Fashion</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedFitness ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedFitness(!checkedFitness);
-            }}
-          />
-          <Text style={styles.label}>Fitness</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedFitness ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedFitness(!checkedFitness);
+              }}
+            />
+            <Text style={styles.label}>Fitness</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedGardening ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedGardening(!checkedGardening);
-            }}
-          />
-          <Text style={styles.label}>Gardening</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedGardening ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedGardening(!checkedGardening);
+              }}
+            />
+            <Text style={styles.label}>Gardening</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedTerrariums ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedTerrariums(!checkedTerrariums);
-            }}
-          />
-          <Text style={styles.label}>Terrariums</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedTerrariums ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedTerrariums(!checkedTerrariums);
+              }}
+            />
+            <Text style={styles.label}>Terrariums</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedVideography ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedVideography(!checkedVideography);
-            }}
-          />
-          <Text style={styles.label}>Videography</Text>
-        </View>
-        <Text>{"\n"}</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedVideography ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedVideography(!checkedVideography);
+              }}
+            />
+            <Text style={styles.label}>Videography</Text>
+          </View>
+          <Text>{"\n"}</Text>
 
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            status={checkedOther ? "checked" : "unchecked"}
-            onPress={() => {
-              setCheckedOther(!checkedOther);
-            }}
-          />
-          <Text style={styles.label}>Other</Text>
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              status={checkedOther ? "checked" : "unchecked"}
+              onPress={() => {
+                setCheckedOther(!checkedOther);
+              }}
+            />
+            <Text style={styles.label}>Other</Text>
+          </View>
+          <Text>{"\n"}</Text>
         </View>
-        <Text>{"\n"}</Text>
+
+        <Button title="Finish" onPress={onFinishHandler} />
       </View>
-
-      <Button title="Finish" onPress={onFinishHandler} />
-    </View>
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  checkbox: {
+    alignSelf: "center",
+  },
+  label: {
+    margin: 8,
+  },
+});
 
 export default TagsPage;
