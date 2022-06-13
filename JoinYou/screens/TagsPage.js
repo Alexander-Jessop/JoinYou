@@ -22,7 +22,6 @@ const TagsPage = () => {
 
   const onFinishHandler = () => {
     const interestArray = [];
-    console.log(interestArray);
 
     if (checkedAquariums) {
       interestArray.push("Aquariums");
