@@ -1,4 +1,4 @@
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../Screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useContext } from "react";
@@ -11,10 +11,10 @@ import AddImg from "../Screens/AddImg";
 import ImgDetails from "../Screens/ImgDetails.js";
 import AllLoadedImgs from "../Screens/AllLoadedImgs";
 import IconButton from "../components/ui/IconButton";
-import LoginPage from "../screens/LoginPage";
-import RegisterPage from "../screens/RegisterPage";
-import InfoPage from "../screens/InfoPage";
-import TagsPage from "../screens/TagsPage";
+import LoginPage from "../Screens/LoginPage";
+import RegisterPage from "../Screens/RegisterPage";
+import InfoPage from "../Screens/InfoPage";
+import TagsPage from "../Screens/TagsPage";
 
 const Stack = createNativeStackNavigator();
 
