@@ -12,6 +12,8 @@ import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
+import CustomDatePicker from "./components/schedulerForm/calendarpicker";
+
 
 // const Stack = createNativeStackNavigator();
 
@@ -85,7 +87,7 @@ export default function App() {
       <AuthProvider>
         <StatusBar style="light" />
         <RestOfApp />
-        high I am Zach hi I'm nathaly
+        <Text>This is my testing environment</Text>
       </AuthProvider>
     </FirebaseProvider>
   )
