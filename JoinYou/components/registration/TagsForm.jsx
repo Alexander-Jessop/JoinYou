@@ -16,7 +16,7 @@ const tags = [
 
 const TagsForm = () => {
   const [selectedTags, setSelectedTags] = useState(
-    Array(categories.length).fill(false)
+    Array(tags.length).fill(false)
   );
 
   const navigation = useNavigation();

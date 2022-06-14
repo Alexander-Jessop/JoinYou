@@ -16,8 +16,8 @@ const tags = [
 
 const TagsForm = () => {
   const [selectedTags, setSelectedTags] = useState(
-    tags.map((category) => {
-      return { title: category, selected: false };
+    tags.map((tag) => {
+      return { title: tag, selected: false };
     })
   );
 
@@ -48,13 +48,13 @@ const TagsForm = () => {
 
   return (
     <View>
-      {selectedCategories.map((tag, index) => {
+      {selectedTags.map((tag, index) => {
         return (
           <View key={tag.title} style={styles.checkboxContainer}>
             <Checkbox
               status={tag.selected ? "checked" : "unchecked"}
               onPress={() => {
-                setSelectedCategories((current) => {
+                setSelectedTags((current) => {
                   return current.map((c, i) => {
                     if (i === index) {
                       return {
@@ -68,7 +68,7 @@ const TagsForm = () => {
                 });
               }}
             />
-            <Text style={styles.label}>{category.title}</Text>
+            <Text style={styles.label}>{tag.title}</Text>
           </View>
         );
       })}
