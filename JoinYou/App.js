@@ -12,6 +12,7 @@ import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
+import Recording from "./components/VideoCamera/Recording";
 
 // const Stack = createNativeStackNavigator();
 
