@@ -88,4 +88,5 @@ export default function App() {
         high I am Zach hi I'm nathaly
       </AuthProvider>
     </FirebaseProvider>
-  );
+  )
+}
