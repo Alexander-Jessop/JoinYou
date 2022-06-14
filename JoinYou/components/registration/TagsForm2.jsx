@@ -4,7 +4,7 @@ import { Checkbox } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
-const categories = [
+const tags = [
   "Aquariums",
   "Cooking",
   "Fashion",
@@ -15,8 +15,8 @@ const categories = [
 ];
 
 const TagsForm = () => {
-  const [selectedCategories, setSelectedCategories] = useState(
-    categories.map((category) => {
+  const [selectedTags, setSelectedTags] = useState(
+    tags.map((category) => {
       return { title: category, selected: false };
     })
   );
@@ -27,20 +27,20 @@ const TagsForm = () => {
   const updateUserInterests = authContext.updateUserInterests;
 
   const onFinishHandler = () => {
-    const interestArray = categories.filter((category, index) => {
-      return selectedCategories[index];
+    const interestArray = tags.filter((tag, index) => {
+      return selectedTags[index];
     });
     updateUserInterests(interestArray);
     navigation.replace("Home");
   };
 
   const onFinishHandler = () => {
-    const interestArray = selectedCategories
-      .filter((category) => {
-        return category.selected;
+    const interestArray = selectedTags
+      .filter((tag) => {
+        return tag.selected;
       })
-      .map((category) => {
-        return category.title;
+      .map((tag) => {
+        return tag.title;
       });
     updateUserInterests(interestArray);
     navigation.replace("Home");
@@ -48,11 +48,11 @@ const TagsForm = () => {
 
   return (
     <View>
-      {selectedCategories.map((category, index) => {
+      {selectedCategories.map((tag, index) => {
         return (
-          <View key={category.title} style={styles.checkboxContainer}>
+          <View key={tag.title} style={styles.checkboxContainer}>
             <Checkbox
-              status={category.selected ? "checked" : "unchecked"}
+              status={tag.selected ? "checked" : "unchecked"}
               onPress={() => {
                 setSelectedCategories((current) => {
                   return current.map((c, i) => {

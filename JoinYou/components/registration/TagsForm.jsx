@@ -4,7 +4,7 @@ import { Checkbox } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
-const categories = [
+const tags = [
   "Aquariums",
   "Cooking",
   "Fashion",
@@ -15,7 +15,7 @@ const categories = [
 ];
 
 const TagsForm = () => {
-  const [selectedCategories, setSelectedCategories] = useState(
+  const [selectedTags, setSelectedTags] = useState(
     Array(categories.length).fill(false)
   );
 
@@ -26,8 +26,8 @@ const TagsForm = () => {
   const updateUserInterests = authContext.updateUserInterests;
 
   const onFinishHandler = () => {
-    const interestArray = categories.filter((category, index) => {
-      return selectedCategories[index];
+    const interestArray = tags.filter((tag, index) => {
+      return selectedTags[index];
     });
     updateUserInterests(interestArray);
     navigation.replace("Home");
@@ -35,13 +35,13 @@ const TagsForm = () => {
 
   return (
     <View>
-      {selectedCategories.map((category, index) => {
+      {selectedTags.map((tag, index) => {
         return (
           <View style={styles.checkboxContainer}>
             <Checkbox
-              status={category ? "checked" : "unchecked"}
+              status={tag ? "checked" : "unchecked"}
               onPress={() => {
-                setSelectedCategories((current) => {
+                setSelectedTags((current) => {
                   return current.map((c, i) => {
                     if (i === index) {
                       return !c;
@@ -52,12 +52,18 @@ const TagsForm = () => {
                 });
               }}
             />
-            <Text style={styles.label}>{categories[index]}</Text>
+            <Text style={styles.label}>{tags[index]}</Text>
           </View>
         );
       })}
       <Text>{"\n"}</Text>
       <Button title="Finish" onPress={onFinishHandler} />
+      <Button
+        title="CONSOLE LOG"
+        onPress={() => {
+          console.log(selectedTags);
+        }}
+      />
     </View>
   );
 };
