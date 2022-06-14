@@ -16,7 +16,7 @@ const InfoForm = (props) => {
   const createUserData = authContext.createUserData;
 
   const onContinueHandler = async () => {
-    userUpdateFn = props.userUpdateFn;
+    updateUserFn = props.updateUserFn;
     updateUserFn(user, displayName, selectedTimezone, []);
     navigation.replace("Tags");
   };
@@ -56,7 +56,7 @@ const InfoForm = (props) => {
       </View>
 
       <Text>{"\n"}</Text>
-      <Button title="Continue" onPress={props.pressFunction} />
+      <Button title="Continue" onPress={onContinueHandler} />
     </View>
   );
 };
