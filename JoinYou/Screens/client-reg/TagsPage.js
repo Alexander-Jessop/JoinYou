@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet, ScrollView, Button } from "react-native";
-import TagsForm from "../../components/client-reg/TagsForm";
+import TagsForm from "../../components/registration/TagsForm";
 
 const TagsPage = () => {
   return (
