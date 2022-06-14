@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
-const InfoForm = () => {
+const InfoForm = (props) => {
   const [displayName, setDisplayName] = useState("");
   const [selectedTimezone, setSelectedTimezone] = useState(timezones[0].text);
 
@@ -14,10 +14,10 @@ const InfoForm = () => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
   const createUserData = authContext.createUserData;
-  const updateUserData = authContext.updateUserData;
 
   const onContinueHandler = async () => {
-    updateUserData(user, displayName, selectedTimezone, []);
+    userUpdateFn = props.userUpdateFn;
+    updateUserFn(user, displayName, selectedTimezone, []);
     navigation.replace("Tags");
   };
 
@@ -56,7 +56,7 @@ const InfoForm = () => {
       </View>
 
       <Text>{"\n"}</Text>
-      <Button title="Continue" onPress={onContinueHandler} />
+      <Button title="Continue" onPress={props.pressFunction} />
     </View>
   );
 };
