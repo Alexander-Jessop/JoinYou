@@ -11,10 +11,10 @@ import AddImg from "../Screens/AddImg";
 import ImgDetails from "../Screens/ImgDetails.js";
 import AllLoadedImgs from "../Screens/AllLoadedImgs";
 import IconButton from "../components/ui/IconButton";
-import LoginPage from "../Screens/LoginPage";
-import RegisterPage from "../Screens/RegisterPage";
-import InfoPage from "../Screens/InfoPage";
-import TagsPage from "../Screens/TagsPage";
+import LoginPage from "../Screens/client-reg/LoginPage";
+import RegisterPage from "../Screens/client-reg/RegisterPage";
+import InfoPage from "../Screens/client-reg/InfoPage";
+import TagsPage from "../Screens/client-reg/TagsPage";
 
 const Stack = createNativeStackNavigator();
 
