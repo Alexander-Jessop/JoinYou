@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Text, TextInput, View, StyleSheet } from "react-native";
-import RegisterForm from "../../components/registration/RegisterForm";
+import RegisterForm from "../../components/client-reg/RegisterForm";
 
 const RegisterPage = () => {
   return <RegisterForm />;

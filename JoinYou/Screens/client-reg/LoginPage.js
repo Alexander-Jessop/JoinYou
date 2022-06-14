@@ -1,7 +1,7 @@
 import { View, Text, Button } from "react-native";
 import React, { useContext } from "react";
 import { AuthContext } from "../../src/AuthProvider";
-import LoginForm from "../../components/registration/LoginForm";
+import LoginForm from "../../components/client-reg/LoginForm";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginPage = () => {
