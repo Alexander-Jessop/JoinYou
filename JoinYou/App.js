@@ -1,7 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Model,
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  View,
+} from "react-native";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
@@ -12,8 +18,7 @@ import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
-import CustomDatePicker from "./components/schedulerForm/calendarpicker";
-
+import CustomDatePicker from "./components/schedulerForm/CustomDatePicker";
 
 // const Stack = createNativeStackNavigator();
 
@@ -87,8 +92,21 @@ export default function App() {
       <AuthProvider>
         <StatusBar style="light" />
         <RestOfApp />
-        <Text>This is my testing environment</Text>
+
+        <View style={{ flex: 1, marginTop: 50 }}>
+          <View style={{ marginHorizontal: 20 }}>
+            <Text>Influencer datepicker</Text>
+            <CustomDatePicker
+              textStyle={{
+                paddingVertical: 15,
+                paddingHorizontal: 10,
+                borderColor: "gray",
+                borderWidth: 1,
+              }}
+            />
+          </View>
+        </View>
       </AuthProvider>
     </FirebaseProvider>
-  )
-};
+  );
+}
