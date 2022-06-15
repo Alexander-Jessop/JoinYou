@@ -4,12 +4,14 @@ import InfoForm from "../../components/registration/InfoForm";
 import { AuthContext } from "../../src/AuthProvider";
 
 const InfoPage = () => {
-  const authContext = useContext(AuthContext);
-  const updateUserData = authContext.updateUserData;
+  //const authContext = useContext(AuthContext);
+  //const updateUserData = authContext.updateUserData;
 
   return (
     <View>
-      <InfoForm updateUserData={updateUserData} />
+      <InfoForm
+      //updateUserData={updateUserData}
+      />
     </View>
   );
 };
