@@ -71,8 +71,8 @@ const AuthProvider = (props) => {
     user,
     displayName,
     checkedExpert,
-    selectedTimezone,
-    interests
+    selectedTimezone
+    //interests
   ) => {
     console.log(`db is: `, db);
     try {
