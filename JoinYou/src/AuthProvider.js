@@ -55,7 +55,7 @@ const AuthProvider = (props) => {
         uid: user.uid,
         email: user.email,
       };
-      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      let newDoc = await setDoc(doc(db, "users", user.uid), userData);
       console.log("New user created!", newDoc);
       return newDoc;
     } catch (error) {
@@ -84,7 +84,7 @@ const AuthProvider = (props) => {
         timezone: selectedTimezone,
         //interests: interests,
       };
-      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      let newDoc = await setDoc(doc(db, "users", user.uid), userData);
       console.log("New user created!", newDoc);
       return newDoc;
     } catch (error) {
@@ -97,7 +97,7 @@ const AuthProvider = (props) => {
   //Updates the "interests" array for Firestore db user
   //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
   const updateUserInterests = async (interestsArray) => {
-    const userRef = doc(db, "test-users", user.uid);
+    const userRef = doc(db, "users", user.uid);
 
     // Set the "interests" field of the user
     await updateDoc(userRef, {
