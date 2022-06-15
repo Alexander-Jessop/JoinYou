@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Button, Text, View, StyleSheet } from "react-native";
+import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import TagsForm from "../components/registration/TagsForm";
+import ExpertList from "../components/feed/ExpertList";
 
 const HomeScreen = () => {
   const authContext = useContext(AuthContext);
@@ -11,7 +12,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View>
+    <ScrollView>
       <Button
         title="LOG OUT"
         onPress={() => {
@@ -21,7 +22,8 @@ const HomeScreen = () => {
       />
 
       <Text>THIS IS THE HOME SCREEN</Text>
-    </View>
+      <ExpertList />
+    </ScrollView>
   );
 };
 
