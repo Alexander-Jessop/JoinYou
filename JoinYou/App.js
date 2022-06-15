@@ -95,7 +95,7 @@ export default function App() {
 
         <View style={{ flex: 1, marginTop: 50 }}>
           <View style={{ marginHorizontal: 20 }}>
-            <Text>Influencer datepicker</Text>
+            <Text>Influencer Datepicker</Text>
             <CustomDatePicker
               textStyle={{
                 paddingVertical: 15,
