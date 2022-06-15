@@ -18,7 +18,7 @@ const InfoForm = (props) => {
   const createUserData = authContext.createUserData;
 
   const onContinueHandler = async () => {
-    props.updateUserFn(user, displayName, checkedExpert, selectedTimezone, []);
+    props.updateUserData(user, displayName, checkedExpert, selectedTimezone);
     navigation.replace("Tags");
   };
 

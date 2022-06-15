@@ -9,7 +9,7 @@ const InfoPage = () => {
 
   return (
     <View>
-      <InfoForm updateUserFn={updateUserData} />
+      <InfoForm updateUserData={updateUserData} />
     </View>
   );
 };
