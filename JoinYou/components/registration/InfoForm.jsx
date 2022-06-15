@@ -37,17 +37,11 @@ const InfoForm = (props) => {
 
       <Text>{"\n"}</Text>
       <View style={styles.checkboxContainer}>
+        <Text style={styles.label}>Are you an expert?</Text>
         <Checkbox
           status={checkedExpert ? "checked" : "unchecked"}
           onPress={() => {
             setCheckedExpert(!checkedExpert);
-          }}
-        />
-        <Text style={styles.label}>Are you an expert?</Text>
-        <Button
-          title="CONSOLE LOG"
-          onPress={() => {
-            console.log(isExpert);
           }}
         />
       </View>
@@ -67,7 +61,7 @@ const InfoForm = (props) => {
             <Picker.Item
               label={timezone.text}
               value={timezone.text}
-              key={timezone.utc[0]}
+              key={timezone.text}
             />
           ))}
         </Picker>
