@@ -44,7 +44,6 @@ const ExpertList = () => {
             </View>
           );
         })}
-        <Button title="console log" onPress={() => console.log(userData)} />
       </View>
     </ScrollView>
   );
