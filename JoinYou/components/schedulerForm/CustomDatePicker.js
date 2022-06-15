@@ -66,7 +66,7 @@ const CustomDatePicker = (props) => {
                       mode="date"
                       minimumDate={
                         new Date(
-                          moment().subtract(120, "years").format("YYYY-MM-DD")
+                          moment().subtract(150, "years").format("YYYY-MM-DD")
                         )
                       }
                       maximumDate={new Date(moment().format("YYYY-MM-DD"))}
