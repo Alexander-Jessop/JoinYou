@@ -20,8 +20,6 @@ const HomeScreen = () => {
         }}
       />
 
-      <TagsForm />
-
       <Text>THIS IS THE HOME SCREEN</Text>
     </View>
   );
