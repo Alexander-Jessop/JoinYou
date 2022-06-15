@@ -6,11 +6,11 @@ import TagsForm from "../components/registration/TagsForm";
 import ExpertList from "../components/feed/ExpertList";
 import CategoryList from "../components/feed/CategoryList";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const logoutFn = authContext.logout;
 
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
 
   return (
     <ScrollView>
@@ -24,7 +24,10 @@ const HomeScreen = () => {
 
       <Text>THIS IS THE HOME SCREEN</Text>
       <ExpertList />
-      <Button title="See all categories" />
+      <Button
+        title="See all categories"
+        onPress={() => navigation.navigate("Categories")}
+      />
     </ScrollView>
   );
 };

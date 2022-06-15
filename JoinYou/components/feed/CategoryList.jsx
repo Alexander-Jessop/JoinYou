@@ -17,7 +17,10 @@ const CategoryList = (props) => {
         console.log("No docs found");
       } else {
         let usersData = querySnap.docs.map((doc) => doc.data());
-        let category = usersData.filter((user) => {
+        let expertsData = usersData.filter((user) => {
+          return user.isExpert;
+        });
+        let category = expertsData.filter((user) => {
           return user.interests.includes(props.category);
         });
         setExpertsByCategory(category);
