@@ -15,6 +15,7 @@ import LoginPage from "../Screens/LoginPage";
 import RegisterPage from "../Screens/RegisterPage";
 import InfoPage from "../Screens/InfoPage";
 import TagsPage from "../Screens/TagsPage";
+import TestScreen from "../Screens/TestScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -52,11 +53,19 @@ const RestOfApp = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        
+      <Stack.Screen
+        name="Test"
+        component={TestScreen}
+        options={{ title: "Influnencer Datepicker" }}
+        />
+        
         <Stack.Screen
           name="Login"
           component={LoginPage}
           options={{ title: "Welcome" }}
         />
+
 
         <Stack.Screen
           name="Register"
