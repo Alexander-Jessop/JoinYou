@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
-import { Colors } from "./constants/styles";
+// import { Colors } from "./constants/styles";
 import AllLoadedImgs from "./Screens/AllLoadedImgs";
 import AddImg from "./Screens/AddImg";
 import IconButton from "./components/ui/IconButton";
