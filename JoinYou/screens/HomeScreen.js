@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
       />
 
       <Text>THIS IS THE HOME SCREEN</Text>
-      <ExpertList />
+      <CategoryList />
       <Button
         title="See all categories"
         onPress={() => navigation.navigate("Categories")}

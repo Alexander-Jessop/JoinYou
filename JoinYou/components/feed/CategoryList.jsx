@@ -29,10 +29,9 @@ const CategoryList = (props) => {
         });
 
         let filteredByCategory = expertsData?.filter((user) => {
-          console.log("user interests is: ", user.interests);
           return user.interests.includes(selectedCategory);
         });
-        //console.log("filteredByCategory is: ", filteredByCategory);
+
         setExpertsByCategory(filteredByCategory);
       }
     });
