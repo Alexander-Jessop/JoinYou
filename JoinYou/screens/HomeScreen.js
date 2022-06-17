@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
-import TagsForm from "../components/registration/TagsForm";
-import ExpertList from "../components/feed/ExpertList";
-import CategoryDropdown from "../components/feed/CategoryDropdown";
+import MainList from "../components/feed/MainList";
 
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
@@ -23,7 +21,8 @@ const HomeScreen = ({ navigation }) => {
       />
 
       <Text>THIS IS THE HOME SCREEN</Text>
-      <CategoryDropdown />
+
+      <MainList />
       <Button
         title="See all categories"
         onPress={() => navigation.navigate("Categories")}

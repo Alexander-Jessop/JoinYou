@@ -28,8 +28,8 @@ const CategoryDropdown = (props) => {
           return user.isExpert;
         });
 
-        let filteredByCategory = expertsData?.filter((user) => {
-          return user.interests.includes(selectedCategory);
+        let filteredByCategory = expertsData?.filter((expert) => {
+          return expert.interests.includes(selectedCategory);
         });
 
         setExpertsByCategory(filteredByCategory);
