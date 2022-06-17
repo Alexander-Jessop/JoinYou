@@ -15,8 +15,9 @@ const ExpertsList = () => {
 
   const [experts, setExperts] = useState([]);
 
+  //Initial method from superheroes
   useEffect(() => {
-    //query snapshot that returns all experts in the firestore db
+    //query snapshot that returns all users in the firestore db
     let collectionRef = collection(db, "users");
     let queryRef = query(collectionRef, orderBy("displayName"));
     const unsubscribe = onSnapshot(queryRef, (querySnap) => {
@@ -31,6 +32,7 @@ const ExpertsList = () => {
           return user.isExpert;
         });
 
+        //set the Expert state to only the experts
         setExperts(expertsData);
       }
     });
