@@ -15,6 +15,7 @@ import LoginPage from "../Screens/client-reg/LoginPage";
 import RegisterPage from "../Screens/client-reg/RegisterPage";
 import InfoPage from "../Screens/client-reg/InfoPage";
 import TagsPage from "../Screens/client-reg/TagsPage";
+import CategoryScreen from "../Screens/feed/CategoryScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +78,8 @@ const RestOfApp = () => {
         />
 
         <Stack.Screen name="Home" component={HomeScreen} />
+
+        <Stack.Screen name="Categories" component={CategoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
