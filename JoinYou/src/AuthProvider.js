@@ -71,8 +71,8 @@ const AuthProvider = (props) => {
     user,
     displayName,
     checkedExpert,
-    selectedTimezone
-    //interests
+    selectedTimezone,
+    interests
   ) => {
     console.log(`db is: `, db);
     try {
@@ -82,7 +82,7 @@ const AuthProvider = (props) => {
         displayName: displayName,
         isExpert: checkedExpert,
         timezone: selectedTimezone,
-        //interests: interests,
+        interests: interests,
       };
       let newDoc = await setDoc(doc(db, "users", user.uid), userData);
       console.log("New user created!", newDoc);
