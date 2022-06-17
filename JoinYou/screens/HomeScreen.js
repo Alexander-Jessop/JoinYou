@@ -4,7 +4,7 @@ import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import TagsForm from "../components/registration/TagsForm";
 import ExpertList from "../components/feed/ExpertList";
-import CategoryList from "../components/feed/CategoryList";
+import CategoryDropdown from "../components/feed/CategoryDropdown";
 
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
       />
 
       <Text>THIS IS THE HOME SCREEN</Text>
-      <CategoryList />
+      <CategoryDropdown />
       <Button
         title="See all categories"
         onPress={() => navigation.navigate("Categories")}
