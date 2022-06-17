@@ -1,56 +1,77 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import {
-  LocaleConfig,
-  Calendar,
-  CalendarList,
-  Agenda,
-} from "react-native-calendars";
+import React, { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Text, Button } from "react-native";
+import { Agenda } from "react-native-calendars";
+import { Avatar, Card } from "react-native-paper";
 
 //https://www.npmjs.com/package/react-native-calendars
 
+const timeToString = (time) => {
+  const date = new Date(time);
+  return date.toISOString().split("T")[0];
+};
+
 const AgendaView = () => {
+  const [items, setItems] = useState({});
+
+  const loadItems = (day) => {
+    setTimeout(() => {
+      for (let i = -15; i < 85; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 50;
+        const strTime = timeToString(time);
+
+        if (!items[strTime]) {
+          items[strTime] = [];
+
+          const numItems = Math.floor(Math.random() * 3 + 1);
+          for (let j = 0; j < numItems; j++) {
+            items[strTime].push({
+              name: "Item for " + strTime + " #" + j,
+              height: Math.max(50, Math.floor(Math.random() * 150)),
+              day: strTime,
+            });
+          }
+        }
+      }
+
+      const newItems = {};
+      Object.keys(items).forEach((key) => {
+        newItems[key] = items[key];
+      });
+      setItems(newItems);
+    }, 1000);
+  };
+
+  const renderItem = (item) => {
+    return (
+      <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
+        <Card>
+          <Card.Content>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text>{item.name}</Text>
+              <Avatar.Text
+                label="N/A" /*Replace N/A with profile photo of scheduled client*/
+              />
+              <Button title="Join" />
+            </View>
+          </Card.Content>
+        </Card>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Agenda
-        loadItemsForMonth={(month) => {
-          console.log("trigger items loading");
-        }}
-        onCalendarToggled={(calendarOpened) => {
-          console.log(calendarOpened);
-        }}
-        onDayPress={(day) => {
-          console.log("day pressed");
-        }}
-        onDayChange={(day) => {
-          console.log("day changed");
-        }}
-        pastScrollRange={5}
-        futureScrollRange={12}
-        renderItem={(item, firstItemInDay) => {
-          return <View />;
-        }}
-        renderDay={(day, item) => {
-          return <View />;
-        }}
-        renderEmptyDate={() => {
-          return <View />;
-        }}
-        renderKnob={() => {
-          return <View />;
-        }}
-        renderEmptyData={() => {
-          return <View />;
-        }}
-        rowHasChanged={(r1, r2) => {
-          return r1.text !== r2.text;
-        }}
-        hideKnob={true}
-        showClosingKnob={false}
-        disabledByDefault={true}
-        onRefresh={() => console.log("refreshing...")}
-        refreshing={false}
-        refreshControl={null}
+        items={items}
+        loadItemsForMonth={loadItems}
+        selected={"2022-05-28"} /*'today's date'*/
+        renderItem={renderItem}
       />
     </View>
   );
