@@ -2,8 +2,9 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import { List } from "react-native-paper";
 import tags from "../../util/tags.json";
+import { List } from "react-native-paper";
+//https://callstack.github.io/react-native-paper/list-accordion.html
 
 const CategoryList = (props) => {
   const fbContext = useContext(FirebaseContext);
