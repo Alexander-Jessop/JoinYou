@@ -11,9 +11,7 @@ const CategoryList = (props) => {
   const db = fbContext.db;
 
   const [expertsByCategory, setExpertsByCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Cooking");
-  //dropdown box has an onchange to select the category
-
+  const [selectedCategory, setSelectedCategory] = useState("Aquariums");
   const [expanded, setExpanded] = React.useState(false);
   const handlePress = () => setExpanded(!expanded);
 
@@ -25,13 +23,16 @@ const CategoryList = (props) => {
         console.log("No docs found");
       } else {
         let usersData = querySnap.docs.map((doc) => doc.data());
-        let expertsData = usersData.filter((user) => {
+
+        let expertsData = usersData?.filter((user) => {
           return user.isExpert;
         });
-        let filteredByCategory = expertsData.filter((user) => {
+
+        let filteredByCategory = expertsData?.filter((user) => {
+          console.log("user interests is: ", user.interests);
           return user.interests.includes(selectedCategory);
         });
-        console.log("filteredByCategory is: ", filteredByCategory);
+        //console.log("filteredByCategory is: ", filteredByCategory);
         setExpertsByCategory(filteredByCategory);
       }
     });
