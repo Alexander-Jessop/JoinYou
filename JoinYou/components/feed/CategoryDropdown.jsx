@@ -1,4 +1,11 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  where,
+  getDocs,
+  query,
+} from "firebase/firestore";
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { FirebaseContext } from "../../src/FirebaseProvider";
@@ -16,26 +23,46 @@ const CategoryDropdown = (props) => {
   const handlePress = () => setExpanded(!expanded);
 
   useEffect(() => {
-    let collectionRef = collection(db, "users");
-    let queryRef = query(collectionRef, orderBy("displayName"));
-    const unsubscribe = onSnapshot(queryRef, (querySnap) => {
-      if (querySnap.empty) {
-        console.log("No docs found");
-      } else {
-        let usersData = querySnap.docs.map((doc) => doc.data());
+    // let collectionRef = collection(db, "users");
+    // let queryRef = query(collectionRef, orderBy("displayName"));
+    // const unsubscribe = onSnapshot(queryRef, (querySnap) => {
+    //   if (querySnap.empty) {
+    //     console.log("No docs found");
+    //   } else {
+    //     let usersData = querySnap.docs.map((doc) => doc.data());
 
-        let expertsData = usersData?.filter((user) => {
-          return user.isExpert;
-        });
+    //     let expertsData = usersData?.filter((user) => {
+    //       return user.isExpert;
+    //     });
 
-        let filteredByCategory = expertsData?.filter((expert) => {
-          return expert.interests.includes(selectedCategory);
-        });
+    //     let filteredByCategory = expertsData?.filter((expert) => {
+    //       return expert.interests.includes(selectedCategory);
+    //     });
 
-        setExpertsByCategory(filteredByCategory);
-      }
-    });
-    return unsubscribe;
+    //     setExpertsByCategory(filteredByCategory);
+    //   }
+    // });
+    // return unsubscribe;
+
+    const expertArray = [];
+
+    //Get multiple documents from a collection with a filter
+    //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
+    const getData = async () => {
+      const q = query(collection(db, "users"), where("isExpert", "==", true));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        expertArray.push(doc.data());
+      });
+
+      //Second filter. Filtering by selected category
+      const filteredByCategory = expertArray.filter((expert) => {
+        return expert.interests.includes(selectedCategory);
+      });
+
+      setExpertsByCategory(filteredByCategory);
+    };
+    getData();
   }, [selectedCategory]);
 
   return (
