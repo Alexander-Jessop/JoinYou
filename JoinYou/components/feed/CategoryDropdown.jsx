@@ -49,7 +49,11 @@ const CategoryDropdown = (props) => {
         >
           {tags.map((tag) => {
             return (
-              <List.Item title={tag} onPress={() => setSelectedCategory(tag)} />
+              <List.Item
+                title={tag}
+                key={tag}
+                onPress={() => setSelectedCategory(tag)}
+              />
             );
           })}
         </List.Accordion>
