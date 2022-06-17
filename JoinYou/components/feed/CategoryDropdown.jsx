@@ -6,7 +6,7 @@ import tags from "../../util/tags.json";
 import { List } from "react-native-paper";
 //https://callstack.github.io/react-native-paper/list-accordion.html
 
-const CategoryList = (props) => {
+const CategoryDropdown = (props) => {
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
 
@@ -76,4 +76,4 @@ const CategoryList = (props) => {
 
 const styles = StyleSheet.create({});
 
-export default CategoryList;
+export default CategoryDropdown;
