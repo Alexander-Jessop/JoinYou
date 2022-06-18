@@ -1,4 +1,5 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { FirebaseContext } from "../../src/FirebaseProvider";
@@ -9,21 +10,18 @@ const ExpertList = () => {
 
   const [experts, setExperts] = useState([]);
 
+  //New method from firestore documentation. Changed .forEach() to .map()
   useEffect(() => {
-    let collectionRef = collection(db, "users");
-    let queryRef = query(collectionRef, orderBy("displayName"));
-    const unsubscribe = onSnapshot(queryRef, (querySnap) => {
-      if (querySnap.empty) {
-        console.log("No docs found");
-      } else {
-        let usersData = querySnap.docs.map((doc) => doc.data());
-        let expertsData = usersData.filter((user) => {
-          return user.isExpert;
-        });
-        setExperts(expertsData);
-      }
-    });
-    return unsubscribe;
+    //Get multiple documents from a collection with a filter
+    //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
+    const getData = async () => {
+      const q = query(collection(db, "users"), where("isExpert", "==", true));
+      const querySnapshot = await getDocs(q);
+      const expertArray = querySnapshot.docs.map((doc) => doc.data());
+      console.log("querySnapshot.docs: ", querySnapshot.docs);
+      setExperts(expertArray);
+    };
+    getData();
   }, []);
 
   return (
@@ -37,7 +35,7 @@ const ExpertList = () => {
               <Text style={{ fontSize: 20 }}>Name: {expert.displayName}</Text>
 
               <Text style={{ fontSize: 16 }}>
-                Expertise in: {expert.interests.join(", ")}
+                Expertise in: {expert.interests?.join(", ")}
               </Text>
 
               <Text>{"\n"}</Text>

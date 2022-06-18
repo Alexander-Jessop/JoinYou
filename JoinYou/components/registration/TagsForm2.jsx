@@ -4,15 +4,7 @@ import { Checkbox } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
-const tags = [
-  "Aquariums",
-  "Cooking",
-  "Fashion",
-  "Gardening",
-  "Fitness",
-  "Videography",
-  "Other",
-];
+import tags from "../../util/tags.json";
 
 const TagsForm = () => {
   const [selectedTags, setSelectedTags] = useState(
