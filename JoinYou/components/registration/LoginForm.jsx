@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
-import { AuthContext } from "../src/AuthProvider";
+import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginForm = () => {
@@ -17,6 +17,13 @@ const LoginForm = () => {
 
   return (
     <View>
+      <Text>
+        {"\n"}
+        {user
+          ? "You are logged in as: " + user.email
+          : "You are not logged in."}
+        {"\n"}
+      </Text>
       <TextInput
         placeholder="email"
         value={email}

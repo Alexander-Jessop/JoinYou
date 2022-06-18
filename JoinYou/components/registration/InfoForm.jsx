@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Text, TextInput, Button, View, StyleSheet } from "react-native";
-import timezones from "../components/ui/timezones.json";
+import timezones from "../ui/timezones.json";
 import { Picker } from "@react-native-picker/picker";
-import { AuthContext } from "../src/AuthProvider";
+import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
+import { Checkbox } from "react-native-paper";
 
-const InfoPage = () => {
+const InfoForm = (props) => {
   const [displayName, setDisplayName] = useState("");
-  const [selectedTimezone, setSelectedTimezone] = useState(null);
+  const [selectedTimezone, setSelectedTimezone] = useState(timezones[0].text);
+  const [checkedExpert, setCheckedExpert] = useState(false);
 
   const navigation = useNavigation();
 
@@ -17,7 +19,7 @@ const InfoPage = () => {
   const updateUserData = authContext.updateUserData;
 
   const onContinueHandler = async () => {
-    updateUserData(user, displayName, selectedTimezone, []);
+    updateUserData(user, displayName, checkedExpert, selectedTimezone, []);
     navigation.replace("Tags");
   };
 
@@ -35,6 +37,17 @@ const InfoPage = () => {
       </View>
 
       <Text>{"\n"}</Text>
+      <View style={styles.checkboxContainer}>
+        <Text style={styles.label}>Are you an expert?</Text>
+        <Checkbox
+          status={checkedExpert ? "checked" : "unchecked"}
+          onPress={() => {
+            setCheckedExpert(!checkedExpert);
+          }}
+        />
+      </View>
+
+      <Text>{"\n"}</Text>
       <Text>Select your timezone:</Text>
       <View>
         <Picker
@@ -49,7 +62,7 @@ const InfoPage = () => {
             <Picker.Item
               label={timezone.text}
               value={timezone.text}
-              key={timezone.utc[0]}
+              key={timezone.text}
             />
           ))}
         </Picker>
@@ -63,4 +76,4 @@ const InfoPage = () => {
 
 const styles = StyleSheet.create({});
 
-export default InfoPage;
+export default InfoForm;

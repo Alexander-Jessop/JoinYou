@@ -5,13 +5,18 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
-import { Colors } from "./constants/styles";
+// import { Colors } from "./constants/styles";
 import AllLoadedImgs from "./Screens/AllLoadedImgs";
 import AddImg from "./Screens/AddImg";
 import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
+import Recording from "./components/VideoCamera/Recording";
+import AgendaView from "./components/Scheduler/AgendaView";
+import CalendarView from "./components/Scheduler/CalendarView";
+import { Calendar } from "react-native-calendars";
+import TimeSlots from "./components/Scheduler/TimeSlots"
 
 // const Stack = createNativeStackNavigator();
 
@@ -84,8 +89,7 @@ export default function App() {
     <FirebaseProvider>
       <AuthProvider>
         <StatusBar style="light" />
-        <RestOfApp />
-        high I am Zach hi I'm nathaly
+        <TimeSlots/>
       </AuthProvider>
     </FirebaseProvider>
   )
