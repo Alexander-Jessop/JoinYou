@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
-//import { Colors } from "./constants/styles";
+// import { Colors } from "./constants/styles";
 import AllLoadedImgs from "./Screens/AllLoadedImgs";
 import AddImg from "./Screens/AddImg";
 import IconButton from "./components/ui/IconButton";
@@ -15,7 +15,12 @@ import AuthProvider from "./src/AuthProvider";
 import Recording from "./components/VideoCamera/Recording";
 import AgendaView from "./components/Scheduler/AgendaView";
 import CalendarView from "./components/Scheduler/CalendarView";
+<<<<<<< HEAD
+import { Calendar } from "react-native-calendars";
+import TimeSlots from "./components/Scheduler/TimeSlots"
+=======
 import TimeSlots from "./components/Scheduler/TimeSlots";
+>>>>>>> 3b4f1d1d88bfbb08d9d105f5999d1d992f84fd30
 
 // const Stack = createNativeStackNavigator();
 
@@ -88,7 +93,11 @@ export default function App() {
     <FirebaseProvider>
       <AuthProvider>
         <StatusBar style="light" />
+<<<<<<< HEAD
+        <TimeSlots/>
+=======
         <AgendaView />
+>>>>>>> 3b4f1d1d88bfbb08d9d105f5999d1d992f84fd30
       </AuthProvider>
     </FirebaseProvider>
   );

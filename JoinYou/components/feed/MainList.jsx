@@ -20,11 +20,13 @@ const MainList = () => {
     if (userInterests) {
       let collectionRef = collection(db, "users");
       let queryRef = query(collectionRef);
+
       const unsubscribe = onSnapshot(queryRef, (querySnap) => {
         if (querySnap.empty) {
           console.log("No docs found");
         } else {
           let usersData = querySnap.docs.map((doc) => doc.data());
+
           let expertsData = usersData?.filter((user) => {
             return user.isExpert;
           });
@@ -69,19 +71,6 @@ const MainList = () => {
           </View>
         );
       })}
-
-      {/* <Button
-        title="Set user interests"
-        onPress={async () => {
-          const docRef = doc(db, "users", uid);
-          const docSnap = await getDoc(docRef);
-          console.log(
-            "docSnap.data().interests is: ",
-            docSnap.data().interests
-          );
-          setUserInterests(docSnap.data().interests);
-        }}
-      /> */}
     </View>
   );
 };
