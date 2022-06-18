@@ -50,6 +50,7 @@ const CategoryDropdown = (props) => {
     // return unsubscribe;
 
     //Get multiple documents from a collection with a filter.
+    //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
       const q = query(collection(db, "users"), where("isExpert", "==", true));
