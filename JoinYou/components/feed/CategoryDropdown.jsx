@@ -44,16 +44,12 @@ const CategoryDropdown = (props) => {
     // });
     // return unsubscribe;
 
-    const expertArray = [];
-
     //Get multiple documents from a collection with a filter
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
       const q = query(collection(db, "users"), where("isExpert", "==", true));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        expertArray.push(doc.data());
-      });
+      const expertArray = querySnapshot.docs.map((doc) => doc.data());
 
       //Second filter. Filtering by selected category
       const filteredByCategory = expertArray.filter((expert) => {

@@ -10,20 +10,15 @@ const ExpertList = () => {
 
   const [experts, setExperts] = useState([]);
 
-  //new method from firestore documentation
+  //New method from firestore documentation. Changed .forEach() to .map()
   useEffect(() => {
-    const expertArray = [];
-
     //Get multiple documents from a collection with a filter
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
       const q = query(collection(db, "users"), where("isExpert", "==", true));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        //console.log(doc.id, " => ", doc.data());
-        expertArray.push(doc.data());
-      });
-      console.log("EXPERT ARRAY: ", expertArray);
+      const expertArray = querySnapshot.docs.map((doc) => doc.data());
+      console.log("querySnapshot.docs: ", querySnapshot.docs);
       setExperts(expertArray);
     };
     getData();
