@@ -1,4 +1,4 @@
-import HomeScreen from "../Screens/HomeScreen";
+import HomeScreen from "../Screens/feed/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useContext } from "react";
