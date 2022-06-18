@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
-import { Button, Text, View, StyleSheet } from "react-native";
+import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { AuthContext } from "../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import TagsForm from "../components/registration/TagsForm";
+import ExpertList from "../components/feed/ExpertList";
+import CategoryList from "../components/feed/CategoryList";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const logoutFn = authContext.logout;
 
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
 
   return (
-    <View>
+    <ScrollView>
       <Button
         title="LOG OUT"
         onPress={() => {
@@ -20,10 +22,13 @@ const HomeScreen = () => {
         }}
       />
 
-      <TagsForm />
-
       <Text>THIS IS THE HOME SCREEN</Text>
-    </View>
+      <ExpertList />
+      <Button
+        title="See all categories"
+        onPress={() => navigation.navigate("Categories")}
+      />
+    </ScrollView>
   );
 };
 

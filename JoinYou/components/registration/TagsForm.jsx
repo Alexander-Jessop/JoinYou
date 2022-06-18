@@ -40,6 +40,7 @@ const TagsForm = () => {
           <View style={styles.checkboxContainer}>
             <Checkbox
               status={tag ? "checked" : "unchecked"}
+              key={tags[index]}
               onPress={() => {
                 setSelectedTags((current) => {
                   return current.map((c, i) => {

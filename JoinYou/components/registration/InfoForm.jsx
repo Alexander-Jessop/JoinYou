@@ -4,10 +4,12 @@ import timezones from "../ui/timezones.json";
 import { Picker } from "@react-native-picker/picker";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
+import { Checkbox } from "react-native-paper";
 
-const InfoForm = () => {
+const InfoForm = (props) => {
   const [displayName, setDisplayName] = useState("");
   const [selectedTimezone, setSelectedTimezone] = useState(timezones[0].text);
+  const [checkedExpert, setCheckedExpert] = useState(false);
 
   const navigation = useNavigation();
 
@@ -17,7 +19,7 @@ const InfoForm = () => {
   const updateUserData = authContext.updateUserData;
 
   const onContinueHandler = async () => {
-    updateUserData(user, displayName, selectedTimezone, []);
+    updateUserData(user, displayName, checkedExpert, selectedTimezone);
     navigation.replace("Tags");
   };
 
@@ -35,6 +37,17 @@ const InfoForm = () => {
       </View>
 
       <Text>{"\n"}</Text>
+      <View style={styles.checkboxContainer}>
+        <Text style={styles.label}>Are you an expert?</Text>
+        <Checkbox
+          status={checkedExpert ? "checked" : "unchecked"}
+          onPress={() => {
+            setCheckedExpert(!checkedExpert);
+          }}
+        />
+      </View>
+
+      <Text>{"\n"}</Text>
       <Text>Select your timezone:</Text>
       <View>
         <Picker
@@ -49,7 +62,7 @@ const InfoForm = () => {
             <Picker.Item
               label={timezone.text}
               value={timezone.text}
-              key={timezone.utc[0]}
+              key={timezone.text}
             />
           ))}
         </Picker>

@@ -12,21 +12,8 @@ const LoginPage = () => {
 
   return (
     <View>
-      <Text>
-        {"\n"}
-        {"\n"}
-        {user
-          ? "You are logged in as: " + user.email
-          : "You are not logged in."}
-      </Text>
-
       <LoginForm />
-      <Text>
-        {"\n"}
-        {"\n"}
-        {"\n"}
-        {"\n"}
-      </Text>
+      <Text>{"\n"}</Text>
       <Button title="REGISTER" onPress={() => navigation.replace("Register")} />
     </View>
   );

@@ -15,6 +15,15 @@ import LoginPage from "../Screens/client-reg/LoginPage";
 import RegisterPage from "../Screens/client-reg/RegisterPage";
 import InfoPage from "../Screens/client-reg/InfoPage";
 import TagsPage from "../Screens/client-reg/TagsPage";
+import CategoryScreen from "../Screens/feed/CategoryScreen";
+import Aquariums from "../Screens/feed/Aquariums";
+import Cooking from "../Screens/feed/Cooking";
+import Fashion from "../Screens/feed/Fashion";
+import Fitness from "../Screens/feed/Fitness";
+import Gardening from "../Screens/feed/Gardening";
+import Terrariums from "../Screens/feed/Terrariums";
+import Videography from "../Screens/feed/Videography";
+import Other from "../Screens/feed/Other";
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +86,16 @@ const RestOfApp = () => {
         />
 
         <Stack.Screen name="Home" component={HomeScreen} />
+
+        <Stack.Screen name="Categories" component={CategoryScreen} />
+        <Stack.Screen name="Aquariums" component={Aquariums} />
+        <Stack.Screen name="Cooking" component={Cooking} />
+        <Stack.Screen name="Fashion" component={Fashion} />
+        <Stack.Screen name="Fitness" component={Fitness} />
+        <Stack.Screen name="Gardening" component={Gardening} />
+        <Stack.Screen name="Terrariums" component={Terrariums} />
+        <Stack.Screen name="Videography" component={Videography} />
+        <Stack.Screen name="Other" component={Other} />
       </Stack.Navigator>
     </NavigationContainer>
   );

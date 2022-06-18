@@ -17,6 +17,13 @@ const LoginForm = () => {
 
   return (
     <View>
+      <Text>
+        {"\n"}
+        {user
+          ? "You are logged in as: " + user.email
+          : "You are not logged in."}
+        {"\n"}
+      </Text>
       <TextInput
         placeholder="email"
         value={email}

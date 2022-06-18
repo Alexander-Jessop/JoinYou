@@ -13,6 +13,10 @@ import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
 import Recording from "./components/VideoCamera/Recording";
+import AgendaView from "./components/Scheduler/AgendaView";
+import CalendarView from "./components/Scheduler/CalendarView";
+import { Calendar } from "react-native-calendars";
+import TimeSlots from "./components/Scheduler/TimeSlots"
 
 // const Stack = createNativeStackNavigator();
 
@@ -85,7 +89,7 @@ export default function App() {
     <FirebaseProvider>
       <AuthProvider>
         <StatusBar style="light" />
-        <RestOfApp />
+        <TimeSlots/>
       </AuthProvider>
     </FirebaseProvider>
   );

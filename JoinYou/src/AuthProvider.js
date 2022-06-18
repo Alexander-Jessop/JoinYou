@@ -8,7 +8,6 @@ import {
 import { FirebaseContext } from "./FirebaseProvider";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 
-
 export const AuthContext = createContext();
 
 const AuthProvider = (props) => {
@@ -56,7 +55,7 @@ const AuthProvider = (props) => {
         uid: user.uid,
         email: user.email,
       };
-      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      let newDoc = await setDoc(doc(db, "users", user.uid), userData);
       console.log("New user created!", newDoc);
       return newDoc;
     } catch (error) {
@@ -71,8 +70,9 @@ const AuthProvider = (props) => {
   const updateUserData = async (
     user,
     displayName,
-    selectedTimezone,
-    interests
+    checkedExpert,
+    selectedTimezone
+    //interests
   ) => {
     console.log(`db is: `, db);
     try {
@@ -80,10 +80,11 @@ const AuthProvider = (props) => {
         uid: user.uid,
         email: user.email,
         displayName: displayName,
+        isExpert: checkedExpert,
         timezone: selectedTimezone,
-        interests: interests,
+        //interests: interests,
       };
-      let newDoc = await setDoc(doc(db, "test-users", user.uid), userData);
+      let newDoc = await setDoc(doc(db, "users", user.uid), userData);
       console.log("New user created!", newDoc);
       return newDoc;
     } catch (error) {
@@ -96,14 +97,13 @@ const AuthProvider = (props) => {
   //Updates the "interests" array for Firestore db user
   //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
   const updateUserInterests = async (interestsArray) => {
-    const userRef = doc(db, "test-users", user.uid);
+    const userRef = doc(db, "users", user.uid);
 
     // Set the "interests" field of the user
     await updateDoc(userRef, {
       interests: interestsArray,
     });
   };
-
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
