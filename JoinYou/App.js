@@ -12,6 +12,13 @@ import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
+import DateRangePicker from './components/schedulerForm/DateRangePicker';
+
+import './src/App.css'
+
+
+
+
 
 // const Stack = createNativeStackNavigator();
 
@@ -79,13 +86,24 @@ import AuthProvider from "./src/AuthProvider";
 //   );
 // }
 
+// function App() {
+// return (
+//     <div className="App">
+// <h4>Client-Influencer Date Range Picker</h4>
+// <DateRangePicker />
+//  </div>
+//   );
+// }
+
 export default function App() {
   return (
     <FirebaseProvider>
       <AuthProvider>
         <StatusBar style="light" />
+        <DateRangePicker />
         <RestOfApp />
       </AuthProvider>
     </FirebaseProvider>
-  );
+
+  )   
 }
