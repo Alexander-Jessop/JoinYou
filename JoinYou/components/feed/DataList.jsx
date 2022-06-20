@@ -1,24 +1,31 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 const DataList = (props) => {
   return (
-    <View>
+    <ScrollView>
       {props.filteredData.map((expert) => {
         return (
-          <View key={expert.uid}>
-            <Text>Name: {expert.displayName}</Text>
+          <Card title={expert.displayName} key={expert.uid} style={styles.card}>
+            <Card.Content>
+              <Title>Name: {expert.displayName}</Title>
 
-            <Text>Expertise in: {expert.interests.join(", ")}</Text>
+              <Paragraph>Expertise in: {expert.interests.join(", ")}</Paragraph>
 
-            <Text>{"\n"}</Text>
-          </View>
+              <Text>{"\n"}</Text>
+            </Card.Content>
+          </Card>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  card: {
+    padding: 30,
+  },
+});
 
 export default DataList;
