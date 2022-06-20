@@ -12,7 +12,6 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import tags from "../../util/tags.json";
 import { List } from "react-native-paper";
 //https://callstack.github.io/react-native-paper/list-accordion.html
-import CategoryList from "./CategoryList";
 import DataList from "./DataList";
 
 const CategoryDropdown = (props) => {
