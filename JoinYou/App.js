@@ -14,8 +14,6 @@ import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
 import DateRangePicker from './components/schedulerForm/DateRangePicker';
 
-import './src/App.css'
-
 
 
 
@@ -107,3 +105,4 @@ export default function App() {
 
   )   
 }
+
