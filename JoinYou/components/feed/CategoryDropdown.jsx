@@ -81,7 +81,10 @@ const CategoryDropdown = (props) => {
               <List.Item
                 title={tag}
                 key={tag}
-                onPress={() => setSelectedCategory(tag)}
+                onPress={() => {
+                  setSelectedCategory(tag);
+                  setExpanded(false);
+                }}
               />
             );
           })}
