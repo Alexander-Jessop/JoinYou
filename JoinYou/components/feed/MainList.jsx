@@ -59,7 +59,7 @@ const MainList = () => {
 
   return (
     <View>
-      <DataList filteredData={expertsByCategory} />
+      <DataList data={expertsByCategory} />
     </View>
   );
 };

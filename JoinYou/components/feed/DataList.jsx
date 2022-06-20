@@ -5,7 +5,7 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 const DataList = (props) => {
   return (
     <ScrollView>
-      {props.filteredData.map((expert) => {
+      {props.data.map((expert) => {
         return (
           <Card title={expert.displayName} key={expert.uid} style={styles.card}>
             <Card.Content>

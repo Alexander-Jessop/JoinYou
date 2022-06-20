@@ -67,7 +67,7 @@ const CategoryDropdown = (props) => {
       </List.Section>
 
       <View>
-        <DataList filteredData={expertsByCategory} />
+        <DataList data={expertsByCategory} />
       </View>
     </ScrollView>
   );
