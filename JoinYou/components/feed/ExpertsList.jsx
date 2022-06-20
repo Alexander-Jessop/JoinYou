@@ -8,6 +8,7 @@ import {
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Text, View, StyleSheet, ScrollView } from "react-native";
 import { FirebaseContext } from "../../src/FirebaseProvider";
+import DataList from "./DataList";
 
 const ExpertsList = () => {
   const fbContext = useContext(FirebaseContext);
@@ -42,21 +43,8 @@ const ExpertsList = () => {
   return (
     <ScrollView>
       <View>
-        {experts.map((expert) => {
-          return (
-            <View key={expert.uid}>
-              <Text>{"\n"}</Text>
+      <DataList data={experts}>
 
-              <Text style={{ fontSize: 20 }}>Name: {expert.displayName}</Text>
-
-              <Text style={{ fontSize: 16 }}>
-                Expertise in: {expert.interests?.join(", ")}
-              </Text>
-
-              <Text>{"\n"}</Text>
-            </View>
-          );
-        })}
       </View>
     </ScrollView>
   );
