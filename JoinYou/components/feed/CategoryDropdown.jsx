@@ -13,6 +13,7 @@ import tags from "../../util/tags.json";
 import { List } from "react-native-paper";
 //https://callstack.github.io/react-native-paper/list-accordion.html
 import CategoryList from "./CategoryList";
+import DataList from "./DataList";
 
 const CategoryDropdown = (props) => {
   const fbContext = useContext(FirebaseContext);
@@ -67,7 +68,7 @@ const CategoryDropdown = (props) => {
       </List.Section>
 
       <View>
-        <CategoryList expertsByCategory={expertsByCategory} />
+        <DataList filteredData={expertsByCategory} />
       </View>
     </ScrollView>
   );

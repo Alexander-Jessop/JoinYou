@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Text, View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { FirebaseContext } from "../../src/FirebaseProvider";
+import DataList from "./DataList";
 
 const MainList = () => {
   const [expertsByCategory, setExpertsByCategory] = useState([]);
@@ -58,19 +59,7 @@ const MainList = () => {
 
   return (
     <View>
-      {expertsByCategory.map((expert) => {
-        return (
-          <View key={expert.uid}>
-            <Text style={{ fontSize: 20 }}>Name: {expert.displayName}</Text>
-
-            <Text style={{ fontSize: 16 }}>
-              Expertise in: {expert.interests.join(", ")}
-            </Text>
-
-            <Text>{"\n"}</Text>
-          </View>
-        );
-      })}
+      <DataList filteredData={expertsByCategory} />
     </View>
   );
 };
