@@ -44,7 +44,7 @@ const CategoryDropdown = (props) => {
 
   return (
     <ScrollView>
-      <List.Section title="categories">
+      <List.Section>
         <List.Accordion
           title={selectedCategory}
           left={(props) => <List.Icon {...props} icon="folder" />}
