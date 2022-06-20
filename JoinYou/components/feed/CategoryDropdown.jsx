@@ -19,7 +19,7 @@ const CategoryDropdown = (props) => {
   const db = fbContext.db;
 
   const [expertsByCategory, setExpertsByCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Categories");
+  const [selectedCategory, setSelectedCategory] = useState("Select a Category");
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
 
