@@ -12,43 +12,19 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import tags from "../../util/tags.json";
 import { List } from "react-native-paper";
 //https://callstack.github.io/react-native-paper/list-accordion.html
+import CategoryList from "./CategoryList";
 
 const CategoryDropdown = (props) => {
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
 
   const [expertsByCategory, setExpertsByCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Aquariums");
-  const [expanded, setExpanded] = React.useState(false);
+  const [selectedCategory, setSelectedCategory] =
+    useState("See All Categories");
+  const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
 
   useEffect(() => {
-    // //Query snapshot that returns all users in the firestore db.
-    // let collectionRef = collection(db, "users");
-    // let queryRef = query(collectionRef, orderBy("displayName"));
-    // const unsubscribe = onSnapshot(queryRef, (querySnap) => {
-    //   if (querySnap.empty) {
-    //     console.log("No docs found");
-    //   } else {
-    //     //Map over the query results and store them in usersData.
-    //     let usersData = querySnap.docs.map((doc) => doc.data());
-
-    //     //Filter only the experts from usersData.
-    //     let expertsData = usersData?.filter((user) => {
-    //       return user.isExpert;
-    //     });
-
-    //     //Filter the list of experts by category.
-    //     let filteredByCategory = expertsData?.filter((expert) => {
-    //       return expert.interests.includes(selectedCategory);
-    //     });
-
-    //     //Set expertsByCategory state to the filtered list.
-    //     setExpertsByCategory(filteredByCategory);
-    //   }
-    // });
-    // return unsubscribe;
-
     //Get multiple documents from a collection with a filter.
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
@@ -71,7 +47,7 @@ const CategoryDropdown = (props) => {
     <ScrollView>
       <List.Section title="categories">
         <List.Accordion
-          title="See All Categories"
+          title={selectedCategory}
           left={(props) => <List.Icon {...props} icon="folder" />}
           expanded={expanded}
           onPress={handlePress}
@@ -92,19 +68,7 @@ const CategoryDropdown = (props) => {
       </List.Section>
 
       <View>
-        {expertsByCategory.map((expert) => {
-          return (
-            <View key={expert.uid}>
-              <Text style={{ fontSize: 20 }}>Name: {expert.displayName}</Text>
-
-              <Text style={{ fontSize: 16 }}>
-                Expertise in: {expert.interests.join(", ")}
-              </Text>
-
-              <Text>{"\n"}</Text>
-            </View>
-          );
-        })}
+        <CategoryList expertsByCategory={expertsByCategory} />
       </View>
     </ScrollView>
   );
