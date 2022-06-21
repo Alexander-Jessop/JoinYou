@@ -14,12 +14,12 @@ const TimeSlots = () => {
     let arr = [];
     while (startTime <= endTime) {
       arr.push(new moment(startTime, "HH:mm"));
-      startTime.add(15, "minutes");
+      startTime.add(30, "minutes");
     }
     return arr;
   };
   useEffect(() => {
-    setTimeSlot(createTimeSlots("08:00", "20:00"));
+    setTimeSlot(createTimeSlots("08:00", "15:00"));
   }, []);
 
   console.log(timeSlot);

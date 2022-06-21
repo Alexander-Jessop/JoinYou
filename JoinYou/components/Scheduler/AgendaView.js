@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Button,
+  SafeAreaView,
+} from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 
@@ -16,7 +23,7 @@ const AgendaView = () => {
   const loadItems = (day) => {
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 50;
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
 
         if (!items[strTime]) {
@@ -26,7 +33,7 @@ const AgendaView = () => {
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
               name: "Item for " + strTime + " #" + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
+
               day: strTime,
             });
           }
@@ -70,7 +77,7 @@ const AgendaView = () => {
       <Agenda
         items={items}
         loadItemsForMonth={loadItems}
-        selected={"2022-05-28"} /*'today's date'*/
+        selected={"2022-04-10"} /*'today's date'*/
         renderItem={renderItem}
       />
     </View>

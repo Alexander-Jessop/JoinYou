@@ -19,7 +19,7 @@ const CalendarView = () => {
         console.log("now these months are visible", months);
       }}
       pastScrollRange={2}
-      futureScrollRange={6}
+      futureScrollRange={4}
       showScrollIndicator={true}
       onDayPress={(day) => {
         console.log("selected day", day);

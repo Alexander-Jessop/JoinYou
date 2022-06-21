@@ -1,16 +1,9 @@
-import HomeScreen from "../Screens/feed/HomeScreen";
+import React, { useContext } from "react";
+import { AuthContext } from "./AuthProvider";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useContext } from "react";
-import { Text, View } from "react-native";
-// import { Colors } from "react-native/Libraries/NewAppScreen";
-import { AuthContext } from "./AuthProvider";
-import SignupScreen from "../Screens/SignupScreen";
-import LoginScreen from "../Screens/LoginScreen";
-import AddImg from "../Screens/AddImg";
-import ImgDetails from "../Screens/ImgDetails.js";
-import AllLoadedImgs from "../Screens/AllLoadedImgs";
-import IconButton from "../components/ui/IconButton";
+
+// Screen component imports
 import LoginPage from "../Screens/client-reg/LoginPage";
 import RegisterPage from "../Screens/client-reg/RegisterPage";
 import InfoPage from "../Screens/client-reg/InfoPage";
@@ -83,21 +76,6 @@ const RestOfApp = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-
-  //   function AuthStack() {
-  //     return (
-  //       <Stack.Navigator
-  //         screenOptions={{
-  //           headerStyle: { backgroundColor: Colors.primary500 },
-  //           headerTintColor: "white",
-  //           contentStyle: { backgroundColor: Colors.primary100 },
-  //         }}
-  //       >
-  //         <Stack.Screen name="Login" component={LoginScreen} />
-  //         <Stack.Screen name="Signup" component={SignupScreen} />
-  //       </Stack.Navigator>
-  //     );
-  //   }
 
   function Navigation() {
     return (
