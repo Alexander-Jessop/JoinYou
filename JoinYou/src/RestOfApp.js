@@ -9,6 +9,7 @@ import RegisterPage from "../Screens/client-reg/RegisterPage";
 import InfoPage from "../Screens/client-reg/InfoPage";
 import TagsPage from "../Screens/client-reg/TagsPage";
 import CategoryScreen from "../Screens/feed/CategoryScreen";
+import WelcomeScreen from "../Screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,7 +71,7 @@ const RestOfApp = () => {
           options={{ title: "Select your interests:" }}
         />
 
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={WelcomeScreen} />
 
         <Stack.Screen name="Categories" component={CategoryScreen} />
       </Stack.Navigator>
