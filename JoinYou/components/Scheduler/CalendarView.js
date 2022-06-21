@@ -1,15 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import {
-  LocaleConfig,
-  Calendar,
-  CalendarList,
-  Agenda,
-} from "react-native-calendars";
+import { CalendarList } from "react-native-calendars";
+import { useNavigation } from "@react-navigation/native";
 
 //https://www.npmjs.com/package/react-native-calendars
 
 const CalendarView = () => {
+  const navigation = useNavigation();
+
+  function pressHandler(selectedDate) {
+    navigation.navigate("Appointments", {
+      dateId: selectedDate,
+    });
+  }
+
   return (
     <CalendarList
       horizontal={true}
@@ -19,15 +22,14 @@ const CalendarView = () => {
         console.log("now these months are visible", months);
       }}
       pastScrollRange={2}
-      futureScrollRange={6}
+      futureScrollRange={4}
       showScrollIndicator={true}
       onDayPress={(day) => {
+        pressHandler(day.dateString);
         console.log("selected day", day);
       }}
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default CalendarView;

@@ -1,94 +1,26 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import LoginScreen from "./Screens/LoginScreen";
-import SignupScreen from "./Screens/SignupScreen";
-import WelcomeScreen from "./Screens/WelcomeScreen";
-// import { Colors } from "./constants/styles";
-import AllLoadedImgs from "./Screens/AllLoadedImgs";
-import AddImg from "./Screens/AddImg";
-import IconButton from "./components/ui/IconButton";
-import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
-import Recording from "./components/VideoCamera/Recording";
-import AgendaView from "./components/Scheduler/AgendaView";
-import CalendarView from "./components/Scheduler/CalendarView";
-import TimeSlots from "./components/Scheduler/TimeSlots";
+import RestOfApp from "./src/RestOfApp";
+import {
+  MD3LightTheme as DefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
 
-// const Stack = createNativeStackNavigator();
+/*This file is the entry point for the app. 
+It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
 
-// function AuthStack() {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerStyle: { backgroundColor: Colors.primary500 },
-//         headerTintColor: "white",
-//         contentStyle: { backgroundColor: Colors.primary100 },
-//       }}
-//     >
-//       <Stack.Screen name="Login" component={LoginScreen} />
-//       <Stack.Screen name="Signup" component={SignupScreen} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// function AuthenticatedStack() {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerStyle: { backgroundColor: Colors.primary500 },
-//         headerTintColor: "white",
-//         contentStyle: { backgroundColor: Colors.primary100 },
-//       }}
-//     >
-//       <Stack.Screen name="Welcome" component={WelcomeScreen} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// function ImgUpload() {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen
-//         name="All Images"
-//         component={AllLoadedImgs}
-//         options={({ navigation }) => ({
-//           title: "All uploaded Images",
-//           headerRight: ({ tintColor }) => (
-//             <IconButton
-//               icon="add"
-//               size={24}
-//               color={tintColor}
-//               onPress={() => navigation.navigate("Add Image")}
-//             />
-//           ),
-//         })}
-//       />
-//       <Stack.Screen
-//         name="Add Image"
-//         component={AddImg}
-//         options={{ title: "Add a New Image" }}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
-
-// function Navigation() {
-//   return (
-//     <NavigationContainer>
-//       <ImgUpload />
-//     </NavigationContainer>
-//   );
-// }
+// https://callstack.github.io/react-native-paper/theming.html#using-the-theme-in-your-own-components - Theming docs for react-native-paper
 
 export default function App() {
   return (
     <FirebaseProvider>
       <AuthProvider>
-        <StatusBar style="light" />
-        <AgendaView />
+        <PaperProvider>
+          <StatusBar style="dark" />
+          <RestOfApp />
+        </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
   );
