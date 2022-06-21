@@ -1,11 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import {
-  LocaleConfig,
-  Calendar,
-  CalendarList,
-  Agenda,
-} from "react-native-calendars";
+import { CalendarList } from "react-native-calendars";
 import { useNavigation } from "@react-navigation/native";
 
 //https://www.npmjs.com/package/react-native-calendars
@@ -42,7 +36,5 @@ const CalendarView = () => {
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default CalendarView;
