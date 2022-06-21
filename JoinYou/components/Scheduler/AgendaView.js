@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Button,
-  SafeAreaView,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Button } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
+import CalendarView from "./CalendarView";
 
 //https://www.npmjs.com/package/react-native-calendars
 
@@ -17,7 +11,9 @@ const timeToString = (time) => {
   return date.toISOString().split("T")[0];
 };
 
-const AgendaView = () => {
+const AgendaView = ({ route }) => {
+  const selectedDate = route.params.dateId;
+
   const [items, setItems] = useState({});
 
   const loadItems = (day) => {
@@ -77,7 +73,7 @@ const AgendaView = () => {
       <Agenda
         items={items}
         loadItemsForMonth={loadItems}
-        selected={"2022-04-10"} /*'today's date'*/
+        selected={selectedDate[0]} /*'today's date'*/
         renderItem={renderItem}
       />
     </View>
