@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { Divider } from "react-native-paper";
 import moment from "moment";
 
@@ -19,7 +19,7 @@ const TimeSlots = () => {
     return arr;
   };
   useEffect(() => {
-    setTimeSlot(createTimeSlots("08:00", "15:00"));
+    setTimeSlot(createTimeSlots("09:00", "15:00"));
   }, []);
 
   console.log(timeSlot);

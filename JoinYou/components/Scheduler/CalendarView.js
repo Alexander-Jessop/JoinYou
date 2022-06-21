@@ -5,11 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 //https://www.npmjs.com/package/react-native-calendars
 
 const CalendarView = () => {
-  const selectedDate = [];
-
   const navigation = useNavigation();
 
-  function pressHandler() {
+  function pressHandler(selectedDate) {
     navigation.navigate("Appointments", {
       dateId: selectedDate,
     });
@@ -27,10 +25,7 @@ const CalendarView = () => {
       futureScrollRange={4}
       showScrollIndicator={true}
       onDayPress={(day) => {
-        {
-          pressHandler();
-        }
-        selectedDate.push(day.dateString);
+        pressHandler(day.dateString);
         console.log("selected day", day);
       }}
     />
