@@ -67,23 +67,8 @@ const RestOfApp = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Appointments Overview"
-          component={CalendarView}
-          options={{ title: "Calendar" }}
-        />
-        <Stack.Screen
-          name="Appointments"
-          component={AgendaView}
-          options={{ title: "Appointments" }}
-        />
-
-        <Stack.Screen name="Home" component={HomeScreen} />
-
-        <Stack.Screen name="Categories" component={CategoryScreen} />
-
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-
+        <Stack.Screen name="Calendar" component={CalendarView} />
+        <Stack.Screen name="Appointments" component={AgendaView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

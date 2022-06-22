@@ -24,6 +24,12 @@ const CalendarView = () => {
       pastScrollRange={2}
       futureScrollRange={4}
       showScrollIndicator={true}
+      markedDates={{
+        "2022-06-17": { marked: true },
+        "2022-06-18": { marked: true },
+        "2022-06-19": { marked: true },
+        "2022-06-20": { marked: true },
+      }}
       onDayPress={(day) => {
         pressHandler(day.dateString);
         console.log("selected day", day);
