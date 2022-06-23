@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Text, View, StyleSheet, Button, TextInput } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
+import { Card, TextInput, Button } from "react-native-paper";
 
 const LoginForm = () => {
   const authContext = useContext(AuthContext);
@@ -16,7 +17,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <View>
+    <View style={styles.content}>
       <Text>
         {"\n"}
         {user
@@ -24,32 +25,102 @@ const LoginForm = () => {
           : "You are not logged in."}
         {"\n"}
       </Text>
-      <TextInput
-        placeholder="email"
-        value={email}
-        onChangeText={(e) => setEmail(e)}
-      />
-      <TextInput
-        placeholder="password"
-        value={password}
-        secureTextEntry={true}
-        onChangeText={(e) => setPassword(e)}
-      />
-      {loginError && <Text>{loginError}</Text>}
-      <Button
-        title="LOGIN"
-        onPress={() => {
-          loginFn(email, password);
-          if (user) {
-            navigation.replace("Home");
-          }
-        }}
-      />
-      {/* <Button title="LOG OUT" onPress={() => logoutFn()} /> */}
+      <View style={styles.view}>
+        <Card style={styles.card}>
+          <Card.Title title="JoinYou" titleStyle={styles.cardTitle} />
+          <Card.Content>
+            <TextInput
+              theme={{
+                colors: {
+                  primary: "#007F5F",
+                  underlineColor: "transparent",
+                  background: "transparent",
+                },
+              }}
+              style={styles.input}
+              label="email"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={(e) => setEmail(e)}
+            />
+            <TextInput
+              theme={{
+                colors: {
+                  primary: "#007F5F",
+                  underlineColor: "transparent",
+                  background: "transparent",
+                },
+              }}
+              style={styles.input}
+              label="password"
+              value={password}
+              secureTextEntry={true}
+              onChangeText={(e) => setPassword(e)}
+              // keyboardType="visible-password" create a ?: with secure text and add button
+            />
+            {loginError && <Text>{loginError}</Text>}
+            <Button style={styles.flatbutton} uppercase={false} color="#007F5F">
+              Forgot email/password
+            </Button>
+            <Button
+              style={styles.button}
+              mode="contained"
+              title="LOGIN"
+              onPress={() => {
+                loginFn(email, password);
+                if (user) {
+                  navigation.replace("Home");
+                }
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              color="#007F5F"
+              style={styles.flatbutton}
+              title="REGISTER"
+              onPress={() => navigation.replace("Register")}
+            >
+              Register
+            </Button>
+            {/* <Button title="LOG OUT" onPress={() => logoutFn()} /> */}
+          </Card.Content>
+        </Card>
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  content: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  view: {
+    marginTop: 50,
+    width: "80%",
+    justifyContent: "center",
+  },
+  card: {
+    backgroundColor: "#FFF",
+  },
+  button: {
+    backgroundColor: "#007F5F",
+    marginTop: 5,
+  },
+  flatbutton: {
+    marginTop: 5,
+  },
+  input: {
+    color: "#FFF",
+    marginTop: 2,
+    mode: "outlined",
+  },
+  cardTitle: {
+    color: "#007F5F",
+    alignItems: "center",
+    // textAlign: "center", move the title to the middle
+  },
+});
 
 export default LoginForm;

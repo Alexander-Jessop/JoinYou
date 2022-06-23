@@ -20,57 +20,57 @@ const RestOfApp = () => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
-  // return (
-  //   <NavigationContainer>
-  //     <Stack.Navigator>
-  //       <Stack.Screen
-  //         name="Login"
-  //         component={LoginPage}
-  //         options={{ title: "Welcome" }}
-  //       />
-
-  //       <Stack.Screen
-  //         name="Register"
-  //         component={RegisterPage}
-  //         options={{ title: "Register as new user" }}
-  //       />
-
-  //       <Stack.Screen
-  //         name="InfoPage"
-  //         component={InfoPage}
-  //         options={{ title: "Enter your information" }}
-  //       />
-
-  //       <Stack.Screen
-  //         name="Tags"
-  //         component={TagsPage}
-  //         options={{ title: "Select your interests:" }}
-  //       />
-
-  //       <Stack.Screen name="Home" component={HomeScreen} />
-
-  //       <Stack.Screen name="Categories" component={CategoryScreen} />
-  //     </Stack.Navigator>
-  //   </NavigationContainer>
-  // );
-
-  //   function Navigation() {
-  //     return (
-  //       <NavigationContainer>
-  //         <Appointment />
-  //       </NavigationContainer>
-  //     );
-  //   }
-  //   return <Navigation />;
-  // };
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Calendar" component={CalendarView} />
-        <Stack.Screen name="Appointments" component={AgendaView} />
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          options={{ title: "Welcome" }}
+        />
+
+        <Stack.Screen
+          name="Register"
+          component={RegisterPage}
+          options={{ title: "Register as new user" }}
+        />
+
+        <Stack.Screen
+          name="InfoPage"
+          component={InfoPage}
+          options={{ title: "Enter your information" }}
+        />
+
+        <Stack.Screen
+          name="Tags"
+          component={TagsPage}
+          options={{ title: "Select your interests:" }}
+        />
+
+        <Stack.Screen name="Home" component={HomeScreen} />
+
+        <Stack.Screen name="Categories" component={CategoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
+
+  function Navigation() {
+    return (
+      <NavigationContainer>
+        <Appointment />
+      </NavigationContainer>
+    );
+  }
+  return <Navigation />;
+  // };
+
+  // return (
+  //   <NavigationContainer>
+  //     <Stack.Navigator>
+  //       <Stack.Screen name="Calendar" component={CalendarView} />
+  //       <Stack.Screen name="Appointments" component={AgendaView} />
+  //     </Stack.Navigator>
+  //   </NavigationContainer>
+  // );
 };
 export default RestOfApp;

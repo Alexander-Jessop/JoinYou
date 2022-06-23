@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Alert, Button, Text, TextInput, View, StyleSheet } from "react-native";
+import { Alert, Text, View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 //https://firebase.google.com/docs/auth/web/start#sign_up_new_users
+import { Card, TextInput, Button, HelperText } from "react-native-paper";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,10 @@ const RegisterForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigation = useNavigation();
   const auth = getAuth();
+
+  const hasErrors = () => {
+    return !password;
+  };
 
   const authContext = useContext(AuthContext);
   const login = authContext.login;
@@ -46,61 +51,142 @@ const RegisterForm = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text>Enter your email address:</Text>
-        <TextInput
-          value={email}
-          onChangeText={(e) => setEmail(e)}
-          placeholder="Email"
-          style={styles.textBoxes}
-        ></TextInput>
+    <View style={styles.content}>
+      <View style={styles.view}>
+        <Card style={styles.card}>
+          <Card.Content>
+            <Card.Title title="Sign Up" titleStyle={styles.cardTitle} />
+            <Card>
+              <Card.Content>
+                <Text style={styles.text}>Enter your email address:</Text>
+                <TextInput
+                  theme={{
+                    colors: {
+                      primary: "#007F5F",
+                      underlineColor: "transparent",
+                      background: "transparent",
+                    },
+                  }}
+                  style={styles.input}
+                  keyboardType="email-address"
+                  value={email}
+                  onChangeText={(e) => setEmail(e)}
+                  label="Email"
+                />
+                <Text style={styles.text}>Confirm your email address:</Text>
+                <TextInput
+                  theme={{
+                    colors: {
+                      primary: "#007F5F",
+                      underlineColor: "transparent",
+                      background: "transparent",
+                    },
+                  }}
+                  style={styles.input}
+                  value={confirmEmail}
+                  onChangeText={(e) => setConfirmEmail(e)}
+                  label="Confirm Email"
+                />
+              </Card.Content>
+            </Card>
+            <Text>{"\n"}</Text>
+            <Card>
+              <Card.Content>
+                <View>
+                  <Text>Enter your password:</Text>
+                  <TextInput
+                    theme={{
+                      colors: {
+                        primary: "#007F5F",
+                        underlineColor: "transparent",
+                        background: "transparent",
+                      },
+                    }}
+                    style={styles.input}
+                    value={password}
+                    onChangeText={(e) => setPassword(e)}
+                    label="Password"
+                    secureTextEntry={true}
+                  />
+                  <HelperText type="error" visible={hasErrors()}>
+                    Password must be at least 7 characters
+                  </HelperText>
+                </View>
+                <Text style={styles.text}>Confirm your password:</Text>
+                <View>
+                  <TextInput
+                    theme={{
+                      colors: {
+                        primary: "#007F5F",
+                        underlineColor: "transparent",
+                        background: "transparent",
+                      },
+                    }}
+                    style={styles.input}
+                    value={confirmPassword}
+                    onChangeText={(e) => setConfirmPassword(e)}
+                    label="Confirm Password"
+                    secureTextEntry={true}
+                  />
+                  <HelperText type="error" visible={hasErrors()}>
+                    Password must be the same
+                  </HelperText>
+                </View>
+              </Card.Content>
+            </Card>
+            <Text>
+              *password must be at least 7 characters {"\n"}
+              {"\n"}
+              {"\n"}
+            </Text>
+            <Button
+              mode="contained"
+              color="#007F5F"
+              style={styles.flatbutton}
+              title="Continue"
+              onPress={onContinueHandler}
+            >
+              Continue
+            </Button>
+          </Card.Content>
+        </Card>
       </View>
-
-      <View>
-        <Text>Confirm your email address:</Text>
-        <TextInput
-          value={confirmEmail}
-          onChangeText={(e) => setConfirmEmail(e)}
-          placeholder="Confirm Email"
-          style={styles.textBoxes}
-        ></TextInput>
-      </View>
-
-      <Text>{"\n"}</Text>
-
-      <View>
-        <Text>Enter your password:</Text>
-        <TextInput
-          value={password}
-          onChangeText={(e) => setPassword(e)}
-          placeholder="Password"
-          secureTextEntry={true}
-          style={styles.textBoxes}
-        ></TextInput>
-      </View>
-
-      <View>
-        <Text>Confirm your password:</Text>
-        <TextInput
-          value={confirmPassword}
-          onChangeText={(e) => setConfirmPassword(e)}
-          placeholder="Confirm Password"
-          secureTextEntry={true}
-          style={styles.textBoxes}
-        ></TextInput>
-      </View>
-      <Text>
-        *password must be at least 7 characters {"\n"}
-        {"\n"}
-        {"\n"}
-      </Text>
-
-      <Button title="Continue" onPress={onContinueHandler} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  content: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  view: {
+    marginTop: 50,
+    width: "80%",
+    justifyContent: "center",
+  },
+  card: {
+    backgroundColor: "#FFF",
+  },
+  button: {
+    backgroundColor: "#007F5F",
+    marginTop: 5,
+  },
+  flatbutton: {
+    marginTop: 5,
+  },
+  input: {
+    color: "#FFF",
+    height: 45,
+  },
+  cardTitle: {
+    color: "#007F5F",
+    alignItems: "center",
+    // textAlign: "center", move the title to the middle
+  },
+  text: {
+    marginTop: 10,
+  },
+});
 
 export default RegisterForm;

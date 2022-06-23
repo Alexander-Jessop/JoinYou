@@ -14,7 +14,6 @@ const LoginPage = () => {
     <View>
       <LoginForm />
       <Text>{"\n"}</Text>
-      <Button title="REGISTER" onPress={() => navigation.replace("Register")} />
     </View>
   );
 };

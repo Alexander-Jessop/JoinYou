@@ -22,7 +22,7 @@ const CalendarView = () => {
         console.log("now these months are visible", months);
       }}
       pastScrollRange={2}
-      futureScrollRange={4}
+      futureScrollRange={2}
       showScrollIndicator={true}
       markedDates={{
         "2022-06-17": { marked: true },
