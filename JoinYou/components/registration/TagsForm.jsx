@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
-import { Checkbox, Button } from "react-native-paper";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { Text, Checkbox, Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 

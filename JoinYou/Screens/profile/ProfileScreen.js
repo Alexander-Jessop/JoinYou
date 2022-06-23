@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { useLinkProps } from "@react-navigation/native";
-import { Button } from "react-native-paper";
+import { Text, Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 
 const ProfileScreen = (props) => {

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import MainList from "../../components/feed/MainList";
-import { Button } from "react-native-paper";
+import { Text, Button } from "react-native-paper";
 
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
