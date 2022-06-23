@@ -12,6 +12,7 @@ import TagsPage from "../Screens/client-reg/TagsPage";
 import CategoryScreen from "../Screens/feed/CategoryScreen";
 import HomeScreen from "../Screens/feed/HomeScreen";
 import ProfileScreen from "../Screens/profile/ProfileScreen";
+import UpcomingScreen from "../Screens/profile/UpcomingScreen";
 // Schedule Screen
 import AgendaView from "../components/Scheduler/AgendaView";
 import CalendarView from "../components/Scheduler/CalendarView";
@@ -69,6 +70,8 @@ const RestOfApp = () => {
             options={{ title: "Select your interests:" }}
           />
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Upcoming" component={UpcomingScreen} />
           <Stack.Screen name="Categories" component={CategoryScreen} />
         </Stack.Navigator>
       </NavigationContainer>
