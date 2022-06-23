@@ -30,22 +30,32 @@ const ProfileScreen = (props) => {
     getData();
   }, [profileID]);
 
-  return (
-    <View>
-      <Text>{profileData.displayName}</Text>
-      <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+  if (user.uid === profileID) {
+    return (
+      <View>
+        <Text>{profileData.displayName}</Text>
+        <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
 
-      <Button
-        onPress={() =>
-          navigation.navigate("Upcoming", {
-            profileData: profileData,
-          })
-        }
-      >
-        See Upcoming Appointments
-      </Button>
-    </View>
-  );
+        <Button
+          onPress={() =>
+            navigation.navigate("Upcoming", {
+              profileData: profileData,
+            })
+          }
+        >
+          See Upcoming Appointments
+        </Button>
+      </View>
+    );
+  } else {
+    return (
+      <View>
+        <Text>{profileData.displayName}</Text>
+        <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+      </View>
+    );
+  }
+
 };
 
 const styles = StyleSheet.create({});
