@@ -10,6 +10,7 @@ import InfoPage from "../Screens/client-reg/InfoPage";
 import TagsPage from "../Screens/client-reg/TagsPage";
 import CategoryScreen from "../Screens/feed/CategoryScreen";
 import HomeScreen from "../Screens/feed/HomeScreen";
+import ProfileScreen from "../Screens/profile/ProfileScreen";
 // Schedule Screen
 import AgendaView from "../components/Scheduler/AgendaView";
 import CalendarView from "../components/Scheduler/CalendarView";

@@ -134,11 +134,6 @@ const RegisterForm = () => {
                 </View>
               </Card.Content>
             </Card>
-            <Text>
-              *password must be at least 7 characters {"\n"}
-              {"\n"}
-              {"\n"}
-            </Text>
             <Button
               mode="contained"
               color="#007F5F"
@@ -173,7 +168,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   flatbutton: {
-    marginTop: 5,
+    marginTop: 30,
   },
   input: {
     color: "#FFF",

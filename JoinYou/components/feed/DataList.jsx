@@ -4,19 +4,9 @@ import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 const DataList = (props) => {
-  const array = [];
   const navigation = useNavigation();
-
   return (
     <ScrollView>
-      <Button
-        title="NAVIGATE"
-        onPress={() => {
-          navigation.navigate("Profile", {
-            profileID: expert.uid,
-          });
-        }}
-      />
       {props.data.map((expert) => {
         return (
           <Card

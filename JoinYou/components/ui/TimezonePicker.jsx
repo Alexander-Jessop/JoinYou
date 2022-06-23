@@ -1,6 +1,6 @@
 import { Button, View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import timezones from "./timezones.json";
+import timezones from "../../util/timezones.json";
 import { Picker } from "@react-native-picker/picker";
 
 const TimezonePicker = () => {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
-import { FirebaseContext } from "../src/FirebaseProvider";
+import { FirebaseContext } from "../../src/FirebaseProvider";
 import { useLinkProps } from "@react-navigation/native";
 
 const ProfileScreen = (props) => {
