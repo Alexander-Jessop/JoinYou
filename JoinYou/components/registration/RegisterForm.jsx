@@ -18,6 +18,10 @@ const RegisterForm = () => {
   const authContext = useContext(AuthContext);
   const login = authContext.login;
 
+  function pressHandler() {
+    navigation.navigate("Login");
+  }
+
   const onContinueHandler = () => {
     const emailIsValid = email.includes("@");
     const passwordIsValid = password.length > 6;
@@ -45,18 +49,17 @@ const RegisterForm = () => {
       Alert.alert("Invalid Credentials!");
     }
   };
-
   const emailHasErrors = () => {
     return !email.includes("@");
   };
   const emailMatchError = () => {
-    return !email.toLowerCase() === confirmEmail.toLowerCase();
+    return !email === !confirmEmail;
   };
   const hasErrors = () => {
-    return !password.length > 6;
+    return password.length < 7;
   };
   const passwordMatchError = () => {
-    return !password === confirmPassword;
+    return !password === !confirmPassword;
   };
 
   return (
@@ -114,6 +117,7 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
+                right={<TextInput.Icon name="eye-off-outline" />}
                 style={styles.input}
                 value={password}
                 onChangeText={(e) => setPassword(e)}
@@ -134,6 +138,7 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
+                right={<TextInput.Icon name="eye-off-outline" />}
                 style={styles.input}
                 value={confirmPassword}
                 onChangeText={(e) => setConfirmPassword(e)}
@@ -152,6 +157,9 @@ const RegisterForm = () => {
               onPress={onContinueHandler}
             >
               Continue
+            </Button>
+            <Button color="#007F5F" title="LOGIN" onPress={pressHandler}>
+              LOGIN
             </Button>
           </Card.Content>
         </Card>

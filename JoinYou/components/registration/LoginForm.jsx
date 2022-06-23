@@ -51,6 +51,7 @@ const LoginForm = () => {
                   background: "transparent",
                 },
               }}
+              right={<TextInput.Icon name="eye-off-outline" />}
               style={styles.input}
               label="password"
               value={password}
