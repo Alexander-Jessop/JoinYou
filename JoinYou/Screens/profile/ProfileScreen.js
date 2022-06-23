@@ -5,6 +5,7 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import { useLinkProps } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
+import CalendarView from "../../components/Scheduler/CalendarView";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
@@ -17,7 +18,6 @@ const ProfileScreen = (props) => {
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
-  console.log("use is: ", user);
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +35,7 @@ const ProfileScreen = (props) => {
     return (
       <View>
         <Text>{profileData.displayName}</Text>
-        <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+        <Text>Interested in: {profileData.interests?.join(", ")}</Text>
 
         <Button
           onPress={() =>
@@ -57,7 +57,6 @@ const ProfileScreen = (props) => {
       </View>
     );
   }
-
 };
 
 const styles = StyleSheet.create({});
