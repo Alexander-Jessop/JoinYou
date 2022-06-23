@@ -18,6 +18,7 @@ import AgendaView from "../components/Scheduler/AgendaView";
 import CalendarView from "../components/Scheduler/CalendarView";
 // OnBoarding
 import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
+import CalendarScreen from "../Screens/profile/CalendarScreen";
 // Profile
 
 const Stack = createNativeStackNavigator();
@@ -72,6 +73,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="Upcoming" component={UpcomingScreen} />
+          <Stack.Screen name="Calendar" component={CalendarScreen} />
           <Stack.Screen name="Categories" component={CategoryScreen} />
         </Stack.Navigator>
       </NavigationContainer>
