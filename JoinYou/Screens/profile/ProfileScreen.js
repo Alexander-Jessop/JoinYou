@@ -31,6 +31,7 @@ const ProfileScreen = (props) => {
   }, [profileID]);
 
   if (user.uid === profileID) {
+    //Your own profile page
     return (
       <View>
         <Text>{profileData.displayName}</Text>
@@ -48,6 +49,7 @@ const ProfileScreen = (props) => {
       </View>
     );
   } else {
+    //Someone else's profile page
     return (
       <View>
         <Text>{profileData.displayName}</Text>
