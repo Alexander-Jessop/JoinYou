@@ -15,10 +15,6 @@ const RegisterForm = () => {
   const navigation = useNavigation();
   const auth = getAuth();
 
-  const hasErrors = () => {
-    return !password;
-  };
-
   const authContext = useContext(AuthContext);
   const login = authContext.login;
 
@@ -50,6 +46,19 @@ const RegisterForm = () => {
     }
   };
 
+  const emailHasErrors = () => {
+    return !email.includes("@");
+  };
+  const emailMatchError = () => {
+    return !email.toLowerCase() === confirmEmail.toLowerCase();
+  };
+  const hasErrors = () => {
+    return !password.length > 6;
+  };
+  const passwordMatchError = () => {
+    return !password === confirmPassword;
+  };
+
   return (
     <View style={styles.content}>
       <View style={styles.view}>
@@ -59,34 +68,44 @@ const RegisterForm = () => {
             <Card>
               <Card.Content>
                 <Text style={styles.text}>Enter your email address:</Text>
-                <TextInput
-                  theme={{
-                    colors: {
-                      primary: "#007F5F",
-                      underlineColor: "transparent",
-                      background: "transparent",
-                    },
-                  }}
-                  style={styles.input}
-                  keyboardType="email-address"
-                  value={email}
-                  onChangeText={(e) => setEmail(e)}
-                  label="Email"
-                />
+                <View>
+                  <TextInput
+                    theme={{
+                      colors: {
+                        primary: "#007F5F",
+                        underlineColor: "transparent",
+                        background: "transparent",
+                      },
+                    }}
+                    style={styles.input}
+                    keyboardType="email-address"
+                    value={email}
+                    onChangeText={(e) => setEmail(e)}
+                    label="Email"
+                  />
+                  <HelperText type="error" visible={emailHasErrors()}>
+                    Must be a valid e-mail address
+                  </HelperText>
+                </View>
                 <Text style={styles.text}>Confirm your email address:</Text>
-                <TextInput
-                  theme={{
-                    colors: {
-                      primary: "#007F5F",
-                      underlineColor: "transparent",
-                      background: "transparent",
-                    },
-                  }}
-                  style={styles.input}
-                  value={confirmEmail}
-                  onChangeText={(e) => setConfirmEmail(e)}
-                  label="Confirm Email"
-                />
+                <View>
+                  <TextInput
+                    theme={{
+                      colors: {
+                        primary: "#007F5F",
+                        underlineColor: "transparent",
+                        background: "transparent",
+                      },
+                    }}
+                    style={styles.input}
+                    value={confirmEmail}
+                    onChangeText={(e) => setConfirmEmail(e)}
+                    label="Confirm Email"
+                  />
+                  <HelperText type="error" visible={emailMatchError()}>
+                    E-mails must match
+                  </HelperText>
+                </View>
               </Card.Content>
             </Card>
             <Text>{"\n"}</Text>
@@ -128,7 +147,7 @@ const RegisterForm = () => {
                     label="Confirm Password"
                     secureTextEntry={true}
                   />
-                  <HelperText type="error" visible={hasErrors()}>
+                  <HelperText type="error" visible={passwordMatchError()}>
                     Password must be the same
                   </HelperText>
                 </View>
