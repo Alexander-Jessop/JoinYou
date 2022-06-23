@@ -8,11 +8,32 @@ import { Button } from "react-native-paper";
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const logoutFn = authContext.logout;
+  const user = authContext.user;
 
   //const navigation = useNavigation();
 
   return (
     <ScrollView>
+      <Button
+        title="See all categories"
+        onPress={() => navigation.navigate("Categories")}
+      >
+        See All Categories
+      </Button>
+
+      <MainList />
+
+      <Button
+        title="See My Profile Page"
+        onPress={() =>
+          navigation.navigate("Profile", {
+            profileID: user.uid,
+          })
+        }
+      >
+        See My Profile Page
+      </Button>
+
       <Button
         title="LOG OUT"
         onPress={() => {
@@ -21,15 +42,6 @@ const HomeScreen = ({ navigation }) => {
         }}
       >
         Logout
-      </Button>
-
-      <MainList />
-
-      <Button
-        title="See all categories"
-        onPress={() => navigation.navigate("Categories")}
-      >
-        See All Categories
       </Button>
     </ScrollView>
   );
