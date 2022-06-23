@@ -13,7 +13,6 @@ const LoginPage = () => {
   return (
     <View>
       <LoginForm />
-      <Text>{"\n"}</Text>
     </View>
   );
 };

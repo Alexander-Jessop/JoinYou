@@ -65,94 +65,85 @@ const RegisterForm = () => {
         <Card style={styles.card}>
           <Card.Content>
             <Card.Title title="Sign Up" titleStyle={styles.cardTitle} />
-            <Card>
-              <Card.Content>
-                <Text style={styles.text}>Enter your email address:</Text>
-                <View>
-                  <TextInput
-                    theme={{
-                      colors: {
-                        primary: "#007F5F",
-                        underlineColor: "transparent",
-                        background: "transparent",
-                      },
-                    }}
-                    style={styles.input}
-                    keyboardType="email-address"
-                    value={email}
-                    onChangeText={(e) => setEmail(e)}
-                    label="Email"
-                  />
-                  <HelperText type="error" visible={emailHasErrors()}>
-                    Must be a valid e-mail address
-                  </HelperText>
-                </View>
-                <Text style={styles.text}>Confirm your email address:</Text>
-                <View>
-                  <TextInput
-                    theme={{
-                      colors: {
-                        primary: "#007F5F",
-                        underlineColor: "transparent",
-                        background: "transparent",
-                      },
-                    }}
-                    style={styles.input}
-                    value={confirmEmail}
-                    onChangeText={(e) => setConfirmEmail(e)}
-                    label="Confirm Email"
-                  />
-                  <HelperText type="error" visible={emailMatchError()}>
-                    E-mails must match
-                  </HelperText>
-                </View>
-              </Card.Content>
-            </Card>
-            <Text>{"\n"}</Text>
-            <Card>
-              <Card.Content>
-                <View>
-                  <Text>Enter your password:</Text>
-                  <TextInput
-                    theme={{
-                      colors: {
-                        primary: "#007F5F",
-                        underlineColor: "transparent",
-                        background: "transparent",
-                      },
-                    }}
-                    style={styles.input}
-                    value={password}
-                    onChangeText={(e) => setPassword(e)}
-                    label="Password"
-                    secureTextEntry={true}
-                  />
-                  <HelperText type="error" visible={hasErrors()}>
-                    Password must be at least 7 characters
-                  </HelperText>
-                </View>
-                <Text style={styles.text}>Confirm your password:</Text>
-                <View>
-                  <TextInput
-                    theme={{
-                      colors: {
-                        primary: "#007F5F",
-                        underlineColor: "transparent",
-                        background: "transparent",
-                      },
-                    }}
-                    style={styles.input}
-                    value={confirmPassword}
-                    onChangeText={(e) => setConfirmPassword(e)}
-                    label="Confirm Password"
-                    secureTextEntry={true}
-                  />
-                  <HelperText type="error" visible={passwordMatchError()}>
-                    Password must be the same
-                  </HelperText>
-                </View>
-              </Card.Content>
-            </Card>
+            <Text style={styles.text}>Enter your email address:</Text>
+            <View>
+              <TextInput
+                theme={{
+                  colors: {
+                    primary: "#007F5F",
+                    underlineColor: "transparent",
+                    background: "transparent",
+                  },
+                }}
+                style={styles.input}
+                keyboardType="email-address"
+                value={email}
+                onChangeText={(e) => setEmail(e)}
+                label="Email"
+              />
+              <HelperText type="error" visible={emailHasErrors()}>
+                Must be a valid e-mail address
+              </HelperText>
+            </View>
+            <Text style={styles.text}>Confirm your email address:</Text>
+            <View>
+              <TextInput
+                theme={{
+                  colors: {
+                    primary: "#007F5F",
+                    underlineColor: "transparent",
+                    background: "transparent",
+                  },
+                }}
+                style={styles.input}
+                value={confirmEmail}
+                onChangeText={(e) => setConfirmEmail(e)}
+                label="Confirm Email"
+              />
+              <HelperText type="error" visible={emailMatchError()}>
+                E-mails must match
+              </HelperText>
+            </View>
+            <View>
+              <Text style={styles.text}>Enter your password:</Text>
+              <TextInput
+                theme={{
+                  colors: {
+                    primary: "#007F5F",
+                    underlineColor: "transparent",
+                    background: "transparent",
+                  },
+                }}
+                style={styles.input}
+                value={password}
+                onChangeText={(e) => setPassword(e)}
+                label="Password"
+                secureTextEntry={true}
+              />
+              <HelperText type="error" visible={hasErrors()}>
+                Password must be at least 7 characters
+              </HelperText>
+            </View>
+            <Text style={styles.text}>Confirm your password:</Text>
+            <View>
+              <TextInput
+                theme={{
+                  colors: {
+                    primary: "#007F5F",
+                    underlineColor: "transparent",
+                    background: "transparent",
+                  },
+                }}
+                style={styles.input}
+                value={confirmPassword}
+                onChangeText={(e) => setConfirmPassword(e)}
+                label="Confirm Password"
+                secureTextEntry={true}
+              />
+              <HelperText type="error" visible={passwordMatchError()}>
+                Password must be the same
+              </HelperText>
+            </View>
             <Button
               mode="contained"
               color="#007F5F"
@@ -200,6 +191,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 10,
+    color: "#007F5F",
   },
 });
 
