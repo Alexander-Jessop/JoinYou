@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Text, TextInput, Button, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import timezones from "../../util/timezones.json";
 import { Picker } from "@react-native-picker/picker";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
-import { Checkbox } from "react-native-paper";
+import { Checkbox, TextInput, Button } from "react-native-paper";
 
 const InfoForm = (props) => {
   const [displayName, setDisplayName] = useState("");
@@ -69,7 +69,9 @@ const InfoForm = (props) => {
       </View>
 
       <Text>{"\n"}</Text>
-      <Button title="Continue" onPress={onContinueHandler} />
+      <Button title="Continue" onPress={onContinueHandler}>
+        Continue
+      </Button>
     </View>
   );
 };
