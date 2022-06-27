@@ -5,6 +5,8 @@ import moment from "moment";
 
 const TimeSlots = () => {
   const [timeSlot, setTimeSlot] = useState([]);
+  
+
   const createTimeSlots = (fromTime, toTime) => {
     let startTime = moment(fromTime, "HH:mm");
     let endTime = moment(toTime, "HH:mm");
@@ -14,15 +16,17 @@ const TimeSlots = () => {
     let arr = [];
     while (startTime <= endTime) {
       arr.push(new moment(startTime, "HH:mm"));
-      startTime.add(15, "minutes");
+      startTime.add(15, "minutes"); // Blocks of time they want - take block input + 5mins buffer time
     }
     return arr;
   };
+
+  
   useEffect(() => {
-    setTimeSlot(createTimeSlots("08:00", "20:00"));
+    setTimeSlot(createTimeSlots("08:00", "20:00")); // Times they want to work between DYNAMIC input will defaul to TODAY
   }, []);
 
-  console.log(timeSlot);
+  // console.log(timeSlot);
   return (
     <ScrollView style={styles.container}>
       <View>

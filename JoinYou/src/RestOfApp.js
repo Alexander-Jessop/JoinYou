@@ -16,6 +16,7 @@ import RegisterPage from "../Screens/client-reg/RegisterPage";
 import InfoPage from "../Screens/client-reg/InfoPage";
 import TagsPage from "../Screens/client-reg/TagsPage";
 import CategoryScreen from "../Screens/feed/CategoryScreen";
+import TimeSlots from "../components/Scheduler/TimeSlots";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,66 +24,39 @@ const RestOfApp = () => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
-  function ImgUpload() {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="All Images"
-          component={AllLoadedImgs}
-          options={({ navigation }) => ({
-            title: "All uploaded Images",
-            headerRight: ({ tintColor }) => (
-              <IconButton
-                icon="add"
-                size={24}
-                color={tintColor}
-                onPress={() => navigation.navigate("Add Image")}
-              />
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Add Image"
-          component={AddImg}
-          options={{ title: "Add a New Image" }}
-        />
-      </Stack.Navigator>
-    );
-  }
+  // return (
+  //   <NavigationContainer>
+  //     <Stack.Navigator>
+  //       <Stack.Screen
+  //         name="Login"
+  //         component={LoginPage}
+  //         options={{ title: "Welcome" }}
+  //       />
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginPage}
-          options={{ title: "Welcome" }}
-        />
+  //       <Stack.Screen
+  //         name="Register"
+  //         component={RegisterPage}
+  //         options={{ title: "Register as new user" }}
+  //       />
 
-        <Stack.Screen
-          name="Register"
-          component={RegisterPage}
-          options={{ title: "Register as new user" }}
-        />
+  //       <Stack.Screen
+  //         name="InfoPage"
+  //         component={InfoPage}
+  //         options={{ title: "Enter your information" }}
+  //       />
 
-        <Stack.Screen
-          name="InfoPage"
-          component={InfoPage}
-          options={{ title: "Enter your information" }}
-        />
+  //       <Stack.Screen
+  //         name="Tags"
+  //         component={TagsPage}
+  //         options={{ title: "Select your interests:" }}
+  //       />
 
-        <Stack.Screen
-          name="Tags"
-          component={TagsPage}
-          options={{ title: "Select your interests:" }}
-        />
+  //       <Stack.Screen name="Home" component={HomeScreen} />
 
-        <Stack.Screen name="Home" component={HomeScreen} />
-
-        <Stack.Screen name="Categories" component={CategoryScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  //       <Stack.Screen name="Categories" component={CategoryScreen} />
+  //     </Stack.Navigator>
+  //   </NavigationContainer>
+  // );
 
   //   function AuthStack() {
   //     return (
@@ -99,15 +73,12 @@ const RestOfApp = () => {
   //     );
   //   }
 
-  function Navigation() {
-    return (
-      <NavigationContainer>
-        <ImgUpload />
-      </NavigationContainer>
-    );
-  }
-
-  return <Navigation />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="CalendarTEST" component={TimeSlots} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-
 export default RestOfApp;

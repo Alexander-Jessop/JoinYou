@@ -17,6 +17,10 @@ import AgendaView from "./components/Scheduler/AgendaView";
 import CalendarView from "./components/Scheduler/CalendarView";
 import { Calendar } from "react-native-calendars";
 import TimeSlots from "./components/Scheduler/TimeSlots"
+import {
+  MD3LightTheme as DefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
 
 // const Stack = createNativeStackNavigator();
 
@@ -88,9 +92,11 @@ export default function App() {
   return (
     <FirebaseProvider>
       <AuthProvider>
-        <StatusBar style="light" />
-        <TimeSlots/>
+        <PaperProvider>
+          <StatusBar style="dark" />
+          <RestOfApp />
+        </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
-  )
+  );
 }
