@@ -1,25 +1,19 @@
 import { React, useState } from "react";
-import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import ImagePicker from "./ImagePicker";
+import { Card } from "react-native-paper";
 
 const ImgForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const changeTitleHandler = (enteredText) => {
-    setEnteredTitle(enteredText);
-    console.log(enteredText);
-  };
-
   return (
     <ScrollView style={styles.form}>
-      <View>
-        <Text style={styles.label}>Title</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={changeTitleHandler}
-          value={enteredTitle}
-        />
-      </View>
-      <ImagePicker />
+      <Card>
+        <Card.Content>
+          <Card.Title title="Add Photos" titleStyle={styles.cardTitle} />
+          <View>
+            <ImagePicker />
+          </View>
+        </Card.Content>
+      </Card>
     </ScrollView>
   );
 };
@@ -31,16 +25,19 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: "bold",
-    marginBottom: 5,
+    marginTop: 10,
   },
   input: {
-    marginVertical: 10,
-    paddingHorizontal: 4,
-    paddingVertical: 8,
-    fontSize: 16,
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 2,
-    backgroundColor: "#fff",
+    color: "#FFF",
+    marginTop: 2,
+    mode: "outlined",
+    margin: 10,
+    height: 60,
+  },
+  cardTitle: {
+    color: "#007F5F",
+    alignItems: "center",
+    // textAlign: "center", move the title to the middle
   },
 });
 

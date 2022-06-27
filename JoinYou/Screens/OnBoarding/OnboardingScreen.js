@@ -13,7 +13,7 @@ const OnboardingScreen = () => {
           backgroundColor: "#007F5F",
           image: <Image source={require("../../assets/onboarding-img1.png")} />,
           title: "Connect With The World",
-          subtitle: "A New Way To Connect With The World",
+          subtitle: "A New Way To Connect",
         },
         {
           backgroundColor: "#007F5F",

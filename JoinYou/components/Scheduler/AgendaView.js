@@ -28,7 +28,6 @@ const AgendaView = (props) => {
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
               name: "Item for " + strTime + " #" + j,
-
               day: strTime,
             });
           }

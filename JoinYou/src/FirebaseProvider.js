@@ -10,6 +10,7 @@ const firebaseConfig = {
   authDomain: "joinyou-3a118.firebaseapp.com",
   projectId: "joinyou-3a118",
   storageBucket: "joinyou-3a118.appspot.com",
+
   messagingSenderId: "127232884185",
   appId: "1:127232884185:web:b70d1e7dfde2c11614edc8",
   measurementId: "G-Q6TK0LBB7B",

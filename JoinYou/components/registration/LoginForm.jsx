@@ -38,7 +38,7 @@ const LoginForm = () => {
                 },
               }}
               style={styles.input}
-              label="email"
+              label="Email"
               keyboardType="email-address"
               value={email}
               onChangeText={(e) => setEmail(e)}
@@ -53,7 +53,7 @@ const LoginForm = () => {
               }}
               right={<TextInput.Icon name="eye-off-outline" />}
               style={styles.input}
-              label="password"
+              label="Password"
               value={password}
               secureTextEntry={true}
               onChangeText={(e) => setPassword(e)}
@@ -61,7 +61,7 @@ const LoginForm = () => {
             />
             {loginError && <Text>{loginError}</Text>}
             <Button style={styles.flatbutton} uppercase={false} color="#007F5F">
-              Forgot email/password
+              Forgot Email/Password
             </Button>
             <Button
               style={styles.button}
