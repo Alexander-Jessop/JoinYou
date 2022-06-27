@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, Button } from "react-native";
-import { Checkbox } from "react-native-paper";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { Text, Checkbox, Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
@@ -50,13 +50,9 @@ const TagsForm = () => {
         );
       })}
       <Text>{"\n"}</Text>
-      <Button title="Finish" onPress={onFinishHandler} />
-      <Button
-        title="CONSOLE LOG"
-        onPress={() => {
-          console.log(selectedTags);
-        }}
-      />
+      <Button title="Finish" onPress={onFinishHandler}>
+        Finish
+      </Button>
     </View>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
-import { Card, TextInput, Button } from "react-native-paper";
+import { Card, Text, TextInput, Button } from "react-native-paper";
 
 const LoginForm = () => {
   const authContext = useContext(AuthContext);

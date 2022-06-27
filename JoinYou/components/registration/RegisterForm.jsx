@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Alert, Text, View, StyleSheet } from "react-native";
+import { Alert, View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 //https://firebase.google.com/docs/auth/web/start#sign_up_new_users
-import { Card, TextInput, Button, HelperText } from "react-native-paper";
+import { Card, Text, TextInput, Button, HelperText } from "react-native-paper";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
