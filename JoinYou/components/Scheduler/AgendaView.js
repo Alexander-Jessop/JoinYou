@@ -11,7 +11,7 @@ const timeToString = (time) => {
 };
 
 const AgendaView = (props) => {
-  const selectedDate = props.route.params.dateId;
+  // const selectedDate = props.route.params.dateId;
 
   const [items, setItems] = useState({});
 
@@ -70,8 +70,7 @@ const AgendaView = (props) => {
     <View style={styles.container}>
       <Agenda
         items={items}
-        loadItemsForMonth={loadItems}
-        selected={selectedDate} /*'today's date'*/
+        loadItemsForMonth={loadItems} /*'today's date'*/
         renderItem={renderItem}
       />
     </View>

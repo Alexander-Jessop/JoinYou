@@ -6,6 +6,8 @@ import { useLinkProps } from "@react-navigation/native";
 import { Text, Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 
+import Booking from "../../components/Scheduler/Booking";
+
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
 
@@ -53,6 +55,7 @@ const ProfileScreen = (props) => {
       <View>
         <Text>{profileData.displayName}</Text>
         <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+        <Booking />
         <Button
           onPress={() =>
             navigation.navigate("Calendar", {
