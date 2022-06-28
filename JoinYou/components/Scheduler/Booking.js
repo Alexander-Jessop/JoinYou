@@ -32,8 +32,6 @@ const Booking = (props) => {
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
 
-  const authContext = useContext(AuthContext);
-  const createTimeslots = authContext.createTimeslots;
 
   useEffect(() => {
     const getData = async () => {
@@ -148,8 +146,6 @@ const Booking = (props) => {
       <View>
         <TouchableOpacity
           onPress={() => {
-            createTimeslots(selectedSlot);
-
             navigation.navigate("Confirmation", {
               selectedSlot,
               selectedDate,

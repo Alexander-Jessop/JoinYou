@@ -93,24 +93,6 @@ const AuthProvider = (props) => {
     }
   };
 
-  //Modified function with timezone / display name / interests
-  //Creates a Firestore db document with the same uid/email as the Firebase Authentication user
-  //Plus a Display Name and Timezone, Plus an empty array of "interests"
-  const createTimeslots = async (timeslots) => {
-    //console.log(`db is: `, db);
-    try {
-      const timeslotData = {
-        timeslots: timeslots,
-      };
-      let newDoc = await setDoc(doc(db, "Timeslots", "testID"), timeslotData);
-      console.log("New user created!", newDoc);
-      return newDoc;
-    } catch (error) {
-      console.log("Error creating user data", error);
-      return false;
-    }
-  };
-
   //Update function, for "interests" tags
   //Updates the "interests" array for Firestore db user
   //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
@@ -138,7 +120,6 @@ const AuthProvider = (props) => {
     logout,
     createUserData,
     updateUserData,
-    createTimeslots,
     updateUserInterests,
   };
 
