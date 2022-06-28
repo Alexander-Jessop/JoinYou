@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Text,
   View,
@@ -10,29 +10,51 @@ import {
   Dimensions,
 } from "react-native";
 import CalendarStrip from "react-native-calendar-strip";
-
-const availableSlots = [
-  "8:00",
-  "8:20",
-  "8:40",
-  "9:00",
-  "9:20",
-  "9:40",
-  "10:00",
-  "10:20",
-  "10:40",
-  "11:00",
-  "11:20",
-  "11:40",
-];
+import { FirebaseContext } from "../../src/FirebaseProvider";
+import { doc, getDoc } from "firebase/firestore";
+import { AuthContext } from "../../src/AuthProvider";
 
 // REPLACE WITH FIREBASE TIMESLOTS
 
-const Booking = () => {
+const Booking = (props) => {
   // FUNCTION TO GET INFLUENCERS DATA SUCH AS IMAGE NAME EXPERIECE ETC FROM FIREBASE BASED ON PROFILE ID
 
-  const [selectedSlot, setSelectedSlot] = React.useState("");
-  const [book, setBook] = React.useState(false);
+  const [selectedSlot, setSelectedSlot] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [book, setBook] = useState(false);
+  const [timeslotData, setTimeslotData] = useState([]);
+
+  const { navigation, route } = props;
+
+  const profileData = route.params.profileData;
+  const profileID = profileData.uid;
+
+  const fbContext = useContext(FirebaseContext);
+  const db = fbContext.db;
+
+  const authContext = useContext(AuthContext);
+  const createTimeslots = authContext.createTimeslots;
+
+  useEffect(() => {
+    const getData = async () => {
+      //Get a single document from Firestore databse, by UID
+      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+      const docRef = doc(db, "Timeslots", "p73cCe15IWWz0DnZOsFv");
+      const docSnap = await getDoc(docRef);
+      setTimeslotData(docSnap.data());
+    };
+    getData();
+  }, []);
+
+  const availableSlots = timeslotData.timeSlots;
+  console.log("profileData is: ", profileData);
+  console.log("timeslotData is: ", timeslotData);
+  console.log("selectedSlot is: ", selectedSlot);
+
+  function pressHandler(selectedDate) {
+    // console.log("selectedDate is: ", selectedDate);
+    setSelectedDate(selectedDate);
+  }
 
   function influencerInfo() {
     return (
@@ -40,7 +62,7 @@ const Booking = () => {
         <View>{/* pull avatar from database and set in a view */}</View>
         <View>
           <View>
-            <Text>DisplayName </Text>
+            <Text>{profileData.displayName} </Text>
           </View>
           <TouchableOpacity onPress={() => navigation.navigate("ProfilePage")}>
             <Text>View Profile</Text>
@@ -125,16 +147,14 @@ const Booking = () => {
     return book ? (
       <View>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Consultation", {
-              image,
-              name,
-              experience,
-              type,
+          onPress={() => {
+            createTimeslots(selectedSlot);
+
+            navigation.navigate("Confirmation", {
               selectedSlot,
-              rating,
-            })
-          }
+              selectedDate,
+            });
+          }}
         >
           <View>
             <Text>Book now</Text>
@@ -171,6 +191,9 @@ const Booking = () => {
             scrollable={true}
             upperCaseDays={false}
             styleWeekend={true}
+            onDateSelected={(day) => {
+              pressHandler(day);
+            }}
           />
         </View>
       </View>

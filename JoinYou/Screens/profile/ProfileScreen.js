@@ -32,7 +32,7 @@ const ProfileScreen = (props) => {
   }, [profileID]);
 
   if (user.uid === profileID) {
-    //Your own profile page
+    //Your own profile page, as an expert
     return (
       <View>
         <Text>{profileData.displayName}</Text>
@@ -40,7 +40,7 @@ const ProfileScreen = (props) => {
 
         <Button
           onPress={() =>
-            navigation.navigate("Upcoming", {
+            navigation.navigate("Booking", {
               profileData: profileData,
             })
           }
