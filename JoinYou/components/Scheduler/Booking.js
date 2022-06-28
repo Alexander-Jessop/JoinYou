@@ -11,8 +11,16 @@ import {
 } from "react-native";
 import CalendarStrip from "react-native-calendar-strip";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
+import moment from "moment";
 
 // REPLACE WITH FIREBASE TIMESLOTS
 
@@ -21,6 +29,8 @@ const Booking = (props) => {
 
   const [selectedSlot, setSelectedSlot] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+  const [availableDates, setAvailableDates] = useState([]);
+  const [availableSlots, setAvailableSlots] = useState([]);
   const [book, setBook] = useState(false);
   const [timeslotData, setTimeslotData] = useState([]);
 
@@ -32,26 +42,65 @@ const Booking = (props) => {
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
 
-
   useEffect(() => {
+    //Get multiple documents from a collection with a filter.
+    //Changed .forEach() to .map()
+    //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
-      //Get a single document from Firestore databse, by UID
-      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-      const docRef = doc(db, "Timeslots", "p73cCe15IWWz0DnZOsFv");
-      const docSnap = await getDoc(docRef);
-      setTimeslotData(docSnap.data());
+      const q = query(
+        collection(db, "Timeslots"),
+        where("influencerId", "==", profileID)
+      );
+      const querySnapshot = await getDocs(q);
+      const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
+
+      // //Second filter. Filtering by selected category.
+      // const filteredByCategory = timeslotArray.filter((expert) => {
+      //   return expert.interests.includes(selectedDate);
+      // });
+
+      setTimeslotData(timeslotArray);
+      let datesAvailable = timeslotArray.map((timeslot) => {
+        console.log("timeslot", timeslot);
+        return moment.unix(timeslot.startTime.seconds);
+      });
+      setAvailableDates(datesAvailable);
+      console.log("datesAvailable", datesAvailable);
     };
     getData();
-  }, []);
+  }, [profileID]);
 
-  const availableSlots = timeslotData.timeSlots;
-  console.log("profileData is: ", profileData);
-  console.log("timeslotData is: ", timeslotData);
-  console.log("selectedSlot is: ", selectedSlot);
+  useEffect(() => {
+    let timeslots = timeslotData
+      .filter((timeslot) => {
+        let momentDate = moment
+          .unix(timeslot.startTime.seconds)
+          .format("MM/DD/YYYY");
+        console.log("momentDate: ", momentDate);
+        console.log("selectedDate", selectedDate);
+        return momentDate === selectedDate;
+      })
+      .map((timeslot) => {
+        return moment.unix(timeslot.startTime.seconds).format("h:mm a");
+      });
 
-  function pressHandler(selectedDate) {
-    // console.log("selectedDate is: ", selectedDate);
-    setSelectedDate(selectedDate);
+    setAvailableSlots(timeslots);
+  }, [selectedDate]);
+
+  console.log("availableSlots", availableSlots);
+  // let dateString = moment
+  //   .unix(timeslotData.startTime.seconds)
+  //   .format("MM/DD/YYYY");
+  // console.log("dateString: ", dateString);
+
+  // console.log("profileData is: ", profileData);
+  // console.log("timeslotData is: ", timeslotData);
+  //console.log("selectedSlot is: ", selectedSlot);
+
+  function pressHandler(calendarDate) {
+    let dateString = moment(calendarDate).format("MM/DD/YYYY");
+    console.log("dateString is: ", dateString);
+    setSelectedDate(dateString);
   }
 
   function influencerInfo() {
@@ -82,26 +131,22 @@ const Booking = (props) => {
     );
   }
 
-  function slotsTime({ slots, time }) {
+  function slotsTime({ slots }) {
     const renderItem = ({ item }) => {
       return (
         <TouchableOpacity
           onPress={() => {
-            setSelectedSlot(`${item} ${time}`);
+            setSelectedSlot(`${item}`);
             setBook(true);
           }}
         >
           <View
             style={{
-              backgroundColor:
-                selectedSlot == `${item} ${time}` ? "#007F5F" : "white",
-              borderColor:
-                selectedSlot == `${item} ${time}` ? "#007F5F" : "#CDCDCD",
+              backgroundColor: selectedSlot == `${item} ` ? "#007F5F" : "white",
+              borderColor: selectedSlot == `${item} ` ? "#007F5F" : "#CDCDCD",
             }}
           >
-            <Text>
-              {item} {time}
-            </Text>
+            <Text>{item}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -121,6 +166,7 @@ const Booking = (props) => {
   }
 
   const renderItem = ({ item }) => {
+    console.log("item", item);
     return (
       <TouchableOpacity
         onPress={() => {
@@ -175,6 +221,12 @@ const Booking = (props) => {
               alignItems: "center",
               justifyContent: "center",
             }}
+            markedDates={availableDates.map((date) => {
+              return {
+                date: date,
+                dots: [{ color: "#007F5F", selectedColor: "white" }],
+              };
+            })}
             dateNumberStyle={{ color: "black", fontSize: 17.0 }}
             dateNameStyle={{ color: "black", fontSize: 15.0 }}
             highlightDateNameStyle={{ color: "white", fontSize: 15.0 }}
@@ -214,7 +266,7 @@ const Booking = (props) => {
                 {slotsInfo({
                   data: availableSlots,
                 })}
-                {slotsTime({ slots: availableSlots, time: "AM" })}
+                {slotsTime({ slots: availableSlots })}
               </>
             }
             renderItem={renderItem}
@@ -226,7 +278,7 @@ const Booking = (props) => {
       }
     </View>
   );
-};
+};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 const styles = StyleSheet.create({
   dividerStyle: {
