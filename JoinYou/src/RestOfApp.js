@@ -77,7 +77,7 @@ const RestOfApp = () => {
           />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Upcoming" component={UpcomingScreen} />
+          <Stack.Screen name="Upcoming" component={AgendaView} />
           <Stack.Screen name="NewTimeslot" component={NewTimeslotScreen} />
           <Stack.Screen name="Calendar" component={CalendarScreen} />
           <Stack.Screen name="Categories" component={CategoryScreen} />

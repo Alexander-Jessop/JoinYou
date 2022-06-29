@@ -88,8 +88,8 @@ const AgendaView = (props) => {
       <Agenda
         items={{
           "2022-06-22": [{ name: "item 1 - any js object" }],
-          "2022-06-23": [{ name: "item 2 - any js object" }],
-          "2022-06-24": [],
+          "2022-06-23": [{ name: "item 2 - any js object", disabled: false }],
+
           "2022-06-25": [
             { name: "item 3 - any js object" },
             { name: "any js object" },
@@ -103,7 +103,15 @@ const AgendaView = (props) => {
             { name: "any js object" },
           ],
         }}
+        disabledByDefault={true}
         renderItem={renderItem}
+        renderEmptyDate={() => {
+          return (
+            <View>
+              <Text>Nothing to show</Text>
+            </View>
+          );
+        }}
       />
     </View>
   );
