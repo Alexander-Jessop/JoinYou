@@ -22,6 +22,7 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 
+
 // const Stack = createNativeStackNavigator();
 
 // function AuthStack() {

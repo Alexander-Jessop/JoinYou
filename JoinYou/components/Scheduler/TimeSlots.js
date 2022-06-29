@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, SafeAreaView, ScrollView } from "react-native";
 import { Divider } from "react-native-paper";
 import moment from "moment";
+import FunctionsTesting from "../FunctionsTesting";
 
 const TimeSlots = () => {
   const [timeSlot, setTimeSlot] = useState([]);
@@ -30,8 +31,9 @@ const TimeSlots = () => {
   return (
     <ScrollView style={styles.container}>
       <View>
+        <FunctionsTesting />
         {timeSlot.map((item, index) => {
-          console.log(typeof item);
+          // console.log(typeof item);
           return (
             <View key={index}>
               <Text>{item.toString()}</Text>
@@ -39,6 +41,7 @@ const TimeSlots = () => {
             </View>
           );
         })}
+      
       </View>
     </ScrollView>
   );

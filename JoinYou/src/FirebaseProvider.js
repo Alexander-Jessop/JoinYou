@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import {getFunctions} from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwHLovveAci3BMdA1Pkq1YsUhe-74pYX0",
@@ -19,12 +20,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const cloudFuncs = getFunctions(app)
+
+
 
 export const FirebaseContext = createContext();
 
 const FirebaseProvider = (props) => {
   const children = props.children;
-  const theValues = { app, auth, db, storage };
+  const theValues = { app, auth, db, storage, cloudFuncs };
 
   return (
     <FirebaseContext.Provider value={theValues}>
