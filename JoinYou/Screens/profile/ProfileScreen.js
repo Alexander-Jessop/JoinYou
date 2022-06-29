@@ -38,9 +38,13 @@ const ProfileScreen = (props) => {
         <Text>{profileData.displayName}</Text>
         <Text>Interested in: {profileData.interests?.join(", ")}</Text>
 
+        <Button onPress={() => navigation.navigate("NewTimeslot")}>
+          Add New Timeslot
+        </Button>
+
         <Button
           onPress={() =>
-            navigation.navigate("Booking", {
+            navigation.navigate("Upcoming", {
               profileData: profileData,
             })
           }
@@ -55,10 +59,9 @@ const ProfileScreen = (props) => {
       <View>
         <Text>{profileData.displayName}</Text>
         <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
-        <Booking />
         <Button
           onPress={() =>
-            navigation.navigate("Calendar", {
+            navigation.navigate("Booking", {
               profileData: profileData,
             })
           }
