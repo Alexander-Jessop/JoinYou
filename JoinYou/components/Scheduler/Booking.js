@@ -54,18 +54,19 @@ const Booking = (props) => {
       const querySnapshot = await getDocs(q);
       const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
 
-      // //Second filter. Filtering by selected category.
-      // const filteredByCategory = timeslotArray.filter((expert) => {
-      //   return expert.interests.includes(selectedDate);
-      // });
+      //Second filter. Filtering by booked = false
+      const filteredByAvailable = timeslotArray.filter((timeslot) => {
+        return timeslot.booked === false;
+      });
 
-      setTimeslotData(timeslotArray);
-      let datesAvailable = timeslotArray.map((timeslot) => {
-        console.log("timeslot", timeslot);
+      //console.log("filteredByAvailable: ", filteredByAvailable);
+      setTimeslotData(filteredByAvailable);
+      let datesAvailable = filteredByAvailable.map((timeslot) => {
+        //console.log("timeslot", timeslot);
         return moment.unix(timeslot.startTime.seconds);
       });
       setAvailableDates(datesAvailable);
-      console.log("datesAvailable", datesAvailable);
+      //console.log("datesAvailable", datesAvailable);
     };
     getData();
   }, [profileID]);
@@ -76,8 +77,8 @@ const Booking = (props) => {
         let momentDate = moment
           .unix(timeslot.startTime.seconds)
           .format("MM/DD/YYYY");
-        console.log("momentDate: ", momentDate);
-        console.log("selectedDate", selectedDate);
+        //console.log("momentDate: ", momentDate);
+        //console.log("selectedDate", selectedDate);
         return momentDate === selectedDate;
       })
       .map((timeslot) => {
