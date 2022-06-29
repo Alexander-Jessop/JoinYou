@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Button } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
+import { AuthContext } from "../../src/AuthProvider";
+import { FirebaseContext } from "../../src/FirebaseProvider";
+import moment from "moment";
 
 //https://www.npmjs.com/package/react-native-calendars
 
@@ -11,39 +15,49 @@ const timeToString = (time) => {
 };
 
 const AgendaView = (props) => {
+  const fbContext = useContext(FirebaseContext);
+  const db = fbContext.db;
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const ID = user.uid;
+
+  const [confirmedAppointments, setConfirmedAppointments] = useState([]);
+
+  useEffect(() => {
+    //Get multiple documents from a collection with a filter.
+    //Changed .forEach() to .map()
+    //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
+    const getData = async () => {
+      const q = query(
+        collection(db, "Timeslots"),
+        where("influencerId", "==", ID)
+      );
+      const querySnapshot = await getDocs(q);
+      const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
+
+      //Second filter. Filtering by selected category.
+      const filteredByConfirmed = timeslotArray.filter((timeslot) => {
+        return timeslot.booked === true;
+      });
+
+      setConfirmedAppointments(filteredByConfirmed);
+    };
+    getData();
+  }, []);
+
+  console.log("confirmedAppointment", confirmedAppointments);
+
   // const selectedDate = props.route.params.dateId;
 
-  const [items, setItems] = useState({});
+  let date = moment.unix(confirmedAppointments?.[0]?.startTime?.seconds);
+  let bookedDate = date?.toISOString()?.split("T")[0];
 
-  const loadItems = (day) => {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = timeToString(time);
-
-        if (!items[strTime]) {
-          items[strTime] = [];
-
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-            items[strTime].push({
-              name: "Item for " + strTime + " #" + j,
-              day: strTime,
-            });
-          }
-        }
-      }
-
-      const newItems = {};
-      Object.keys(items).forEach((key) => {
-        newItems[key] = items[key];
-      });
-      setItems(newItems);
-    }, 1000);
-  };
+  console.log("date", date);
+  console.log("bookedDate : ", bookedDate);
 
   const renderItem = (item) => {
-    return (
+    console.log("item is: ", item);
+    return item ? (
       <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
         <Card>
           <Card.Content>
@@ -52,6 +66,9 @@ const AgendaView = (props) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
+                borderWidth: 3,
+                borderStyle: "solid",
+                borderColor: "orange",
               }}
             >
               <Text>{item.name}</Text>
@@ -63,14 +80,29 @@ const AgendaView = (props) => {
           </Card.Content>
         </Card>
       </TouchableOpacity>
-    );
+    ) : null;
   };
 
   return (
     <View style={styles.container}>
       <Agenda
-        items={items}
-        loadItemsForMonth={loadItems} /*'today's date'*/
+        items={{
+          "2022-06-22": [{ name: "item 1 - any js object" }],
+          "2022-06-23": [{ name: "item 2 - any js object" }],
+          "2022-06-24": [],
+          "2022-06-25": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+          "2022-06-26": [],
+          "2022-06-27": [],
+          "2022-06-28": [],
+          "2022-06-29": [],
+          "2022-06-30": [
+            { name: "item 3 - any js object" },
+            { name: "any js object" },
+          ],
+        }}
         renderItem={renderItem}
       />
     </View>

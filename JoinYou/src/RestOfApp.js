@@ -81,6 +81,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Categories" component={CategoryScreen} />
           <Stack.Screen name="Booking" component={Booking} />
           <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
+          <Stack.Screen name="Appointment" component={AgendaView} />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -91,9 +92,9 @@ const RestOfApp = () => {
   // return (
   //   <NavigationContainer>
   //     <Stack.Navigator>
-  //       <Stack.Screen name="Booking" component={Booking} />
+
   //     </Stack.Navigator>
   //   </NavigationContainer>
   // );
-};;
+};
 export default RestOfApp;
