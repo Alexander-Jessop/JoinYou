@@ -3,6 +3,7 @@ import { Modal, StyleSheet, Text, TouchableHighlight, View, Platform, } from "re
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import moment from "moment";
+import { TextInput } from "react-native-paper";
 
 const CustomDatePicker = (props) => {
   const { textStyle, defaultDate } = props;
@@ -50,7 +51,7 @@ const CustomDatePicker = (props) => {
       activeOpacity={0}
       onPress={() => setShow(true)}>
       <View
-        <Text style={textStyle}>{date.format('YYYY-MM-DD')}</Text>
+        <Text> style={textStyle}>{date.format('YYYY-MM-DD')}</Text>
 
         {Platform.OS != 'ios' && show && renderDatePicker()}
 

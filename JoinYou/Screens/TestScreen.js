@@ -1,14 +1,14 @@
 import { View, Text, useEffect, useRef, useState } from 'react'
 import React from 'react'
-// import CustomDatePicker from "../components/schedulerForm/CustomDatePicker";
-import DateRangePicker from '../components/schedulerForm/DateRangePicker';
+import CustomDatePicker from "../components/schedulerForm/CustomDatePicker";
+
 
 const TestScreen = () => {
   return (
     <View style={{ flex: 1, marginTop: 50 }}>
     <View style={{ marginHorizontal: 20 }}>
       <Text>Calendar</Text>
-      <DateRangePicker
+      <CustomDatePicker
         textStyle={{
         paddingVertical: 15,
         paddingHorizontal: 10,

@@ -12,7 +12,7 @@ import IconButton from "./components/ui/IconButton";
 import RestOfApp from "./src/RestOfApp";
 import FirebaseProvider from "./src/FirebaseProvider";
 import AuthProvider from "./src/AuthProvider";
-import DateRangePicker from './components/schedulerForm/DateRangePicker';
+
 
 
 
@@ -98,7 +98,6 @@ export default function App() {
     <FirebaseProvider>
       <AuthProvider>
         <StatusBar style="light" />
-        <DateRangePicker />
         <RestOfApp />
       </AuthProvider>
     </FirebaseProvider>
