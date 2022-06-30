@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { StyleSheet, Image } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 import Onboarding from "react-native-onboarding-swiper";
 

@@ -22,9 +22,8 @@ const AgendaView = (props) => {
   const ID = user.uid;
 
   const [confirmedAppointments, setConfirmedAppointments] = useState([]);
-
+  const [populateAgenda, setPopulateAgenda] = useState();
   useEffect(() => {
-    //Get multiple documents from a collection with a filter.
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
@@ -47,48 +46,37 @@ const AgendaView = (props) => {
 
   console.log("confirmedAppointment", confirmedAppointments);
 
-  // const selectedDate = props.route.params.dateId;
+  useEffect(() => {
+    if (confirmedAppointments) {
+      let newAgenda = {};
 
-  let date = moment.unix(confirmedAppointments?.[0]?.startTime?.seconds);
-  let bookedDate = date?.toISOString()?.split("T")[0];
-  let displayName = confirmedAppointments?.[0]?.displayName;
+      confirmedAppointments?.forEach((timeslot) => {
+        // keep key as value needs to be second arg.
+        let seconds = timeslot?.startTime.seconds;
 
-  console.log(
-    "FUCK ME RIGHT",
-    new Date(confirmedAppointments?.[0]?.startTime?.seconds * 1000)
-      .toISOString()
-      .substr(11, 8)
-  );
+        const name = timeslot?.displayName;
 
-  console.log("date", date);
+        const time = moment.unix(seconds).format("h:mmA");
+        const day = moment.unix(seconds).format("yyyy-MM-DD");
 
-  if (confirmedAppointments) {
-    confirmedAppointments?.forEach((timeslots) => {
-      console.log("name: ", timeslots?.displayName);
-      // keep key as value needs to be second arg.
-      let [key, value] = Object.entries(timeslots?.startTime)[0];
-      console.log("value", value);
-      console.log("key", key);
+        if (newAgenda[day]) {
+          newAgenda[day].push({ name: `${time} with ${name}` });
+        } else {
+          newAgenda[day] = [{ name: `${time} with ${name} ` }];
+        }
 
-      const hours = new Date(value * 1000).toISOString().substr(11, 8);
-      const day = moment.unix(value);
+        console.log("name: ", timeslot?.displayName);
+        console.log("time: ", time);
+        console.log("day: ", day);
+        console.log("newAgenda", newAgenda);
+      });
+      setPopulateAgenda(newAgenda);
+    }
+  }, [confirmedAppointments]);
 
-      const appDay = day.toISOString().split("T")[0];
+  console.log("populateAgenda", populateAgenda);
 
-      console.log("day is", day);
-      console.log("hours", hours);
-      console.log("appDay", appDay);
-      // for (let key in timeslots?.startTime) {
-      //   if (timeslots?.startTime[key] !== null) {
-      //     console.log("startTime: ", timeslots?.startTime[key]);
-      //   }
-      // }
-    });
-  }
-
-  // timeslots?.startTime?.forEach((timeslots) => {
-  //   console.log("seconds is : ", timeslots?.seconds);
-  // });
+  // "2022-06-22": [{ name: "item 1 - any js object" }]
 
   const renderItem = (item) => {
     console.log("item is: ", item);
@@ -104,9 +92,6 @@ const AgendaView = (props) => {
               }}
             >
               <Text>{item.name}</Text>
-              <Avatar.Text
-                label="N/A" /*Replace N/A with profile photo of scheduled client*/
-              />
               <Button title="Join" />
             </View>
           </Card.Content>
@@ -118,20 +103,7 @@ const AgendaView = (props) => {
   return (
     <View style={styles.container}>
       <Agenda
-        items={{
-          "2022-06-22": [{ name: "item 1 - any js object" }],
-          "2022-06-23": [{ name: "item 2 - any js object", disabled: false }],
-
-          "2022-06-25": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-
-          "2022-06-30": [
-            { name: "item 3 - any js object" },
-            { name: "any js object" },
-          ],
-        }}
+        items={populateAgenda}
         renderItem={renderItem}
         renderEmptyDate={() => {
           return (
