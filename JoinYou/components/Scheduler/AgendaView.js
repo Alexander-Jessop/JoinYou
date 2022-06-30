@@ -51,9 +51,44 @@ const AgendaView = (props) => {
 
   let date = moment.unix(confirmedAppointments?.[0]?.startTime?.seconds);
   let bookedDate = date?.toISOString()?.split("T")[0];
+  let displayName = confirmedAppointments?.[0]?.displayName;
+
+  console.log(
+    "FUCK ME RIGHT",
+    new Date(confirmedAppointments?.[0]?.startTime?.seconds * 1000)
+      .toISOString()
+      .substr(11, 8)
+  );
 
   console.log("date", date);
-  console.log("bookedDate : ", bookedDate);
+
+  if (confirmedAppointments) {
+    confirmedAppointments?.forEach((timeslots) => {
+      console.log("name: ", timeslots?.displayName);
+      // keep key as value needs to be second arg.
+      let [key, value] = Object.entries(timeslots?.startTime)[0];
+      console.log("value", value);
+      console.log("key", key);
+
+      const hours = new Date(value * 1000).toISOString().substr(11, 8);
+      const day = moment.unix(value);
+
+      const appDay = day.toISOString().split("T")[0];
+
+      console.log("day is", day);
+      console.log("hours", hours);
+      console.log("appDay", appDay);
+      // for (let key in timeslots?.startTime) {
+      //   if (timeslots?.startTime[key] !== null) {
+      //     console.log("startTime: ", timeslots?.startTime[key]);
+      //   }
+      // }
+    });
+  }
+
+  // timeslots?.startTime?.forEach((timeslots) => {
+  //   console.log("seconds is : ", timeslots?.seconds);
+  // });
 
   const renderItem = (item) => {
     console.log("item is: ", item);
@@ -66,9 +101,6 @@ const AgendaView = (props) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                borderWidth: 3,
-                borderStyle: "solid",
-                borderColor: "orange",
               }}
             >
               <Text>{item.name}</Text>
@@ -94,21 +126,31 @@ const AgendaView = (props) => {
             { name: "item 3 - any js object" },
             { name: "any js object" },
           ],
-          "2022-06-26": [],
-          "2022-06-27": [],
-          "2022-06-28": [],
-          "2022-06-29": [],
+
           "2022-06-30": [
             { name: "item 3 - any js object" },
             { name: "any js object" },
           ],
         }}
-        disabledByDefault={true}
         renderItem={renderItem}
         renderEmptyDate={() => {
           return (
             <View>
-              <Text>Nothing to show</Text>
+              <Card>
+                <Card.Content>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text>YOUR DAY IS FREE!</Text>
+
+                    <Button title="Join" />
+                  </View>
+                </Card.Content>
+              </Card>
             </View>
           );
         }}
