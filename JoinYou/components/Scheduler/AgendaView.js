@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Button } from "react-native";
 import { Agenda } from "react-native-calendars";
-import { Avatar, Card } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import moment from "moment";
@@ -23,6 +23,8 @@ const AgendaView = (props) => {
 
   const [confirmedAppointments, setConfirmedAppointments] = useState([]);
   const [populateAgenda, setPopulateAgenda] = useState();
+  const [markedDates, setMarkedDates] = useState();
+
   useEffect(() => {
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
@@ -44,42 +46,36 @@ const AgendaView = (props) => {
     getData();
   }, []);
 
-  console.log("confirmedAppointment", confirmedAppointments);
-
   useEffect(() => {
     if (confirmedAppointments) {
-      let newAgenda = {};
+      let newAgenda = { [moment().format("YYYY-MM-DD")]: [] };
+      let newMarkedDates = {
+        [moment().format("YYYY-MM-DD")]: { disabled: false },
+      };
 
       confirmedAppointments?.forEach((timeslot) => {
-        // keep key as value needs to be second arg.
-        let seconds = timeslot?.startTime.seconds;
-
+        const seconds = timeslot?.startTime.seconds;
         const name = timeslot?.displayName;
-
         const time = moment.unix(seconds).format("h:mmA");
         const day = moment.unix(seconds).format("yyyy-MM-DD");
 
         if (newAgenda[day]) {
           newAgenda[day].push({ name: `${time} with ${name}` });
         } else {
+          newMarkedDates[day] = {
+            marked: true,
+            dotColor: "red",
+            disabled: false,
+          };
           newAgenda[day] = [{ name: `${time} with ${name} ` }];
         }
-
-        console.log("name: ", timeslot?.displayName);
-        console.log("time: ", time);
-        console.log("day: ", day);
-        console.log("newAgenda", newAgenda);
       });
+      setMarkedDates(newMarkedDates);
       setPopulateAgenda(newAgenda);
     }
   }, [confirmedAppointments]);
 
-  console.log("populateAgenda", populateAgenda);
-
-  // "2022-06-22": [{ name: "item 1 - any js object" }]
-
   const renderItem = (item) => {
-    console.log("item is: ", item);
     return item ? (
       <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
         <Card>
@@ -105,22 +101,24 @@ const AgendaView = (props) => {
       <Agenda
         items={populateAgenda}
         renderItem={renderItem}
+        disabledByDefault={true}
+        disableAllTouchEventsForDisabledDays={true}
+        markedDates={markedDates}
+        pastScrollRange={7}
+        futureScrollRange={30}
         renderEmptyDate={() => {
           return (
-            <View>
+            <View
+              style={{
+                height: 60,
+                margin: 20,
+                alignItems: "center",
+                alignSelf: "center",
+              }}
+            >
               <Card>
                 <Card.Content>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text>YOUR DAY IS FREE!</Text>
-
-                    <Button title="Join" />
-                  </View>
+                  <Text>No Appointments Scheduled</Text>
                 </Card.Content>
               </Card>
             </View>
