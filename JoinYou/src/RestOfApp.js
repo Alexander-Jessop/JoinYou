@@ -53,11 +53,6 @@ const RestOfApp = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="twilo"
-            component={Twilio}
-            options={{ header: () => null }}
-          />
-          <Stack.Screen
             name="OnBoarding"
             component={OnboardingScreen}
             options={{ header: () => null }}
