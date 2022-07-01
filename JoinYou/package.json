@@ -14,7 +14,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-firebase/firestore": "^15.0.0",
     "@react-native-firebase/storage": "^15.0.0",
-    "@react-native-picker/picker": "github:react-native-picker/picker",
+    "@react-native-picker/picker": "2.4.0",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
