@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import ConfirmationPage from "../../components/Scheduler/ConfirmationPage";
 
 const ConfirmationScreen = (props) => {
   const navigation = useNavigation();
@@ -11,8 +12,7 @@ const ConfirmationScreen = (props) => {
 
   return (
     <View>
-      <Text>Confirmation Page</Text>
-      <Button onPress={navigation.navigate("Appointment")}>Testing </Button>
+      <ConfirmationPage />
     </View>
   );
 };

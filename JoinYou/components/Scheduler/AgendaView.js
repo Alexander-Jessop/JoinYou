@@ -9,11 +9,6 @@ import moment from "moment";
 
 //https://www.npmjs.com/package/react-native-calendars
 
-const timeToString = (time) => {
-  const date = new Date(time);
-  return date.toISOString().split("T")[0];
-};
-
 const AgendaView = (props) => {
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;

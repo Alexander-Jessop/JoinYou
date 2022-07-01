@@ -23,8 +23,10 @@ import CalendarScreen from "../Screens/profile/CalendarScreen";
 import TimeSlots from "../components/Scheduler/TimeSlots";
 // image
 import AddImg from "../Screens/StillImg/AddImg";
+import Recording from "../components/VideoCamera/Recording";
 import ConfirmationScreen from "../Screens/profile/ConfirmationScreen";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
+import Twilio from "../components/Conference/Twilio";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,11 @@ const RestOfApp = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name="twilo"
+            component={Twilio}
+            options={{ header: () => null }}
+          />
           <Stack.Screen
             name="OnBoarding"
             component={OnboardingScreen}
@@ -84,6 +91,8 @@ const RestOfApp = () => {
           <Stack.Screen name="Booking" component={Booking} />
           <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
           <Stack.Screen name="Appointment" component={AgendaView} />
+          <Stack.Screen name="Video" component={Recording} />
+          <Stack.Screen name="Photo" component={AddImg} />
         </Stack.Navigator>
       </NavigationContainer>
     );
