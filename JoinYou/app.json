@@ -18,7 +18,7 @@
     "splash": {
       "image": "./assets/FN42_Logo_White.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -31,7 +31,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#000"
       },
       "permissions": ["READ_CALENDAR", "WRITE_CALENDAR"],
       "package": "com.ajeh.JoinYou"
