@@ -4,7 +4,7 @@
     "slug": "JoinYou",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/FN42_Logo_White.png",
+    "icon": "./assets/FN42_Logo_App_Size.png",
     "userInterfaceStyle": "light",
     "plugins": [
       [
@@ -16,9 +16,9 @@
       ]
     ],
     "splash": {
-      "image": "./assets/FN42_Logo_White.png",
+      "image": "./assets/FN42_Logo_App_Size.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000"
+      "backgroundColor": "#2c2c2c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -30,8 +30,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000"
+        "foregroundImage": "./assets/FN42_Logo_App_Size_Android.png",
+        "backgroundColor": "#2c2c2c"
       },
       "permissions": ["READ_CALENDAR", "WRITE_CALENDAR"],
       "package": "com.ajeh.JoinYou"
