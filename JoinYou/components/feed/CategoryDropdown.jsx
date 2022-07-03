@@ -47,7 +47,7 @@ const CategoryDropdown = (props) => {
       <List.Section>
         <List.Accordion
           title={selectedCategory}
-          left={(props) => <List.Icon {...props} icon="folder" />}
+          left={(props) => <List.Icon {...props} />}
           expanded={expanded}
           onPress={handlePress}
         >
