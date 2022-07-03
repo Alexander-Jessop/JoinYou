@@ -99,6 +99,7 @@ const RegisterForm = () => {
                   },
                 }}
                 style={styles.input}
+                keyboardType="email-address"
                 value={confirmEmail}
                 onChangeText={(e) => setConfirmEmail(e)}
                 label="Confirm Email"
