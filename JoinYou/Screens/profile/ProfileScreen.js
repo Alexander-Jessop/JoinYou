@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import { useLinkProps } from "@react-navigation/native";
-import { Text, Button } from "react-native-paper";
+import { Text, Button, Avatar, Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
-
-import Booking from "../../components/Scheduler/Booking";
+import AgendaView from "../../components/Scheduler/AgendaView";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
@@ -33,24 +31,36 @@ const ProfileScreen = (props) => {
 
   if (user.uid === profileID) {
     //Your own profile page, as an expert
-    return (
-      <View>
-        <Text>{profileData.displayName}</Text>
-        <Text>Interested in: {profileData.interests?.join(", ")}</Text>
 
-        <Button onPress={() => navigation.navigate("NewTimeslot")}>
-          Add New Timeslot
-        </Button>
+    let avatarID = profileData?.displayName?.substring(0, 1);
+    const profileAvatar = () => (
+      <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+    );
+
+    return (
+      <View style={styles.content}>
+        <Text style={styles.avatar}> {profileAvatar()} </Text>
+        <Text style={styles.userName}>{profileData.displayName}</Text>
+        <Text style={styles.expertise}>
+          Expertise in: {profileData.interests?.join(", ")}
+        </Text>
 
         <Button
-          onPress={() =>
-            navigation.navigate("Upcoming", {
-              profileData: profileData,
-            })
-          }
+          style={styles.button}
+          color="#007F5F"
+          onPress={() => navigation.navigate("NewTimeslot")}
         >
-          See Upcoming Appointments
+          Set Availability
         </Button>
+
+        <Card style={styles.card}>
+          <Card.Content>
+            <Text style={styles.text}>Upcoming Appointments</Text>
+            <View style={styles.agenda}>
+              <AgendaView />
+            </View>
+          </Card.Content>
+        </Card>
       </View>
     );
   } else {
@@ -73,6 +83,40 @@ const ProfileScreen = (props) => {
   }
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  avatar: {
+    textAlign: "center",
+    marginTop: 20,
+  },
+  expertise: {
+    textAlign: "center",
+  },
+  userName: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 40,
+  },
+  button: {
+    marginLeft: 25,
+    marginRight: 25,
+  },
+  view: {
+    marginTop: 325,
+    width: "90%",
+    justifyContent: "center",
+  },
+  content: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 110,
+  },
+  agenda: { width: "100%", height: "100%" },
+  card: { width: "100%", height: "100%" },
+  text: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 25,
+  },
+});
 
 export default ProfileScreen;

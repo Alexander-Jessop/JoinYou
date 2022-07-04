@@ -22,7 +22,7 @@ const ConfirmationPage = () => {
       >
         Take Photo
       </Button>
-      <Button>To Payment</Button>
+      <Button>Payment</Button>
     </View>
   );
 };

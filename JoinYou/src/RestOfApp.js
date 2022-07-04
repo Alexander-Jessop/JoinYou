@@ -78,7 +78,11 @@ const RestOfApp = () => {
             options={{ title: "Select your interests:" }}
           />
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{ title: null }}
+          />
           <Stack.Screen name="Upcoming" component={AgendaView} />
           <Stack.Screen name="NewTimeslot" component={NewTimeslotScreen} />
           <Stack.Screen name="Calendar" component={CalendarScreen} />
