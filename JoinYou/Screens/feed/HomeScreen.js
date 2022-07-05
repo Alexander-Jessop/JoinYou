@@ -31,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
         title="See all categories"
         onPress={() => navigation.navigate("Categories")}
       >
-        See All Categories
+        Filter By Category
       </Button>
 
       <MainList />
