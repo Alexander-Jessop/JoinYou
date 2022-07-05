@@ -15,7 +15,7 @@ const MainList = () => {
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
-  const uid = authContext.user.uid;
+  const uid = user.uid;
 
   useEffect(() => {
     if (userInterests) {
