@@ -29,9 +29,8 @@ const ProfileScreen = (props) => {
     getData();
   }, [profileID]);
 
-  if (user.uid === profileID) {
+  if (user.uid === profileID && profileData.isExpert === true) {
     //Your own profile page, as an expert
-
     let avatarID = profileData?.displayName?.substring(0, 1);
     const profileAvatar = () => (
       <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
@@ -57,7 +56,32 @@ const ProfileScreen = (props) => {
           <Card.Content>
             <Text style={styles.text}>Upcoming Appointments</Text>
             <View style={styles.agenda}>
-              <AgendaView />
+              <AgendaView typeOfId={"influencerId"} />
+            </View>
+          </Card.Content>
+        </Card>
+      </View>
+    );
+  } else if (user.uid === profileID && profileData.isExpert === false) {
+    //Your own profile page, as a regular
+    let avatarID = profileData?.displayName?.substring(0, 1);
+    const profileAvatar = () => (
+      <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+    );
+
+    return (
+      <View style={styles.content}>
+        <Text style={styles.avatar}> {profileAvatar()} </Text>
+        <Text style={styles.userName}>{profileData.displayName}</Text>
+        <Text style={styles.expertise}>
+          Interested in: {profileData.interests?.join(", ")}
+        </Text>
+
+        <Card style={styles.card}>
+          <Card.Content>
+            <Text style={styles.text}>Upcoming Appointments</Text>
+            <View style={styles.agenda}>
+              <AgendaView typeOfId={"clientId"} />
             </View>
           </Card.Content>
         </Card>
