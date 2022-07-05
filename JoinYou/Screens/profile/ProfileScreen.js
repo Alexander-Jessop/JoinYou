@@ -48,9 +48,9 @@ const ProfileScreen = (props) => {
         <Button
           style={styles.button}
           color="#007F5F"
-          onPress={() => navigation.navigate("NewTimeslot")}
+          onPress={() => navigation.navigate("Set Availability")}
         >
-          Set Availability For Today
+          Set Availability
         </Button>
 
         <Card style={styles.card}>

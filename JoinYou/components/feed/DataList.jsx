@@ -9,24 +9,26 @@ const DataList = (props) => {
     <ScrollView>
       {props.data.map((expert) => {
         return (
-          <Card
-            title={expert.displayName}
-            key={expert.uid}
-            style={styles.card}
-            onPress={() => {
-              navigation.navigate("Profile", {
-                profileID: expert.uid,
-              });
-            }}
-          >
-            <Card.Content>
-              <Title>Name: {expert.displayName}</Title>
+          <View style={styles.content}>
+            <Card
+              title={expert.displayName}
+              key={expert.uid}
+              style={styles.card}
+              onPress={() => {
+                navigation.navigate("Profile", {
+                  profileID: expert.uid,
+                });
+              }}
+            >
+              <Card.Content>
+                <Title>Name: {expert.displayName}</Title>
 
-              <Paragraph>Expertise in: {expert.interests.join(", ")}</Paragraph>
-
-              <Text>{"\n"}</Text>
-            </Card.Content>
-          </Card>
+                <Paragraph>
+                  Expertise in: {expert.interests.join(", ")}
+                </Paragraph>
+              </Card.Content>
+            </Card>
+          </View>
         );
       })}
     </ScrollView>
@@ -35,7 +37,10 @@ const DataList = (props) => {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 30,
+    padding: 20,
+  },
+  content: {
+    margin: 10,
   },
 });
 

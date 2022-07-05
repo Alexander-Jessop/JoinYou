@@ -84,7 +84,7 @@ const RestOfApp = () => {
             options={{ title: null }}
           />
           <Stack.Screen name="Upcoming" component={AgendaView} />
-          <Stack.Screen name="NewTimeslot" component={NewTimeslotScreen} />
+          <Stack.Screen name="Set Availability" component={NewTimeslotScreen} />
           <Stack.Screen name="Calendar" component={CalendarScreen} />
           <Stack.Screen name="Categories" component={CategoryScreen} />
           <Stack.Screen name="Booking" component={Booking} />

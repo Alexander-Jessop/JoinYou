@@ -96,6 +96,7 @@ const AgendaView = (props) => {
       <Agenda
         items={populateAgenda}
         renderItem={renderItem}
+        disabledByDefault={true}
         disableAllTouchEventsForDisabledDays={true}
         markedDates={markedDates}
         pastScrollRange={30}
