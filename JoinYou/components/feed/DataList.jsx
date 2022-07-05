@@ -9,7 +9,7 @@ const DataList = (props) => {
     <ScrollView>
       {props.data.map((expert) => {
         return (
-          <View style={styles.content}>
+          <View style={styles.content} key={expert.uid}>
             <Card
               title={expert.displayName}
               key={expert.uid}
