@@ -27,3 +27,4 @@ export const getNumberOfUsers = functions.https.onCall(
 }})
 
 
+//  Agregaritng counts
