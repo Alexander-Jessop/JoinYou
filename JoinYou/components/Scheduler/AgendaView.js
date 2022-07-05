@@ -69,7 +69,8 @@ useEffect(() => {
           };
           newAgenda[day] = [{ name: `${time} with ${clientName} ` }];
         }
-      } else if (typeOfUser === "client") {
+      }
+      if (typeOfUser === "client") {
         if (newAgenda[day]) {
           newAgenda[day].push({ name: `${time} with ${influencerName}` });
         } else {
