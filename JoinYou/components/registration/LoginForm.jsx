@@ -69,7 +69,9 @@ const LoginForm = () => {
               title="LOGIN"
               onPress={() => {
                 loginFn(email, password);
-                navigation.replace("Home");
+                if (user) {
+                  navigation.replace("Home");
+                }
               }}
             >
               Login
