@@ -15,16 +15,6 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <Button
-        color="#007F5F"
-        title="See all categories"
-        onPress={() => navigation.navigate("Categories")}
-      >
-        See All Categories
-      </Button>
-
-      <MainList />
-
-      <Button
         title="See My Profile Page"
         color="#007F5F"
         onPress={() =>
@@ -35,6 +25,16 @@ const HomeScreen = ({ navigation }) => {
       >
         See My Profile Page
       </Button>
+
+      <Button
+        color="#007F5F"
+        title="See all categories"
+        onPress={() => navigation.navigate("Categories")}
+      >
+        See All Categories
+      </Button>
+
+      <MainList />
 
       <Button
         title="LOG OUT"
