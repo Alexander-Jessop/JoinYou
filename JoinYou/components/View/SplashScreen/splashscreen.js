@@ -82,7 +82,7 @@ class SplashScreen extends React.Component {
                           {/* BEGIN LOGO ANIMATED */}
                           <ImageLoader
                           style={styles.image}
-                          source={GlobalInclude.MainLogo}/>
+                          //source={GlobalInclude.MainLogo}/>
                           {/* END LOGO ANIMATED */}
 
                         </View>

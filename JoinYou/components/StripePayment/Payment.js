@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet,Alert,SafeAreaView,View} from 'react-native';
-import GlobalInclude from "../../Global/GlobalInclude/globalinclude.js";
-import { RaisedTextButton } from 'react-native-material-buttons';
+import GlobalInclude from "../../../components/Global/GlobalInclude/globalinclude";
+import { RaisedTextButton } from "react-native-material-buttons";
 import {Toast} from "native-base";
 
 export default class StripePayment extends React.Component {

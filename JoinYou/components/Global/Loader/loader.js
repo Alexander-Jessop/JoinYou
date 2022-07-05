@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {StyleSheet,Dimensions} from 'react-native';
-import GlobalInclude from "../GlobalInclude/globalinclude.js";
+import GlobalInclude from "../../Global/GlobalInclude/globalinclude";
 import {View} from "native-base";
 import Orientation from 'react-native-orientation';
 import ProgressBar from 'react-native-progress/CircleSnail';

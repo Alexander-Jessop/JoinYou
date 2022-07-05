@@ -38,7 +38,7 @@ export default class Home extends Component<Props> {
           return {
               headerTitle: (
                   <View style={{flex:1, flexDirection:'row', justifyContent:'center',alignItems:'center'}}>
-                        <Image source={GlobalInclude.StripeLogo} style={{ height:40,resizeMode:'contain'}}/>
+                        <Image source={GlobalInclude} style={{ height:40,resizeMode:'contain'}}/>
                   </View>
               )
             };

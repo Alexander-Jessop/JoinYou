@@ -6,8 +6,8 @@ import Color from '../GlobalFile/color.js';
 import Stripe from '../StripeSetup/stripesetup.js';
 import Loader from '../Loader/loader.js'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MainLogo from '../../Assets/Logo/logo.png'
-import StripeLogo from '../../Assets/Logo/stripe_logo.png'
+//import MainLogo from '../../Assets/Logo/logo.png'
+//import StripeLogo from '../../Assets/Logo/stripe_logo.png'
 // END TO IMPORT FILE
 
 
@@ -17,8 +17,8 @@ export default  {
   Color: Color,
   Loader:Loader,
   Stripe:Stripe,
-  StripeLogo:StripeLogo,
+  //StripeLogo:StripeLogo,
   FontAwesome:FontAwesome,
-  MainLogo:MainLogo
+  //MainLogo:MainLogo
 };
 // END TO EXPORT IMPORT FILE

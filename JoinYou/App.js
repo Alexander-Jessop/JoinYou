@@ -8,7 +8,6 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import { StripeProvider } from "@stripe/stripe-react-native";
-import Payment from "./components/View/StripePayment/Payment";
 
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
