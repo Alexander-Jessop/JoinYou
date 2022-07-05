@@ -20,13 +20,16 @@ const AgendaView = (props) => {
   const [populateAgenda, setPopulateAgenda] = useState();
   const [markedDates, setMarkedDates] = useState();
 
-const typeOfId = props.typeOfId;
+const typeOfUser = props.typeOfUser;
 
 useEffect(() => {
   //Changed .forEach() to .map()
   //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
   const getData = async () => {
-    const q = query(collection(db, "Timeslots"), where(typeOfId, "==", ID));
+    const q = query(
+      collection(db, "Timeslots"),
+      where(`${typeOfUser}Id`, "==", ID)
+    );
     const querySnapshot = await getDocs(q);
     const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
 
@@ -40,34 +43,49 @@ useEffect(() => {
   getData();
 }, []);
 
-  useEffect(() => {
-    if (confirmedAppointments) {
-      let newAgenda = { [moment().format("YYYY-MM-DD")]: [] };
-      let newMarkedDates = {
-        [moment().format("YYYY-MM-DD")]: { disabled: false },
-      };
+useEffect(() => {
+  if (confirmedAppointments) {
+    let newAgenda = { [moment().format("YYYY-MM-DD")]: [] };
+    let newMarkedDates = {
+      [moment().format("YYYY-MM-DD")]: { disabled: false },
+    };
 
-      confirmedAppointments?.forEach((timeslot) => {
-        const seconds = timeslot?.startTime.seconds;
-        const name = timeslot?.displayName;
-        const time = moment.unix(seconds).format("h:mmA");
-        const day = moment.unix(seconds).format("yyyy-MM-DD");
+    confirmedAppointments?.forEach((timeslot) => {
+      const seconds = timeslot?.startTime.seconds;
+      // const name = timeslot?.displayName;
+      const influencerName = timeslot?.influencerName;
+      const clientName = timeslot?.clientName;
+      const time = moment.unix(seconds).format("h:mmA");
+      const day = moment.unix(seconds).format("yyyy-MM-DD");
 
+      if (typeOfUser === "influencer") {
         if (newAgenda[day]) {
-          newAgenda[day].push({ name: `${time} with ${name}` });
+          newAgenda[day].push({ name: `${time} with ${clientName}` });
         } else {
           newMarkedDates[day] = {
             marked: true,
             dotColor: "red",
             disabled: false,
           };
-          newAgenda[day] = [{ name: `${time} with ${name} ` }];
+          newAgenda[day] = [{ name: `${time} with ${clientName} ` }];
         }
-      });
-      setMarkedDates(newMarkedDates);
-      setPopulateAgenda(newAgenda);
-    }
-  }, [confirmedAppointments]);
+      } else if (typeOfUser === "client") {
+        if (newAgenda[day]) {
+          newAgenda[day].push({ name: `${time} with ${influencerName}` });
+        } else {
+          newMarkedDates[day] = {
+            marked: true,
+            dotColor: "red",
+            disabled: false,
+          };
+          newAgenda[day] = [{ name: `${time} with ${influencerName} ` }];
+        }
+      }
+    });
+    setMarkedDates(newMarkedDates);
+    setPopulateAgenda(newAgenda);
+  }
+}, [confirmedAppointments]);
 
   const renderItem = (item) => {
     return item ? (

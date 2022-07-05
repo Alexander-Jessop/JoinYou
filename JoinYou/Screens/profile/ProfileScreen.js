@@ -56,7 +56,7 @@ const ProfileScreen = (props) => {
           <Card.Content>
             <Text style={styles.text}>Upcoming Appointments</Text>
             <View style={styles.agenda}>
-              <AgendaView typeOfId={"influencerId"} />
+              <AgendaView typeOfUser={"influencer"} />
             </View>
           </Card.Content>
         </Card>
@@ -81,7 +81,7 @@ const ProfileScreen = (props) => {
           <Card.Content>
             <Text style={styles.text}>Upcoming Appointments</Text>
             <View style={styles.agenda}>
-              <AgendaView typeOfId={"clientId"} />
+              <AgendaView typeOfUser={"client"} />
             </View>
           </Card.Content>
         </Card>
