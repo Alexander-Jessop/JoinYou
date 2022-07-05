@@ -15,6 +15,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <Button
+        color="#007F5F"
         title="See all categories"
         onPress={() => navigation.navigate("Categories")}
       >
@@ -25,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
 
       <Button
         title="See My Profile Page"
+        color="#007F5F"
         onPress={() =>
           navigation.navigate("Profile", {
             profileID: user.uid,
@@ -36,6 +38,7 @@ const HomeScreen = ({ navigation }) => {
 
       <Button
         title="LOG OUT"
+        color="#007F5F"
         onPress={() => {
           logoutFn();
           navigation.replace("Login");
