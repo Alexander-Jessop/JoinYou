@@ -20,26 +20,25 @@ const AgendaView = (props) => {
   const [populateAgenda, setPopulateAgenda] = useState();
   const [markedDates, setMarkedDates] = useState();
 
-  useEffect(() => {
-    //Changed .forEach() to .map()
-    //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
-    const getData = async () => {
-      const q = query(
-        collection(db, "Timeslots"),
-        where("influencerId", "==", ID)
-      );
-      const querySnapshot = await getDocs(q);
-      const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
+const typeOfId = props.typeOfId;
 
-      //Second filter. Filtering by selected category.
-      const filteredByConfirmed = timeslotArray.filter((timeslot) => {
-        return timeslot.booked === true;
-      });
+useEffect(() => {
+  //Changed .forEach() to .map()
+  //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
+  const getData = async () => {
+    const q = query(collection(db, "Timeslots"), where(typeOfId, "==", ID));
+    const querySnapshot = await getDocs(q);
+    const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
 
-      setConfirmedAppointments(filteredByConfirmed);
-    };
-    getData();
-  }, []);
+    //Second filter. Filtering by selected category.
+    const filteredByConfirmed = timeslotArray.filter((timeslot) => {
+      return timeslot.booked === true;
+    });
+
+    setConfirmedAppointments(filteredByConfirmed);
+  };
+  getData();
+}, []);
 
   useEffect(() => {
     if (confirmedAppointments) {
