@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //navigation.reset
+  //if a user is logged in, navigation.reset to Home Screen
   //https://reactnavigation.org/docs/navigation-prop/#reset
   useEffect(() => {
     if (user) {

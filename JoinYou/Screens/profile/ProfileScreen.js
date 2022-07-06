@@ -20,7 +20,7 @@ const ProfileScreen = (props) => {
   const user = authContext.user;
   const logoutFn = authContext.logout;
 
-  //navigation.reset
+  //if a user is not logged in, navigation.reset to Login Screen
   //https://reactnavigation.org/docs/navigation-prop/#reset
   useEffect(() => {
     if (!user) {
