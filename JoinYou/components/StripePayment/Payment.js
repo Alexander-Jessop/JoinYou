@@ -7,14 +7,13 @@ const API_URL = "http://localhost:19002";
 const StripeProvider = () => {
     return (
         <StripeProvider publishableKey="pk_test_51LGiAGFxGzpzSaMYqjeGs8a8F4Y7pfmZzT8DqKF3lS0GlrUaZ82HWz7inCz7ibeFkVDECDQ6lSR2TylXnq3lT3n100d34Fo1qa">
-            <StripeApp />
+            <Payment />
         </StripeProvider>
     )
 };
   
 
-
-const StripeApp = props => {
+const Payment = props => {
     const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
@@ -97,7 +96,7 @@ const StripeApp = props => {
     </View>
   );
 };
-export default StripeApp;
+export default Payment;
 
 const styles = StyleSheet.create({
     container: {
