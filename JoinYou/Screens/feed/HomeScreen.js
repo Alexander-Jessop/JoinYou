@@ -17,6 +17,7 @@ const HomeScreen = ({ navigation }) => {
         title="See My Profile Page"
         color="#007F5F"
         mode="contained"
+        stytle={{ padding: 50 }}
         onPress={() =>
           navigation.navigate("Profile", {
             profileID: user.uid,
@@ -25,9 +26,7 @@ const HomeScreen = ({ navigation }) => {
       >
         See My Profile Page
       </Button>
-      <Text style={{ padding: 15, textAlign: "center", fontSize: 28 }}>
-        Meet with an Expert
-      </Text>
+
       <Button
         color="#007F5F"
         title="See all categories"

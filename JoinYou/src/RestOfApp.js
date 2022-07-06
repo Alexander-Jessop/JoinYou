@@ -76,7 +76,14 @@ const RestOfApp = () => {
             component={TagsPage}
             options={{ title: "Select your interests:" }}
           />
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: "Meet with an Expert",
+              headerTitleAlign: "center",
+            }}
+          />
           <Stack.Screen
             name="Profile"
             component={ProfileScreen}
