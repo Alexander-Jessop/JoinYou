@@ -19,125 +19,125 @@ const ProfileScreen = (props) => {
   const user = authContext.user;
   const logoutFn = authContext.logout;
 
-useEffect(() => {
-  if (!user) {
-    navigation.replace("Login");
-  }
-}, [user]);
+  useEffect(() => {
+    if (!user) {
+      navigation.replace("Login");
+    }
+  }, [user]);
 
-useEffect(() => {
-  const getData = async () => {
-    //Get a single document from Firestore databse, by UID
-    //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-    const docRef = doc(db, "users", profileID);
-    const docSnap = await getDoc(docRef);
-    setProfileData(docSnap.data());
-  };
-  getData();
-}, [profileID]);
+  useEffect(() => {
+    const getData = async () => {
+      //Get a single document from Firestore databse, by UID
+      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+      const docRef = doc(db, "users", profileID);
+      const docSnap = await getDoc(docRef);
+      setProfileData(docSnap.data());
+    };
+    getData();
+  }, [profileID]);
 
-if (user) {
-  if (user.uid === profileID && profileData.isExpert === true) {
-    //Your own profile page, as an expert
-    let avatarID = profileData?.displayName?.substring(0, 1);
-    const profileAvatar = () => (
-      <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
-    );
+  if (user) {
+    if (user.uid === profileID && profileData.isExpert === true) {
+      //Your own profile page, as an expert
+      let avatarID = profileData?.displayName?.substring(0, 1);
+      const profileAvatar = () => (
+        <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+      );
 
-    return (
-      <View style={styles.content}>
-        <Button
-          title="LOG OUT"
-          color="#007F5F"
-          onPress={() => {
-            logoutFn();
-            //navigation.replace("Login");
-          }}
-        >
-          Logout
-        </Button>
-        <Text style={styles.avatar}> {profileAvatar()} </Text>
-        <Text style={styles.userName}>{profileData.displayName}</Text>
-        <Text style={styles.expertise}>
-          Expertise in: {profileData.interests?.join(", ")}
-        </Text>
+      return (
+        <View style={styles.content}>
+          <Button
+            title="LOG OUT"
+            color="#007F5F"
+            onPress={() => {
+              logoutFn();
+              //navigation.replace("Login");
+            }}
+          >
+            Logout
+          </Button>
+          <Text style={styles.avatar}> {profileAvatar()} </Text>
+          <Text style={styles.userName}>{profileData.displayName}</Text>
+          <Text style={styles.expertise}>
+            Expertise in: {profileData.interests?.join(", ")}
+          </Text>
 
-        <Button
-          style={styles.button}
-          color="#007F5F"
-          onPress={() => navigation.navigate("Set Availability")}
-        >
-          Set Availability
-        </Button>
+          <Button
+            style={styles.button}
+            color="#007F5F"
+            onPress={() => navigation.navigate("Set Availability")}
+          >
+            Set Availability
+          </Button>
 
-        <Card style={styles.card}>
-          <Card.Content>
-            <Text style={styles.text}>Upcoming Appointments</Text>
-            <View style={styles.agenda}>
-              <AgendaView typeOfUser={"influencer"} />
-            </View>
-          </Card.Content>
-        </Card>
-      </View>
-    );
-  } else if (user.uid === profileID && profileData.isExpert === false) {
-    //Your own profile page, as a regular
-    let avatarID = profileData?.displayName?.substring(0, 1);
-    const profileAvatar = () => (
-      <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
-    );
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text style={styles.text}>Upcoming Appointments</Text>
+              <View style={styles.agenda}>
+                <AgendaView typeOfUser={"influencer"} />
+              </View>
+            </Card.Content>
+          </Card>
+        </View>
+      );
+    } else if (user.uid === profileID && profileData.isExpert === false) {
+      //Your own profile page, as a regular
+      let avatarID = profileData?.displayName?.substring(0, 1);
+      const profileAvatar = () => (
+        <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+      );
 
-    return (
-      <View style={styles.content}>
-        <Button
-          title="LOG OUT"
-          color="#007F5F"
-          onPress={() => {
-            logoutFn();
-            //navigation.replace("Login");
-          }}
-        >
-          Logout
-        </Button>
-        <Text style={styles.avatar}> {profileAvatar()} </Text>
-        <Text style={styles.userName}>{profileData.displayName}</Text>
-        <Text style={styles.expertise}>
-          Interested in: {profileData.interests?.join(", ")}
-        </Text>
+      return (
+        <View style={styles.content}>
+          <Button
+            title="LOG OUT"
+            color="#007F5F"
+            onPress={() => {
+              logoutFn();
+              //navigation.replace("Login");
+            }}
+          >
+            Logout
+          </Button>
+          <Text style={styles.avatar}> {profileAvatar()} </Text>
+          <Text style={styles.userName}>{profileData.displayName}</Text>
+          <Text style={styles.expertise}>
+            Interested in: {profileData.interests?.join(", ")}
+          </Text>
 
-        <Card style={styles.card}>
-          <Card.Content>
-            <Text style={styles.text}>Upcoming Appointments</Text>
-            <View style={styles.agenda}>
-              <AgendaView typeOfUser={"client"} />
-            </View>
-          </Card.Content>
-        </Card>
-      </View>
-    );
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text style={styles.text}>Upcoming Appointments</Text>
+              <View style={styles.agenda}>
+                <AgendaView typeOfUser={"client"} />
+              </View>
+            </Card.Content>
+          </Card>
+        </View>
+      );
+    } else {
+      //Someone else's profile page
+      return (
+        <View>
+          <Text>{profileData.displayName}</Text>
+          <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+          <Button
+            onPress={() =>
+              navigation.navigate("Booking", {
+                profileData: profileData,
+              })
+            }
+          >
+            View Availability
+          </Button>
+        </View>
+      );
+    }
   } else {
-    //Someone else's profile page
-    return (
-      <View>
-        <Text>{profileData.displayName}</Text>
-        <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
-        <Button
-          onPress={() =>
-            navigation.navigate("Booking", {
-              profileData: profileData,
-            })
-          }
-        >
-          View Availability
-        </Button>
-      </View>
-    );
+    // navigation.replace("Login");
+    return null;
   }
-} else {
-  // navigation.replace("Login");
-  return null;
-}
-};;
+};
 
 const styles = StyleSheet.create({
   avatar: {
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 110,
   },
-  agenda: { width: "100%", height: "100%" },
+  agenda: { width: "100%", height: "74%" },
   card: { width: "100%", height: "100%" },
   text: {
     textAlign: "center",

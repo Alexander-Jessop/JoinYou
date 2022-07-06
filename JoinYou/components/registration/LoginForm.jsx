@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -15,12 +15,6 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      navigation.replace("Home");
-    }
-  }, [user]);
 
   return (
     <View style={styles.content}>
@@ -75,9 +69,9 @@ const LoginForm = () => {
               title="LOGIN"
               onPress={() => {
                 loginFn(email, password);
-                // if (user) {
-                //   navigation.replace("Home");
-                // }
+                if (user) {
+                  navigation.replace("Home");
+                }
               }}
             >
               Login
@@ -100,6 +94,7 @@ const LoginForm = () => {
 
 const styles = StyleSheet.create({
   content: {
+    marginTop: 75,
     justifyContent: "center",
     alignItems: "center",
   },
