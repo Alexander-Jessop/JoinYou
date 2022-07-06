@@ -117,10 +117,19 @@ if (user) {
     );
   } else {
     //Someone else's profile page
+    let avatarID = profileData?.displayName?.substring(0, 1);
+    const profileAvatar = () => (
+      <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+    );
+
     return (
       <View>
-        <Text>{profileData.displayName}</Text>
-        <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+        <Text style={styles.avatar}> {profileAvatar()} </Text>
+        <Text style={styles.userName}>{profileData.displayName}</Text>
+        <Text style={styles.expertise}>
+          Expert in: {profileData.interests?.join(", ")}
+        </Text>
+
         <Button
           onPress={() =>
             navigation.navigate("Booking", {
