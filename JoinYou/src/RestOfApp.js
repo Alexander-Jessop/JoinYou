@@ -60,12 +60,12 @@ const RestOfApp = () => {
           <Stack.Screen
             name="Login"
             component={LoginPage}
-            options={{ title: "Welcome" }}
+            options={{ header: () => null }}
           />
           <Stack.Screen
             name="Register"
             component={RegisterPage}
-            options={{ title: "Register as new user" }}
+            options={{ header: () => null }}
           />
           <Stack.Screen
             name="InfoPage"
