@@ -17,6 +17,7 @@ const ProfileScreen = (props) => {
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
+  const logoutFn = authContext.logout;
 
   useEffect(() => {
     const getData = async () => {
@@ -38,6 +39,16 @@ const ProfileScreen = (props) => {
 
     return (
       <View style={styles.content}>
+        <Button
+          title="LOG OUT"
+          color="#007F5F"
+          onPress={() => {
+            logoutFn();
+            navigation.replace("Login");
+          }}
+        >
+          Logout
+        </Button>
         <Text style={styles.avatar}> {profileAvatar()} </Text>
         <Text style={styles.userName}>{profileData.displayName}</Text>
         <Text style={styles.expertise}>
@@ -71,6 +82,16 @@ const ProfileScreen = (props) => {
 
     return (
       <View style={styles.content}>
+        <Button
+          title="LOG OUT"
+          color="#007F5F"
+          onPress={() => {
+            logoutFn();
+            navigation.replace("Login");
+          }}
+        >
+          Logout
+        </Button>
         <Text style={styles.avatar}> {profileAvatar()} </Text>
         <Text style={styles.userName}>{profileData.displayName}</Text>
         <Text style={styles.expertise}>
@@ -105,7 +126,7 @@ const ProfileScreen = (props) => {
       </View>
     );
   }
-};
+};;
 
 const styles = StyleSheet.create({
   avatar: {

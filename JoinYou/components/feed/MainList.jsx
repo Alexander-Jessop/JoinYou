@@ -15,7 +15,6 @@ const MainList = () => {
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
-  const uid = user.uid;
 
   useEffect(() => {
     if (userInterests) {
@@ -46,15 +45,17 @@ const MainList = () => {
   }, [userInterests]);
 
   useEffect(() => {
-    //get a single document from Firestore
-    //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-    const setData = async () => {
-      const docRef = doc(db, "users", uid);
-      const docSnap = await getDoc(docRef);
-      console.log("docSnap.data().interests is: ", docSnap.data().interests);
-      setUserInterests(docSnap.data().interests);
-    };
-    setData();
+    if (user) {
+      //get a single document from Firestore
+      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+      const setData = async () => {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        console.log("docSnap.data().interests is: ", docSnap.data().interests);
+        setUserInterests(docSnap.data().interests);
+      };
+      setData();
+    }
   }, [auth]);
 
   return (
