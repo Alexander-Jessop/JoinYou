@@ -19,17 +19,24 @@ const ProfileScreen = (props) => {
   const user = authContext.user;
   const logoutFn = authContext.logout;
 
-  useEffect(() => {
-    const getData = async () => {
-      //Get a single document from Firestore databse, by UID
-      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-      const docRef = doc(db, "users", profileID);
-      const docSnap = await getDoc(docRef);
-      setProfileData(docSnap.data());
-    };
-    getData();
-  }, [profileID]);
+useEffect(() => {
+  if (!user) {
+    navigation.navigate("Login");
+  }
+}, [user]);
 
+useEffect(() => {
+  const getData = async () => {
+    //Get a single document from Firestore databse, by UID
+    //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+    const docRef = doc(db, "users", profileID);
+    const docSnap = await getDoc(docRef);
+    setProfileData(docSnap.data());
+  };
+  getData();
+}, [profileID]);
+
+if (user) {
   if (user.uid === profileID && profileData.isExpert === true) {
     //Your own profile page, as an expert
     let avatarID = profileData?.displayName?.substring(0, 1);
@@ -44,7 +51,7 @@ const ProfileScreen = (props) => {
           color="#007F5F"
           onPress={() => {
             logoutFn();
-            navigation.replace("Login");
+            //navigation.replace("Login");
           }}
         >
           Logout
@@ -87,7 +94,7 @@ const ProfileScreen = (props) => {
           color="#007F5F"
           onPress={() => {
             logoutFn();
-            navigation.replace("Login");
+            //navigation.replace("Login");
           }}
         >
           Logout
@@ -126,6 +133,10 @@ const ProfileScreen = (props) => {
       </View>
     );
   }
+} else {
+  navigation.replace("Login");
+  return null;
+}
 };;
 
 const styles = StyleSheet.create({
