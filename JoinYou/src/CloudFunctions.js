@@ -9,7 +9,7 @@ const CloudFunctions = () => {
   const cloudFuncs = fbContext.cloudFuncs;
   const db = fbContext.db;
   const [count, setCount] = useState("n/a");
-  const [rsponse, setResponse] = useState();
+  const [rsponse, setResponse] = useState("Havent called function yet");
 
   const getUsersCount = async () => {
     try {
@@ -36,7 +36,7 @@ const CloudFunctions = () => {
       throw ex;
     }
   };
-  const initializeInfl = async () => {
+  const doInitializeInfl = async () => {
     const myInitializeFunc = httpsCallable(
       cloudFuncs,
       "initializeNewInfluencer"
@@ -57,6 +57,7 @@ const CloudFunctions = () => {
       <Text>Number of users {count} </Text>
       <Button onPress={addRandoUser}> Add a user</Button>
       <Text>Response from the function {response} </Text>
+      <Button onPress={doInitializeInfl}> run the do initialize influencer code</Button>
     </View>
   );
 };
