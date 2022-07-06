@@ -51,7 +51,7 @@ const MainList = () => {
       const setData = async () => {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        console.log("docSnap.data().interests is: ", docSnap.data().interests);
+        //console.log("docSnap.data().interests is: ", docSnap.data().interests);
         setUserInterests(docSnap.data().interests);
       };
       setData();
