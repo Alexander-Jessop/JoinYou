@@ -16,9 +16,13 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //navigation.reset
+  //https://reactnavigation.org/docs/navigation-prop/#reset
   useEffect(() => {
     if (user) {
-      navigation.replace("Home");
+      navigation.reset({
+        routes: [{ name: "Home" }],
+      });
     }
   }, [user]);
 
