@@ -5,6 +5,7 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import { Text, Button, Avatar, Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import AgendaView from "../../components/Scheduler/AgendaView";
+import BookingComponent from "../../components/Scheduler/BookingComponent";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
@@ -143,6 +144,8 @@ const ProfileScreen = (props) => {
           >
             View Availability
           </Button>
+
+          {/* <BookingComponent profileData={profileData} /> */}
         </View>
       );
     }
