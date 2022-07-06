@@ -21,7 +21,7 @@ const ProfileScreen = (props) => {
 
 useEffect(() => {
   if (!user) {
-    navigation.navigate("Login");
+    navigation.replace("Login");
   }
 }, [user]);
 
