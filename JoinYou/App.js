@@ -8,6 +8,7 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import { StripeProvider } from "@stripe/stripe-react-native";
+import Payment from "././components/StripePayment/Payment";
 
 
 
@@ -22,7 +23,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <RestOfApp />
+          <Payment />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
