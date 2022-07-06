@@ -30,6 +30,7 @@ const ProfileScreen = (props) => {
     }
   }, [user]);
 
+  //Get profile data from Firestore db, store it in state profileData
   useEffect(() => {
     const getData = async () => {
       //Get a single document from Firestore databse, by UID
