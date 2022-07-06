@@ -25,6 +25,8 @@ import TimeSlots from "../components/Scheduler/TimeSlots";
 import AddImg from "../Screens/StillImg/AddImg";
 import ConfirmationScreen from "../Screens/profile/ConfirmationScreen";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
+//payment
+import Payment from "../components/StripePayment/Payment";
 
 const Stack = createNativeStackNavigator();
 
@@ -84,6 +86,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Booking" component={Booking} />
           <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
           <Stack.Screen name="Appointment" component={AgendaView} />
+          <Stack.Screen name="Payment" component={Payment} />
         </Stack.Navigator>
       </NavigationContainer>
     );
