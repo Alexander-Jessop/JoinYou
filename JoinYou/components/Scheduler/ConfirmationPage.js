@@ -24,7 +24,7 @@ const ConfirmationPage = () => {
       </Button>
       <Button
         onPress={() => {
-          navigation.navigate("Payment"});
+          navigation.navigate("Payment");
         }}
       >
         Payment
