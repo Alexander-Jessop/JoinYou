@@ -134,7 +134,7 @@ if (user) {
     );
   }
 } else {
-  navigation.replace("Login");
+  // navigation.replace("Login");
   return null;
 }
 };;
