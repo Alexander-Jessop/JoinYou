@@ -25,8 +25,7 @@ const HomeScreen = ({ navigation }) => {
       >
         See My Profile Page
       </Button>
-      <Text style={{ padding: 15, textAlign: "center", fontSize: 40 }}>
-        {" "}
+      <Text style={{ padding: 15, textAlign: "center", fontSize: 28 }}>
         Meet with an Expert
       </Text>
       <Button
