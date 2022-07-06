@@ -19,7 +19,7 @@ const RegisterForm = () => {
   const login = authContext.login;
 
   function pressHandler() {
-    navigation.navigate("Login");
+    navigation.replace("Login");
   }
 
   const onContinueHandler = () => {

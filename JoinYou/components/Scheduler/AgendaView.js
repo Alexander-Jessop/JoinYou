@@ -33,7 +33,7 @@ const AgendaView = (props) => {
       const querySnapshot = await getDocs(q);
       const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
 
-      //Second filter. Filtering by selected category.
+      //Second filter. Filtering by confirmed appointments only.
       const filteredByConfirmed = timeslotArray.filter((timeslot) => {
         return timeslot.booked === true;
       });
