@@ -38,17 +38,18 @@ const ProfileScreen = (props) => {
     getData();
   }, [profileID]);
 
+  let avatarID = profileData?.displayName?.substring(0, 1);
+  const profileAvatar = () => (
+    <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+  );
+
   if (user) {
     if (user.uid === profileID && profileData.isExpert === true) {
       //Your own profile page, as an expert
-      let avatarID = profileData?.displayName?.substring(0, 1);
-      const profileAvatar = () => (
-        <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
-      );
-
       return (
         <View style={styles.content}>
           <Button
+            style={{ marginTop: 40 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
@@ -84,14 +85,10 @@ const ProfileScreen = (props) => {
       );
     } else if (user.uid === profileID && profileData.isExpert === false) {
       //Your own profile page, as a regular
-      let avatarID = profileData?.displayName?.substring(0, 1);
-      const profileAvatar = () => (
-        <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
-      );
-
       return (
         <View style={styles.content}>
           <Button
+            style={{ marginTop: 40 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
@@ -121,8 +118,12 @@ const ProfileScreen = (props) => {
       //Someone else's profile page
       return (
         <View>
-          <Text>{profileData.displayName}</Text>
-          <Text>Expertise in: {profileData.interests?.join(", ")}</Text>
+          <Text style={styles.avatar}> {profileAvatar()} </Text>
+          <Text style={styles.userName}>{profileData.displayName}</Text>
+          <Text style={styles.expertise}>
+            Expertise in: {profileData.interests?.join(", ")}
+          </Text>
+
           <Button
             onPress={() =>
               navigation.navigate("Booking", {
@@ -144,7 +145,7 @@ const ProfileScreen = (props) => {
 const styles = StyleSheet.create({
   avatar: {
     textAlign: "center",
-    marginTop: 20,
+    marginTop: 5,
   },
   expertise: {
     textAlign: "center",
