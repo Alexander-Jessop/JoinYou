@@ -12,6 +12,7 @@ const RegisterForm = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -62,6 +63,10 @@ const RegisterForm = () => {
     return !password === !confirmPassword;
   };
 
+  const togglePasswordVis = () => {
+    setShowPass(!showPass);
+  };
+
   return (
     <View style={styles.content}>
       <View style={styles.view}>
@@ -83,10 +88,12 @@ const RegisterForm = () => {
                 value={email}
                 onChangeText={(e) => setEmail(e)}
                 label="Email"
+                onBlur={() => (
+                  <HelperText type="error" visible={emailHasErrors()}>
+                    Must be a valid e-mail address
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={emailHasErrors()}>
-                Must be a valid e-mail address
-              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your email address:</Text>
             <View>
@@ -103,10 +110,12 @@ const RegisterForm = () => {
                 value={confirmEmail}
                 onChangeText={(e) => setConfirmEmail(e)}
                 label="Confirm Email"
+                onBlur={() => (
+                  <HelperText type="error" visible={emailMatchError()}>
+                    E-mails must match
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={emailMatchError()}>
-                E-mails must match
-              </HelperText>
             </View>
             <View>
               <Text style={styles.text}>Enter your password:</Text>
@@ -118,16 +127,23 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
-                right={<TextInput.Icon name="eye-off-outline" />}
+                right={
+                  <TextInput.Icon
+                    name="eye-off-outline"
+                    onPress={togglePasswordVis}
+                  />
+                }
                 style={styles.input}
                 value={password}
                 onChangeText={(e) => setPassword(e)}
                 label="Password"
-                secureTextEntry={true}
+                secureTextEntry={showPass ? false : true}
+                onBlur={() => (
+                  <HelperText type="error" visible={hasErrors()}>
+                    Password must be at least 7 characters
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={hasErrors()}>
-                Password must be at least 7 characters
-              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your password:</Text>
             <View>
@@ -139,16 +155,23 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
-                right={<TextInput.Icon name="eye-off-outline" />}
+                right={
+                  <TextInput.Icon
+                    name="eye-off-outline"
+                    onPress={togglePasswordVis}
+                  />
+                }
                 style={styles.input}
                 value={confirmPassword}
                 onChangeText={(e) => setConfirmPassword(e)}
                 label="Confirm Password"
-                secureTextEntry={true}
+                secureTextEntry={showPass ? false : true}
+                onBlur={() => (
+                  <HelperText type="error" visible={passwordMatchError()}>
+                    Password must be the same
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={passwordMatchError()}>
-                Password must be the same
-              </HelperText>
             </View>
             <Button
               mode="contained"
@@ -171,6 +194,8 @@ const RegisterForm = () => {
 
 const styles = StyleSheet.create({
   content: {
+    marginTop: 60,
+    alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
   },

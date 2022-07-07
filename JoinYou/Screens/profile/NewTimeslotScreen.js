@@ -4,6 +4,8 @@ import { Button, Card, Divider } from "react-native-paper";
 import DatepickerRange from "react-native-range-datepicker";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
+// https://github.com/apaajabolehd/react-native-range-datepicker#readme
+
 const NewTimeslotScreen = () => {
   // const [startTime, setStartTime] = useState("");
   // console.log("start time: ", startTime);
@@ -29,10 +31,6 @@ const NewTimeslotScreen = () => {
     });
   };
 
-  const showDatepicker = () => {
-    showMode("date");
-  };
-
   const showTimepicker = () => {
     showMode("time");
   };
@@ -52,6 +50,7 @@ const NewTimeslotScreen = () => {
               selectedBackgroundColor="#007F5F"
               dayHeaderDividerColor="#007F5F"
               showSelectionInfo={false}
+              showButton={false}
               onConfirm={(startDate, untilDate) =>
                 this.setState({ startDate, untilDate })
               }
