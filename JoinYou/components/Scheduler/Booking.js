@@ -4,23 +4,15 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
-  Image,
   FlatList,
   StyleSheet,
-  Dimensions,
 } from "react-native";
 import CalendarStrip from "react-native-calendar-strip";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
 import moment from "moment";
+import { Button, Chip, Avatar } from "react-native-paper";
 
 // REPLACE WITH FIREBASE TIMESLOTS
 
@@ -104,30 +96,48 @@ const Booking = (props) => {
     setSelectedDate(dateString);
   }
 
+  let avatarID = profileData?.displayName?.substring(0, 1);
+  const profileAvatar = () => (
+    <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+  );
+
   function influencerInfo() {
     return (
       <View>
         <View>{/* pull avatar from database and set in a view */}</View>
         <View>
           <View>
-            <Text>{profileData.displayName} </Text>
+            <Text style={styles.avatar}> {profileAvatar()} </Text>
+            <Text style={styles.userName}>{profileData.displayName} </Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate("ProfilePage")}>
-            <Text>View Profile</Text>
-          </TouchableOpacity>
         </View>
-        <Text>Type of Influencer</Text>
-
-        <Text>cost of appoint: $60 </Text>
+        <Text style={styles.expertise}>cost of appoint: $60 </Text>
       </View>
     );
   }
 
   //   data.length to return # of available pos.
-  function slotsInfo() {
+  function slotsInfo(data) {
+    console.log("data", data);
+    if (data.length == 0) {
+      return (
+        <View>
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 25,
+              marginTop: "30%",
+            }}
+          >
+            No Current Available Slots
+          </Text>
+        </View>
+      );
+    }
     return (
       <View>
-        <Text>Available Slots</Text>
+        <Text style={styles.text}>Available Slots</Text>
       </View>
     );
   }
@@ -135,21 +145,24 @@ const Booking = (props) => {
   function slotsTime({ slots }) {
     const renderItem = ({ item }) => {
       return (
-        <TouchableOpacity
-          onPress={() => {
-            setSelectedSlot(`${item}`);
-            setBook(true);
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: selectedSlot == `${item} ` ? "#007F5F" : "white",
-              borderColor: selectedSlot == `${item} ` ? "#007F5F" : "#CDCDCD",
+        <View style={styles.timeslots}>
+          <Chip
+            style={styles.chip}
+            onPress={() => {
+              setSelectedSlot(`${item}`);
+              setBook(true);
+              console.log("selectedSlot", selectedSlot);
             }}
           >
-            <Text>{item}</Text>
-          </View>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
+              {item}
+            </Text>
+          </Chip>
+        </View>
       );
     };
 
@@ -167,22 +180,21 @@ const Booking = (props) => {
   }
 
   const renderItem = ({ item }) => {
-    console.log("item", item);
     return (
       <TouchableOpacity
         onPress={() => {
-          setSelectedSlot(`${item} PM`);
+          setSelectedSlot(`${item} `);
           setBook(true);
         }}
       >
         <View
           style={{
-            backgroundColor: selectedSlot == `${item} PM` ? "#007F5F" : "white",
-            borderColor: selectedSlot == `${item} PM` ? "#007F5F" : "#CDCDCD",
+            backgroundColor: selectedSlot == `${item} ` ? "#007F5F" : "white",
+            borderColor: selectedSlot == `${item} ` ? "#CDCDCD" : "#007F5F",
             ...styles.slotContainerStyle,
           }}
         >
-          <Text>{item} PM</Text>
+          <Text>{item}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -191,7 +203,9 @@ const Booking = (props) => {
   function bookingInfo() {
     return book ? (
       <View>
-        <TouchableOpacity
+        <Button
+          color="#007F5F"
+          mode="contained"
           onPress={() => {
             navigation.navigate("Confirmation", {
               selectedSlot,
@@ -199,10 +213,8 @@ const Booking = (props) => {
             });
           }}
         >
-          <View>
-            <Text>Book now</Text>
-          </View>
-        </TouchableOpacity>
+          Book now
+        </Button>
       </View>
     ) : null;
   }
@@ -264,9 +276,7 @@ const Booking = (props) => {
           <FlatList
             ListHeaderComponent={
               <>
-                {slotsInfo({
-                  data: availableSlots,
-                })}
+                {slotsInfo(availableSlots)}
                 {slotsTime({ slots: availableSlots })}
               </>
             }
@@ -279,13 +289,58 @@ const Booking = (props) => {
       }
     </View>
   );
-};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+};
 
 const styles = StyleSheet.create({
   dividerStyle: {
     backgroundColor: "grey",
     height: 0.9,
     width: "100%",
+    color: "#007F5F",
+  },
+  avatar: {
+    textAlign: "center",
+    marginTop: 20,
+  },
+  expertise: {
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  userName: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 40,
+  },
+  button: {
+    marginLeft: 25,
+    marginRight: 25,
+  },
+  view: {
+    marginTop: 325,
+    width: "90%",
+    justifyContent: "center",
+  },
+  content: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 110,
+  },
+  text: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 25,
+  },
+  chip: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#007F5F",
+    margin: 5,
+    height: 50,
+  },
+  timeslots: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
   },
 });
 

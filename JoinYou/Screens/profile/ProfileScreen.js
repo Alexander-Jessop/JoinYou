@@ -117,7 +117,7 @@ const ProfileScreen = (props) => {
     } else {
       //Someone else's profile page
       return (
-        <View>
+        <View style={styles.content}>
           <Text style={styles.avatar}> {profileAvatar()} </Text>
           <Text style={styles.userName}>{profileData.displayName}</Text>
           <Text style={styles.expertise}>
@@ -125,6 +125,7 @@ const ProfileScreen = (props) => {
           </Text>
 
           <Button
+            color="#007F5F"
             onPress={() =>
               navigation.navigate("Booking", {
                 profileData: profileData,
