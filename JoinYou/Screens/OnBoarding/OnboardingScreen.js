@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import Onboarding from "react-native-onboarding-swiper";
+import { AuthContext } from "../../src/AuthProvider";
 
 const OnboardingScreen = () => {
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
   const navigation = useNavigation();
+
+  //if a user is logged in, navigation.reset to Home Screen
+  //https://reactnavigation.org/docs/navigation-prop/#reset
+  useEffect(() => {
+    if (user) {
+      navigation.reset({
+        routes: [{ name: "Home" }],
+      });
+    }
+  }, [user]);
+
   return (
     <Onboarding
       pages={[
