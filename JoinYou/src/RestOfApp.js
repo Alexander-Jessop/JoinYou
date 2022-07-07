@@ -16,13 +16,11 @@ import Booking from "../components/Scheduler/Booking";
 import ConfirmationPage from "../components/Scheduler/ConfirmationPage";
 // OnBoarding
 import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
-import CalendarScreen from "../Screens/profile/CalendarScreen";
 // Profile
 import ProfileScreen from "../Screens/profile/ProfileScreen";
 // image
 import AddImg from "../Screens/StillImg/AddImg";
 import Recording from "../components/VideoCamera/Recording";
-import ConfirmationScreen from "../Screens/profile/ConfirmationScreen";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
 import Twilio from "../components/Conference/Twilio";
 //payment
@@ -85,7 +83,6 @@ const RestOfApp = () => {
           />
           <Stack.Screen name="Upcoming" component={AgendaView} />
           <Stack.Screen name="Set Availability" component={NewTimeslotScreen} />
-          <Stack.Screen name="Calendar" component={CalendarScreen} />
           <Stack.Screen name="Categories" component={CategoryScreen} />
           <Stack.Screen name="Booking" component={Booking} />
           <Stack.Screen name="Confirmation" component={ConfirmationPage} />
