@@ -33,13 +33,6 @@ const LoginForm = () => {
 
   return (
     <View style={styles.content}>
-      <Text>
-        {"\n"}
-        {user
-          ? "You are logged in as: " + user.email
-          : "You are not logged in."}
-        {"\n"}
-      </Text>
       <View style={styles.view}>
         <Card style={styles.card}>
           <Card.Title title="JoinYou" titleStyle={styles.cardTitle} />
@@ -114,7 +107,7 @@ const LoginForm = () => {
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 75,
+    marginTop: 170,
     justifyContent: "center",
     alignItems: "center",
   },

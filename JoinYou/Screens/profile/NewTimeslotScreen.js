@@ -65,7 +65,7 @@ const NewTimeslotScreen = () => {
                 color="#007F5F"
                 style={styles.button}
               >
-                Start time picker
+                Start time
               </Button>
             </View>
             <View>
@@ -76,7 +76,7 @@ const NewTimeslotScreen = () => {
                 color="#007F5F"
                 style={styles.button}
               >
-                End time picker
+                End time
               </Button>
             </View>
           </View>
@@ -91,7 +91,7 @@ const NewTimeslotScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: "79%",
+    height: "77%",
     width: "100%",
   },
   timePicker: {
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   submit: {
     marginTop: 40,
+    marginBottom: 18,
   },
 });
 

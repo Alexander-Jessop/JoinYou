@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { Text, Button, Avatar, Card } from "react-native-paper";
@@ -49,6 +49,7 @@ const ProfileScreen = (props) => {
       return (
         <View style={styles.content}>
           <Button
+            style={{ marginTop: 40 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
@@ -144,7 +145,7 @@ const ProfileScreen = (props) => {
 const styles = StyleSheet.create({
   avatar: {
     textAlign: "center",
-    marginTop: 20,
+    marginTop: 5,
   },
   expertise: {
     textAlign: "center",
