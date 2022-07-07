@@ -12,6 +12,7 @@ const RegisterForm = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPass, setshowPass] = useState(false);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -60,6 +61,10 @@ const RegisterForm = () => {
   };
   const passwordMatchError = () => {
     return !password === !confirmPassword;
+  };
+
+  const togglePasswordVis = () => {
+    setshowPass(!showPass);
   };
 
   return (
@@ -118,12 +123,17 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
-                right={<TextInput.Icon name="eye-off-outline" />}
+                right={
+                  <TextInput.Icon
+                    name="eye-off-outline"
+                    onPress={togglePasswordVis}
+                  />
+                }
                 style={styles.input}
                 value={password}
                 onChangeText={(e) => setPassword(e)}
                 label="Password"
-                secureTextEntry={true}
+                secureTextEntry={showPass ? false : true}
               />
               <HelperText type="error" visible={hasErrors()}>
                 Password must be at least 7 characters
@@ -139,12 +149,17 @@ const RegisterForm = () => {
                     background: "transparent",
                   },
                 }}
-                right={<TextInput.Icon name="eye-off-outline" />}
+                right={
+                  <TextInput.Icon
+                    name="eye-off-outline"
+                    onPress={togglePasswordVis}
+                  />
+                }
                 style={styles.input}
                 value={confirmPassword}
                 onChangeText={(e) => setConfirmPassword(e)}
                 label="Confirm Password"
-                secureTextEntry={true}
+                secureTextEntry={showPass ? false : true}
               />
               <HelperText type="error" visible={passwordMatchError()}>
                 Password must be the same
@@ -171,6 +186,8 @@ const RegisterForm = () => {
 
 const styles = StyleSheet.create({
   content: {
+    marginTop: 60,
+    alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
   },

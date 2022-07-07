@@ -9,12 +9,17 @@ const LoginForm = () => {
   const loginFn = authContext.login;
   const logoutFn = authContext.logout;
   const loginError = authContext.authError;
+  const [showPass, setshowPass] = useState(false);
   const user = authContext.user;
 
   const navigation = useNavigation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const togglePasswordVis = () => {
+    setshowPass(!showPass);
+  };
 
   return (
     <View style={styles.content}>
@@ -51,11 +56,16 @@ const LoginForm = () => {
                   background: "transparent",
                 },
               }}
-              right={<TextInput.Icon name="eye-off-outline" />}
+              right={
+                <TextInput.Icon
+                  name="eye-off-outline"
+                  onPress={togglePasswordVis}
+                />
+              }
               style={styles.input}
               label="Password"
               value={password}
-              secureTextEntry={true}
+              secureTextEntry={showPass ? false : true}
               onChangeText={(e) => setPassword(e)}
               // keyboardType="visible-password" create a ?: with secure text and add button
             />
