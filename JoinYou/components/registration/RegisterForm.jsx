@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPass, setshowPass] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -64,7 +64,7 @@ const RegisterForm = () => {
   };
 
   const togglePasswordVis = () => {
-    setshowPass(!showPass);
+    setShowPass(!showPass);
   };
 
   return (
@@ -88,10 +88,12 @@ const RegisterForm = () => {
                 value={email}
                 onChangeText={(e) => setEmail(e)}
                 label="Email"
+                onBlur={() => (
+                  <HelperText type="error" visible={emailHasErrors()}>
+                    Must be a valid e-mail address
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={emailHasErrors()}>
-                Must be a valid e-mail address
-              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your email address:</Text>
             <View>
@@ -108,10 +110,12 @@ const RegisterForm = () => {
                 value={confirmEmail}
                 onChangeText={(e) => setConfirmEmail(e)}
                 label="Confirm Email"
+                onBlur={() => (
+                  <HelperText type="error" visible={emailMatchError()}>
+                    E-mails must match
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={emailMatchError()}>
-                E-mails must match
-              </HelperText>
             </View>
             <View>
               <Text style={styles.text}>Enter your password:</Text>
@@ -134,10 +138,12 @@ const RegisterForm = () => {
                 onChangeText={(e) => setPassword(e)}
                 label="Password"
                 secureTextEntry={showPass ? false : true}
+                onBlur={() => (
+                  <HelperText type="error" visible={hasErrors()}>
+                    Password must be at least 7 characters
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={hasErrors()}>
-                Password must be at least 7 characters
-              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your password:</Text>
             <View>
@@ -160,10 +166,12 @@ const RegisterForm = () => {
                 onChangeText={(e) => setConfirmPassword(e)}
                 label="Confirm Password"
                 secureTextEntry={showPass ? false : true}
+                onBlur={() => (
+                  <HelperText type="error" visible={passwordMatchError()}>
+                    Password must be the same
+                  </HelperText>
+                )}
               />
-              <HelperText type="error" visible={passwordMatchError()}>
-                Password must be the same
-              </HelperText>
             </View>
             <Button
               mode="contained"

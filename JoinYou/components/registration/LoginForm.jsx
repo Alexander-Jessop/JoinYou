@@ -17,11 +17,10 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-<<<<<<< HEAD
   const togglePasswordVis = () => {
     setshowPass(!showPass);
   };
-=======
+
   //if a user is logged in, navigation.reset to Home Screen
   //https://reactnavigation.org/docs/navigation-prop/#reset
   useEffect(() => {
@@ -31,7 +30,6 @@ const LoginForm = () => {
       });
     }
   }, [user]);
->>>>>>> 2df7fa1d75f116b64aee84447b42589ffc6dd672
 
   return (
     <View style={styles.content}>
