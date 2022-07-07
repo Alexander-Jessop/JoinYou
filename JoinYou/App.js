@@ -20,7 +20,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <Payment />
+          <RestOfApp />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
