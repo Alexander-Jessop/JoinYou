@@ -22,7 +22,13 @@ const ConfirmationPage = () => {
       >
         Take Photo
       </Button>
-      <Button>Payment</Button>
+      <Button
+        onPress={() => {
+          navigation.navigate("Payment");
+        }}
+      >
+        Payment
+      </Button>
     </View>
   );
 };

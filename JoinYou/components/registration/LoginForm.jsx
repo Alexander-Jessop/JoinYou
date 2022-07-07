@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -17,9 +17,21 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+<<<<<<< HEAD
   const togglePasswordVis = () => {
     setshowPass(!showPass);
   };
+=======
+  //if a user is logged in, navigation.reset to Home Screen
+  //https://reactnavigation.org/docs/navigation-prop/#reset
+  useEffect(() => {
+    if (user) {
+      navigation.reset({
+        routes: [{ name: "Home" }],
+      });
+    }
+  }, [user]);
+>>>>>>> 2df7fa1d75f116b64aee84447b42589ffc6dd672
 
   return (
     <View style={styles.content}>
@@ -79,9 +91,9 @@ const LoginForm = () => {
               title="LOGIN"
               onPress={() => {
                 loginFn(email, password);
-                if (user) {
-                  navigation.replace("Home");
-                }
+                // if (user) {
+                //   navigation.replace("Home");
+                // }
               }}
             >
               Login

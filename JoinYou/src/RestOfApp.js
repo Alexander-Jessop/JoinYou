@@ -27,6 +27,8 @@ import Recording from "../components/VideoCamera/Recording";
 import ConfirmationScreen from "../Screens/profile/ConfirmationScreen";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
 import Twilio from "../components/Conference/Twilio";
+//payment
+import Payment from "../components/StripePayment/Payment";
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +94,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Appointment" component={AgendaView} />
           <Stack.Screen name="Video" component={Recording} />
           <Stack.Screen name="Photo" component={AddImg} />
+          <Stack.Screen name="Payment" component={Payment} />
         </Stack.Navigator>
       </NavigationContainer>
     );
