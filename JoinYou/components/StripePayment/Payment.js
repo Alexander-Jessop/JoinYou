@@ -5,16 +5,15 @@ import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 //ADD localhost address of your server
 const API_URL = "http://localhost:19002";
 const StripeProvider = () => {
-    return (
-        <StripeProvider publishableKey="pk_test_51LGiAGFxGzpzSaMYqjeGs8a8F4Y7pfmZzT8DqKF3lS0GlrUaZ82HWz7inCz7ibeFkVDECDQ6lSR2TylXnq3lT3n100d34Fo1qa">
-            <Payment />
-        </StripeProvider>
-    )
+  return (
+    <StripeProvider publishableKey="pk_test_51LGiAGFxGzpzSaMYqjeGs8a8F4Y7pfmZzT8DqKF3lS0GlrUaZ82HWz7inCz7ibeFkVDECDQ6lSR2TylXnq3lT3n100d34Fo1qa">
+      <Payment />
+    </StripeProvider>
+  );
 };
-  
 
-const Payment = props => {
-    const [name, setName] = useState();
+const Payment = (props) => {
+  const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
   const { confirmPayment, loading } = useConfirmPayment();
@@ -36,8 +35,8 @@ const Payment = props => {
       Alert.alert("Please enter Complete card details and Email");
       return;
     }
-      const billingDetails = {
-        name: name,
+    const billingDetails = {
+      name: name,
       email: email,
     };
     //2.Fetch the intent client secret from the backend
@@ -69,16 +68,16 @@ const Payment = props => {
       <TextInput
         autoCapitalize="none"
         placeholder="Name"
-        keyboardType="full name"
-        onChange={value => setName(value.nativeEvent.text)}
+        keyboardType="name"
+        onChange={(value) => setName(value.nativeEvent.text)}
         style={styles.input}
-          />  
+      />
 
       <TextInput
         autoCapitalize="none"
         placeholder="E-mail"
         keyboardType="email-address"
-        onChange={value => setEmail(value.nativeEvent.text)}
+        onChange={(value) => setEmail(value.nativeEvent.text)}
         style={styles.input}
       />
       <CardField
@@ -88,7 +87,7 @@ const Payment = props => {
         }}
         cardStyle={styles.card}
         style={styles.cardContainer}
-        onCardChange={cardDetails => {
+        onCardChange={(cardDetails) => {
           setCardDetails(cardDetails);
         }}
       />
@@ -99,18 +98,18 @@ const Payment = props => {
 export default Payment;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        margin: 20,
-    },
-    input: {
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    margin: 20,
+  },
+  input: {
     backgroundColor: "#efefefef",
     borderRadius: 8,
     fontSize: 20,
     height: 50,
-        padding: 15,
-        marginVertical: 5,
+    padding: 15,
+    marginVertical: 5,
   },
   card: {
     backgroundColor: "#efefefef",
