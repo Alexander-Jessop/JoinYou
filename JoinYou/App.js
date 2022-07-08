@@ -8,6 +8,9 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import Payment from "./components/StripePayment/Payment";
+import DeepLink from "./components/DeepLink/DeepLink";
+import * as Linking from "expo-linking";
+
 
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
@@ -20,7 +23,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <RestOfApp />
+          <DeepLink />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
