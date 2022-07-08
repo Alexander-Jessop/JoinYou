@@ -7,57 +7,66 @@ import { httpsCallable } from "firebase/functions";
 const CloudFunctions = () => {
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
-  const db = fbContext.db;
-  const [count, setCount] = useState("n/a");
-  const [rsponse, setResponse] = useState("Havent called function yet");
+  // const db = fbContext.db;
+  // const [count, setCount] = useState("n/a");
+  const [response, setResponse] = useState("Havent called function yet");
 
-  const getUsersCount = async () => {
-    try {
-      const getNumberOfUsers = httpsCallable(cloudFuncs, "getNumberOfUsers");
-      const result = await getNumberOfUsers();
-      const data = result.data;
-      console.log(`data is:`, data);
-      setCount(data.numUsers);
-    } catch (ex) {
-      console.log("yikes! ", ex.message);
-      throw ex;
-    }
-  };
+  // const getUsersCount = async () => {
+  //   try {
+  //     const getNumberOfUsers = httpsCallable(cloudFuncs, "getNumberOfUsers");
+  //     const result = await getNumberOfUsers();
+  //     const data = result.data;
+  //     console.log(`data is:`, data);
+  //     setCount(data.numUsers);
+  //   } catch (ex) {
+  //     console.log("yikes! ", ex.message);
+  //     throw ex;
+  //   }
+  // };
 
-  const addRandoUser = async () => {
-    try {
-      console.log("Function to add a new user to firestore database");
-      const addUser = httpsCallable(cloudFuncs, "addRandoUser");
-      const result = await addUser();
-      const data = result.data;
-      console.log("New user added", data);
-    } catch (ex) {
-      console.log("yikes! ", ex.message);
-      throw ex;
-    }
-  };
+  // const addRandoUser = async () => {
+  //   try {
+  //     console.log("Function to add a new user to firestore database");
+  //     const addUser = httpsCallable(cloudFuncs, "addRandoUser");
+  //     const result = await addUser();
+  //     const data = result.data;
+  //     console.log("New user added", data);
+  //   } catch (ex) {
+  //     console.log("yikes! ", ex.message);
+  //     throw ex;
+  //   }
+  // };
+
   const doInitializeInfl = async () => {
-    const myInitializeFunc = httpsCallable(
+    // console.log(`cloudfuncs is : `, cloudFuncs)
+    try{
+      const myInitializeFunc = httpsCallable(
       cloudFuncs,
       "initializeNewInfluencer"
     );
+    console.log(myInitializeFunc)
+    console.log("THIS IS BEFORE")
     const result = await myInitializeFunc({
       startTime: "11:00",
       endTime: "14:00",
-      meetingLength: 15,
+      numMeetings: 15,
     });
+    console.log("THIS IsAFTER")
     const data = result.data;
+    console.timeLog(`DATA is:`, data);
     setResponse(data);
+  } catch (ex){
+console.log(`Error: -------`, ex)
+  }
   };
 
   return (
     <View style={styles.container}>
-      <Text>CloudFunctions {count} </Text>
-      <Button onPress={getUsersCount}> click it</Button>
-      <Text>Number of users {count} </Text>
-      <Button onPress={addRandoUser}> Add a user</Button>
-      <Text>Response from the function {response} </Text>
-      <Button onPress={doInitializeInfl}> run the do initialize influencer code</Button>
+      <Text>Response from the function: {response} </Text>
+      <Button onPress={doInitializeInfl}>
+        {" "}
+        run the do initialize influencer code
+      </Button>
     </View>
   );
 };
