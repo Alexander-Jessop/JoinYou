@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "myapp",
     "name": "JoinYou",
     "slug": "JoinYou",
     "version": "1.0.0",

@@ -1,38 +1,64 @@
-const Deeplink = () => {
+import React, { useState } from "react";
+import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import * as Linking from "expo-linking";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "../../Screens/feed/HomeScreen";
+import CategoryDropdown from "../feed/CategoryDropdown.jsx";
+import { createStackNavigator } from "@react-navigation/stack";
 
-const [data, setData] = useState(null);
 
+const prefix = Linking.makeUrl("/");
+
+const Stack = createStackNavigator();
+
+const DeepLinking = () => {
+
+  const [data, setData] = useState(null);
+
+  const linking = {
+    prefixes: [prefix],
+    config: {
+      screens: {
+        HomeScreen: 'homescreen',
+        CategoryDropdown: 'categoryDropdown',
+      },
+    },
+  };
+
+  
   function handleDeepLink(event) {
     let data = Linking.parse(event.url);
     setData(data);
   }
-  useEffect(() => {
-      async function getInitialURL() {
-        const initialUrl = await Linking.getInitialURL();
-        if (initialUrl) setData(Linking.parse(initialUrl));
-      }
-      
-    Linking.addEventListener("url", handleDeepLink);
-    if (!data) {
-      getInitialURL();
-    }
 
-    return () => {  
+  useEffect = () => {
+    Linking.addEventListener("url", handleDeepLink);
+
+    return () => {
       Linking.removeEventListener("url");
     };
-
-  }, []);
+  }, [];
 
   return (
-    <View style={styles.container}>
-      <Text>
-        {data ? JSON.stringify(data) : "DeepLink Navigation JoinYou"}
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer linking={linking}>
+      <Stack.Navigator>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="CategoryDropdown" component={CategoryDropdown} />
+      </Stack.Navigator>
+    </NavigationContainer>
+      
+    
+    // * // <View style={styles.container}>
+    // //   <TextInput>
+    // //     {data ? JSON.stringify(data) : "DeepLinking Navigation JoinYou"}
+    // //   </TextInput>
+    // //   <StatusBar style="auto" />
+    // // </View> */
   );
 }
 
+export default DeepLinking;
 
 const styles = StyleSheet.create({
   container: {
@@ -41,6 +67,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
-
-export default Deeplink;
+});  
