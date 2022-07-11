@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
@@ -5,12 +6,12 @@ import * as Linking from "expo-linking";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../../Screens/feed/HomeScreen";
 import CategoryDropdown from "../feed/CategoryDropdown.jsx";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const prefix = Linking.makeUrl("/");
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const DeepLinking = () => {
 
