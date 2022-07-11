@@ -27,9 +27,12 @@ export const initializeNewInfluencer = functions.https.onCall(
         });
         console.log(`the new docID is:`, docSnap.id);
       }
+
     } catch (ex) {
       functions.logger.info(`ERROR: ${ex.message}`);
       throw ex;
     }
+
+
   }
 );
