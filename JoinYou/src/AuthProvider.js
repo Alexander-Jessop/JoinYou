@@ -27,7 +27,7 @@ const AuthProvider = (props) => {
       let userCred = await signInWithEmailAndPassword(auth, email, password);
 
       if (userCred) {
-        console.log("Logged in!!", userCred.user);
+        console.log("AuthProvider: User logged in:", userCred.user.email);
         setAuthError(null);
       } else {
         console.log("Login failed!");
@@ -43,6 +43,9 @@ const AuthProvider = (props) => {
   //https://firebase.google.com/docs/auth/web/password-auth#next_steps
   const logout = async () => {
     await signOut(auth);
+    if (user) {
+      console.log(`AuthProvider: ${user.email} is logging out...`);
+    }
   };
 
   //Original function provided by Dani
@@ -74,7 +77,7 @@ const AuthProvider = (props) => {
     selectedTimezone,
     interests
   ) => {
-    console.log(`db is: `, db);
+    // console.log(`db is: `, db);
     try {
       const userData = {
         uid: user.uid,
@@ -107,10 +110,16 @@ const AuthProvider = (props) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("onAuthStateChanged() - new User!!", user);
       setUser(user);
+      return unsub;
     });
-    return unsub;
+    if (user) {
+      console.log(
+        `AuthProvider: onAuthStateChanged() - New User: ${user.email}`
+      );
+    } else {
+      console.log(`AuthProvider: User is ${user}  (No one is logged in)`);
+    }
   }, [auth]);
 
   const theValues = {
