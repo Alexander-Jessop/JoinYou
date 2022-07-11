@@ -22,7 +22,6 @@ import ProfileScreen from "../Screens/profile/ProfileScreen";
 import AddImg from "../Screens/StillImg/AddImg";
 import Recording from "../components/VideoCamera/Recording";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
-import Twilio from "../components/Conference/Twilio";
 //payment
 import Payment from "../components/StripePayment/Payment";
 
