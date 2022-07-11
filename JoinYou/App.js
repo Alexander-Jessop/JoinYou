@@ -6,7 +6,8 @@ import {
   MD3LightTheme as DefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
-import CloudFunctions from "./src/CloudFunctions";
+// import CloudFunctions from "./src/CloudFunctions";
+import RestOfApp from "./src/RestOfApp"
 
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
@@ -19,7 +20,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <CloudFunctions />
+          <RestOfApp />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>

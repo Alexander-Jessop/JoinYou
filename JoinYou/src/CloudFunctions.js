@@ -7,6 +7,7 @@ import { httpsCallable } from "firebase/functions";
 const CloudFunctions = () => {
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
+  // const app = fbContext.app;
   // const db = fbContext.db;
   // const [count, setCount] = useState("n/a");
   const [response, setResponse] = useState("Havent called function yet");
@@ -52,19 +53,23 @@ const CloudFunctions = () => {
       numMeetings: 15,
     });
     console.log("THIS IsAFTER")
+    console.log(`reslut is: `, result)
     const data = result.data;
-    console.timeLog(`DATA is:`, data);
+    console.log(`DATA is:`, data);
     setResponse(data);
   } catch (ex){
+    console.error(ex)
 console.log(`Error: -------`, ex)
   }
   };
 
   return (
     <View style={styles.container}>
+
+
+      
       <Text>Response from the function: {response} </Text>
       <Button onPress={doInitializeInfl}>
-        {" "}
         run the do initialize influencer code
       </Button>
     </View>

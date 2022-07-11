@@ -104,15 +104,7 @@ const AuthProvider = (props) => {
       interests: interestsArray,
     });
   };
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("onAuthStateChanged() - new User!!", user);
-      setUser(user);
-    });
-    return unsub;
-  }, [auth]);
-
+  
   const theValues = {
     user,
     authError,
@@ -122,6 +114,15 @@ const AuthProvider = (props) => {
     updateUserData,
     updateUserInterests,
   };
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      console.log("onAuthStateChanged() - new User!!", user);
+      setUser(user);
+    });
+    return unsub;
+  }, [auth]);
+
 
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

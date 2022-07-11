@@ -7,6 +7,7 @@ import { Text, Button } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 
 import Booking from "../../components/Scheduler/Booking";
+import CloudFunctions from "../../src/CloudFunctions";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
@@ -68,6 +69,7 @@ const ProfileScreen = (props) => {
         >
           View Availability
         </Button>
+        
       </View>
     );
   }
