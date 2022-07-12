@@ -22,7 +22,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <RestOfApp />
+          <WebRTC />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
