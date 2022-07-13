@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, Image, Alert, Text } from "react-native";
 import {
   launchCameraAsync,
@@ -9,10 +9,16 @@ import { TextInput, Button } from "react-native-paper";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { areCookiesEnabled } from "@firebase/util";
 import { fbUriToFirebaseStorage } from "./ImageUpload";
-
-const storage = getStorage();
+import { FirebaseContext } from "../../src/FirebaseProvider";
+import { AuthContext } from "../../src/AuthProvider";
 
 const ImagePicker = () => {
+  const firebaseContext = useContext(FirebaseContext);
+  const storage = firebaseContext.storage;
+
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+
   const [enteredDescription, setEnteredDescription] = useState("");
 
   const changeDescriptionHandler = (enteredText) => {
@@ -52,7 +58,7 @@ const ImagePicker = () => {
       aspect: [6, 6],
       quality: 0.75,
     });
-    setPickedImg(image.uri);
+    setPickedImg(image);
     // console.log("This is the image obj: ", image);
     // console.log(image.uri);
   };
@@ -60,28 +66,36 @@ const ImagePicker = () => {
   let imagePreview = <Text>No image taken yet.</Text>;
 
   if (pickedImg) {
-    imagePreview = <Image style={styles.image} source={{ uri: pickedImg }} />;
+    imagePreview = (
+      <Image style={styles.image} source={{ uri: pickedImg.uri }} />
+    );
   }
 
-  console.log("pickedImg is: ", pickedImg);
+  // console.log("pickedImg is: ", pickedImg);
 
   // if (pickedImg) {
   //   const filename = pickedImg.split("ImagePicker/")[1];
-  //   // console.log("filename", filename);
+  //   // console.log("filename is:", filename);
   // }
 
   const savePhotoHandler = () => {
-    const imageRef = ref(storage, `images/${pickedImg}`);
-    uploadBytes(imageRef, pickedImg).then(() => {
-      alert("Image Uploaded");
-    });
+    // const imageRef = ref(storage, `images/${pickedImg}`);
+    // uploadBytes(imageRef, pickedImg).then(() => {
+    //   alert("Image Uploaded");
+    // });
 
-    // fbUriToFirebaseStorage(
-    //   imagePickerResult,
-    //   storageFolderName,
-    //   (progressCallback = null),
-    //   (downloadUrlCallback = null)
-    // );
+    fbUriToFirebaseStorage(
+      storage,
+      user,
+      pickedImg,
+      "images",
+      (val) => {
+        console.log("val is: ", val);
+      },
+      (url) => {
+        console.log("downloadURL is: ", url);
+      }
+    );
   };
 
   return (
