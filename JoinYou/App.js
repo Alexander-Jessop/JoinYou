@@ -9,7 +9,8 @@ import {
 } from "react-native-paper";
 
 //test
-import WebRTC from "./components/Conference/WebRTC";
+
+import This from "./components/Conference/This";
 
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
@@ -22,7 +23,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <WebRTC />
+          <This />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
