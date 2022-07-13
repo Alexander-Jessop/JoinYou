@@ -1,4 +1,4 @@
-import { storage } from "../myFirebase";
+// import { storage } from "../myFirebase";
 import { ref, child, put } from "firebase/storage";
 
 /**
