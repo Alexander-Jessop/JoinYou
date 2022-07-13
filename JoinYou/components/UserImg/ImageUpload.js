@@ -28,7 +28,7 @@ export const fbUriToFirebaseStorage = async (
   try {
     // const filename =
     //   cuid() + "." + tick8sGetFileExtension(imagePickerResult.uri);
-    console.log("imagePickerResult.uri", imagePickerResult.uri);
+    // console.log("imagePickerResult.uri", imagePickerResult.uri);
     const filename = imagePickerResult.uri.split("ImagePicker/")[1];
 
     // console.log("filename is:", filename);
