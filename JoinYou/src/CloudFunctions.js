@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "react-native-paper";
 import { FirebaseContext } from "./FirebaseProvider";
 import { httpsCallable } from "firebase/functions";
+import moment from "moment";
 
 const CloudFunctions = () => {
   const fbContext = useContext(FirebaseContext);
@@ -38,40 +39,57 @@ const CloudFunctions = () => {
   //   }
   // };
 
+// function consoleLogTimes(){
+//   console.log(`LOGGING THE ITMES`)
+//   let inflChooseDate = "2022-07-12";
+//   let inflChooseStartTime = "9:00";
+//   let inflChooseEndTime = "13:00"
+//   let influencerStart = moment(inflChooseDate +' '+ inflChooseStartTime).toDate();
+//   let influencerEnd = moment(inflChooseDate +' '+ inflChooseEndTime).toDate();
+
+//   console.log(`starts at:`, influencerStart);
+//   console.log(`ends at  :`, influencerEnd);
+// }
+
+
   const doInitializeInfl = async () => {
     // console.log(`cloudfuncs is : `, cloudFuncs)
-    try{
+    try {
       const myInitializeFunc = httpsCallable(
-      cloudFuncs,
-      "initializeNewInfluencer"
-    );
-    console.log(myInitializeFunc)
-    console.log("THIS IS BEFORE")
-    const result = await myInitializeFunc({
-      startTime: "11:00",
-      endTime: "14:00",
-      numMeetings: 15,
-    });
-    console.log("THIS IsAFTER")
-    console.log(`reslut is: `, result)
-    const data = result.data;
-    console.log(`DATA is:`, data);
-    setResponse(data);
-  } catch (ex){
-    console.error(ex)
-console.log(`Error: -------`, ex)
-  }
+        cloudFuncs,
+        "initializeNewInfluencer"
+      );
+
+      // We create a moment object from a string.
+      // let inflChooseDate = "2022-07-12";
+      // let inflChooseStartTime = "18:00";
+      // let influencerStart = moment(inflChooseDate).startOf(inflChooseStartTime);
+
+      console.log(myInitializeFunc);
+      console.log("THIS IS BEFORE");
+      const result = await myInitializeFunc({
+        startTime: 9,
+        endTime: 14,
+        meetingLength: 60,
+      });
+      console.log("THIS IsAFTER");
+      const data = result.data;
+      setResponse(data);
+    } catch (ex) {
+      console.error(ex);
+      console.log(`Error: -------`, ex);
+    }
   };
 
   return (
     <View style={styles.container}>
-
-
-      
       <Text>Response from the function: {response} </Text>
       <Button onPress={doInitializeInfl}>
         run the do initialize influencer code
       </Button>
+      {/* <Button onPress={consoleLogTimes}>
+        log the times
+      </Button> */}
     </View>
   );
 };

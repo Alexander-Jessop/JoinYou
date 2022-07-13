@@ -9,30 +9,31 @@ const firestore = getFirestore(app);
 export const initializeNewInfluencer = functions.https.onCall(
   async (data, context) => {
     try {
-      let theUid = context.auth.uid;
-      let theEmail = context.auth.token.email;
-      console.log(`the UID is: `, theUid);
-
-      console.log(`the data is:`, data);
+      // Bringing the data in from the front end:
+      let influencerUid = context.auth.uid;
+      let influencerEmail = context.auth.token.email;
       let theStartTime = data.startTime;
+      let theEndTime = data.endTime;
       let theMeetingLength = data.meetingLength;
-      let theNumMeetings = data.numMeetings;
+      let theNumMeetings = (theEndTime - theStartTime);
+      console.log(`Number of meetings is:`, theNumMeetings);
 
       for (let i = 0; i < theNumMeetings; i++) {
         let meetingCollRef = firestore.collection("meetings");
         let docSnap = await meetingCollRef.add({
-          uid: theUid,
-          email: theEmail,
-          startTime: theStartTime + (i * theMeetingLength) / 60,
+          influencerUid: influencerUid,
+          influencerEmail: influencerEmail,
+          slotStartTimeCalc: theStartTime + (i * theMeetingLength) / 60,
+          slotStartTime: theStartTime,
+          slotEndTime: theEndTime,
+          meetingLength: theMeetingLength,
+          NumberOfMeetings: theNumMeetings,
         });
         console.log(`the new docID is:`, docSnap.id);
       }
-
     } catch (ex) {
       functions.logger.info(`ERROR: ${ex.message}`);
       throw ex;
     }
-
-
   }
 );
