@@ -17,6 +17,11 @@ const Payment = (props) => {
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
   const { confirmPayment, loading } = useConfirmPayment();
+  const { route } = props;
+  const profileData = route.params.profileData;
+  const selectedSlot = route.params.selectedSlot;
+
+  // console.log("selectedSlot is:", selectedSlot);
 
   const fetchPaymentIntentClientSecret = async () => {
     const response = await fetch(`${API_URL}/create-payment-intent`, {
@@ -92,7 +97,7 @@ const Payment = (props) => {
       <Button onPress={handlePayPress} title="Pay" disabled={loading} />
     </View>
   );
-};
+};;
 export default Payment;
 
 const styles = StyleSheet.create({
