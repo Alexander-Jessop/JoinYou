@@ -6,6 +6,7 @@ import { Button, Card, Text, TextInput, Title } from "react-native-paper";
 const ConfirmationPage = (props) => {
   const navigation = useNavigation();
   const { route } = props;
+  const profileData = route.params.profileData;
   const selectedSlot = route.params.selectedSlot;
   const selectedDate = route.params.selectedDate;
 
@@ -18,7 +19,8 @@ const ConfirmationPage = (props) => {
       <Card>
         <Card.Content>
           <Title>
-            Booking an appointment for {selectedSlot.startTime} {selectedDate}
+            Booking an appointment with: {profileData.displayName} at{" "}
+            {selectedSlot.startTime} on {selectedDate}
           </Title>
 
           <TextInput
@@ -55,7 +57,10 @@ const ConfirmationPage = (props) => {
         color="#007F5F"
         mode="contained"
         onPress={() => {
-          navigation.navigate("Payment");
+          navigation.navigate("Payment", {
+            selectedSlot,
+            profileData,
+          });
         }}
       >
         Payment
