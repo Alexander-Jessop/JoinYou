@@ -86,7 +86,6 @@ const ImagePicker = () => {
 
     fbUriToFirebaseStorage(
       storage,
-      user,
       pickedImg,
       "images",
       (val) => {

@@ -10,14 +10,16 @@ import {
 /**
  * Uploads data from given `uri` to Firebase Storage and returns
  *
- * @param {URI} imagePickerResult the iamge for the data to be uploaded
+ * @param {function} storage the storage from Firebase Provider "storage = getStorage(app)
+ * @param {object} user (not needed anymore) the data for the currently logged in user
+ * @param {image object} imagePickerResult the iamge for the data to be uploaded
  * @param {string} storageFolderName the name of the storage folder
  * @param {function} progressCallback called by Firebase Storage as the upload progresses
  * @param {function} downloadUrlCallback called by Firebase Storage and passes the downloadURL to it
  */
 export const fbUriToFirebaseStorage = async (
   storage,
-  user,
+  // user,
   imagePickerResult,
   storageFolderName,
   progressCallback = null,
@@ -48,7 +50,7 @@ export const fbUriToFirebaseStorage = async (
 
     const uploadTask = fbUploadToFirebaseStorage(
       storage,
-      user,
+      // user,
       blob,
       filename,
       storageFolderName
@@ -93,7 +95,7 @@ export const fbUriToFirebaseStorage = async (
  */
 export const fbUploadToFirebaseStorage = (
   storage,
-  user,
+  // user,
   blob,
   filename,
   storageFolderName
