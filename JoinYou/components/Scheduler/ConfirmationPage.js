@@ -6,8 +6,10 @@ import { Button, Card, Text, TextInput, Title } from "react-native-paper";
 const ConfirmationPage = (props) => {
   const navigation = useNavigation();
   const { route } = props;
-  const selectedDate = route.params.selectedDate;
   const selectedSlot = route.params.selectedSlot;
+  const selectedDate = route.params.selectedDate;
+
+  // console.log("selectedSlot is: ", selectedSlot);
 
   const [description, setDescription] = useState("");
 
@@ -16,7 +18,7 @@ const ConfirmationPage = (props) => {
       <Card>
         <Card.Content>
           <Title>
-            Booking an appointment for: {selectedSlot}, {selectedDate}
+            Booking an appointment for {selectedSlot.startTime} {selectedDate}
           </Title>
 
           <TextInput
@@ -60,7 +62,7 @@ const ConfirmationPage = (props) => {
       </Button>
     </View>
   );
-};
+};;
 
 const styles = StyleSheet.create({
   button: {
