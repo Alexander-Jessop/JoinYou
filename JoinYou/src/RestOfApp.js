@@ -14,6 +14,7 @@ import HomeScreen from "../Screens/feed/HomeScreen";
 import AgendaView from "../components/Scheduler/AgendaView";
 import Booking from "../components/Scheduler/Booking";
 import ConfirmationPage from "../components/Scheduler/ConfirmationPage";
+import TimeslotDetails from "../components/Scheduler/TimeslotDetails";
 // OnBoarding
 import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
 // Profile
@@ -90,6 +91,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Video" component={Recording} />
           <Stack.Screen name="Photo" component={AddImg} />
           <Stack.Screen name="Payment" component={Payment} />
+          <Stack.Screen name="Timeslot" component={TimeslotDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     );
