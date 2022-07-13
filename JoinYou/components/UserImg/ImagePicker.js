@@ -118,7 +118,7 @@ const ImagePicker = () => {
       </Button>
     </View>
   );
-};;;;;;
+};
 
 const styles = StyleSheet.create({
   imagePreview: {
