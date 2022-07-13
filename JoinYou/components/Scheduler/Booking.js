@@ -103,7 +103,7 @@ const Booking = (props) => {
 
   function pressHandler(calendarDate) {
     let dateString = moment(calendarDate).format("MM/DD/YYYY");
-    console.log("dateString is: ", dateString);
+    // console.log("dateString is: ", dateString);
     setSelectedDate(dateString);
   }
 
@@ -129,7 +129,7 @@ const Booking = (props) => {
 
   //   data.length to return # of available pos.
   function slotsInfo(data) {
-    console.log("data", data);
+    //console.log("data", data);
     if (data.length == 0) {
       return (
         <View>
@@ -162,7 +162,7 @@ const Booking = (props) => {
             onPress={() => {
               setSelectedSlot(item);
               setBook(true);
-              console.log("selectedSlot", selectedSlot);
+              //console.log("selectedSlot", selectedSlot);
             }}
           >
             <Text
