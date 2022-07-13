@@ -62,7 +62,7 @@ const ImagePicker = () => {
   }
 
   const savePhotoHandler = () => {
-    const imageRef = ref(storage, `images / ${pickedImg}`);
+    const imageRef = ref(storage, `images/${pickedImg}`);
     uploadBytes(imageRef, pickedImg).then(() => {
       alert("Image Uploaded");
     });
