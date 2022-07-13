@@ -10,7 +10,6 @@ const ConfirmationPage = (props) => {
   const selectedSlot = route.params.selectedSlot;
   const selectedDate = route.params.selectedDate;
 
-  // console.log("selectedSlot is: ", selectedSlot);
 
   const [description, setDescription] = useState("");
 
