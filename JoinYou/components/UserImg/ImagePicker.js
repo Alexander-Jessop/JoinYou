@@ -7,6 +7,8 @@ import {
 } from "expo-image-picker";
 import { TextInput, Button } from "react-native-paper";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { areCookiesEnabled } from "@firebase/util";
+import { fbUriToFirebaseStorage } from "./ImageUpload";
 
 const storage = getStorage();
 
@@ -51,8 +53,8 @@ const ImagePicker = () => {
       quality: 0.75,
     });
     setPickedImg(image.uri);
-    console.log("This is the image obj: ", image);
-    console.log(image.uri);
+    // console.log("This is the image obj: ", image);
+    // console.log(image.uri);
   };
 
   let imagePreview = <Text>No image taken yet.</Text>;
@@ -61,11 +63,25 @@ const ImagePicker = () => {
     imagePreview = <Image style={styles.image} source={{ uri: pickedImg }} />;
   }
 
+  console.log("pickedImg is: ", pickedImg);
+
+  // if (pickedImg) {
+  //   const filename = pickedImg.split("ImagePicker/")[1];
+  //   // console.log("filename", filename);
+  // }
+
   const savePhotoHandler = () => {
     const imageRef = ref(storage, `images/${pickedImg}`);
     uploadBytes(imageRef, pickedImg).then(() => {
       alert("Image Uploaded");
     });
+
+    // fbUriToFirebaseStorage(
+    //   imagePickerResult,
+    //   storageFolderName,
+    //   (progressCallback = null),
+    //   (downloadUrlCallback = null)
+    // );
   };
 
   return (
@@ -102,7 +118,7 @@ const ImagePicker = () => {
       </Button>
     </View>
   );
-};
+};;;;;;
 
 const styles = StyleSheet.create({
   imagePreview: {
