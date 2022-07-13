@@ -10,6 +10,7 @@ import {
 import Payment from "./components/StripePayment/Payment";
 import * as Linking from "expo-linking";
 import DeepLinking from "./components/DeepLink/DeepLinking";
+import ChatScreen from "./Screens/Chat/ChatScreen";
 
 
 
@@ -24,7 +25,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <DeepLinking />
+          <ChatScreen />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
