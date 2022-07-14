@@ -5,14 +5,14 @@ import { getFirestore } from "firebase-admin/firestore";
 const app = initializeApp(); // uses current Firebase project’s config
 const firestore = getFirestore(app);
 // // firebase function
-export const firebaseFunction = functions.https.onCall(
+export const createTimeslots = functions.https.onCall(
   async (data, context) => {
     try{
     console.log("CONTEXT IS =================", context.auth.token);
     let influencerUid = context.auth.uid;
     let influencerEmail = context.auth.token.email;
-    let startTime = data.startTime;
-    let endTime = data.endTime;
+    let startTime = data.startTime.valueOf();
+    let endTime = data.endTime.valueOf();
     let msPerMinute = 60 * 1000;
     let meetingLength = 15;
     let minutesBetween = (endTime - startTime) / msPerMinute;

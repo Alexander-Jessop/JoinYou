@@ -35,7 +35,7 @@ const CloudFunctions = () => {
   //   }
   // };
 
-  const doSendData = async () => {
+  const doCreateTimeslots = async () => {
     let startDateTime = new Date("2022-07-13T13:00").valueOf();
     let endDateTime = new Date("2022-07-13T14:00").valueOf();
 
@@ -46,9 +46,9 @@ const CloudFunctions = () => {
 
     try {
       // front end
-      const sendDataFunc = httpsCallable(cloudFuncs, "firebaseFunction");
+      const sedTimeblockFunc = httpsCallable(cloudFuncs, "createTimeslots");
       console.log("THIS IS BEFORE");
-      const result = await sendDataFunc({
+      const result = await sedTimeblockFunc({
         startTime: startDateTime,
         endTime: endDateTime,
       });
@@ -68,7 +68,7 @@ const CloudFunctions = () => {
       {/* <Button onPress={doInitializeInfl}>
         run the do initialize influencer code
       </Button> */}
-      <Button onPress={doSendData}>run Danielles sendData</Button>
+      <Button onPress={doCreateTimeslots}>run Danielles sendData</Button>
     </View>
   );
 };
