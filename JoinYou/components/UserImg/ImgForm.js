@@ -7,6 +7,8 @@ const ImgForm = (props) => {
   const { route } = props;
   const profileData = route.params.profileData;
   const selectedSlot = route.params.selectedSlot;
+  const videoUrl = route.params.videoUrl;
+  const meetingDescription = route.params.meetingDescription;
 
   return (
     <ScrollView style={styles.form}>
@@ -17,6 +19,8 @@ const ImgForm = (props) => {
             <ImagePicker
               profileData={profileData}
               selectedSlot={selectedSlot}
+              videoUrl={videoUrl}
+              meetingDescription={meetingDescription}
             />
           </View>
         </Card.Content>

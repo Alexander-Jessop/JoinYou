@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Image, Alert, Text } from "react-native";
 import {
   launchCameraAsync,
@@ -18,6 +18,7 @@ const ImagePicker = (props) => {
 
   const profileData = props.profileData;
   const selectedSlot = props.selectedSlot;
+  const videoUrl = props.videoUrl;
 
   const firebaseContext = useContext(FirebaseContext);
   const storage = firebaseContext.storage;
@@ -80,6 +81,20 @@ const ImagePicker = (props) => {
     );
   }
 
+  useEffect(() => {
+    if (pickedImg) {
+      Alert.alert("Image Uploaded!");
+
+      navigation.navigate("Confirmation", {
+        profileData,
+        selectedSlot,
+        photoUrl,
+        photoDescription,
+        videoUrl,
+      });
+    }
+  }, [photoUrl]);
+
   const savePhotoHandler = () => {
     if (pickedImg) {
       fbUriToFirebaseStorage(
@@ -94,14 +109,6 @@ const ImagePicker = (props) => {
           console.log("ImagePicker: Upload complete! URL is: ", url);
         }
       );
-
-      Alert.alert("Image Uploaded!");
-      navigation.navigate("Confirmation", {
-        profileData,
-        selectedSlot,
-        photoUrl,
-        photoDescription,
-      });
     } else {
       Alert.alert("You must take an image before saving.");
     }
