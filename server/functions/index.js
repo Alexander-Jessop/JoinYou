@@ -8,7 +8,7 @@ const firestore = getFirestore(app);
 export const firebaseFunction = functions.https.onCall(
   async (data, context) => {
     try{
-    console.log("CONTEXT IS =================", context);
+    console.log("CONTEXT IS =================", context.auth.token);
     let influencerUid = context.auth.uid;
     let influencerEmail = context.auth.token.email;
     let startTime = data.startTime;
@@ -18,7 +18,7 @@ export const firebaseFunction = functions.https.onCall(
     let minutesBetween = (endTime - startTime) / msPerMinute;
     let numMeetings = minutesBetween / meetingLength;
     for (let i = 0; i < numMeetings; i++) {
-      let start = startTime.valueOf() + i * meetingLength * msPerMinute;
+      let start = startTime + i * meetingLength * msPerMinute;
       let end = start + meetingLength * msPerMinute;
       let meeting = {
         start: new Date(start),
@@ -30,8 +30,11 @@ export const firebaseFunction = functions.https.onCall(
       let docSnap2 = await meetingCollRef2.add({
         influencerUid: influencerUid,
         influencerEmail: influencerEmail,
-        meetingStart: meeting.start,
         meetingEnd: meeting.end,
+        meetingStart: meeting.start,
+        booked: false,
+        clientID: '',
+        clientName: '',
       });
 
       console.log(`*******the new docID is:*******`, docSnap2.id);

@@ -36,10 +36,13 @@ const CloudFunctions = () => {
   // };
 
   const doSendData = async () => {
-    let startDateTime = new Date("2022-07-13T18:00").valueOf();
-    let endDateTime = new Date("2022-07-14T00:00").valueOf();
-    console.log(startDateTime);
-    console.log(endDateTime);
+    let startDateTime = new Date("2022-07-13T13:00").valueOf();
+    let endDateTime = new Date("2022-07-13T14:00").valueOf();
+
+    // let x = startDateTime.getTimezoneOffset()
+    // console.log(`timezoneoffset is: `, x)
+    console.log(startDateTime.valueOf());
+    console.log(endDateTime.valueOf());
 
     try {
       // front end
