@@ -4,36 +4,42 @@ import { getFirestore } from "firebase-admin/firestore";
 
 const app = initializeApp(); // uses current Firebase project’s config
 const firestore = getFirestore(app);
-
-//  Do an onCall
-export const initializeNewInfluencer = functions.https.onCall(
+// // firebase function
+export const firebaseFunction = functions.https.onCall(
   async (data, context) => {
-    try {
-      // Bringing the data in from the front end:
-      let influencerUid = context.auth.uid;
-      let influencerEmail = context.auth.token.email;
-      let theStartTime = data.startTime;
-      let theEndTime = data.endTime;
-      let theMeetingLength = data.meetingLength;
-      let theNumMeetings = (theEndTime - theStartTime);
-      console.log(`Number of meetings is:`, theNumMeetings);
+    try{
+    console.log("CONTEXT IS =================", context);
+    let influencerUid = context.auth.uid;
+    let influencerEmail = context.auth.token.email;
+    let startTime = data.startTime;
+    let endTime = data.endTime;
+    let msPerMinute = 60 * 1000;
+    let meetingLength = 15;
+    let minutesBetween = (endTime - startTime) / msPerMinute;
+    let numMeetings = minutesBetween / meetingLength;
+    for (let i = 0; i < numMeetings; i++) {
+      let start = startTime.valueOf() + i * meetingLength * msPerMinute;
+      let end = start + meetingLength * msPerMinute;
+      let meeting = {
+        start: new Date(start),
+        end: new Date(end),
+      }; //end of meeting object
+      console.log(meeting);
+      // do the firebase create timeslot for each meeting here
+      let meetingCollRef2 = firestore.collection("newmeetings");
+      let docSnap2 = await meetingCollRef2.add({
+        influencerUid: influencerUid,
+        influencerEmail: influencerEmail,
+        meetingStart: meeting.start,
+        meetingEnd: meeting.end,
+      });
 
-      for (let i = 0; i < theNumMeetings; i++) {
-        let meetingCollRef = firestore.collection("meetings");
-        let docSnap = await meetingCollRef.add({
-          influencerUid: influencerUid,
-          influencerEmail: influencerEmail,
-          slotStartTimeCalc: theStartTime + (i * theMeetingLength) / 60,
-          slotStartTime: theStartTime,
-          slotEndTime: theEndTime,
-          meetingLength: theMeetingLength,
-          NumberOfMeetings: theNumMeetings,
-        });
-        console.log(`the new docID is:`, docSnap.id);
-      }
-    } catch (ex) {
-      functions.logger.info(`ERROR: ${ex.message}`);
+      console.log(`*******the new docID is:*******`, docSnap2.id);
+    } // end of FOR
+    } // end of try
+    catch(ex){
+      functions.logger.info(`ERROR IS:::: ${ex.message}`);
       throw ex;
-    }
-  }
+    } // end of catch
+  } // end of async
 );

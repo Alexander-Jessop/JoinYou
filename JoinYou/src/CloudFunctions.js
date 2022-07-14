@@ -8,70 +8,48 @@ import moment from "moment";
 const CloudFunctions = () => {
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
-  // const app = fbContext.app;
-  // const db = fbContext.db;
+  const app = fbContext.app;
+  const db = fbContext.db;
   // const [count, setCount] = useState("n/a");
   const [response, setResponse] = useState("Havent called function yet");
 
-  // const getUsersCount = async () => {
+  // const doInitializeInfl = async () => {
+  //   // console.log(`cloudfuncs is : `, cloudFuncs)
   //   try {
-  //     const getNumberOfUsers = httpsCallable(cloudFuncs, "getNumberOfUsers");
-  //     const result = await getNumberOfUsers();
+  //     const myInitializeFunc = httpsCallable(
+  //       cloudFuncs,
+  //       "initializeNewInfluencer"
+  //     );
+  //     console.log("THIS IS BEFORE");
+  //     const result = await myInitializeFunc({
+  //       startTime: 9,
+  //       endTime: 14,
+  //       meetingLength: 60,
+  //     });
+  //     console.log("THIS IsAFTER");
   //     const data = result.data;
-  //     console.log(`data is:`, data);
-  //     setCount(data.numUsers);
+  //     setResponse(data);
   //   } catch (ex) {
-  //     console.log("yikes! ", ex.message);
-  //     throw ex;
+  //     console.error(ex);
+  //     console.log(`Error: -------`, ex);
   //   }
   // };
 
-  // const addRandoUser = async () => {
-  //   try {
-  //     console.log("Function to add a new user to firestore database");
-  //     const addUser = httpsCallable(cloudFuncs, "addRandoUser");
-  //     const result = await addUser();
-  //     const data = result.data;
-  //     console.log("New user added", data);
-  //   } catch (ex) {
-  //     console.log("yikes! ", ex.message);
-  //     throw ex;
-  //   }
-  // };
+  const doSendData = async () => {
+    let startDateTime = new Date("2022-07-13T18:00").valueOf();
+    let endDateTime = new Date("2022-07-14T00:00").valueOf();
+    console.log(startDateTime);
+    console.log(endDateTime);
 
-// function consoleLogTimes(){
-//   console.log(`LOGGING THE ITMES`)
-//   let inflChooseDate = "2022-07-12";
-//   let inflChooseStartTime = "9:00";
-//   let inflChooseEndTime = "13:00"
-//   let influencerStart = moment(inflChooseDate +' '+ inflChooseStartTime).toDate();
-//   let influencerEnd = moment(inflChooseDate +' '+ inflChooseEndTime).toDate();
-
-//   console.log(`starts at:`, influencerStart);
-//   console.log(`ends at  :`, influencerEnd);
-// }
-
-
-  const doInitializeInfl = async () => {
-    // console.log(`cloudfuncs is : `, cloudFuncs)
     try {
-      const myInitializeFunc = httpsCallable(
-        cloudFuncs,
-        "initializeNewInfluencer"
-      );
-
-      // We create a moment object from a string.
-      // let inflChooseDate = "2022-07-12";
-      // let inflChooseStartTime = "18:00";
-      // let influencerStart = moment(inflChooseDate).startOf(inflChooseStartTime);
-
-      console.log(myInitializeFunc);
+      // front end
+      const sendDataFunc = httpsCallable(cloudFuncs, "firebaseFunction");
       console.log("THIS IS BEFORE");
-      const result = await myInitializeFunc({
-        startTime: 9,
-        endTime: 14,
-        meetingLength: 60,
+      const result = await sendDataFunc({
+        startTime: startDateTime,
+        endTime: endDateTime,
       });
+      
       console.log("THIS IsAFTER");
       const data = result.data;
       setResponse(data);
@@ -84,12 +62,10 @@ const CloudFunctions = () => {
   return (
     <View style={styles.container}>
       <Text>Response from the function: {response} </Text>
-      <Button onPress={doInitializeInfl}>
+      {/* <Button onPress={doInitializeInfl}>
         run the do initialize influencer code
-      </Button>
-      {/* <Button onPress={consoleLogTimes}>
-        log the times
       </Button> */}
+      <Button onPress={doSendData}>run Danielles sendData</Button>
     </View>
   );
 };
