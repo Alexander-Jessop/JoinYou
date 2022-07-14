@@ -95,7 +95,7 @@ function This() {
       // console.log("Got remote track:", event.streams[0]);
       event.streams[0].getTracks().forEach((track) => {
         // console.log("Add a track to the remoteStream:", track);
-        remoteStream?.addStream(track);
+        remoteStream.addStream(track);
       });
     });
 
@@ -330,8 +330,8 @@ function This() {
   //     setStream(null);
   //   }
   // };
-  // console.log("remoteStream is: ", remoteStream);
-  // console.log("localStream is: ", localStream);
+  console.log("remoteStream is: ", remoteStream);
+  console.log("localStream is: ", localStream);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
