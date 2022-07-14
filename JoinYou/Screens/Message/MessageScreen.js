@@ -5,8 +5,14 @@ import { Fonts, Colors, Sizes } from "../../Constant/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TransitionPresets } from "react-navigation-stack";
+import { useNavigation } from "@react-navigation/native";
 
-const MessageScreen = ({ navigation }) => {
+
+//const MessageScreen = () => {
+  //const navigation = useNavigation()
+
+
+  const MessageScreen = () => {
   const name = navigation.getParam("name");
 
   const [messagesList, setMessagesList] = useState([
