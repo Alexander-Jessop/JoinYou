@@ -19,7 +19,7 @@ import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
 // Profile
 import ProfileScreen from "../Screens/profile/ProfileScreen";
 // image
-import AddImg from "../Screens/StillImg/AddImg";
+import ImgForm from "../components/UserImg/ImgForm";
 import Recording from "../components/VideoCamera/Recording";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
 import Twilio from "../components/Conference/Twilio";
@@ -88,7 +88,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Confirmation" component={ConfirmationPage} />
           <Stack.Screen name="Appointment" component={AgendaView} />
           <Stack.Screen name="Video" component={Recording} />
-          <Stack.Screen name="Photo" component={AddImg} />
+          <Stack.Screen name="Photo" component={ImgForm} />
           <Stack.Screen name="Payment" component={Payment} />
         </Stack.Navigator>
       </NavigationContainer>
