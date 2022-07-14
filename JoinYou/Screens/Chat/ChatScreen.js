@@ -11,6 +11,7 @@ import {
 import SafeAreaView from "react-native-safe-area-view";
 import { Fonts, Colors, Sizes } from "../../Constant/Styles";
 import MessageScreen from "../Message/MessageScreen";
+import { useNavigation } from "@react-navigation/native";
 
 
 const influencersList = [
@@ -80,7 +81,9 @@ const influencersList = [
     },
   ];
   
-  const ChatScreen = ({ navigation }) => {
+  const ChatScreen = () => {
+    const navigation = useNavigation()
+    
     function influencers() {
       const renderItem = ({ item }) => {
         return (

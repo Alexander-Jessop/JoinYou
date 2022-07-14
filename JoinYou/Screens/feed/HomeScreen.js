@@ -33,6 +33,17 @@ const HomeScreen = ({ navigation }) => {
         Filter By Category
       </Button>
 
+      <Button
+        color="#007F5F"
+        title="Chat"
+        onPress={() => navigation.navigate("Chat")}
+      >
+        Chat 
+      </Button>
+
+
+
+
       <MainList />
     </ScrollView>
   );
