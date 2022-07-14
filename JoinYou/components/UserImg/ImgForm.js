@@ -3,14 +3,21 @@ import { View, StyleSheet, Text, ScrollView } from "react-native";
 import ImagePicker from "./ImagePicker";
 import { Card } from "react-native-paper";
 
-const ImgForm = () => {
+const ImgForm = (props) => {
+  const { route } = props;
+  const profileData = route.params.profileData;
+  const selectedSlot = route.params.selectedSlot;
+
   return (
     <ScrollView style={styles.form}>
       <Card>
         <Card.Content>
           <Card.Title title="Add Photos" titleStyle={styles.cardTitle} />
           <View>
-            <ImagePicker />
+            <ImagePicker
+              profileData={profileData}
+              selectedSlot={selectedSlot}
+            />
           </View>
         </Card.Content>
       </Card>

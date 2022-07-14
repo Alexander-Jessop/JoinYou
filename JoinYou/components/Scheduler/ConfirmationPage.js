@@ -9,63 +9,64 @@ const ConfirmationPage = (props) => {
   const profileData = route.params.profileData;
   const selectedSlot = route.params.selectedSlot;
   const selectedDate = route.params.selectedDate;
-
+  const photoUrl = route.params.photoUrl;
+  const photoDescription = route.params.photoDescription;
 
   const [description, setDescription] = useState("");
 
-  return (
-    <View>
-      <Card>
-        <Card.Content>
-          <Title>
-            Booking an appointment with: {profileData.displayName} at{" "}
-            {selectedSlot.startTime} on {selectedDate}
-          </Title>
+return (
+  <View>
+    <Card>
+      <Card.Content>
+        <Title>
+          Booking an appointment with: {profileData.displayName} at{" "}
+          {selectedSlot.startTime} on {selectedDate}
+        </Title>
 
-          <TextInput
-            label="Describe your appointment (200 characters max)"
-            multiline={true}
-            maxLength={200}
-            selectionColor="#007f5f"
-            underlineColor="#007f5f"
-            activeOutlineColor="#007f5f"
-            activeUnderlineColor="#007f5f"
-            onChangeText={(e) => setDescription(e)}
-          />
+        <TextInput
+          label="Describe your appointment (200 characters max)"
+          multiline={true}
+          maxLength={200}
+          selectionColor="#007f5f"
+          underlineColor="#007f5f"
+          activeOutlineColor="#007f5f"
+          activeUnderlineColor="#007f5f"
+          onChangeText={(e) => setDescription(e)}
+        />
 
-          <Button
-            color="#007F5F"
-            onPress={() => {
-              navigation.navigate("Video");
-            }}
-          >
-            Take a Video
-          </Button>
-          <Button
-            color="#007F5F"
-            onPress={() => {
-              navigation.navigate("Photo");
-            }}
-          >
-            Take a Photo
-          </Button>
-        </Card.Content>
-      </Card>
+        <Button
+          color="#007F5F"
+          onPress={() => {
+            navigation.navigate("Video");
+          }}
+        >
+          Take a Video
+        </Button>
+        <Button
+          color="#007F5F"
+          onPress={() => {
+            navigation.navigate("Photo", { profileData, selectedSlot });
+          }}
+        >
+          Take a Photo
+        </Button>
+      </Card.Content>
+    </Card>
 
-      <Button
-        color="#007F5F"
-        mode="contained"
-        onPress={() => {
-          navigation.navigate("Payment", {
-            selectedSlot,
-            profileData,
-          });
-        }}
-      >
-        Payment
-      </Button>
-    </View>
-  );
+    <Button
+      color="#007F5F"
+      mode="contained"
+      onPress={() => {
+        navigation.navigate("Payment", {
+          selectedSlot,
+          profileData,
+        });
+      }}
+    >
+      Payment
+    </Button>
+  </View>
+);
 };;
 
 const styles = StyleSheet.create({

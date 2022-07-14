@@ -11,23 +11,32 @@ import { areCookiesEnabled } from "@firebase/util";
 import { fbUriToFirebaseStorage } from "./ImageUpload";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { AuthContext } from "../../src/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
-const ImagePicker = () => {
+const ImagePicker = (props) => {
+  const navigation = useNavigation();
+
+  const profileData = props.profileData;
+  const selectedSlot = props.selectedSlot;
+
   const firebaseContext = useContext(FirebaseContext);
   const storage = firebaseContext.storage;
 
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
-  const [enteredDescription, setEnteredDescription] = useState("");
+  const [photoDescription, setPhotoDescription] = useState("");
+  const [photoUrl, setPhotoUrl] = useState(null);
 
-  const changeDescriptionHandler = (enteredText) => {
-    setEnteredDescription(enteredText);
-    console.log(enteredText);
-  };
   const [pickedImg, setPickedImg] = useState();
+
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
+
+  const changeDescriptionHandler = (enteredText) => {
+    setPhotoDescription(enteredText);
+    console.log(enteredText);
+  };
 
   async function verifyPermissions() {
     if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
@@ -71,30 +80,31 @@ const ImagePicker = () => {
     );
   }
 
-  // console.log("pickedImg is: ", pickedImg);
-
-  // if (pickedImg) {
-  //   const filename = pickedImg.split("ImagePicker/")[1];
-  //   // console.log("filename is:", filename);
-  // }
-
   const savePhotoHandler = () => {
-    // const imageRef = ref(storage, `images/${pickedImg}`);
-    // uploadBytes(imageRef, pickedImg).then(() => {
-    //   alert("Image Uploaded");
-    // });
+    if (pickedImg) {
+      fbUriToFirebaseStorage(
+        storage,
+        pickedImg,
+        "images",
+        (val) => {
+          console.log("val is: ", val);
+        },
+        (url) => {
+          setPhotoUrl(url);
+          console.log("ImagePicker: Upload complete! URL is: ", url);
+        }
+      );
 
-    fbUriToFirebaseStorage(
-      storage,
-      pickedImg,
-      "images",
-      (val) => {
-        console.log("val is: ", val);
-      },
-      (url) => {
-        console.log("downloadURL is: ", url);
-      }
-    );
+      Alert.alert("Image Uploaded!");
+      navigation.navigate("Confirmation", {
+        profileData,
+        selectedSlot,
+        photoUrl,
+        photoDescription,
+      });
+    } else {
+      Alert.alert("You must take an image before saving.");
+    }
   };
 
   return (
@@ -111,7 +121,7 @@ const ImagePicker = () => {
       <TextInput
         style={styles.input}
         onChangeText={changeDescriptionHandler}
-        value={enteredDescription}
+        value={photoDescription}
         label="Add A Description"
         theme={{
           colors: {
