@@ -5,7 +5,7 @@ import { FirebaseContext } from "./FirebaseProvider";
 import { httpsCallable } from "firebase/functions";
 import moment from "moment";
 
-const CloudFunctions = () => {
+const backendTimeslotCreate = () => {
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
   const app = fbContext.app;
@@ -73,6 +73,6 @@ const CloudFunctions = () => {
   );
 };
 
-export default CloudFunctions;
+export default backendTimeslotCreate;
 
 const styles = StyleSheet.create({ container: { alignItems: "center" } });
