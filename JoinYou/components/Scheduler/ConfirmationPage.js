@@ -26,6 +26,10 @@ const ConfirmationPage = (props) => {
       navigation.navigate("Payment", {
         selectedSlot,
         profileData,
+        meetingDescription,
+        photoUrl,
+        photoDescription,
+        videoUrl,
       });
     }
   };

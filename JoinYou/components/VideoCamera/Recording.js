@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { shareAsync } from "expo-sharing";
 import * as MediaLibrary from "expo-media-library";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import { fbUriToFirebaseStorage } from "../UserImg/ImageUpload";
+import { fbUriToFirebaseStorage } from "./VideoUpload";
 import { useNavigation } from "@react-navigation/native";
 
 const Recording = (props) => {
@@ -79,6 +79,8 @@ const Recording = (props) => {
       setIsRecording(false);
     });
   };
+
+  console.log("video is: ", video);
 
   const stopRecording = () => {
     setIsRecording(false);
