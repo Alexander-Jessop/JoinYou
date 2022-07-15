@@ -10,8 +10,6 @@ import {
 
 //test
 
-import This from "./components/Conference/This";
-
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
 
@@ -23,7 +21,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <This />
+          <RestOfApp />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
