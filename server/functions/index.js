@@ -4,7 +4,8 @@ import { getFirestore } from "firebase-admin/firestore";
 
 const app = initializeApp(); // uses current Firebase project’s config
 const firestore = getFirestore(app);
-// // firebase function
+
+// // Timeslot parsing function 15 minutes
 export const createTimeslots = functions.https.onCall(
   async (data, context) => {
     try{
@@ -46,3 +47,6 @@ export const createTimeslots = functions.https.onCall(
     } // end of catch
   } // end of async
 );
+
+// Client appointment selection
+

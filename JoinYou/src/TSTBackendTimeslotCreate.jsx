@@ -13,27 +13,6 @@ const backendTimeslotCreate = () => {
   // const [count, setCount] = useState("n/a");
   const [response, setResponse] = useState("Havent called function yet");
 
-  // const doInitializeInfl = async () => {
-  //   // console.log(`cloudfuncs is : `, cloudFuncs)
-  //   try {
-  //     const myInitializeFunc = httpsCallable(
-  //       cloudFuncs,
-  //       "initializeNewInfluencer"
-  //     );
-  //     console.log("THIS IS BEFORE");
-  //     const result = await myInitializeFunc({
-  //       startTime: 9,
-  //       endTime: 14,
-  //       meetingLength: 60,
-  //     });
-  //     console.log("THIS IsAFTER");
-  //     const data = result.data;
-  //     setResponse(data);
-  //   } catch (ex) {
-  //     console.error(ex);
-  //     console.log(`Error: -------`, ex);
-  //   }
-  // };
 
   const doCreateTimeslots = async () => {
     let startDateTime = new Date("2022-07-13T13:00").valueOf();
@@ -65,9 +44,7 @@ const backendTimeslotCreate = () => {
   return (
     <View style={styles.container}>
       <Text>Response from the function: {response} </Text>
-      {/* <Button onPress={doInitializeInfl}>
-        run the do initialize influencer code
-      </Button> */}
+
       <Button onPress={doCreateTimeslots}>run Danielles sendData</Button>
     </View>
   );
