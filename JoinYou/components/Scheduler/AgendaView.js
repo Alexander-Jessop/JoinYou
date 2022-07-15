@@ -5,11 +5,13 @@ import { Agenda } from "react-native-calendars";
 import { Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { FirebaseContext } from "../../src/FirebaseProvider";
+import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 
 //https://www.npmjs.com/package/react-native-calendars
 
 const AgendaView = (props) => {
+  const navigation = useNavigation();
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
   const authContext = useContext(AuthContext);
@@ -20,18 +22,20 @@ const AgendaView = (props) => {
   const [populateAgenda, setPopulateAgenda] = useState();
   const [markedDates, setMarkedDates] = useState();
 
+  const typeOfUser = props.typeOfUser;
+
   useEffect(() => {
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
     const getData = async () => {
       const q = query(
         collection(db, "Timeslots"),
-        where("influencerId", "==", ID)
+        where(`${typeOfUser}Id`, "==", ID)
       );
       const querySnapshot = await getDocs(q);
       const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
 
-      //Second filter. Filtering by selected category.
+      //Second filter. Filtering by confirmed appointments only.
       const filteredByConfirmed = timeslotArray.filter((timeslot) => {
         return timeslot.booked === true;
       });
@@ -50,19 +54,37 @@ const AgendaView = (props) => {
 
       confirmedAppointments?.forEach((timeslot) => {
         const seconds = timeslot?.startTime.seconds;
-        const name = timeslot?.displayName;
+        // const name = timeslot?.displayName;
+        const influencerName = timeslot?.influencerName;
+        const clientName = timeslot?.clientName;
         const time = moment.unix(seconds).format("h:mmA");
         const day = moment.unix(seconds).format("yyyy-MM-DD");
 
-        if (newAgenda[day]) {
-          newAgenda[day].push({ name: `${time} with ${name}` });
-        } else {
-          newMarkedDates[day] = {
-            marked: true,
-            dotColor: "red",
-            disabled: false,
-          };
-          newAgenda[day] = [{ name: `${time} with ${name} ` }];
+        if (typeOfUser === "influencer") {
+          if (newAgenda[day]) {
+            newAgenda[day].push({ name: `${time} with ${clientName}` });
+          } else {
+            newMarkedDates[day] = {
+              marked: true,
+              selectedDotColor: "white",
+              disabled: false,
+              selectedColor: "#007F5F",
+            };
+            newAgenda[day] = [{ name: `${time} with ${clientName} ` }];
+          }
+        }
+        if (typeOfUser === "client") {
+          if (newAgenda[day]) {
+            newAgenda[day].push({ name: `${time} with ${influencerName}` });
+          } else {
+            newMarkedDates[day] = {
+              marked: true,
+              disabled: false,
+              selectedColor: "#007F5F",
+              selectedDotColor: "white",
+            };
+            newAgenda[day] = [{ name: `${time} with ${influencerName} ` }];
+          }
         }
       });
       setMarkedDates(newMarkedDates);
@@ -83,7 +105,11 @@ const AgendaView = (props) => {
               }}
             >
               <Text>{item.name}</Text>
-              <Button title="Join" />
+              <Button
+                color="#007F5F"
+                title="Join"
+                onPress={() => navigation.navigate("Meeting")}
+              />
             </View>
           </Card.Content>
         </Card>
@@ -99,8 +125,14 @@ const AgendaView = (props) => {
         disabledByDefault={true}
         disableAllTouchEventsForDisabledDays={true}
         markedDates={markedDates}
-        pastScrollRange={7}
-        futureScrollRange={30}
+        pastScrollRange={30}
+        futureScrollRange={90}
+        theme={{
+          dotColor: "#007F5F",
+          agendaDayNumColor: "#007F5F",
+          agendaTodayColor: "#007F5F",
+          agendaDayTextColor: "#007F5F",
+        }}
         renderEmptyDate={() => {
           return (
             <View

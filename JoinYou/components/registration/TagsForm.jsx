@@ -29,7 +29,7 @@ const TagsForm = () => {
     <View>
       {selectedTags.map((tag, index) => {
         return (
-          <View style={styles.checkboxContainer}>
+          <View style={styles.checkboxContainer} key={tags[index]}>
             <Checkbox
               status={tag ? "checked" : "unchecked"}
               key={tags[index]}

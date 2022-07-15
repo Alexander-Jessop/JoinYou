@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -9,6 +9,7 @@ const LoginForm = () => {
   const loginFn = authContext.login;
   const logoutFn = authContext.logout;
   const loginError = authContext.authError;
+  const [showPass, setshowPass] = useState(false);
   const user = authContext.user;
 
   const navigation = useNavigation();
@@ -16,15 +17,22 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const togglePasswordVis = () => {
+    setshowPass(!showPass);
+  };
+
+  //if a user is logged in, navigation.reset to Home Screen
+  //https://reactnavigation.org/docs/navigation-prop/#reset
+  useEffect(() => {
+    if (user) {
+      navigation.reset({
+        routes: [{ name: "Home" }],
+      });
+    }
+  }, [user]);
+
   return (
     <View style={styles.content}>
-      <Text>
-        {"\n"}
-        {user
-          ? "You are logged in as: " + user.email
-          : "You are not logged in."}
-        {"\n"}
-      </Text>
       <View style={styles.view}>
         <Card style={styles.card}>
           <Card.Title title="JoinYou" titleStyle={styles.cardTitle} />
@@ -51,11 +59,16 @@ const LoginForm = () => {
                   background: "transparent",
                 },
               }}
-              right={<TextInput.Icon name="eye-off-outline" />}
+              right={
+                <TextInput.Icon
+                  name="eye-off-outline"
+                  onPress={togglePasswordVis}
+                />
+              }
               style={styles.input}
               label="Password"
               value={password}
-              secureTextEntry={true}
+              secureTextEntry={showPass ? false : true}
               onChangeText={(e) => setPassword(e)}
               // keyboardType="visible-password" create a ?: with secure text and add button
             />
@@ -69,9 +82,9 @@ const LoginForm = () => {
               title="LOGIN"
               onPress={() => {
                 loginFn(email, password);
-                if (user) {
-                  navigation.replace("Home");
-                }
+                // if (user) {
+                //   navigation.replace("Home");
+                // }
               }}
             >
               Login
@@ -94,6 +107,7 @@ const LoginForm = () => {
 
 const styles = StyleSheet.create({
   content: {
+    marginTop: 170,
     justifyContent: "center",
     alignItems: "center",
   },

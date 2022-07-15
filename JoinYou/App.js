@@ -10,6 +10,8 @@ import {
 // import CloudFunctions from "./src/CloudFunctions";
 import RestOfApp from "./src/RestOfApp"
 
+//test
+
 /*This file is the entry point for the app. 
 It imports the FirebaseProvider and AuthProvider, and then renders the rest of the app with React Paper.*/
 

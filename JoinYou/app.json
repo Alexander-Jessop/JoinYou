@@ -13,6 +13,13 @@
           "cameraPermission": "The app accesses your photos to let you share them with your friends.",
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
+      ],
+      [
+        "@config-plugins/react-native-webrtc",
+        {
+          "cameraPermission": "Allow access your camera",
+          "microphonePermission": "Allow to access your microphone"
+        }
       ]
     ],
     "splash": {

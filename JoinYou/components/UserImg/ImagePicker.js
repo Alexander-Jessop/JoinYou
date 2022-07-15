@@ -6,7 +6,7 @@ import {
   PermissionStatus,
 } from "expo-image-picker";
 import { TextInput, Button } from "react-native-paper";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, child, put } from "firebase/storage";
 
 const storage = getStorage();
 
@@ -62,11 +62,13 @@ const ImagePicker = () => {
   }
 
   const savePhotoHandler = () => {
-    const imageRef = ref(storage, `images / ${pickedImg}`);
+    const imageRef = ref(storage, `images/${pickedImg}`);
     uploadBytes(imageRef, pickedImg).then(() => {
       alert("Image Uploaded");
     });
   };
+
+  console.log("pickedImg", pickedImg);
 
   return (
     <View>
@@ -92,12 +94,7 @@ const ImagePicker = () => {
           },
         }}
       />
-      <Button
-        onPress={savePhotoHandler}
-        color="#007F5F"
-        style={styles.flatbutton}
-        title="Submit"
-      >
+      <Button onPress={savePhotoHandler} color="#007F5F" title="Submit">
         Submit
       </Button>
     </View>

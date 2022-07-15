@@ -4,12 +4,10 @@ import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import MainList from "../../components/feed/MainList";
 import { Text, Button } from "react-native-paper";
-import backendTimeslotCreate from "../../src/TSTBackendTimeslotCreate";
-// import clientAppointmentSelection from "../../src/TSTClientAppointmentSelection";
+
 
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
-  const logoutFn = authContext.logout;
   const user = authContext.user;
 
   //const navigation = useNavigation();
@@ -17,16 +15,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <Button
-        title="See all categories"
-        onPress={() => navigation.navigate("Categories")}
-      >
-        See All Categories
-      </Button>
-
-      <MainList />
-
-      <Button
         title="See My Profile Page"
+        color="#007F5F"
         onPress={() =>
           navigation.navigate("Profile", {
             profileID: user.uid,
@@ -37,17 +27,14 @@ const HomeScreen = ({ navigation }) => {
       </Button>
 
       <Button
-        title="LOG OUT"
-        onPress={() => {
-          logoutFn();
-          navigation.replace("Login");
-        }}
+        color="#007F5F"
+        title="See all categories"
+        onPress={() => navigation.navigate("Categories")}
       >
-        Logout
+        Filter By Category
       </Button>
 
-      <backendTimeslotCreate />
-      {/* <clientAppointmentSelection /> */}
+      <MainList />
     </ScrollView>
   );
 };
