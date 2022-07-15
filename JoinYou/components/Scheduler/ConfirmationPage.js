@@ -20,8 +20,6 @@ const ConfirmationPage = (props) => {
   const onPaymentHandler = () => {
     if (meetingDescription.length < 1) {
       Alert.alert("You must enter a description for your meeting.");
-    } else if (!videoUrl) {
-      Alert.alert("You must upload at least a video for your meeting.");
     } else {
       navigation.navigate("Payment", {
         profileData,
