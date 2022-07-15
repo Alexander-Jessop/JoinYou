@@ -153,17 +153,26 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
 
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <Button title="Click to stop call" onPress={onBackPress} />
+          <Button
+            title="Click to stop call"
+            onPress={onBackPress}
+            color="#007F5F"
+          />
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
-            <Button title="Click to start stream" onPress={startLocalStream} />
+            <Button
+              title="Click to start stream"
+              onPress={startLocalStream}
+              color="#007F5F"
+            />
           )}
           {localStream && (
             <Button
               title="Click to join call"
               onPress={() => joinCall(roomId)}
               disabled={!!remoteStream}
+              color="#007F5F"
             />
           )}
         </View>
@@ -171,11 +180,16 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
 
       {localStream && (
         <View style={styles.toggleButtons}>
-          <Button title="Switch camera" onPress={switchCamera} />
+          <Button
+            title="Switch camera"
+            onPress={switchCamera}
+            color="#007F5F"
+          />
           <Button
             title={`${isMuted ? "Unmute" : "Mute"} stream`}
             onPress={toggleMute}
             disabled={!remoteStream}
+            color="#007F5F"
           />
         </View>
       )}
