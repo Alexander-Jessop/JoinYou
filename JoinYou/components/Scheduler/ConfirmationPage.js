@@ -18,14 +18,14 @@ const ConfirmationPage = (props) => {
   console.log("videoUrl is: ", videoUrl);
 
   const onPaymentHandler = () => {
-    if (meetingDescription.length > 0) {
+    if (meetingDescription.length < 1) {
       Alert.alert("You must enter a description for your meeting.");
     } else if (!videoUrl) {
       Alert.alert("You must upload at least a video for your meeting.");
     } else {
       navigation.navigate("Payment", {
-        selectedSlot,
         profileData,
+        selectedSlot,
         meetingDescription,
         photoUrl,
         photoDescription,
