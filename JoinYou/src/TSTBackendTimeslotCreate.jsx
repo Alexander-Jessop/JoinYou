@@ -11,13 +11,13 @@ import moment from "moment";
 // import backendTimeslotCreate from "../../src/TSTBackendTimeslotCreate";
 
 
-const backendTimeslotCreate = () => {
+const BackendTimeslotCreate = () => {
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
   const app = fbContext.app;
   const db = fbContext.db;
   // const [count, setCount] = useState("n/a");
-  const [response, setResponse] = useState("Havent called function yet");
+  const [response, setResponse] = useState("Havent created timeslots yet");
 
 
   const doCreateTimeslots = async () => {
@@ -39,8 +39,8 @@ const backendTimeslotCreate = () => {
       });
       
       console.log("THIS IsAFTER");
-      const data = result.data;
-      setResponse(data);
+      // const data = result.data;
+      setResponse("data written to newmeetings");
     } catch (ex) {
       console.error(ex);
       console.log(`Error: -------`, ex);
@@ -49,13 +49,13 @@ const backendTimeslotCreate = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Response from the function: {response} </Text>
+      <Text>Response: {response} </Text>
 
-      <Button onPress={doCreateTimeslots}>run Danielles sendData</Button>
+      <Button onPress={doCreateTimeslots}>CONFIRM: send timeslots</Button>
     </View>
   );
 };
 
-export default backendTimeslotCreate;
+export default BackendTimeslotCreate;
 
 const styles = StyleSheet.create({ container: { alignItems: "center" } });

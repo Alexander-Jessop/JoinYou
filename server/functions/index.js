@@ -27,7 +27,7 @@ export const createTimeslots = functions.https.onCall(
       }; //end of meeting object
       console.log(meeting);
       // do the firebase create timeslot for each meeting here
-      let meetingCollRef2 = firestore.collection("newmeetings");
+      let meetingCollRef2 = firestore.collection("Timeslots");
       let docSnap2 = await meetingCollRef2.add({
         influencerUid: influencerUid,
         influencerEmail: influencerEmail,
