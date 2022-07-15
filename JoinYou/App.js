@@ -7,6 +7,7 @@ import {
   MD3LightTheme as DefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
+import Payment from "./components/StripePayment/Payment";
 
 
 
@@ -22,7 +23,7 @@ export default function App() {
       <AuthProvider>
         <PaperProvider>
           <StatusBar style="dark" />
-          <RestOfApp />
+          <Payment />
         </PaperProvider>
       </AuthProvider>
     </FirebaseProvider>
