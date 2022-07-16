@@ -129,7 +129,6 @@ const LoginForm = () => {
                 >
                     <Text style={{ ...Fonts.white30Bold, marginTop: 100.0, }}>Welcome!</Text>
                     <Text style={{ ...Fonts.white16Regular, marginTop: Sizes.fixPadding }}>Login in your account</Text>
-                    {phoneNumberInput()}
                     {continueButton()}
                     {otpText()}
                     {facebookButton()}
@@ -140,12 +139,7 @@ const LoginForm = () => {
     )
 }},
 
-const styles = StyleSheet.create({
-    phoneNumberContainerStyle: {
-        backgroundColor: "rgba(255,255,255,0.25)",
-        borderRadius: Sizes.fixPadding + 15.0,
-        marginTop: Sizes.fixPadding * 9.0,
-    },
+
     faceBookButtonContainerStyle: {
         paddingVertical: Sizes.fixPadding + 5.0,
         borderRadius: Sizes.fixPadding * 3.0,
