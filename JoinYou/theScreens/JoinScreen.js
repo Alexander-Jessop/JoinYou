@@ -49,7 +49,7 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    // startLocalStream();
+    startLocalStream();
   }, []);
 
   const startLocalStream = async () => {
