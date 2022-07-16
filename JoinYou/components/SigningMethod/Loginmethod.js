@@ -1,4 +1,4 @@
-mport React, { useState } from "react";
+import React, { useState } from "react";
 import {
     Text, View, Image, ImageBackground, StatusBar, SafeAreaView, TouchableOpacity,
     StyleSheet
