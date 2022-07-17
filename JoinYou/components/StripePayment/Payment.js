@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
-import { Card, Text } from "react-native-paper";
+import { Card, Text, Title } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 //ADD localhost address of your server
 const API_URL = "http://localhost:19002";
@@ -22,9 +23,7 @@ const Payment = (props) => {
   const photoDescription = route.params.photoDescription;
   const videoUrl = route.params.videoUrl;
 
-  console.log("profileData", profileData);
-  console.log("selectedSlot is:", selectedSlot);
-  console.log("selectedSlot is:", selectedSlot);
+  const navigation = useNavigation();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -44,73 +43,87 @@ const Payment = (props) => {
 
   const handlePayPress = async () => {
     //1.Gather the customer's billing information (e.g., email)
-    if (!cardDetails?.complete || !email) {
-      Alert.alert("Please enter Complete card details and Email");
-      return;
-    }
-    const billingDetails = {
-      name: name,
-      email: email,
-    };
-    //2.Fetch the intent client secret from the backend
-    try {
-      const { clientSecret, error } = await fetchPaymentIntentClientSecret();
-      //2. confirm the payment
-      if (error) {
-        console.log("Unable to process payment");
-      } else {
-        const { paymentIntent, error } = await confirmPayment(clientSecret, {
-          type: "Card",
-          billingDetails: billingDetails,
-        });
-        if (error) {
-          alert(`Payment Confirmation Error ${error.message}`);
-        } else if (paymentIntent) {
-          alert("Payment Successful");
-          console.log("Payment successful ", paymentIntent);
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    //3.Confirm the payment with the card details
+    // if (!cardDetails?.complete || !email) {
+    //   Alert.alert("Please enter Complete card details and Email");
+    //   return;
+    // } else {
+    Alert.alert("Payment Successful");
+    navigation.replace("Payment Success", {
+      profileData,
+      selectedSlot,
+      selectedDate,
+    });
+    // }
+
+    // const billingDetails = {
+    //   name: name,
+    //   email: email,
+    // };
+    // //2.Fetch the intent client secret from the backend
+    // try {
+    //   const { clientSecret, error } = await fetchPaymentIntentClientSecret();
+    //   //2. confirm the payment
+    //   if (error) {
+    //     console.log("Unable to process payment");
+    //   } else {
+    //     const { paymentIntent, error } = await confirmPayment(clientSecret, {
+    //       type: "Card",
+    //       billingDetails: billingDetails,
+    //     });
+    //     if (error) {
+    //       alert(`Payment Confirmation Error ${error.message}`);
+    //     } else if (paymentIntent) {
+    //       alert("Payment Successful");
+    //       console.log("Payment successful ", paymentIntent);
+    //     }
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    // //3.Confirm the payment with the card details
   };
 
   return (
-    <View>
-      <Text>
-        Meeting with {profileData.displayName} at {selectedSlot.startTime}
-      </Text>
-      <Card style={styles.container}>
-        <TextInput
-          autoCapitalize="none"
-          placeholder="Full Name"
-          onChange={(value) => setName(value.nativeEvent.text)}
-          style={styles.input}
-        />
-        <TextInput
-          autoCapitalize="none"
-          placeholder="E-mail"
-          keyboardType="email-address"
-          onChange={(value) => setEmail(value.nativeEvent.text)}
-          style={styles.input}
-        />
-        <CardField
-          postalCodeEnabled={true}
-          placeholder={{
-            number: "4242 4242 4242 4242",
-          }}
-          cardStyle={styles.card}
-          style={styles.cardContainer}
-          onCardChange={(cardDetails) => {
-            setCardDetails(cardDetails);
-          }}
-        />
-        <Button onPress={handlePayPress} title="Pay" disabled={loading} />
-      </Card>
-    </View>
+    <Card style={styles.container}>
+      <Title>
+        {" "}
+        {"\n"} Appointment with: {profileData.displayName}
+        {"\n"} Start Time: {selectedSlot.startTime}
+        {"\n"} Start Date: {selectedDate}
+        {"\n"} $20
+        {"\n"}
+        {"\n"}
+      </Title>
+
+      <Title>Billing Information:</Title>
+      <TextInput
+        autoCapitalize="none"
+        placeholder="Full Name"
+        onChange={(value) => setName(value.nativeEvent.text)}
+        style={styles.input}
+      />
+      <TextInput
+        autoCapitalize="none"
+        placeholder="E-mail"
+        keyboardType="email-address"
+        onChange={(value) => setEmail(value.nativeEvent.text)}
+        style={styles.input}
+      />
+      <CardField
+        postalCodeEnabled={true}
+        placeholder={{
+          number: "4242 4242 4242 4242",
+        }}
+        cardStyle={styles.card}
+        style={styles.cardContainer}
+        onCardChange={(cardDetails) => {
+          setCardDetails(cardDetails);
+        }}
+      />
+      <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+    </Card>
   );
-};;
+};
 export default Payment;
 
 const styles = StyleSheet.create({

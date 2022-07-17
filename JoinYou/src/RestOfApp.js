@@ -25,6 +25,7 @@ import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
 import Twilio from "../components/Conference/Twilio";
 //payment
 import Payment from "../components/StripePayment/Payment";
+import PaymentSuccess from "../components/StripePayment/PaymentSucess";
 
 const Stack = createNativeStackNavigator();
 
@@ -90,6 +91,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Video" component={Recording} />
           <Stack.Screen name="Photo" component={ImgForm} />
           <Stack.Screen name="Payment" component={Payment} />
+          <Stack.Screen name="Payment Success" component={PaymentSuccess} />
         </Stack.Navigator>
       </NavigationContainer>
     );

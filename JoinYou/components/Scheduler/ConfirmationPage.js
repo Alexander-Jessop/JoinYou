@@ -24,6 +24,7 @@ const ConfirmationPage = (props) => {
       navigation.navigate("Payment", {
         profileData,
         selectedSlot,
+        selectedDate,
         meetingDescription,
         photoUrl,
         photoDescription,
