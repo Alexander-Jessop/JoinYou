@@ -39,10 +39,10 @@ const DataList = (props) => {
                   <View>
                     <Title>{expert.displayName}</Title>
 
-                    <Paragraph style={{ flexShrink: 1 }}>
-                      Expertise in: {"\n"}
-                      {expert.interests.join(", ")}
-                    </Paragraph>
+                    <Text>
+                      Expert in: {"\n"}
+                      {expert.interests.join(`,${"\n"}`)}
+                    </Text>
                   </View>
                 </View>
               </Card.Content>
