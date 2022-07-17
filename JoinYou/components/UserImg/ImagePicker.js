@@ -26,7 +26,7 @@ const ImagePicker = (props) => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
-  const [photoDescription, setPhotoDescription] = useState("");
+  const [photoDescription, setPhotoDescription] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null);
 
   const [pickedImg, setPickedImg] = useState();

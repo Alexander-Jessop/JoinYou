@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { Card, Text, Title } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../src/AuthProvider";
+import { doc, getDoc } from "firebase/firestore";
+import { FirebaseContext } from "../../src/FirebaseProvider";
 
 //ADD localhost address of your server
 const API_URL = "http://localhost:19002";
@@ -20,14 +22,30 @@ const Payment = (props) => {
   const profileData = route.params.profileData;
   const selectedSlot = route.params.selectedSlot;
   const selectedDate = route.params.selectedDate;
+  const meetingDescription = route.params.meetingDescription;
   const photoUrl = route.params.photoUrl;
   const photoDescription = route.params.photoDescription;
   const videoUrl = route.params.videoUrl;
 
   const navigation = useNavigation();
+  const firebaseContext = useContext(FirebaseContext);
+  const db = firebaseContext.db;
   const authContext = useContext(AuthContext);
   const user = authContext.user;
   const updateTimeslot = authContext.updateTimeslot;
+  const [profile, setProfile] = useState(null);
+
+  //Sets the profile data from the Firestore Database user
+  useEffect(() => {
+    const getData = async () => {
+      //Get a single document from Firestore databse, by UID
+      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      setProfile(docSnap.data());
+    };
+    getData();
+  }, [user]);
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -51,7 +69,14 @@ const Payment = (props) => {
     //   Alert.alert("Please enter Complete card details and Email");
     //   return;
     // } else {
-    updateTimeslot();
+    updateTimeslot(
+      selectedSlot.DOC_ID,
+      profile,
+      meetingDescription,
+      photoDescription,
+      photoUrl,
+      videoUrl
+    );
     Alert.alert("Payment Successful");
     navigation.replace("Payment Success", {
       profileData,
