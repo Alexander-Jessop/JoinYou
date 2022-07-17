@@ -22,7 +22,7 @@ import ProfileScreen from "../Screens/profile/ProfileScreen";
 import ImgForm from "../components/UserImg/ImgForm";
 import Recording from "../components/VideoCamera/Recording";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
-import Twilio from "../components/Conference/Twilio";
+import Something from "../Something";
 //payment
 import Payment from "../components/StripePayment/Payment";
 import PaymentSuccess from "../components/StripePayment/PaymentSucess";
@@ -92,6 +92,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Photo" component={ImgForm} />
           <Stack.Screen name="Payment" component={Payment} />
           <Stack.Screen name="Payment Success" component={PaymentSuccess} />
+          <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>
       </NavigationContainer>
     );

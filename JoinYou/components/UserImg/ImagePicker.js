@@ -114,6 +114,8 @@ const ImagePicker = (props) => {
     }
   };
 
+  console.log("pickedImg", pickedImg);
+
   return (
     <View>
       <View style={styles.imagePreview}>{imagePreview}</View>
@@ -138,12 +140,7 @@ const ImagePicker = (props) => {
           },
         }}
       />
-      <Button
-        onPress={savePhotoHandler}
-        color="#007F5F"
-        style={styles.flatbutton}
-        title="Submit"
-      >
+      <Button onPress={savePhotoHandler} color="#007F5F" title="Submit">
         Submit
       </Button>
     </View>

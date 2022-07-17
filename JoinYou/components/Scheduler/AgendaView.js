@@ -5,11 +5,13 @@ import { Agenda } from "react-native-calendars";
 import { Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import { FirebaseContext } from "../../src/FirebaseProvider";
+import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 
 //https://www.npmjs.com/package/react-native-calendars
 
 const AgendaView = (props) => {
+  const navigation = useNavigation();
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
   const authContext = useContext(AuthContext);
@@ -103,7 +105,11 @@ const AgendaView = (props) => {
               }}
             >
               <Text>{item.name}</Text>
-              <Button color="#007F5F" title="Join" />
+              <Button
+                color="#007F5F"
+                title="Join"
+                onPress={() => navigation.navigate("Meeting")}
+              />
             </View>
           </Card.Content>
         </Card>

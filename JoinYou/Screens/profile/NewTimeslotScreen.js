@@ -7,10 +7,10 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 // https://github.com/apaajabolehd/react-native-range-datepicker#readme
 
 const NewTimeslotScreen = () => {
-  // const [startTime, setStartTime] = useState("");
-  // console.log("start time: ", startTime);
-  // const [endTime, setEndTime] = useState("");
-  // console.log("end time: ", startTime);
+  const [startTime, setStartTime] = useState("");
+  console.log("start time: ", startTime);
+  const [endTime, setEndTime] = useState("");
+  console.log("end time: ", endTime);
 
   const [date, setDate] = useState(new Date(1598051730000));
 
@@ -22,17 +22,29 @@ const NewTimeslotScreen = () => {
   const showMode = (currentMode) => {
     DateTimePickerAndroid.open({
       value: date,
-      onChange,
+      onChange: (e) => setStartTime(e.nativeEvent.timestamp),
       mode: currentMode,
       is24Hour: true,
       textColor: "#007F5F",
       color: "#007F5F",
-      display: "spinner",
+    });
+  };
+  const timeMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange: (f) => setEndTime(f.nativeEvent.timestamp),
+      mode: currentMode,
+      is24Hour: true,
+      textColor: "#007F5F",
+      color: "#007F5F",
     });
   };
 
-  const showTimepicker = () => {
+  const showStartTimepicker = () => {
     showMode("time");
+  };
+  const showEndTimepicker = () => {
+    timeMode("time");
   };
 
   return (
@@ -54,13 +66,16 @@ const NewTimeslotScreen = () => {
               onConfirm={(startDate, untilDate) =>
                 this.setState({ startDate, untilDate })
               }
+              onSelect={(startDate, untilDate) =>
+                console.log("startDate, untilDate", startDate, untilDate)
+              }
             />
           </View>
           <View style={styles.timePicker}>
             <View>
               <Divider />
               <Button
-                onPress={showTimepicker}
+                onPress={showStartTimepicker}
                 title="Show time picker"
                 color="#007F5F"
                 style={styles.button}
@@ -71,7 +86,7 @@ const NewTimeslotScreen = () => {
             <View>
               <Divider />
               <Button
-                onPress={showTimepicker}
+                onPress={showEndTimepicker}
                 title="Show time picker!"
                 color="#007F5F"
                 style={styles.button}
