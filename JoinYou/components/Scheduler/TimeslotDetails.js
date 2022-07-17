@@ -4,10 +4,11 @@ import { Text } from "react-native-paper";
 
 const TimeslotDetails = (props) => {
   const { route } = props;
+  const timeslotId = route.params.timeslotId;
 
   return (
     <View>
-      <Text>Timeslot Details</Text>
+      <Text>{timeslotId}</Text>
     </View>
   );
 };
