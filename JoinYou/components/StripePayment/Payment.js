@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { Card, Text, Title } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../../src/AuthProvider";
 
 //ADD localhost address of your server
 const API_URL = "http://localhost:19002";
@@ -24,6 +25,9 @@ const Payment = (props) => {
   const videoUrl = route.params.videoUrl;
 
   const navigation = useNavigation();
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const updateTimeslot = authContext.updateTimeslot;
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -47,6 +51,7 @@ const Payment = (props) => {
     //   Alert.alert("Please enter Complete card details and Email");
     //   return;
     // } else {
+    updateTimeslot();
     Alert.alert("Payment Successful");
     navigation.replace("Payment Success", {
       profileData,

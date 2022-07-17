@@ -105,6 +105,30 @@ const AuthProvider = (props) => {
     });
   };
 
+  //Updates the Timeslot document with the client's information
+  //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
+  const updateTimeslot = async (
+    clientData,
+    timeslotId,
+    meetingDescription,
+    photoDescription,
+    photoUrl,
+    videoUrl
+  ) => {
+    const timeslotRef = doc(db, "Timeslots", timeslotId);
+
+    // Set the "interests" field of the user
+    await updateDoc(timeslotRef, {
+      // booked: true,
+      clientId: clientData.uid,
+      clientName: clientData.displayName,
+      meetingDescription: meetingDescription,
+      photoDescription: photoDescription,
+      photoUrl: photoUrl,
+      videoUrl: videoUrl,
+    });
+  };
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       console.log("onAuthStateChanged() - new User!!", user);
@@ -121,6 +145,7 @@ const AuthProvider = (props) => {
     createUserData,
     updateUserData,
     updateUserInterests,
+    updateTimeslot,
   };
 
   return (
