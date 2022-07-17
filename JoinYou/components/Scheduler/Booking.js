@@ -44,7 +44,12 @@ const Booking = (props) => {
         where("influencerId", "==", profileID)
       );
       const querySnapshot = await getDocs(q);
-      const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
+      const timeslotArray = querySnapshot.docs.map((doc) => {
+        return {
+          ...doc.data(),
+          DOC_ID: doc.id,
+        };
+      });
 
       //Second filter. Filtering by booked = false
       const filteredByAvailable = timeslotArray.filter((timeslot) => {
@@ -74,13 +79,17 @@ const Booking = (props) => {
         return momentDate === selectedDate;
       })
       .map((timeslot) => {
-        return moment.unix(timeslot.startTime.seconds).format("h:mm a");
+        return {
+          ...timeslot,
+          startTime: moment.unix(timeslot.startTime.seconds).format("h:mm a"),
+        };
       });
 
     setAvailableSlots(timeslots);
   }, [selectedDate]);
 
-  console.log("availableSlots", availableSlots);
+  // console.log("selectedDate: ", selectedDate);
+  // console.log("availableSlots", availableSlots);
   // let dateString = moment
   //   .unix(timeslotData.startTime.seconds)
   //   .format("MM/DD/YYYY");
@@ -88,11 +97,13 @@ const Booking = (props) => {
 
   // console.log("profileData is: ", profileData);
   // console.log("timeslotData is: ", timeslotData);
-  //console.log("selectedSlot is: ", selectedSlot);
+
+  // console.log("selectedDate is: ", selectedDate);
+  // console.log("selectedSlot is: ", selectedSlot);
 
   function pressHandler(calendarDate) {
     let dateString = moment(calendarDate).format("MM/DD/YYYY");
-    console.log("dateString is: ", dateString);
+    // console.log("dateString is: ", dateString);
     setSelectedDate(dateString);
   }
 
@@ -118,7 +129,7 @@ const Booking = (props) => {
 
   //   data.length to return # of available pos.
   function slotsInfo(data) {
-    console.log("data", data);
+    //console.log("data", data);
     if (data.length == 0) {
       return (
         <View>
@@ -149,9 +160,9 @@ const Booking = (props) => {
           <Chip
             style={styles.chip}
             onPress={() => {
-              setSelectedSlot(`${item}`);
+              setSelectedSlot(item);
               setBook(true);
-              console.log("selectedSlot", selectedSlot);
+              //console.log("selectedSlot", selectedSlot);
             }}
           >
             <Text
@@ -159,7 +170,7 @@ const Booking = (props) => {
                 color: "white",
               }}
             >
-              {item}
+              {item.startTime}
             </Text>
           </Chip>
         </View>
@@ -183,7 +194,7 @@ const Booking = (props) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          setSelectedSlot(`${item} `);
+          setSelectedSlot(item);
           setBook(true);
         }}
       >
@@ -194,7 +205,7 @@ const Booking = (props) => {
             ...styles.slotContainerStyle,
           }}
         >
-          <Text>{item}</Text>
+          <Text>{item.startTime}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -210,6 +221,7 @@ const Booking = (props) => {
             navigation.navigate("Confirmation", {
               selectedSlot,
               selectedDate,
+              profileData,
             });
           }}
         >
@@ -289,7 +301,7 @@ const Booking = (props) => {
       }
     </View>
   );
-};
+};;;;;;;;;
 
 const styles = StyleSheet.create({
   dividerStyle: {

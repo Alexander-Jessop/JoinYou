@@ -20,12 +20,13 @@ import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
 // Profile
 import ProfileScreen from "../Screens/profile/ProfileScreen";
 // image
-import AddImg from "../Screens/StillImg/AddImg";
+import ImgForm from "../components/UserImg/ImgForm";
 import Recording from "../components/VideoCamera/Recording";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
 import Something from "../Something";
 //payment
 import Payment from "../components/StripePayment/Payment";
+import PaymentSuccess from "../components/StripePayment/PaymentSucess";
 
 const Stack = createNativeStackNavigator();
 
@@ -89,8 +90,13 @@ const RestOfApp = () => {
           <Stack.Screen name="Confirmation" component={ConfirmationPage} />
           <Stack.Screen name="Appointment" component={AgendaView} />
           <Stack.Screen name="Video" component={Recording} />
-          <Stack.Screen name="Photo" component={AddImg} />
+          <Stack.Screen name="Photo" component={ImgForm} />
           <Stack.Screen name="Payment" component={Payment} />
+          <Stack.Screen
+            name="Payment Success"
+            component={PaymentSuccess}
+            options={{ header: () => null }}
+          />
           <Stack.Screen name="Timeslot" component={TimeslotDetails} />
           <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>

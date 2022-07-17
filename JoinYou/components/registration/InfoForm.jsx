@@ -69,7 +69,12 @@ const InfoForm = (props) => {
       </View>
 
       <Text>{"\n"}</Text>
-      <Button title="Continue" onPress={onContinueHandler}>
+      <Button
+        color="#007F5F"
+        mode="contained"
+        title="Continue"
+        onPress={onContinueHandler}
+      >
         Continue
       </Button>
     </View>

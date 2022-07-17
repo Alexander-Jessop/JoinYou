@@ -50,7 +50,12 @@ const TagsForm = () => {
         );
       })}
       <Text>{"\n"}</Text>
-      <Button title="Finish" onPress={onFinishHandler}>
+      <Button
+        color="#007F5F"
+        mode="contained"
+        title="Finish"
+        onPress={onFinishHandler}
+      >
         Finish
       </Button>
     </View>
