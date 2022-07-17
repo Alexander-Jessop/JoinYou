@@ -47,6 +47,7 @@ const CategoryDropdown = (props) => {
       <List.Section>
         <List.Accordion
           title={selectedCategory}
+          titleStyle={{ color: "#007F5F" }}
           left={(props) => <List.Icon {...props} />}
           expanded={expanded}
           onPress={handlePress}
