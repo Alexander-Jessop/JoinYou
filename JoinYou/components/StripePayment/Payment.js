@@ -65,10 +65,14 @@ const Payment = (props) => {
 
   const handlePayPress = async () => {
     //1.Gather the customer's billing information (e.g., email)
+
+    //temporarily commented out to save time
     // if (!cardDetails?.complete || !email) {
     //   Alert.alert("Please enter Complete card details and Email");
     //   return;
     // } else {
+
+    //eventually replace this with cloud function
     updateTimeslot(
       selectedSlot.DOC_ID,
       profile,
