@@ -29,7 +29,7 @@ const DataList = (props) => {
             >
               <Card.Content>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View style={{ marginRight: 35 }}>
+                  <View style={{ marginRight: 37.5 }}>
                     <Avatar.Text
                       size={75}
                       label={expert.displayName?.substring(0, 1)}
