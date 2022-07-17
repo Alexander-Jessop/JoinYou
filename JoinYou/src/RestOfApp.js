@@ -91,7 +91,11 @@ const RestOfApp = () => {
           <Stack.Screen name="Video" component={Recording} />
           <Stack.Screen name="Photo" component={ImgForm} />
           <Stack.Screen name="Payment" component={Payment} />
-          <Stack.Screen name="Payment Success" component={PaymentSuccess} />
+          <Stack.Screen
+            name="Payment Success"
+            component={PaymentSuccess}
+            options={{ header: () => null }}
+          />
           <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>
       </NavigationContainer>
