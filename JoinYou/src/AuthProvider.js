@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { FirebaseContext } from "./FirebaseProvider";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
@@ -109,6 +109,48 @@ const AuthProvider = (props) => {
     });
   };
 
+  //Updates the Timeslot document with the client's information
+  //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
+  const updateTimeslot = async (
+    timeslotId,
+    clientProfile,
+    meetingDescription,
+    photoDescription,
+    photoUrl,
+    videoUrl
+  ) => {
+    try {
+      console.log("Updating timeslot...");
+      const timeslotRef = doc(db, "Timeslots", timeslotId);
+
+      //if photoDescription/photoUrl/videoUrl are empty, set them to null
+      //(doing this prevents an error from the updateDoc() function)
+      if (!photoDescription) {
+        photoDescription = null;
+      }
+      if (!photoUrl) {
+        photoUrl = null;
+      }
+      if (!videoUrl) {
+        videoUrl = null;
+      }
+
+      //update the timeslot document
+      await updateDoc(timeslotRef, {
+        // booked: true,
+        clientId: clientProfile.uid,
+        clientName: clientProfile.displayName,
+        meetingDescription: meetingDescription,
+        photoDescription: photoDescription,
+        photoUrl: photoUrl,
+        videoUrl: videoUrl,
+      });
+      console.log("Succesfully updated timeslot", timeslotId);
+    } catch (err) {
+      console.log("Error updating timeslot", err);
+    }
+  };
+
   //Sets the user data from Firebase Authentication user
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -126,14 +168,16 @@ const AuthProvider = (props) => {
 
   //Sets the profile data from the Firestore Database user
   useEffect(() => {
-    const getData = async () => {
-      //Get a single document from Firestore databse, by UID
-      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      setProfile(docSnap.data());
-    };
-    getData();
+    if (user) {
+      const getData = async () => {
+        //Get a single document from Firestore databse, by UID
+        //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        setProfile(docSnap.data());
+      };
+      getData();
+    }
   }, [user]);
 
   const theValues = {
@@ -145,6 +189,7 @@ const AuthProvider = (props) => {
     createUserData,
     updateUserData,
     updateUserInterests,
+    updateTimeslot,
   };
 
   return (

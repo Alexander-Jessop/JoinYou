@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+import { Card, Text, Title } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../../src/AuthProvider";
+import { doc, getDoc } from "firebase/firestore";
+import { FirebaseContext } from "../../src/FirebaseProvider";
 
 //ADD localhost address of your server
 const API_URL = "http://localhost:19002";
@@ -13,6 +18,23 @@ const StripeProvider = () => {
 };
 
 const Payment = (props) => {
+  const { route } = props;
+  const profileData = route.params.profileData;
+  const selectedSlot = route.params.selectedSlot;
+  const selectedDate = route.params.selectedDate;
+  const meetingDescription = route.params.meetingDescription;
+  const photoUrl = route.params.photoUrl;
+  const photoDescription = route.params.photoDescription;
+  const videoUrl = route.params.videoUrl;
+
+  const navigation = useNavigation();
+  const firebaseContext = useContext(FirebaseContext);
+  const db = firebaseContext.db;
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const profile = authContext.profile;
+  const updateTimeslot = authContext.updateTimeslot;
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
@@ -31,40 +53,71 @@ const Payment = (props) => {
 
   const handlePayPress = async () => {
     //1.Gather the customer's billing information (e.g., email)
-    if (!cardDetails?.complete || !email) {
-      Alert.alert("Please enter Complete card details and Email");
-      return;
-    }
-    const billingDetails = {
-      name: name,
-      email: email,
-    };
-    //2.Fetch the intent client secret from the backend
-    try {
-      const { clientSecret, error } = await fetchPaymentIntentClientSecret();
-      //2. confirm the payment
-      if (error) {
-        console.log("Unable to process payment");
-      } else {
-        const { paymentIntent, error } = await confirmPayment(clientSecret, {
-          type: "Card",
-          billingDetails: billingDetails,
-        });
-        if (error) {
-          alert(`Payment Confirmation Error ${error.message}`);
-        } else if (paymentIntent) {
-          alert("Payment Successful");
-          console.log("Payment successful ", paymentIntent);
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    //3.Confirm the payment with the card details
+
+    //temporarily commented out to save time
+    // if (!cardDetails?.complete || !email) {
+    //   Alert.alert("Please enter Complete card details and Email");
+    //   return;
+    // } else {
+
+    //eventually replace this with cloud function
+    updateTimeslot(
+      selectedSlot.DOC_ID,
+      profile,
+      meetingDescription,
+      photoDescription,
+      photoUrl,
+      videoUrl
+    );
+    Alert.alert("Payment Successful");
+    navigation.replace("Payment Success", {
+      profileData,
+      selectedSlot,
+      selectedDate,
+    });
+    // }
+
+    // const billingDetails = {
+    //   name: name,
+    //   email: email,
+    // };
+    // //2.Fetch the intent client secret from the backend
+    // try {
+    //   const { clientSecret, error } = await fetchPaymentIntentClientSecret();
+    //   //2. confirm the payment
+    //   if (error) {
+    //     console.log("Unable to process payment");
+    //   } else {
+    //     const { paymentIntent, error } = await confirmPayment(clientSecret, {
+    //       type: "Card",
+    //       billingDetails: billingDetails,
+    //     });
+    //     if (error) {
+    //       alert(`Payment Confirmation Error ${error.message}`);
+    //     } else if (paymentIntent) {
+    //       alert("Payment Successful");
+    //       console.log("Payment successful ", paymentIntent);
+    //     }
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    // //3.Confirm the payment with the card details
   };
 
   return (
-    <View style={styles.container}>
+    <Card style={styles.container}>
+      <Title>
+        {" "}
+        {"\n"} Appointment with: {profileData.displayName}
+        {"\n"} Start Time: {selectedSlot.startTime}
+        {"\n"} Start Date: {selectedDate}
+        {"\n"} $20
+        {"\n"}
+        {"\n"}
+      </Title>
+
+      <Title>Billing Information:</Title>
       <TextInput
         autoCapitalize="none"
         placeholder="Full Name"
@@ -90,7 +143,7 @@ const Payment = (props) => {
         }}
       />
       <Button onPress={handlePayPress} title="Pay" disabled={loading} />
-    </View>
+    </Card>
   );
 };
 export default Payment;
