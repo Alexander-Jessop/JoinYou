@@ -23,7 +23,7 @@ import ProfileScreen from "../Screens/profile/ProfileScreen";
 import AddImg from "../Screens/StillImg/AddImg";
 import Recording from "../components/VideoCamera/Recording";
 import NewTimeslotScreen from "../Screens/profile/NewTimeslotScreen";
-import Twilio from "../components/Conference/Twilio";
+import Something from "../Something";
 //payment
 import Payment from "../components/StripePayment/Payment";
 
@@ -92,6 +92,7 @@ const RestOfApp = () => {
           <Stack.Screen name="Photo" component={AddImg} />
           <Stack.Screen name="Payment" component={Payment} />
           <Stack.Screen name="Timeslot" component={TimeslotDetails} />
+          <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>
       </NavigationContainer>
     );
