@@ -13,6 +13,7 @@ export const AuthContext = createContext();
 const AuthProvider = (props) => {
   const children = props.children;
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [authError, setAuthError] = useState();
 
   //Firebase context
@@ -108,6 +109,7 @@ const AuthProvider = (props) => {
     });
   };
 
+  //Sets the user data from Firebase Authentication user
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -122,6 +124,18 @@ const AuthProvider = (props) => {
     }
   }, [auth]);
 
+  //Sets the profile data from the Firestore Database user
+  useEffect(() => {
+    const getData = async () => {
+      //Get a single document from Firestore databse, by UID
+      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      setProfile(docSnap.data());
+    };
+    getData();
+  }, [user]);
+
   const theValues = {
     user,
     authError,
@@ -135,6 +149,6 @@ const AuthProvider = (props) => {
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>
   );
-};
+};;;;;;;
 
 export default AuthProvider;
