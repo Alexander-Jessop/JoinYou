@@ -5,9 +5,16 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 const DataList = (props) => {
   const navigation = useNavigation();
+  const data = props.data;
+
+  // let avatarID = profileData?.displayName?.substring(0, 1);
+  // const profileAvatar = () => (
+  //   <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
+  // );
+
   return (
     <ScrollView>
-      {props.data.map((expert) => {
+      {data.map((expert) => {
         return (
           <View style={styles.content} key={expert.uid}>
             <Card
@@ -21,11 +28,23 @@ const DataList = (props) => {
               }}
             >
               <Card.Content>
-                <Title>Name: {expert.displayName}</Title>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <View style={{ marginRight: 35 }}>
+                    <Avatar.Text
+                      size={75}
+                      label={expert.displayName?.substring(0, 1)}
+                      backgroundColor="#007F5F"
+                    />
+                  </View>
+                  <View>
+                    <Title>{expert.displayName}</Title>
 
-                <Paragraph>
-                  Expertise in: {expert.interests.join(", ")}
-                </Paragraph>
+                    <Paragraph style={{ flexShrink: 1 }}>
+                      Expertise in: {"\n"}
+                      {expert.interests.join(", ")}
+                    </Paragraph>
+                  </View>
+                </View>
               </Card.Content>
             </Card>
           </View>
@@ -33,7 +52,7 @@ const DataList = (props) => {
       })}
     </ScrollView>
   );
-};
+};;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 const styles = StyleSheet.create({
   card: {
