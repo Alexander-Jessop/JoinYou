@@ -113,7 +113,7 @@ const AuthProvider = (props) => {
   //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
   const updateTimeslot = async (
     timeslotId,
-    clientData,
+    clientProfile,
     meetingDescription,
     photoDescription,
     photoUrl,
@@ -138,8 +138,8 @@ const AuthProvider = (props) => {
       //update the timeslot document
       await updateDoc(timeslotRef, {
         // booked: true,
-        clientId: clientData.uid,
-        clientName: clientData.displayName,
+        clientId: clientProfile.uid,
+        clientName: clientProfile.displayName,
         meetingDescription: meetingDescription,
         photoDescription: photoDescription,
         photoUrl: photoUrl,

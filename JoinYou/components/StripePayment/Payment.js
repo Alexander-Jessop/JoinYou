@@ -32,20 +32,8 @@ const Payment = (props) => {
   const db = firebaseContext.db;
   const authContext = useContext(AuthContext);
   const user = authContext.user;
+  const profile = authContext.profile;
   const updateTimeslot = authContext.updateTimeslot;
-  const [profile, setProfile] = useState(null);
-
-  //Sets the profile data from the Firestore Database user
-  useEffect(() => {
-    const getData = async () => {
-      //Get a single document from Firestore databse, by UID
-      //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      setProfile(docSnap.data());
-    };
-    getData();
-  }, [user]);
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
