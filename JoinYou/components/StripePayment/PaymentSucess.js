@@ -14,12 +14,14 @@ const PaymentSuccess = (props) => {
     <View>
       <Card>
         <Title>
+          {"\n"}
+          {"\n"}
           Payment Complete!
           {"\n"}
           {"\n"}You are scheduled for an appointment with{" "}
           {profileData.displayName} at {selectedSlot.startTime} on{" "}
           {selectedDate}!{"\n"}
-          {"\n"} You can view your upcoming appointments on your profile page
+          {"\n"} You can view your upcoming appointments on your profile page.
         </Title>
       </Card>
       <Button
