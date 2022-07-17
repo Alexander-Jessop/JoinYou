@@ -138,6 +138,7 @@ const AuthProvider = (props) => {
 
   const theValues = {
     user,
+    profile,
     authError,
     login,
     logout,
