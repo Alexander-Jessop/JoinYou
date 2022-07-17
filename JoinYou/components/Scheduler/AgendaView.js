@@ -116,7 +116,10 @@ const AgendaView = (props) => {
         style={{ marginRight: 10, marginTop: 17 }}
         onPress={() => {
           console.log("item is: ", item);
-          navigation.navigate("Timeslot", { timeslotId: item.timeslotId });
+          navigation.navigate("Timeslot", {
+            timeslotId: item.timeslotId,
+            name: item.name,
+          });
         }}
       >
         <Card>

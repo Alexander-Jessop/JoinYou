@@ -97,7 +97,11 @@ const RestOfApp = () => {
             component={PaymentSuccess}
             options={{ header: () => null }}
           />
-          <Stack.Screen name="Timeslot" component={TimeslotDetails} />
+          <Stack.Screen
+            name="Timeslot"
+            component={TimeslotDetails}
+            options={{ title: "Appointment Details" }}
+          />
           <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>
       </NavigationContainer>
