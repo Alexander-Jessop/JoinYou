@@ -41,7 +41,8 @@ const DataList = (props) => {
 
                     <Text>
                       Expert in: {"\n"}
-                      {expert.interests.join(`,${"\n"}`)}
+                      {expert.interests.join(`, `)}
+                      {/* {expert.interests.join(`,${"\n"}`)} */}
                     </Text>
                   </View>
                 </View>
