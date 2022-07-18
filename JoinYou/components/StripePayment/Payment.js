@@ -38,7 +38,8 @@ const Payment = (props) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cardDetails, setCardDetails] = useState();
-  const { confirmPayment, loading } = useConfirmPayment();
+  // const { confirmPayment, loading } = useConfirmPayment();
+  const [disabled, setDisabled] = useState(false);
 
   const fetchPaymentIntentClientSecret = async () => {
     const response = await fetch(`${API_URL}/create-payment-intent`, {
@@ -61,6 +62,7 @@ const Payment = (props) => {
     // } else {
 
     //eventually replace this with cloud function
+
     updateTimeslot(
       selectedSlot.DOC_ID,
       profile,
@@ -143,9 +145,12 @@ const Payment = (props) => {
         }}
       />
       <Button
-        onPress={handlePayPress}
+        onPress={async () => {
+          setDisabled(true);
+          setTimeout(handlePayPress, 3500);
+        }}
         title="Pay"
-        disabled={loading}
+        disabled={disabled}
         color="#007F5F"
       />
     </Card>
