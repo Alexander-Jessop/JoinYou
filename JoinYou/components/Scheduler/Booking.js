@@ -122,7 +122,7 @@ const Booking = (props) => {
             <Text style={styles.userName}>{profileData.displayName} </Text>
           </View>
         </View>
-        <Text style={styles.expertise}>cost of appoint: $60 </Text>
+        <Text style={styles.expertise}>cost of appoint: $20 </Text>
       </View>
     );
   }
