@@ -54,7 +54,6 @@ const NewTimeslotScreen = (props) => {
     timeMode("time");
   };
   
-
   // ------------------------------------------------------------------
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
@@ -65,12 +64,8 @@ const NewTimeslotScreen = (props) => {
     let endDateTime = new Date(endTime).valueOf();
     let influencerName = profileData.displayName;
     let influencerId = profileData.uid;
-
-    // let x = startDateTime.getTimezoneOffset()
-    // console.log(`timezoneoffset is: `, x)
     console.log(startDateTime.valueOf());
     console.log(endDateTime.valueOf());
-
     try {
       // front end
       const sedTimeblockFunc = httpsCallable(cloudFuncs, "createTimeslots");
@@ -81,7 +76,6 @@ const NewTimeslotScreen = (props) => {
         endTime: endDateTime,
         inflId: influencerId,
       });
-
       console.log("THIS IsAFTER");
       // const data = result.data;
       setResponse("data written to newmeetings", result);
@@ -90,7 +84,6 @@ const NewTimeslotScreen = (props) => {
       console.log(`Error: -------`, ex);
     }
   };
-
 
   return (
     <View>
