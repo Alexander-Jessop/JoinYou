@@ -142,7 +142,12 @@ const Payment = (props) => {
           setCardDetails(cardDetails);
         }}
       />
-      <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+      <Button
+        onPress={handlePayPress}
+        title="Pay"
+        disabled={loading}
+        color="#007F5F"
+      />
     </Card>
   );
 };
