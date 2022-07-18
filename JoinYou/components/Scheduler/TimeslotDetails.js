@@ -31,10 +31,10 @@ const TimeslotDetails = (props) => {
   if (!timeslotData) {
     return <Text>Loading...</Text>;
   }
-  console.log(
-    "timeslotData.startTime.seconds is:",
-    moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")
-  );
+  // console.log(
+  //   "timeslotData.startTime.seconds is:",
+  //   moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")
+  // );
   return (
     <View>
       <Card>
@@ -43,11 +43,15 @@ const TimeslotDetails = (props) => {
           <Title>Client Name: {timeslotData.clientName}</Title>
           <Title>
             Start Time:{" "}
-            {moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")}
+            {moment(timeslotData?.startTime.seconds * 1000).format(
+              "h:mm a  MMMM Do. YYYY"
+            )}
           </Title>
           <Title>
             End Time:{" "}
-            {moment(timeslotData?.endTime.seconds * 1000).format("h:mm a")}
+            {moment(timeslotData?.endTime.seconds * 1000).format(
+              "h:mm a  MMMM Do. YYYY"
+            )}
           </Title>
           <Title>Meeting Description:</Title>
           <Paragraph> {timeslotData.meetingDescription}</Paragraph>
