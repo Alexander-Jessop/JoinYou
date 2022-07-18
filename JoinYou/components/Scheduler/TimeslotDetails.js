@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Card, Paragraph, Text, Title } from "react-native-paper";
 import { FirebaseContext } from "../../src/FirebaseProvider";
+import moment from "moment";
 
 const TimeslotDetails = (props) => {
   const { route } = props;
@@ -12,7 +13,7 @@ const TimeslotDetails = (props) => {
   const firebaseContext = useContext(FirebaseContext);
   const db = firebaseContext.db;
 
-  const [timeslotData, setTimeslotData] = useState({});
+  const [timeslotData, setTimeslotData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,19 +22,33 @@ const TimeslotDetails = (props) => {
       const docRef = doc(db, "Timeslots", timeslotId);
       const docSnap = await getDoc(docRef);
       setTimeslotData(docSnap.data());
-      console.log("timeslotData is:", timeslotData);
     };
     getData();
   }, [timeslotId]);
 
+  console.log("timeslotId", timeslotId);
+  console.log("timeslotData is:", timeslotData);
+  if (!timeslotData) {
+    return <Text>Loading...</Text>;
+  }
+  console.log(
+    "timeslotData.startTime.seconds is:",
+    moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")
+  );
   return (
     <View>
       <Card>
         <Card.Content>
           <Title>Expert Name: {timeslotData.influencerName}</Title>
           <Title>Client Name: {timeslotData.clientName}</Title>
-          <Title>Start Time: REPLACE WITH START TIME</Title>
-          <Title>End Time: REPLACE WITH END TIME</Title>
+          <Title>
+            Start Time:{" "}
+            {moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")}
+          </Title>
+          <Title>
+            End Time:{" "}
+            {moment(timeslotData?.endTime.seconds * 1000).format("h:mm a")}
+          </Title>
           <Title>Meeting Description:</Title>
           <Paragraph> {timeslotData.meetingDescription}</Paragraph>
           <Card.Cover source={{ uri: timeslotData.photoUrl }} />
@@ -43,7 +58,7 @@ const TimeslotDetails = (props) => {
       </Card>
     </View>
   );
-};
+};;
 
 const styles = StyleSheet.create({});
 
