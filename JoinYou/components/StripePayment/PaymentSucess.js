@@ -13,7 +13,7 @@ const PaymentSuccess = (props) => {
   return (
     <View>
       <Card>
-        <Title>
+        <Title style={{ textAlign: "center" }}>
           {"\n"}
           {"\n"}
           Payment Complete!
