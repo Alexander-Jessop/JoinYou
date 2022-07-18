@@ -16,10 +16,12 @@ export default function RoomScreen({ setScreen, screens, setRoomId, roomId }) {
         <Button
           title="Join Screen"
           onPress={() => onCallOrJoin(screens.JOIN)}
+          color="#007F5F"
         />
       </View>
       <View style={styles.buttonContainer}>
         <Button
+          color="#007F5F"
           title="Call Screen"
           onPress={() => onCallOrJoin(screens.CALL)}
         />

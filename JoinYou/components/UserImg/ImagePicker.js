@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Image, Alert, Text } from "react-native";
 import {
   launchCameraAsync,
@@ -6,20 +6,39 @@ import {
   PermissionStatus,
 } from "expo-image-picker";
 import { TextInput, Button } from "react-native-paper";
-import { getStorage, ref, uploadBytes, child, put } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { areCookiesEnabled } from "@firebase/util";
+import { fbUriToFirebaseStorage } from "./ImageUpload";
+import { FirebaseContext } from "../../src/FirebaseProvider";
+import { AuthContext } from "../../src/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
-const storage = getStorage();
+const ImagePicker = (props) => {
+  const navigation = useNavigation();
 
-const ImagePicker = () => {
-  const [enteredDescription, setEnteredDescription] = useState("");
+  const profileData = props.profileData;
+  const selectedSlot = props.selectedSlot;
+  const videoUrl = props.videoUrl;
 
-  const changeDescriptionHandler = (enteredText) => {
-    setEnteredDescription(enteredText);
-    console.log(enteredText);
-  };
+  const firebaseContext = useContext(FirebaseContext);
+  const storage = firebaseContext.storage;
+
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+
+  const [photoDescription, setPhotoDescription] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
+
   const [pickedImg, setPickedImg] = useState();
+  const [uploading, setUploading] = useState(false);
+
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
+
+  const changeDescriptionHandler = (enteredText) => {
+    setPhotoDescription(enteredText);
+    console.log(enteredText);
+  };
 
   async function verifyPermissions() {
     if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
@@ -50,22 +69,50 @@ const ImagePicker = () => {
       aspect: [6, 6],
       quality: 0.75,
     });
-    setPickedImg(image.uri);
-    console.log("This is the image obj: ", image);
-    console.log(image.uri);
+    setPickedImg(image);
+    // console.log("This is the image obj: ", image);
+    // console.log(image.uri);
   };
 
   let imagePreview = <Text>No image taken yet.</Text>;
 
   if (pickedImg) {
-    imagePreview = <Image style={styles.image} source={{ uri: pickedImg }} />;
+    imagePreview = (
+      <Image style={styles.image} source={{ uri: pickedImg.uri }} />
+    );
   }
 
+  useEffect(() => {
+    if (pickedImg) {
+      Alert.alert("Image Uploaded!");
+
+      navigation.navigate("Confirmation", {
+        profileData,
+        selectedSlot,
+        photoUrl,
+        photoDescription,
+        videoUrl,
+      });
+    }
+  }, [photoUrl]);
+
   const savePhotoHandler = () => {
-    const imageRef = ref(storage, `images/${pickedImg}`);
-    uploadBytes(imageRef, pickedImg).then(() => {
-      alert("Image Uploaded");
-    });
+    if (pickedImg) {
+      fbUriToFirebaseStorage(
+        storage,
+        pickedImg,
+        "images",
+        (val) => {
+          console.log("val is: ", val);
+        },
+        (url) => {
+          setPhotoUrl(url);
+          console.log("ImagePicker: Upload complete! URL is: ", url);
+        }
+      );
+    } else {
+      Alert.alert("You must take an image before saving.");
+    }
   };
 
   console.log("pickedImg", pickedImg);
@@ -84,7 +131,7 @@ const ImagePicker = () => {
       <TextInput
         style={styles.input}
         onChangeText={changeDescriptionHandler}
-        value={enteredDescription}
+        value={photoDescription}
         label="Add A Description"
         theme={{
           colors: {
@@ -94,7 +141,17 @@ const ImagePicker = () => {
           },
         }}
       />
-      <Button onPress={savePhotoHandler} color="#007F5F" title="Submit">
+      <Button
+        onPress={() => {
+          if (pickedImg) {
+            setUploading(true);
+          }
+          savePhotoHandler();
+        }}
+        color="#007F5F"
+        title="Submit"
+        disabled={uploading}
+      >
         Submit
       </Button>
     </View>

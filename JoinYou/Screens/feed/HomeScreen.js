@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -10,6 +10,14 @@ const HomeScreen = ({ navigation }) => {
   const user = authContext.user;
 
   //const navigation = useNavigation();
+
+  useEffect(() => {
+    if (!user) {
+      navigation.reset({
+        routes: [{ name: "Login" }],
+      });
+    }
+  }, [user]);
 
   return (
     <ScrollView>
