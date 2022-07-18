@@ -30,6 +30,7 @@ const ImagePicker = (props) => {
   const [photoUrl, setPhotoUrl] = useState(null);
 
   const [pickedImg, setPickedImg] = useState();
+  const [uploading, setUploading] = useState(false);
 
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
@@ -140,7 +141,17 @@ const ImagePicker = (props) => {
           },
         }}
       />
-      <Button onPress={savePhotoHandler} color="#007F5F" title="Submit">
+      <Button
+        onPress={() => {
+          if (pickedImg) {
+            setUploading(true);
+          }
+          savePhotoHandler();
+        }}
+        color="#007F5F"
+        title="Submit"
+        disabled={uploading}
+      >
         Submit
       </Button>
     </View>

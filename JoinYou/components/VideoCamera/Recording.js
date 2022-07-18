@@ -22,6 +22,8 @@ const Recording = (props) => {
   const firebaseContext = useContext(FirebaseContext);
   const storage = firebaseContext.storage;
 
+  const [uploading, setUploading] = useState(false);
+
   let cameraRef = useRef();
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMicrophonePermission, setHasMicrophonePermission] = useState();
@@ -120,11 +122,25 @@ const Recording = (props) => {
           resizeMode="contain"
           isLoooping
         />
-        <Button title="Share" onPress={shareVideo} />
+        <Button
+          color="#007F5F"
+          title="Upload"
+          onPress={() => {
+            if (video) {
+              setUploading(true);
+            }
+            shareVideo();
+          }}
+          disabled={uploading}
+        />
         {/* {hasMediaLibraryPermission ? (
           <Button title="Save" onPress={saveVideo} />
         ) : undefined} */}
-        <Button title="Trash" onPress={() => setVideo(undefined)} />
+        <Button
+          color="#007F5F"
+          title="Trash"
+          onPress={() => setVideo(undefined)}
+        />
       </SafeAreaView>
     );
   }
@@ -133,6 +149,7 @@ const Recording = (props) => {
     <Camera style={styles.container} ref={cameraRef}>
       <View style={styles.buttonContainer}>
         <Button
+          color="#007F5F"
           title={isRecording ? "Stop Recording" : "Record Video"}
           onPress={isRecording ? stopRecording : recordVideo}
         />
