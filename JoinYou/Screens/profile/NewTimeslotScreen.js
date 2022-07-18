@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button, Card, Divider } from "react-native-paper";
 import DatepickerRange from "react-native-range-datepicker";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import BackendTimeslotCreate from "../../src/BackendTimeslotCreate";
+import { FirebaseContext } from "../../src/FirebaseProvider";
+import { httpsCallable } from "firebase/functions";
 
 // https://github.com/apaajabolehd/react-native-range-datepicker#readme
 
-const NewTimeslotScreen = () => {
+const NewTimeslotScreen = (props) => {
+  const { route } = props;
+  const profileData = route.params.profileData;
+  console.log(`profileData isNEWTIMESLOTSCREEN:`, profileData);
+
   const [startTime, setStartTime] = useState("");
   console.log("start time: ", startTime);
   const [endTime, setEndTime] = useState("");
@@ -46,6 +53,44 @@ const NewTimeslotScreen = () => {
   const showEndTimepicker = () => {
     timeMode("time");
   };
+  
+
+  // ------------------------------------------------------------------
+  const fbContext = useContext(FirebaseContext);
+  const cloudFuncs = fbContext.cloudFuncs;
+  const [response, setResponse] = useState("Havent created timeslots yet");
+
+  const doCreateTimeslots = async () => {
+    let startDateTime = new Date(startTime).valueOf();
+    let endDateTime = new Date(endTime).valueOf();
+    let influencerName = profileData.displayName;
+    let influencerId = profileData.uid;
+
+    // let x = startDateTime.getTimezoneOffset()
+    // console.log(`timezoneoffset is: `, x)
+    console.log(startDateTime.valueOf());
+    console.log(endDateTime.valueOf());
+
+    try {
+      // front end
+      const sedTimeblockFunc = httpsCallable(cloudFuncs, "createTimeslots");
+      console.log("THIS IS BEFORE");
+      const result = await sedTimeblockFunc({
+        influencerName: influencerName,
+        startTime: startDateTime,
+        endTime: endDateTime,
+        inflId: influencerId,
+      });
+
+      console.log("THIS IsAFTER");
+      // const data = result.data;
+      setResponse("data written to newmeetings", result);
+    } catch (ex) {
+      console.error(ex);
+      console.log(`Error: -------`, ex);
+    }
+  };
+
 
   return (
     <View>
@@ -95,9 +140,11 @@ const NewTimeslotScreen = () => {
               </Button>
             </View>
           </View>
-          <Button mode="contained" color="#007F5F" style={styles.submit}>
+            <View>
+          <Button mode="contained" color="#007F5F" style={styles.submit} onPress={doCreateTimeslots}>
             Submit
           </Button>
+          </View>
         </Card.Content>
       </Card>
     </View>

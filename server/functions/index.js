@@ -9,8 +9,9 @@ const firestore = getFirestore(app);
 export const createTimeslots = functions.https.onCall(
   async (data, context) => {
     try{
-    console.log("CONTEXT IS =================", context.auth.token);
+    // console.log("CONTEXT IS =================", context.auth.token);
     let influencerUid = context.auth.uid;
+    let influencerName = data.influencerName
     let influencerEmail = context.auth.token.email;
     let startTime = data.startTime.valueOf();
     let endTime = data.endTime.valueOf();
@@ -29,13 +30,14 @@ export const createTimeslots = functions.https.onCall(
       // do the firebase create timeslot for each meeting here
       let meetingCollRef2 = firestore.collection("Timeslots");
       let docSnap2 = await meetingCollRef2.add({
-        influencerUid: influencerUid,
+        influencerId: influencerUid,
+        influencerName: influencerName, 
         influencerEmail: influencerEmail,
-        meetingEnd: meeting.end,
-        meetingStart: meeting.start,
+        endTime: meeting.end,
+        startTime: meeting.start,
         booked: false,
-        clientID: '',
-        clientName: '',
+        clientId: null,
+        clientName: null,
       });
 
       console.log(`*******the new docID is:*******`, docSnap2.id);

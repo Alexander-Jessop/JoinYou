@@ -4,8 +4,6 @@ import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import MainList from "../../components/feed/MainList";
 import { Text, Button } from "react-native-paper";
-import BackendTimeslotCreate from "../../src/TSTBackendTimeslotCreate";
-import ClientAppointmentSelection from "../../src/TSTClientAppointmentSelection";
 
 const HomeScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
@@ -36,8 +34,6 @@ const HomeScreen = ({ navigation }) => {
       </Button>
 
       <MainList />
-      <BackendTimeslotCreate />
-      <ClientAppointmentSelection />
       
     </ScrollView>
   );

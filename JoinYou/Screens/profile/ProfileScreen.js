@@ -68,7 +68,7 @@ const ProfileScreen = (props) => {
           <Button
             style={styles.button}
             color="#007F5F"
-            onPress={() => navigation.navigate("Set Availability")}
+            onPress={() => navigation.navigate("Set Availability", {profileData: profileData})}
           >
             Set Availability
           </Button>
