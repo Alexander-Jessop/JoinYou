@@ -20,7 +20,8 @@ const Booking = (props) => {
   // FUNCTION TO GET INFLUENCERS DATA SUCH AS IMAGE NAME EXPERIECE ETC FROM FIREBASE BASED ON PROFILE ID
 
   const [selectedSlot, setSelectedSlot] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDateFormat, setSelectedDateFormat] = useState();
   const [availableDates, setAvailableDates] = useState([]);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [book, setBook] = useState(false);
@@ -62,12 +63,18 @@ const Booking = (props) => {
         //console.log("timeslot", timeslot);
         return moment.unix(timeslot.startTime.seconds);
       });
-      setAvailableDates(datesAvailable);
+
+      let sortedDates = datesAvailable.sort((a, b) => {
+        a > b;
+      });
+
+      setAvailableDates(sortedDates);
       //console.log("datesAvailable", datesAvailable);
     };
     getData();
   }, [profileID]);
 
+  console.log("availableDates is: ", availableDates);
   useEffect(() => {
     let timeslots = timeslotData
       .filter((timeslot) => {
@@ -103,8 +110,10 @@ const Booking = (props) => {
 
   function pressHandler(calendarDate) {
     let dateString = moment(calendarDate).format("MM/DD/YYYY");
+    let dateFormat = moment(dateString, "MM/DD/YYYY");
     // console.log("dateString is: ", dateString);
     setSelectedDate(dateString);
+    setSelectedDateFormat(dateFormat);
   }
 
   let avatarID = profileData?.displayName?.substring(0, 1);
@@ -267,6 +276,8 @@ const Booking = (props) => {
             onDateSelected={(day) => {
               pressHandler(day);
             }}
+            selectedDate={selectedDateFormat}
+            // startingDate={new Date()}
           />
         </View>
       </View>
