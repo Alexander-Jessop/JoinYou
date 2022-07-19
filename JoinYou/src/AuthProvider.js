@@ -137,7 +137,7 @@ const AuthProvider = (props) => {
 
       //update the timeslot document
       await updateDoc(timeslotRef, {
-        // booked: true,
+        booked: true,
         clientId: clientProfile.uid,
         clientName: clientProfile.displayName,
         meetingDescription: meetingDescription,
