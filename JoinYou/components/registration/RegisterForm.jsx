@@ -13,6 +13,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [displayEye, setDisplayEye] = useState(false);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -129,8 +130,9 @@ const RegisterForm = () => {
                 }}
                 right={
                   <TextInput.Icon
-                    name="eye-off-outline"
+                    name={showPass ? "eye-off-outline" : "eye-outline"}
                     onPress={togglePasswordVis}
+                    color="#007F5F"
                   />
                 }
                 style={styles.input}
@@ -157,7 +159,8 @@ const RegisterForm = () => {
                 }}
                 right={
                   <TextInput.Icon
-                    name="eye-off-outline"
+                    color="#007F5F"
+                    name={showPass ? "eye-off-outline" : "eye-outline"}
                     onPress={togglePasswordVis}
                   />
                 }

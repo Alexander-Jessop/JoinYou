@@ -61,8 +61,9 @@ const LoginForm = () => {
               }}
               right={
                 <TextInput.Icon
-                  name="eye-off-outline"
+                  name={showPass ? "eye-off-outline" : "eye-outline"}
                   onPress={togglePasswordVis}
+                  color="#007F5F"
                 />
               }
               style={styles.input}
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     color: "#007F5F",
     alignItems: "center",
+
     // textAlign: "center", move the title to the middle
   },
 });
