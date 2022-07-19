@@ -9,8 +9,15 @@ import {
 } from "react-native";
 import CalendarStrip from "react-native-calendar-strip";
 import { FirebaseContext } from "../../src/FirebaseProvider";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import moment from "moment";
 import { Button, Chip, Avatar } from "react-native-paper";
 
@@ -29,11 +36,40 @@ const Booking = (props) => {
 
   const { navigation, route } = props;
 
-  const profileData = route.params.profileData;
-  const profileID = profileData.uid;
+  const profileID = route.params.profileID;
+
+  const [profileData, setProfileData] = useState(null);
 
   const fbContext = useContext(FirebaseContext);
   const db = fbContext.db;
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+
+  //checks if user uid is the same as profile id, if so, navigate to profile
+  //this prevents an influencer from visiting their own booking page
+  useEffect(() => {
+    if (user) {
+      if (user.uid === profileID) {
+        navigation.navigate("Profile", {
+          profileID: user.uid,
+        });
+      }
+    }
+  }, [user]);
+
+  //retrieves profile data from firebase based on profile ID
+  useEffect(() => {
+    if (profileID) {
+      const getData = async () => {
+        //Get a single document from Firestore databse, by UID
+        //https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
+        const docRef = doc(db, "users", profileID);
+        const docSnap = await getDoc(docRef);
+        setProfileData(docSnap.data());
+      };
+      getData();
+    }
+  }, [profileID]);
 
   useEffect(() => {
     //Get multiple documents from a collection with a filter.
@@ -74,7 +110,7 @@ const Booking = (props) => {
     getData();
   }, [profileID]);
 
-  console.log("availableDates is: ", availableDates);
+  // console.log("availableDates is: ", availableDates);
   useEffect(() => {
     let timeslots = timeslotData
       .filter((timeslot) => {
@@ -122,18 +158,20 @@ const Booking = (props) => {
   );
 
   function influencerInfo() {
-    return (
-      <View>
-        <View>{/* pull avatar from database and set in a view */}</View>
+    if (profileData) {
+      return (
         <View>
+          <View>{/* pull avatar from database and set in a view */}</View>
           <View>
-            <Text style={styles.avatar}> {profileAvatar()} </Text>
-            <Text style={styles.userName}>{profileData.displayName} </Text>
+            <View>
+              <Text style={styles.avatar}> {profileAvatar()} </Text>
+              <Text style={styles.userName}>{profileData.displayName} </Text>
+            </View>
           </View>
+          <Text style={styles.expertise}>cost of appoint: $20 </Text>
         </View>
-        <Text style={styles.expertise}>cost of appoint: $20 </Text>
-      </View>
-    );
+      );
+    }
   }
 
   //   data.length to return # of available pos.

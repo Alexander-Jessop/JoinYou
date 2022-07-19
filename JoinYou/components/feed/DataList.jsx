@@ -22,7 +22,7 @@ const DataList = (props) => {
               key={expert.uid}
               style={styles.card}
               onPress={() => {
-                navigation.navigate("Profile", {
+                navigation.navigate("Booking", {
                   profileID: expert.uid,
                 });
               }}
