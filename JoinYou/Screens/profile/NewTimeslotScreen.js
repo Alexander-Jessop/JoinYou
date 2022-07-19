@@ -3,9 +3,10 @@ import { Text, View, StyleSheet } from "react-native";
 import { Button, Card, Divider } from "react-native-paper";
 import DatepickerRange from "react-native-range-datepicker";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import BackendTimeslotCreate from "../../src/BackendTimeslotCreate";
+// import BackendTimeslotCreate from "../../src/BackendTimeslotCreate";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { httpsCallable } from "firebase/functions";
+import moment from "moment";
 
 // https://github.com/apaajabolehd/react-native-range-datepicker#readme
 
@@ -13,12 +14,43 @@ const NewTimeslotScreen = (props) => {
   const { route } = props;
   const profileData = route.params.profileData;
   console.log(`profileData isNEWTIMESLOTSCREEN:`, profileData);
-
+  const [selectedDate, setSelectedDate] = useState("");
   const [startTime, setStartTime] = useState("");
   console.log("start time: ", startTime);
+  console.log(
+    "start time in database:",
+    moment(startTime).format("MM/DD/YYYY")
+  );
+  console.log("selectedDate is: ", selectedDate);
   const [endTime, setEndTime] = useState("");
   console.log("end time: ", endTime);
+  let shortHandDate = JSON.stringify(selectedDate);
+  let timeStampDate = shortHandDate.split("T")[0];
+  let timeStampStart = moment(startTime).format("hh:mm:ss a");
+  let timeStampEnd = moment(endTime).format("hh:mm:ss a");
+  console.log("timeStampStart", timeStampStart);
+  console.log("timeStampEnd", timeStampEnd);
 
+  let endMomentStringFormat = `${timeStampDate} ${timeStampEnd}`;
+  let momentStringFormat = `${timeStampDate} ${timeStampStart}`;
+  console.log("endMomentStringFormat", endMomentStringFormat);
+  console.log("momentStringFormat", momentStringFormat);
+  let finalStartTimeTimeStamp = moment(
+    momentStringFormat,
+    "YYYY-MM-DD hh:mm:ss"
+  );
+  let finalEndTimeTimeStamp = moment(
+    endMomentStringFormat,
+    "YYYY-MM-DD hh:mm:ss"
+  );
+  let startTimeSeconds = finalStartTimeTimeStamp.unix();
+  let endTimeSeconds = finalEndTimeTimeStamp.unix();
+  console.log("EndtimeSeconds", endTimeSeconds);
+  console.log("startTimeSeconds", startTimeSeconds);
+  console.log("finalStartTimeTimeStamp", finalStartTimeTimeStamp);
+  console.log("finalEndTimeTimeStamp", finalEndTimeTimeStamp);
+  console.log("timeStampDate is: ", timeStampDate);
+  console.log("shortHandDate is : ", shortHandDate);
   const [date, setDate] = useState(new Date(1598051730000));
 
   const onChange = (event, selectedDate) => {
@@ -53,15 +85,15 @@ const NewTimeslotScreen = (props) => {
   const showEndTimepicker = () => {
     timeMode("time");
   };
-  
+
   // ------------------------------------------------------------------
   const fbContext = useContext(FirebaseContext);
   const cloudFuncs = fbContext.cloudFuncs;
   const [response, setResponse] = useState("Havent created timeslots yet");
 
   const doCreateTimeslots = async () => {
-    let startDateTime = new Date(startTime).valueOf();
-    let endDateTime = new Date(endTime).valueOf();
+    let startDateTime = finalStartTimeTimeStamp.valueOf();
+    let endDateTime = finalEndTimeTimeStamp.valueOf();
     let influencerName = profileData.displayName;
     let influencerId = profileData.uid;
     console.log(startDateTime.valueOf());
@@ -104,9 +136,10 @@ const NewTimeslotScreen = (props) => {
               onConfirm={(startDate, untilDate) =>
                 this.setState({ startDate, untilDate })
               }
-              onSelect={(startDate, untilDate) =>
-                console.log("startDate, untilDate", startDate, untilDate)
-              }
+              onSelect={(startDate, untilDate) => {
+                console.log("startDate, untilDate", startDate, untilDate);
+                setSelectedDate(startDate);
+              }}
             />
           </View>
           <View style={styles.timePicker}>
@@ -133,10 +166,15 @@ const NewTimeslotScreen = (props) => {
               </Button>
             </View>
           </View>
-            <View>
-          <Button mode="contained" color="#007F5F" style={styles.submit} onPress={doCreateTimeslots}>
-            Submit
-          </Button>
+          <View>
+            <Button
+              mode="contained"
+              color="#007F5F"
+              style={styles.submit}
+              onPress={doCreateTimeslots}
+            >
+              Submit
+            </Button>
           </View>
         </Card.Content>
       </Card>

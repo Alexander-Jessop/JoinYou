@@ -301,7 +301,7 @@ const Booking = (props) => {
       }
     </View>
   );
-};;;;;;;;;
+};
 
 const styles = StyleSheet.create({
   dividerStyle: {
