@@ -156,7 +156,7 @@ const Booking = (props) => {
   function slotsTime({ slots }) {
     const renderItem = ({ item }) => {
       return (
-        <View style={styles.timeslots}>
+        <View style={styles.timeslots} key={item.DOC_ID}>
           <Chip
             style={styles.chip}
             onPress={() => {
@@ -181,7 +181,7 @@ const Booking = (props) => {
       <View>
         <FlatList
           data={slots}
-          keyExtractor={(index) => `${index}`}
+          // keyExtractor={(index) => `${index}`}
           renderItem={renderItem}
           scrollEnabled={false}
           numColumns={3}
