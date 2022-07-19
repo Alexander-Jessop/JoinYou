@@ -28,7 +28,7 @@ const Booking = (props) => {
 
   const [selectedSlot, setSelectedSlot] = useState("");
   const [selectedDate, setSelectedDate] = useState();
-  const [selectedDateFormat, setSelectedDateFormat] = useState();
+  const [selectedDateFormat, setSelectedDateFormat] = useState(new Date());
   const [availableDates, setAvailableDates] = useState([]);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [book, setBook] = useState(false);
@@ -278,15 +278,12 @@ const Booking = (props) => {
     ) : null;
   }
 
-  const datesBlacklistFunc = (date) => {
-    return date.isoWeekday() === 7;
-  };
-
   function calendar() {
     return (
       <View>
-        <View style={{}}>
+        <View>
           <CalendarStrip
+            scrollable={true}
             style={{ height: 100 }}
             highlightDateContainerStyle={{
               backgroundColor: "#007F5F",
@@ -303,19 +300,15 @@ const Booking = (props) => {
             dateNameStyle={{ color: "black", fontSize: 15.0 }}
             highlightDateNameStyle={{ color: "white", fontSize: 15.0 }}
             highlightDateNumberStyle={{ color: "white", fontSize: 17.0 }}
-            datesBlacklist={datesBlacklistFunc}
-            disabledDateOpacity={0.6}
-            disabledDateNameStyle={{ color: "gray", fontSize: 15.0 }}
-            disabledDateNumberStyle={{ color: "gray", fontSize: 17.0 }}
             useIsoWeekday={false}
-            scrollable={true}
             upperCaseDays={false}
             styleWeekend={true}
             onDateSelected={(day) => {
               pressHandler(day);
             }}
             selectedDate={selectedDateFormat}
-            // startingDate={new Date()}
+            dayComponentHeight={75}
+            startingDate={selectedDateFormat}
           />
         </View>
       </View>
@@ -354,10 +347,9 @@ const Booking = (props) => {
 
 const styles = StyleSheet.create({
   dividerStyle: {
-    backgroundColor: "grey",
+    backgroundColor: "#007F5F",
     height: 0.9,
     width: "100%",
-    color: "#007F5F",
   },
   avatar: {
     textAlign: "center",
