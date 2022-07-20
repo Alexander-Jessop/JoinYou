@@ -88,8 +88,13 @@ const Booking = (props) => {
         };
       });
 
+      //sorted by startTime
+      const sortedTimeslots = timeslotArray.sort((a, b) => {
+        return a.startTime.seconds > b.startTime.seconds;
+      });
+
       //Second filter. Filtering by booked = false
-      const filteredByAvailable = timeslotArray.filter((timeslot) => {
+      const filteredByAvailable = sortedTimeslots.filter((timeslot) => {
         return timeslot.booked === false;
       });
 
