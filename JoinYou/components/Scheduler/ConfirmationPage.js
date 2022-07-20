@@ -88,7 +88,7 @@ const ConfirmationPage = (props) => {
       </Button>
     </View>
   );
-};;
+};
 
 const styles = StyleSheet.create({
   button: {

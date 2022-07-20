@@ -28,12 +28,7 @@ const RegisterForm = () => {
   }
 
   const onContinueHandler = () => {
-    if (
-      emailIsValid &&
-      passwordIsValid &&
-      emailsAreEqual &&
-      passwordsAreEqual
-    ) {
+    if (emailIsValid && password && matchingEmail && matchingPassword) {
       Alert.alert("Account Created Succesfully!");
       navigation.replace("InfoPage");
       createUserWithEmailAndPassword(auth, email, password)
