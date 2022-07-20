@@ -16,6 +16,7 @@ const RegisterForm = () => {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [matchingPassword, setMatchingPassword] = useState(true);
+  const [matchingEmail, setMatchingEmail] = useState(true);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -27,10 +28,6 @@ const RegisterForm = () => {
   }
 
   const onContinueHandler = () => {
-    const passwordIsValid = password.length > 6;
-    const emailsAreEqual = email.toLowerCase() === confirmEmail.toLowerCase();
-    const passwordsAreEqual = password === confirmPassword;
-
     if (
       emailIsValid &&
       passwordIsValid &&
@@ -111,8 +108,9 @@ const RegisterForm = () => {
                 value={confirmEmail}
                 onChangeText={(e) => setConfirmEmail(e)}
                 label="Confirm Email"
+                onBlur={() => setMatchingEmail(!emailMatchError())}
               />
-              <HelperText type="error" visible={emailMatchError()}>
+              <HelperText type="error" visible={!matchingEmail}>
                 E-mails must match
               </HelperText>
             </View>
