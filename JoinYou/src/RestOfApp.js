@@ -14,11 +14,12 @@ import HomeScreen from "../Screens/feed/HomeScreen";
 import AgendaView from "../components/Scheduler/AgendaView";
 import Booking from "../components/Scheduler/Booking";
 import ConfirmationPage from "../components/Scheduler/ConfirmationPage";
-import TimeslotDetails from "../components/Scheduler/TimeslotDetails";
 // OnBoarding
 import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
 // Profile
 import ProfileScreen from "../Screens/profile/ProfileScreen";
+import TimeslotDetails from "../components/Scheduler/TimeslotDetails";
+import DetailsVideo from "../components/Scheduler/DetailsVideo";
 // image
 import ImgForm from "../components/UserImg/ImgForm";
 import Recording from "../components/VideoCamera/Recording";
@@ -102,6 +103,7 @@ const RestOfApp = () => {
             component={TimeslotDetails}
             options={{ title: "Appointment Details" }}
           />
+          <Stack.Screen name="Details Video" component={DetailsVideo} />
           <Stack.Screen name="Meeting" component={Something} />
         </Stack.Navigator>
       </NavigationContainer>

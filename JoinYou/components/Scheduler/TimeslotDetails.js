@@ -6,7 +6,7 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import moment from "moment";
 
 const TimeslotDetails = (props) => {
-  const { route } = props;
+  const { navigation, route } = props;
   const timeslotId = route.params.timeslotId;
   const name = route.params.name;
 
@@ -15,6 +15,8 @@ const TimeslotDetails = (props) => {
 
   const [timeslotData, setTimeslotData] = useState(null);
 
+  console.log("TIMESLOTDETAILS: timeslotData is: ", timeslotData);
+  //sets the timeslot data to the timeslot that was clicked on
   useEffect(() => {
     const getData = async () => {
       //Get a single document from Firestore databse, by UID
@@ -26,15 +28,11 @@ const TimeslotDetails = (props) => {
     getData();
   }, [timeslotId]);
 
-  console.log("timeslotId", timeslotId);
-  console.log("timeslotData is:", timeslotData);
   if (!timeslotData) {
     return <Text>Loading...</Text>;
   }
-  // console.log(
-  //   "timeslotData.startTime.seconds is:",
-  //   moment(timeslotData?.startTime.seconds * 1000).format("h:mm a")
-  // );
+
+  
   return (
     <View>
       <Card>
@@ -57,12 +55,22 @@ const TimeslotDetails = (props) => {
           <Paragraph> {timeslotData.meetingDescription}</Paragraph>
           <Card.Cover source={{ uri: timeslotData.photoUrl }} />
           <Paragraph> {timeslotData.photoDescription}</Paragraph>
-          <Button color="#007F5F"> See Video</Button>
+
+          <Button
+            color="#007F5F"
+            onPress={() => {
+              navigation.navigate("Details Video", {
+                timeslotData,
+              });
+            }}
+          >
+            See Video
+          </Button>
         </Card.Content>
       </Card>
     </View>
   );
-};;
+};;;;;;;
 
 const styles = StyleSheet.create({});
 
