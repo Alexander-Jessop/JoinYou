@@ -162,25 +162,26 @@ const Booking = (props) => {
     <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
   );
 
-  function influencerInfo() {
+  function InfluencerInfo() {
     if (profileData) {
       return (
         <View>
-          <View>{/* pull avatar from database and set in a view */}</View>
           <View>
             <View>
               <Text style={styles.avatar}> {profileAvatar()} </Text>
               <Text style={styles.userName}>{profileData.displayName} </Text>
             </View>
           </View>
-          <Text style={styles.expertise}>cost of appoint: $20 </Text>
+          <Text style={styles.expertise}>Cost of Appointment: $20 </Text>
         </View>
       );
     }
+    return null;
   }
 
   //   data.length to return # of available pos.
-  function slotsInfo(data) {
+  function SlotsInfo(props) {
+    const data = props.data;
     //console.log("data", data);
     if (data.length == 0) {
       return (
@@ -205,7 +206,8 @@ const Booking = (props) => {
     );
   }
 
-  function slotsTime({ slots }) {
+  function SlotsTime(props) {
+    const slots = props.slots;
     const renderItem = ({ item }) => {
       return (
         <View style={styles.timeslots} key={item.DOC_ID}>
@@ -263,7 +265,7 @@ const Booking = (props) => {
     );
   };
 
-  function bookingInfo() {
+  function BookingInfo() {
     return book ? (
       <View>
         <Button
@@ -283,7 +285,7 @@ const Booking = (props) => {
     ) : null;
   }
 
-  function calendar() {
+  function Calendar() {
     return (
       <View>
         <View>
@@ -313,14 +315,14 @@ const Booking = (props) => {
             }}
             selectedDate={selectedDate}
             dayComponentHeight={75}
-            startingDate={selectedDateFormat}
+            // startingDate={selectedDateFormat}
           />
         </View>
       </View>
     );
   }
 
-  function divider() {
+  function Divider() {
     return <View style={styles.dividerStyle}></View>;
   }
 
@@ -329,21 +331,21 @@ const Booking = (props) => {
       <StatusBar />
       {
         <View style={{ flex: 1 }}>
-          {influencerInfo()}
-          {calendar()}
-          {divider()}
+          <InfluencerInfo />
+          <Calendar />
+          <Divider />
           <FlatList
             ListHeaderComponent={
               <>
-                {slotsInfo(availableSlots)}
-                {slotsTime({ slots: availableSlots })}
+                <SlotsInfo data={availableSlots} />
+                <SlotsTime slots={availableSlots} />
               </>
             }
             renderItem={renderItem}
             keyExtractor={(index) => `${index}`}
             numColumns={3}
           />
-          {bookingInfo()}
+          <BookingInfo />
         </View>
       }
     </View>
