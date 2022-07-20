@@ -313,9 +313,9 @@ const Booking = (props) => {
             onDateSelected={(day) => {
               pressHandler(day);
             }}
-            selectedDate={selectedDate}
+            selectedDate={selectedDateFormat}
             dayComponentHeight={75}
-            // startingDate={selectedDateFormat}
+            startingDate={selectedDateFormat}
           />
         </View>
       </View>
