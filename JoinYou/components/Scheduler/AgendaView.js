@@ -33,7 +33,12 @@ const AgendaView = (props) => {
         where(`${typeOfUser}Id`, "==", ID)
       );
       const querySnapshot = await getDocs(q);
-      const timeslotArray = querySnapshot.docs.map((doc) => doc.data());
+      const timeslotArray = querySnapshot.docs.map((doc) => {
+        return {
+          ...doc.data(),
+          DOC_ID: doc.id,
+        };
+      });
 
       //Second filter. Filtering by confirmed appointments only.
       const filteredByConfirmed = timeslotArray.filter((timeslot) => {
@@ -54,7 +59,7 @@ const AgendaView = (props) => {
 
       confirmedAppointments?.forEach((timeslot) => {
         const seconds = timeslot?.startTime.seconds;
-        // const name = timeslot?.displayName;
+        const timeslotId = timeslot?.DOC_ID;
         const influencerName = timeslot?.influencerName;
         const clientName = timeslot?.clientName;
         const time = moment.unix(seconds).format("h:mmA");
@@ -62,7 +67,10 @@ const AgendaView = (props) => {
 
         if (typeOfUser === "influencer") {
           if (newAgenda[day]) {
-            newAgenda[day].push({ name: `${time} with ${clientName}` });
+            newAgenda[day].push({
+              name: `${time} with ${clientName}`,
+              timeslotId: timeslotId,
+            });
           } else {
             newMarkedDates[day] = {
               marked: true,
@@ -70,12 +78,17 @@ const AgendaView = (props) => {
               disabled: false,
               selectedColor: "#007F5F",
             };
-            newAgenda[day] = [{ name: `${time} with ${clientName} ` }];
+            newAgenda[day] = [
+              { name: `${time} with ${clientName} `, timeslotId: timeslotId },
+            ];
           }
         }
         if (typeOfUser === "client") {
           if (newAgenda[day]) {
-            newAgenda[day].push({ name: `${time} with ${influencerName}` });
+            newAgenda[day].push({
+              name: `${time} with ${influencerName}`,
+              timeslotId: timeslotId,
+            });
           } else {
             newMarkedDates[day] = {
               marked: true,
@@ -83,7 +96,12 @@ const AgendaView = (props) => {
               selectedColor: "#007F5F",
               selectedDotColor: "white",
             };
-            newAgenda[day] = [{ name: `${time} with ${influencerName} ` }];
+            newAgenda[day] = [
+              {
+                name: `${time} with ${influencerName} `,
+                timeslotId: timeslotId,
+              },
+            ];
           }
         }
       });
@@ -94,7 +112,16 @@ const AgendaView = (props) => {
 
   const renderItem = (item) => {
     return item ? (
-      <TouchableOpacity style={{ marginRight: 10, marginTop: 17 }}>
+      <TouchableOpacity
+        style={{ marginRight: 10, marginTop: 17 }}
+        onPress={() => {
+          console.log("item is: ", item);
+          navigation.navigate("Timeslot", {
+            timeslotId: item.timeslotId,
+            name: item.name,
+          });
+        }}
+      >
         <Card>
           <Card.Content>
             <View
