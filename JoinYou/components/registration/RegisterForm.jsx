@@ -13,7 +13,9 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [displayEye, setDisplayEye] = useState(false);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [matchingPassword, setMatchingPassword] = useState(true);
   const navigation = useNavigation();
   const auth = getAuth();
 
@@ -25,7 +27,6 @@ const RegisterForm = () => {
   }
 
   const onContinueHandler = () => {
-    const emailIsValid = email.includes("@");
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email.toLowerCase() === confirmEmail.toLowerCase();
     const passwordsAreEqual = password === confirmPassword;
@@ -55,13 +56,13 @@ const RegisterForm = () => {
     return !email.includes("@");
   };
   const emailMatchError = () => {
-    return !email === !confirmEmail;
+    return email !== confirmEmail;
   };
   const hasErrors = () => {
     return password.length < 7;
   };
   const passwordMatchError = () => {
-    return !password === !confirmPassword;
+    return password !== confirmPassword;
   };
 
   const togglePasswordVis = () => {
@@ -89,12 +90,11 @@ const RegisterForm = () => {
                 value={email}
                 onChangeText={(e) => setEmail(e)}
                 label="Email"
-                onBlur={() => (
-                  <HelperText type="error" visible={emailHasErrors()}>
-                    Must be a valid e-mail address
-                  </HelperText>
-                )}
+                onBlur={() => setEmailIsValid(!emailHasErrors())}
               />
+              <HelperText type="error" visible={!emailIsValid}>
+                Must be a valid e-mail address
+              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your email address:</Text>
             <View>
@@ -111,12 +111,10 @@ const RegisterForm = () => {
                 value={confirmEmail}
                 onChangeText={(e) => setConfirmEmail(e)}
                 label="Confirm Email"
-                onBlur={() => (
-                  <HelperText type="error" visible={emailMatchError()}>
-                    E-mails must match
-                  </HelperText>
-                )}
               />
+              <HelperText type="error" visible={emailMatchError()}>
+                E-mails must match
+              </HelperText>
             </View>
             <View>
               <Text style={styles.text}>Enter your password:</Text>
@@ -140,12 +138,11 @@ const RegisterForm = () => {
                 onChangeText={(e) => setPassword(e)}
                 label="Password"
                 secureTextEntry={showPass ? false : true}
-                onBlur={() => (
-                  <HelperText type="error" visible={hasErrors()}>
-                    Password must be at least 7 characters
-                  </HelperText>
-                )}
+                onBlur={() => setPasswordIsValid(!hasErrors())}
               />
+              <HelperText type="error" visible={!passwordIsValid}>
+                Password must be at least 7 characters
+              </HelperText>
             </View>
             <Text style={styles.text}>Confirm your password:</Text>
             <View>
@@ -169,12 +166,11 @@ const RegisterForm = () => {
                 onChangeText={(e) => setConfirmPassword(e)}
                 label="Confirm Password"
                 secureTextEntry={showPass ? false : true}
-                onBlur={() => (
-                  <HelperText type="error" visible={passwordMatchError()}>
-                    Password must be the same
-                  </HelperText>
-                )}
+                onBlur={() => setMatchingPassword(!passwordMatchError())}
               />
+              <HelperText type="error" visible={!matchingPassword}>
+                Password must be the same
+              </HelperText>
             </View>
             <Button
               mode="contained"
