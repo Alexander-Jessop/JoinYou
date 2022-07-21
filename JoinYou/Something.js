@@ -12,15 +12,15 @@ import RoomScreen from "./theScreens/RoomScreen";
 // import CallScreen from "./screens/CallScreen";
 // import JoinScreen from "./screens/JoinScreen";
 
-export default function Something() {
+export default function Something(navigate, route) {
   const screens = {
     ROOM: "JOIN_ROOM",
     CALL: "CALL",
     JOIN: "JOIN",
   };
-
+  let roomId = route.params.roomId;
   const [screen, setScreen] = useState(screens.ROOM);
-  const [roomId, setRoomId] = useState("");
+  // const [roomId, setRoomId] = useState("");
 
   let content;
 
@@ -29,7 +29,7 @@ export default function Something() {
       content = (
         <RoomScreen
           roomId={roomId}
-          setRoomId={setRoomId}
+          // setRoomId={setRoomId}
           screens={screens}
           setScreen={setScreen}
         />

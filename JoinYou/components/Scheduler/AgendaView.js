@@ -135,7 +135,11 @@ const AgendaView = (props) => {
               <Button
                 color="#007F5F"
                 title="Join"
-                onPress={() => navigation.navigate("Meeting")}
+                onPress={() =>
+                  navigation.navigate("Meeting", {
+                    timeslotId: item.timeslotId,
+                  })
+                }
               />
             </View>
           </Card.Content>
