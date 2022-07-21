@@ -104,9 +104,8 @@ const Booking = (props) => {
         return timeslot.booked === false;
       });
 
-      if (isRendered)
-        //console.log("filteredByAvailable: ", filteredByAvailable);
-        setTimeslotData(filteredByAvailable);
+      //console.log("filteredByAvailable: ", filteredByAvailable);
+      setTimeslotData(filteredByAvailable);
 
       let datesAvailable = filteredByAvailable.map((timeslot) => {
         //console.log("timeslot", timeslot);
@@ -120,12 +119,8 @@ const Booking = (props) => {
       setAvailableDates(sortedDates);
       //console.log("datesAvailable", datesAvailable);
     };
-    if (isRendered) {
-      getData();
-    }
-    return () => {
-      isRendered = false;
-    };
+    getData();
+ 
   }, [profileID]);
 
   // console.log("availableDates is: ", availableDates);
