@@ -21,28 +21,28 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Button
-        title="See My Profile Page"
-        color="#007F5F"
-        onPress={() =>
-          navigation.navigate("Profile", {
-            profileID: user.uid,
-          })
-        }
-      >
-        See My Profile Page
-      </Button>
-
-      <Button
-        color="#007F5F"
-        title="See all categories"
-        onPress={() => navigation.navigate("Categories")}
-      >
-        Filter By Category
-      </Button>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Button
+          color="#007F5F"
+          title="Filter By Category"
+          onPress={() => navigation.navigate("Categories")}
+        >
+          Filter By Category
+        </Button>
+        <Button
+          title="Profile Page"
+          color="#007F5F"
+          onPress={() =>
+            navigation.navigate("Profile", {
+              profileID: user.uid,
+            })
+          }
+        >
+          Profile Page
+        </Button>
+      </View>
 
       <MainList />
-      
     </ScrollView>
   );
 };

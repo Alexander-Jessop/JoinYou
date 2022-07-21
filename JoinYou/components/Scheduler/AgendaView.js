@@ -127,7 +127,7 @@ const AgendaView = (props) => {
           });
         }}
       >
-        <Card>
+        <Card style={{ backgroundColor: "#D4F2EA" }}>
           <Card.Content>
             <View
               style={{
@@ -164,11 +164,14 @@ const AgendaView = (props) => {
         markedDates={markedDates}
         pastScrollRange={30}
         futureScrollRange={90}
+        // style={{ backgroundColor: "#D4F2EA" }}
         theme={{
           dotColor: "#007F5F",
           agendaDayNumColor: "#007F5F",
           agendaTodayColor: "#007F5F",
           agendaDayTextColor: "#007F5F",
+          backgroundColor: "white",
+          // agendaBackgroundColor: "#D4F2EA",
         }}
         renderEmptyDate={() => {
           return (
@@ -180,7 +183,7 @@ const AgendaView = (props) => {
                 alignSelf: "center",
               }}
             >
-              <Card>
+              <Card style={{ backgroundColor: "#D4F2EA" }}>
                 <Card.Content>
                   <Text>No Appointments Scheduled</Text>
                 </Card.Content>

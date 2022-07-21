@@ -68,7 +68,11 @@ const ProfileScreen = (props) => {
           <Button
             style={styles.button}
             color="#007F5F"
-            onPress={() => navigation.navigate("Set Availability", {profileData: profileData})}
+            onPress={() =>
+              navigation.navigate("Set Availability", {
+                profileData: profileData,
+              })
+            }
           >
             Set Availability
           </Button>
@@ -86,6 +90,7 @@ const ProfileScreen = (props) => {
     } else if (user.uid === profileID && profileData.isExpert === false) {
       //Your own profile page, as a regular
       return (
+        // <View style={{ backgroundColor: "#D4F2EA" }}>
         <View style={styles.content}>
           <Button
             style={{ marginTop: 40 }}
@@ -113,6 +118,7 @@ const ProfileScreen = (props) => {
             </Card.Content>
           </Card>
         </View>
+        // </View>
       );
     } else {
       //Someone else's profile page
@@ -150,6 +156,7 @@ const styles = StyleSheet.create({
   },
   expertise: {
     textAlign: "center",
+    marginBottom: 15,
   },
   userName: {
     textAlign: "center",

@@ -53,11 +53,13 @@ const DataList = (props) => {
       })}
     </ScrollView>
   );
-};;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+};
 
 const styles = StyleSheet.create({
   card: {
     padding: 20,
+    overflow: "hidden",
+    backgroundColor: "#D4F2EA",
   },
   content: {
     margin: 10,
