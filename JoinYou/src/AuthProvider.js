@@ -193,14 +193,16 @@ const AuthProvider = (props) => {
   };
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      console.log(
-        "AuthProvider: onAuthStateChanged() - new User!!",
-        user.email
-      );
-      setUser(user);
-    });
-    return unsub;
+    if (user) {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        console.log(
+          "AuthProvider: onAuthStateChanged() - new User!!",
+          user.email
+        );
+        setUser(user);
+      });
+      return unsub;
+    }
   }, [auth]);
 
 
