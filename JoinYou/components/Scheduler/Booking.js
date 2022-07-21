@@ -45,8 +45,6 @@ const Booking = (props) => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
 
-  let isRendered = useRef(false);
-
   //checks if user uid is the same as profile id, if so, navigate to profile
   //this prevents an influencer from visiting their own booking page
   useEffect(() => {
@@ -74,10 +72,6 @@ const Booking = (props) => {
   }, [profileID]);
 
   useEffect(() => {
-    //for useEffect cleanup function
-    //https://stackoverflow.com/questions/56442582/react-hooks-cant-perform-a-react-state-update-on-an-unmounted-component
-    isRendered = true;
-
     //Get multiple documents from a collection with a filter.
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
@@ -120,7 +114,6 @@ const Booking = (props) => {
       //console.log("datesAvailable", datesAvailable);
     };
     getData();
- 
   }, [profileID]);
 
   // console.log("availableDates is: ", availableDates);
