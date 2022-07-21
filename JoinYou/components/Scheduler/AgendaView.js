@@ -40,8 +40,13 @@ const AgendaView = (props) => {
         };
       });
 
+      //sorted by startTime
+      const sortedTimeslots = timeslotArray.sort((a, b) => {
+        return a.startTime.seconds > b.startTime.seconds;
+      });
+
       //Second filter. Filtering by confirmed appointments only.
-      const filteredByConfirmed = timeslotArray.filter((timeslot) => {
+      const filteredByConfirmed = sortedTimeslots.filter((timeslot) => {
         return timeslot.booked === true;
       });
 
