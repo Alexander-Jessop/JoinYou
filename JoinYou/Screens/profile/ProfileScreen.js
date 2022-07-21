@@ -49,7 +49,7 @@ const ProfileScreen = (props) => {
       return (
         <View style={styles.content}>
           <Button
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 50 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
@@ -68,6 +68,7 @@ const ProfileScreen = (props) => {
           <Button
             style={styles.button}
             color="#007F5F"
+            mode="contained"
             onPress={() =>
               navigation.navigate("Set Availability", {
                 profileData: profileData,
@@ -93,7 +94,7 @@ const ProfileScreen = (props) => {
         // <View style={{ backgroundColor: "#D4F2EA" }}>
         <View style={styles.content}>
           <Button
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 50 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
@@ -105,7 +106,12 @@ const ProfileScreen = (props) => {
           </Button>
           <Text style={styles.avatar}> {profileAvatar()} </Text>
           <Text style={styles.userName}>{profileData.displayName}</Text>
-          <Text style={styles.expertise}>
+          <Text
+            style={{
+              textAlign: "center",
+              padding: 10,
+            }}
+          >
             Interested in: {profileData.interests?.join(", ")}
           </Text>
 
@@ -152,11 +158,12 @@ const ProfileScreen = (props) => {
 const styles = StyleSheet.create({
   avatar: {
     textAlign: "center",
-    marginTop: 5,
   },
   expertise: {
     textAlign: "center",
-    marginBottom: 15,
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   userName: {
     textAlign: "center",
@@ -166,6 +173,8 @@ const styles = StyleSheet.create({
   button: {
     marginLeft: 25,
     marginRight: 25,
+    marginTop: 15,
+    width: "100%",
   },
   view: {
     marginTop: 325,
