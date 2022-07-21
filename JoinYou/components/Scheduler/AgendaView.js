@@ -137,7 +137,8 @@ const AgendaView = (props) => {
                 title="Join"
                 onPress={() =>
                   navigation.navigate("Meeting", {
-                    timeslotId: item.timeslotId,
+                    roomId: item.timeslotId,
+                    typeOfUser: typeOfUser,
                   })
                 }
               />

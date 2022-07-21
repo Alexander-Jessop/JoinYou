@@ -156,16 +156,27 @@ export default function CallScreen({ setScreen, screens, roomId }) {
 
   return (
     <>
-      <Text style={styles.heading}>Call Screen</Text>
-      <Text style={styles.heading}>Room : {roomId}</Text>
-
+      <View style={{ display: "flex", flex: 1, padding: 10 }}>
+        <View style={styles.rtcview}>
+          {localStream && (
+            <RTCView
+              style={styles.rtc}
+              streamURL={localStream && localStream.toURL()}
+            />
+          )}
+        </View>
+        <View style={styles.rtcview}>
+          {remoteStream && (
+            <RTCView
+              style={styles.rtc}
+              streamURL={remoteStream && remoteStream.toURL()}
+            />
+          )}
+        </View>
+      </View>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <Button
-            title="Click to stop call"
-            onPress={onBackPress}
-            color="#007F5F"
-          />
+          <Button title="stop call" onPress={onBackPress} color="#007F5F" />
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
@@ -177,7 +188,7 @@ export default function CallScreen({ setScreen, screens, roomId }) {
           )}
           {localStream && (
             <Button
-              title="Click to start call"
+              title="start call"
               onPress={() => startCall(roomId)}
               disabled={!!remoteStream}
               color="#007F5F"
@@ -201,25 +212,6 @@ export default function CallScreen({ setScreen, screens, roomId }) {
           />
         </View>
       )}
-
-      <View style={{ display: "flex", flex: 1, padding: 10 }}>
-        <View style={styles.rtcview}>
-          {localStream && (
-            <RTCView
-              style={styles.rtc}
-              streamURL={localStream && localStream.toURL()}
-            />
-          )}
-        </View>
-        <View style={styles.rtcview}>
-          {remoteStream && (
-            <RTCView
-              style={styles.rtc}
-              streamURL={remoteStream && remoteStream.toURL()}
-            />
-          )}
-        </View>
-      </View>
     </>
   );
 }
