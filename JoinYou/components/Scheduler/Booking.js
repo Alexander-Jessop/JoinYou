@@ -59,6 +59,7 @@ const Booking = (props) => {
 
   //retrieves profile data from firebase based on profile ID
   useEffect(() => {
+    let isRendered = true;
     if (profileID) {
       const getData = async () => {
         //Get a single document from Firestore databse, by UID
@@ -67,11 +68,16 @@ const Booking = (props) => {
         const docSnap = await getDoc(docRef);
         setProfileData(docSnap.data());
       };
-      getData();
+      if (isRendered) {
+        getData();
+      }
+
+      return () => (isRendered = false);
     }
   }, [profileID]);
 
   useEffect(() => {
+    let isRendered = true;
     //Get multiple documents from a collection with a filter.
     //Changed .forEach() to .map()
     //https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
@@ -113,11 +119,18 @@ const Booking = (props) => {
       setAvailableDates(sortedDates);
       //console.log("datesAvailable", datesAvailable);
     };
-    getData();
+
+    if (isRendered) {
+      getData();
+    }
+
+    return () => (isRendered = false);
   }, [profileID]);
 
   // console.log("availableDates is: ", availableDates);
   useEffect(() => {
+    let isRendered = true;
+
     let timeslots = timeslotData
       .filter((timeslot) => {
         let momentDate = moment
@@ -134,7 +147,11 @@ const Booking = (props) => {
         };
       });
 
-    setAvailableSlots(timeslots);
+    if (isRendered) {
+      setAvailableSlots(timeslots);
+    }
+
+    return () => (isRendered = false);
   }, [selectedDate]);
 
   // console.log("selectedDate: ", selectedDate);
@@ -287,40 +304,46 @@ const Booking = (props) => {
   }
 
   function Calendar() {
-    return (
-      <View>
+    let isRendered = true;
+
+    if (isRendered) {
+      return (
         <View>
-          <CalendarStrip
-            scrollable={true}
-            style={{ height: 100 }}
-            highlightDateContainerStyle={{
-              backgroundColor: "#007F5F",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            markedDates={availableDates.map((date) => {
-              return {
-                date: date,
-                dots: [{ color: "#007F5F", selectedColor: "white" }],
-              };
-            })}
-            dateNumberStyle={{ color: "black", fontSize: 17.0 }}
-            dateNameStyle={{ color: "black", fontSize: 15.0 }}
-            highlightDateNameStyle={{ color: "white", fontSize: 15.0 }}
-            highlightDateNumberStyle={{ color: "white", fontSize: 17.0 }}
-            useIsoWeekday={false}
-            upperCaseDays={false}
-            styleWeekend={true}
-            onDateSelected={(day) => {
-              pressHandler(day);
-            }}
-            selectedDate={selectedDateFormat}
-            dayComponentHeight={75}
-            startingDate={selectedDateFormat}
-          />
+          <View>
+            <CalendarStrip
+              scrollable={true}
+              style={{ height: 100 }}
+              highlightDateContainerStyle={{
+                backgroundColor: "#007F5F",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              markedDates={availableDates.map((date) => {
+                return {
+                  date: date,
+                  dots: [{ color: "#007F5F", selectedColor: "white" }],
+                };
+              })}
+              dateNumberStyle={{ color: "black", fontSize: 17.0 }}
+              dateNameStyle={{ color: "black", fontSize: 15.0 }}
+              highlightDateNameStyle={{ color: "white", fontSize: 15.0 }}
+              highlightDateNumberStyle={{ color: "white", fontSize: 17.0 }}
+              useIsoWeekday={false}
+              upperCaseDays={false}
+              styleWeekend={true}
+              onDateSelected={(day) => {
+                pressHandler(day);
+              }}
+              selectedDate={selectedDateFormat}
+              dayComponentHeight={75}
+              startingDate={selectedDateFormat}
+            />
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
+
+    return () => (isRendered = false);
   }
 
   function Divider() {
