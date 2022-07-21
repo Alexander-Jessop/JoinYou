@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import { Card, Text, TextInput, Button } from "react-native-paper";
+import * as Facebook from "expo-facebook";
 
 const LoginForm = () => {
   const authContext = useContext(AuthContext);
@@ -30,6 +31,35 @@ const LoginForm = () => {
       });
     }
   }, [user]);
+
+
+  //   Signing in with facebook
+  // https://firebase.google.com/docs/auth/web/facebook-login#handle_the_sign-in_flow_with_the_firebase_sdk
+  async function SignInWithFacebook() {
+    try {
+      console.log(`SIGNING IN WITH FACEBOOK`)
+  //  EXPO documentation
+     await Facebook.initializeAsync({
+        appId: '1162142064580816',
+      });
+     
+      const { type, token} =
+        await Facebook.logInWithReadPermissionsAsync({
+          permissions: ['public_profile'],
+        });
+        console.log(`type is =====`, type)
+ 
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+        Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  }
 
   return (
     <View style={styles.content}>
@@ -99,6 +129,12 @@ const LoginForm = () => {
               Register
             </Button>
             {/* <Button title="LOG OUT" onPress={() => logoutFn()} /> */}
+            <TouchableOpacity
+              onPress={SignInWithFacebook}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}> Sign in with Facebook </Text>
+            </TouchableOpacity>
           </Card.Content>
         </Card>
       </View>

@@ -1,11 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Alert, View, StyleSheet } from "react-native";
+import { Alert, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { doc, setDoc } from "firebase/firestore";
 import { AuthContext } from "../../src/AuthProvider";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 //https://firebase.google.com/docs/auth/web/start#sign_up_new_users
 import { Card, Text, TextInput, Button, HelperText } from "react-native-paper";
+import { FirebaseContext } from "../../src/FirebaseProvider";
+
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -15,10 +20,13 @@ const RegisterForm = () => {
   const [showPass, setShowPass] = useState(false);
   const [displayEye, setDisplayEye] = useState(false);
   const navigation = useNavigation();
-  const auth = getAuth();
-
+  
   const authContext = useContext(AuthContext);
   const login = authContext.login;
+  
+  const fbContext = useContext(FirebaseContext);
+  const facebookProvider = fbContext.facebookProvider;
+  const auth = fbContext.auth
 
   function pressHandler() {
     navigation.replace("Login");
@@ -67,6 +75,8 @@ const RegisterForm = () => {
   const togglePasswordVis = () => {
     setShowPass(!showPass);
   };
+
+  
 
   return (
     <View style={styles.content}>
@@ -188,6 +198,7 @@ const RegisterForm = () => {
             <Button color="#007F5F" title="LOGIN" onPress={pressHandler}>
               LOGIN
             </Button>
+
           </Card.Content>
         </Card>
       </View>
