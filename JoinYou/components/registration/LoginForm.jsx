@@ -40,7 +40,7 @@ const LoginForm = () => {
 
   const SignInWithFacebook = async () => {
     try {
-        await Facebook.initializeAsync('1162142064580816'); // enter your Facebook App Id 
+        await Facebook.initializeAsync('1162142064580816', 'JoinYou');
         const { type, token } = await Facebook.logInWithReadPermissionsAsync({
           permissions: ['public_profile', 'email'],
         });
@@ -61,6 +61,35 @@ const LoginForm = () => {
         alert(`Facebook Login Error: ${message}`);
      }
    }
+
+   async function facebookLogIn() {
+    const appId = '1162142064580816'
+    const permissions = ['public_profile', 'email'];  // Permissions required, consult Facebook docs
+    
+    const {
+      type,
+      token,
+    } = await Facebook.logInWithReadPermissionsAsync(
+      appId,
+      {permissions}
+    );
+  
+    switch (type) {
+      case 'success': {
+        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);  // Set persistent auth state
+        const credential = firebase.auth.FacebookAuthProvider.credential(token);
+        const facebookProfileData = await firebase.auth().signInAndRetrieveDataWithCredential(credential);  // Sign in with Facebook credential
+  
+        // Do something with Facebook profile data
+        // OR you have subscribed to auth state change, authStateChange handler will process the profile data
+        
+        return Promise.resolve({type: 'success'});
+      }
+      case 'cancel': {
+        return Promise.reject({type: 'cancel'});
+      }
+    }
+  }
 
   return (
     <View style={styles.content}>
@@ -135,6 +164,12 @@ const LoginForm = () => {
               style={styles.button}
             >
               <Text style={styles.buttonText}> Sign in with Facebook </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={facebookLogIn}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}> Sign in with Facebook 2</Text>
             </TouchableOpacity>
           </Card.Content>
         </Card>
