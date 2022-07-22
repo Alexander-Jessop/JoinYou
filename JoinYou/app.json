@@ -2,7 +2,7 @@
   "expo": {
     "name": "JoinYou",
     "slug": "JoinYou",
-    "version": "1.0.1",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/FN42_Logo_App_Size.png",
     "userInterfaceStyle": "light",
