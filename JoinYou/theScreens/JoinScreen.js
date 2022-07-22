@@ -148,9 +148,24 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
 
   return (
     <>
-      <Text style={styles.heading}>Join Screen</Text>
-      <Text style={styles.heading}>Room : {roomId}</Text>
-
+      <View style={{ display: "flex", flex: 1, padding: 10 }}>
+        <View style={styles.rtcview}>
+          {localStream && (
+            <RTCView
+              style={styles.rtc}
+              streamURL={localStream && localStream.toURL()}
+            />
+          )}
+        </View>
+        <View style={styles.rtcview}>
+          {remoteStream && (
+            <RTCView
+              style={styles.rtc}
+              streamURL={remoteStream && remoteStream.toURL()}
+            />
+          )}
+        </View>
+      </View>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
           <Button
@@ -193,25 +208,6 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
           />
         </View>
       )}
-
-      <View style={{ display: "flex", flex: 1, padding: 10 }}>
-        <View style={styles.rtcview}>
-          {localStream && (
-            <RTCView
-              style={styles.rtc}
-              streamURL={localStream && localStream.toURL()}
-            />
-          )}
-        </View>
-        <View style={styles.rtcview}>
-          {remoteStream && (
-            <RTCView
-              style={styles.rtc}
-              streamURL={remoteStream && remoteStream.toURL()}
-            />
-          )}
-        </View>
-      </View>
     </>
   );
 }

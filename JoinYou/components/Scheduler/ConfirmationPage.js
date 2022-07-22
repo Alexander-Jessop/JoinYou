@@ -74,16 +74,14 @@ const ConfirmationPage = (props) => {
             <Title
               style={{
                 textAlign: "center",
-
                 fontSize: 19,
               }}
             >
               {selectedSlot.startTime} on {selectedDate}
             </Title>
-
+            <Text style={{ marginTop: 15 }}>Describe Your Appointment</Text>
             <TextInput
-              style={{ fontSize: 13 }}
-              label="Description of Appointment (200 Characters max)"
+              label="200 Characters max"
               multiline={true}
               maxLength={200}
               selectionColor="#007f5f"
@@ -124,7 +122,6 @@ const ConfirmationPage = (props) => {
             </View>
           </Card.Content>
         </Card>
-
         <Button color="#007F5F" mode="contained" onPress={onPaymentHandler}>
           Payment
         </Button>

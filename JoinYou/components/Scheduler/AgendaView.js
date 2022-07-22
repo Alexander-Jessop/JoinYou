@@ -17,7 +17,7 @@ const AgendaView = (props) => {
   const authContext = useContext(AuthContext);
   const user = authContext.user;
   const ID = user.uid;
-
+  const startDate = moment().format("YYYY-MM-DD");
   const [confirmedAppointments, setConfirmedAppointments] = useState([]);
   const [populateAgenda, setPopulateAgenda] = useState();
   const [markedDates, setMarkedDates] = useState();
@@ -157,6 +157,7 @@ const AgendaView = (props) => {
   return (
     <View style={styles.container}>
       <Agenda
+        selected={startDate}
         items={populateAgenda}
         renderItem={renderItem}
         disabledByDefault={true}
