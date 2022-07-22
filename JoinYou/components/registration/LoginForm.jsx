@@ -4,9 +4,13 @@ import { AuthContext } from "../../src/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 import { Card, Text, TextInput, Button } from "react-native-paper";
 import * as Facebook from "expo-facebook";
+import { FirebaseContext } from "../../src/FirebaseProvider";
 
 const LoginForm = () => {
   const authContext = useContext(AuthContext);
+  const fbContext = useContext(FirebaseContext);
+  const auth = fbContext.auth
+  const facebookAuthProvider = fbContext.facebookAuthProvider
   const loginFn = authContext.login;
   const logoutFn = authContext.logout;
   const loginError = authContext.authError;
@@ -33,33 +37,30 @@ const LoginForm = () => {
   }, [user]);
 
 
-  //   Signing in with facebook
-  // https://firebase.google.com/docs/auth/web/facebook-login#handle_the_sign-in_flow_with_the_firebase_sdk
-  async function SignInWithFacebook() {
+
+  const SignInWithFacebook = async () => {
     try {
-      console.log(`SIGNING IN WITH FACEBOOK`)
-  //  EXPO documentation
-     await Facebook.initializeAsync({
-        appId: '1162142064580816',
-      });
-     
-      const { type, token} =
-        await Facebook.logInWithReadPermissionsAsync({
-          permissions: ['public_profile'],
+        await Facebook.initializeAsync('1162142064580816'); // enter your Facebook App Id 
+        const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+          permissions: ['public_profile', 'email'],
         });
-        console.log(`type is =====`, type)
- 
-      if (type === 'success') {
-        // Get the user's name using Facebook's Graph API
-        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-        Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-      } else {
-        // type === 'cancel'
-      }
-    } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
-    }
-  }
+        if (type === 'success') {
+          // SENDING THE TOKEN TO FIREBASE TO HANDLE AUTH
+          const credential = facebookAuthProvider.credentialFromResult(token);
+          signInWithCredential(auth, credential)
+            .then(user => { // All the details about user are in here returned from firebase
+              console.log('Logged in successfully', user)
+            })
+            .catch((error) => {
+              console.log('Error occurred ', error)
+            });
+        } else {
+          // type === 'cancel'
+        }
+     } catch ({ message }) {
+        alert(`Facebook Login Error: ${message}`);
+     }
+   }
 
   return (
     <View style={styles.content}>
