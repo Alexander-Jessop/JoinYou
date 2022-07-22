@@ -2,7 +2,7 @@
   "expo": {
     "name": "JoinYou",
     "slug": "JoinYou",
-    "version": "2.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/FN42_Logo_App_Size.png",
     "userInterfaceStyle": "light",
@@ -36,6 +36,7 @@
       "bundleIdentifier": "com.ajeh.JoinYou"
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/FN42_Logo_App_Size_Android.png",
         "backgroundColor": "#2c2c2c"
