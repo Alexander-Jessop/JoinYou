@@ -15,15 +15,15 @@ const NewTimeslotScreen = (props) => {
   const profileData = route.params.profileData;
   console.log(`profileData isNEWTIMESLOTSCREEN:`, profileData);
   const [disabled, setDisabled] = useState(false);
-  const [selectedDate, setSelectedDate] = useState();
-  const [startTime, setStartTime] = useState();
+  const [selectedDate, setSelectedDate] = useState("");
+  const [startTime, setStartTime] = useState("");
   console.log("start time: ", startTime);
   console.log(
     "start time in database:",
     moment(startTime).format("MM/DD/YYYY")
   );
   console.log("selectedDate is: ", selectedDate);
-  const [endTime, setEndTime] = useState();
+  const [endTime, setEndTime] = useState("");
   console.log("end time: ", endTime);
   let shortHandDate = JSON.stringify(selectedDate);
   let timeStampDate = shortHandDate.split("T")[0];
@@ -52,7 +52,7 @@ const NewTimeslotScreen = (props) => {
   console.log("finalEndTimeTimeStamp", finalEndTimeTimeStamp);
   console.log("timeStampDate is: ", timeStampDate);
   console.log("shortHandDate is : ", shortHandDate);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(1598051730000));
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
