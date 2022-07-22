@@ -34,58 +34,101 @@ const ConfirmationPage = (props) => {
   };
 
   return (
-    <View>
-      <Card>
-        <Card.Content>
-          <Title>
-            Booking an appointment with: {profileData.displayName} at{" "}
-            {selectedSlot.startTime} on {selectedDate}
-          </Title>
+    <View
+      style={{
+        marginTop: 40,
+        width: "90%",
+        alignContent: "center",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View
+        style={{
+          marginTop: 70,
+          marginLeft: 40,
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        <Card>
+          <Card.Content>
+            <Title
+              style={{
+                textAlign: "center",
+                fontSize: 20,
+                color: "#007F5F",
+              }}
+            >
+              Booking an appointment with:
+            </Title>
+            <Title
+              style={{
+                textAlign: "center",
 
-          <TextInput
-            label="Describe your appointment (200 characters max)"
-            multiline={true}
-            maxLength={200}
-            selectionColor="#007f5f"
-            underlineColor="#007f5f"
-            activeOutlineColor="#007f5f"
-            activeUnderlineColor="#007f5f"
-            onChangeText={(e) => setMeetingDescription(e)}
-          />
+                fontSize: 19,
+              }}
+            >
+              {profileData.displayName}
+            </Title>
+            <Title
+              style={{
+                textAlign: "center",
 
-          <Button
-            color="#007F5F"
-            onPress={() => {
-              navigation.navigate("Video", {
-                profileData,
-                selectedSlot,
-                meetingDescription,
-                photoUrl,
-                photoDescription,
-              });
-            }}
-          >
-            Take a Video
-          </Button>
-          <Button
-            color="#007F5F"
-            onPress={() => {
-              navigation.navigate("Photo", {
-                profileData,
-                selectedSlot,
-                meetingDescription,
-                videoUrl,
-              });
-            }}
-          >
-            Take a Photo
-          </Button>
-        </Card.Content>
-      </Card>
+                fontSize: 19,
+              }}
+            >
+              {selectedSlot.startTime} on {selectedDate}
+            </Title>
 
-      <Button color="#007F5F" mode="contained" onPress={onPaymentHandler}>
-        Payment
-      </Button>
+            <TextInput
+              style={{ fontSize: 13 }}
+              label="Description of Appointment (200 Characters max)"
+              multiline={true}
+              maxLength={200}
+              selectionColor="#007f5f"
+              underlineColor="#007f5f"
+              activeOutlineColor="#007f5f"
+              activeUnderlineColor="#007f5f"
+              onChangeText={(e) => setMeetingDescription(e)}
+            />
+            <View style={{ marginTop: 20, marginBottom: 5 }}>
+              <Button
+                color="#007F5F"
+                onPress={() => {
+                  navigation.navigate("Video", {
+                    profileData,
+                    selectedSlot,
+                    meetingDescription,
+                    photoUrl,
+                    photoDescription,
+                  });
+                }}
+              >
+                Take a Video
+              </Button>
+              <Button
+                style={{ marginTop: 5 }}
+                color="#007F5F"
+                onPress={() => {
+                  navigation.navigate("Photo", {
+                    profileData,
+                    selectedSlot,
+                    meetingDescription,
+                    videoUrl,
+                  });
+                }}
+              >
+                Take a Photo
+              </Button>
+            </View>
+          </Card.Content>
+        </Card>
+
+        <Button color="#007F5F" mode="contained" onPress={onPaymentHandler}>
+          Payment
+        </Button>
+      </View>
     </View>
   );
 };

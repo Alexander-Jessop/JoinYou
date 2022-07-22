@@ -11,32 +11,48 @@ const PaymentSuccess = (props) => {
 
   const navigation = useNavigation();
   return (
-    <View>
-      <Card>
-        <Title style={{ textAlign: "center" }}>
-          {"\n"}
-          {"\n"}
-          Payment Complete!
-          {"\n"}
-          {"\n"}You are scheduled for an appointment with{" "}
-          {profileData.displayName} at {selectedSlot.startTime} on{" "}
-          {selectedDate}
-          {"\n"}
-          {"\n"} You can view your upcoming appointments on your profile page.
-          {"\n"}
-        </Title>
-      </Card>
-      <Button
-        color="#007F5F"
-        mode="contained"
-        onPress={() => {
-          navigation.reset({
-            routes: [{ name: "Home" }],
-          });
+    <View
+      style={{
+        marginTop: 60,
+        alignContent: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        alignItems: "center",
+      }}
+    >
+      <View
+        style={{
+          marginTop: 125,
+          width: "90%",
+          justifyContent: "center",
+          overflow: "hidden",
         }}
       >
-        Go Home
-      </Button>
+        <Card style={{ padding: 10 }}>
+          <Title style={{ textAlign: "center" }}>
+            {"\n"}
+            Payment Complete!
+            {"\n"}
+            {"\n"}You are scheduled for an appointment with{" "}
+            {profileData.displayName} at {selectedSlot.startTime} on{" "}
+            {selectedDate}
+            {"\n"}
+            {"\n"} You can view your upcoming appointments on your profile page.
+            {"\n"}
+          </Title>
+        </Card>
+        <Button
+          color="#007F5F"
+          mode="contained"
+          onPress={() => {
+            navigation.reset({
+              routes: [{ name: "Home" }],
+            });
+          }}
+        >
+          Go Home
+        </Button>
+      </View>
     </View>
   );
 };

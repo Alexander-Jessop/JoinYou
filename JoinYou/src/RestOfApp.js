@@ -71,7 +71,7 @@ const RestOfApp = () => {
           <Stack.Screen
             name="InfoPage"
             component={InfoPage}
-            options={{ title: "Enter your information" }}
+            options={{ header: () => null }}
           />
           <Stack.Screen
             name="Tags"

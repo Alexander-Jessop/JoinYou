@@ -1,11 +1,30 @@
 import React, { useContext, useState } from "react";
 import { Text, View, StyleSheet, ScrollView, Button } from "react-native";
+import { Card } from "react-native-paper";
 import TagsForm from "../../components/registration/TagsForm";
 
 const TagsPage = () => {
   return (
     <ScrollView>
-      <TagsForm />
+      <View
+        style={{
+          alignContent: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          alignItems: "center",
+        }}
+      >
+        <Card
+          style={{
+            marginTop: 70,
+            width: "90%",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
+        >
+          <TagsForm />
+        </Card>
+      </View>
     </ScrollView>
   );
 };

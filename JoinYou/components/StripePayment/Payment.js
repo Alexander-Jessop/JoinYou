@@ -109,41 +109,42 @@ const Payment = (props) => {
 
   return (
     <Card style={styles.container}>
-      <Title>
+      <Title style={{ textAlign: "center" }}>
         {" "}
         {"\n"} Appointment with: {profileData.displayName}
         {"\n"} Start Time: {selectedSlot.startTime}
         {"\n"} Start Date: {selectedDate}
-        {"\n"} $20
-        {"\n"}
+        {"\n"} Duration 15 minutes
+        {"\n"} Cost: $20
         {"\n"}
       </Title>
-
-      <Title>Billing Information:</Title>
-      <TextInput
-        autoCapitalize="none"
-        placeholder="Full Name"
-        onChange={(value) => setName(value.nativeEvent.text)}
-        style={styles.input}
-      />
-      <TextInput
-        autoCapitalize="none"
-        placeholder="E-mail"
-        keyboardType="email-address"
-        onChange={(value) => setEmail(value.nativeEvent.text)}
-        style={styles.input}
-      />
-      <CardField
-        postalCodeEnabled={true}
-        placeholder={{
-          number: "4242 4242 4242 4242",
-        }}
-        cardStyle={styles.card}
-        style={styles.cardContainer}
-        onCardChange={(cardDetails) => {
-          setCardDetails(cardDetails);
-        }}
-      />
+      <View style={{ padding: 10 }}>
+        <Title>Billing Information:</Title>
+        <TextInput
+          autoCapitalize="none"
+          placeholder="Full Name"
+          onChange={(value) => setName(value.nativeEvent.text)}
+          style={styles.input}
+        />
+        <TextInput
+          autoCapitalize="none"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          onChange={(value) => setEmail(value.nativeEvent.text)}
+          style={styles.input}
+        />
+        <CardField
+          postalCodeEnabled={true}
+          placeholder={{
+            number: "4242 4242 4242 4242",
+          }}
+          cardStyle={styles.card}
+          style={styles.cardContainer}
+          onCardChange={(cardDetails) => {
+            setCardDetails(cardDetails);
+          }}
+        />
+      </View>
       <Button
         onPress={async () => {
           setDisabled(true);
