@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import { Button, Card, Divider } from "react-native-paper";
 import DatepickerRange from "react-native-range-datepicker";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
@@ -7,10 +7,12 @@ import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { httpsCallable } from "firebase/functions";
 import moment from "moment";
+import { useNavigation } from "@react-navigation/native";
 
 // https://github.com/apaajabolehd/react-native-range-datepicker#readme
 
 const NewTimeslotScreen = (props) => {
+  const navigation = useNavigation();
   const { route } = props;
   const profileData = route.params.profileData;
   console.log(`profileData isNEWTIMESLOTSCREEN:`, profileData);
@@ -26,7 +28,7 @@ const NewTimeslotScreen = (props) => {
   const [endTime, setEndTime] = useState("");
   console.log("end time: ", endTime);
   let shortHandDate = JSON.stringify(selectedDate);
-  let timeStampDate = shortHandDate.split("T")[0];
+  let timeStampDate = shortHandDate.split("T")[0].replace(/['"]+/g, "");
   let timeStampStart = moment(startTime).format("hh:mm:ss a");
   let timeStampEnd = moment(endTime).format("hh:mm:ss a");
   console.log("timeStampStart", timeStampStart);
@@ -34,15 +36,17 @@ const NewTimeslotScreen = (props) => {
 
   let endMomentStringFormat = `${timeStampDate} ${timeStampEnd}`;
   let momentStringFormat = `${timeStampDate} ${timeStampStart}`;
+  let startDisplay = `${timeStampStart}`;
+  let endDisplay = `${timeStampEnd}`;
   console.log("endMomentStringFormat", endMomentStringFormat);
   console.log("momentStringFormat", momentStringFormat);
   let finalStartTimeTimeStamp = moment(
     momentStringFormat,
-    "YYYY-MM-DD hh:mm:ss"
+    "YYYY-MM-DD hh:mm:ss a"
   );
   let finalEndTimeTimeStamp = moment(
     endMomentStringFormat,
-    "YYYY-MM-DD hh:mm:ss"
+    "YYYY-MM-DD hh:mm:ss a"
   );
   let startTimeSeconds = finalStartTimeTimeStamp.unix();
   let endTimeSeconds = finalEndTimeTimeStamp.unix();
@@ -118,6 +122,18 @@ const NewTimeslotScreen = (props) => {
     }
   };
 
+  const createTwoButtonAlert = () =>
+    Alert.alert("Availability Set", `You have set a time on ${timeStampDate}`, [
+      {
+        text: "OK",
+        onPress: () => {
+          navigation.navigate("Home", {
+            profileData,
+          });
+        },
+      },
+    ]);
+
   return (
     <View>
       <Card>
@@ -146,25 +162,53 @@ const NewTimeslotScreen = (props) => {
           <View style={styles.timePicker}>
             <View>
               <Divider />
-              <Button
-                onPress={showStartTimepicker}
-                title="Show time picker"
-                color="#007F5F"
-                style={styles.button}
+              <View>
+                <Button
+                  onPress={showStartTimepicker}
+                  title="Show time picker"
+                  color="#007F5F"
+                  style={styles.button}
+                >
+                  Start time
+                </Button>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                }}
               >
-                Start time
-              </Button>
+                {!startDisplay.includes("Invalid date") && (
+                  <Text>{startDisplay}</Text>
+                )}
+              </View>
             </View>
+
             <View>
               <Divider />
-              <Button
-                onPress={showEndTimepicker}
-                title="Show time picker!"
-                color="#007F5F"
-                style={styles.button}
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
-                End time
-              </Button>
+                <Button
+                  onPress={showEndTimepicker}
+                  title="Show time picker!"
+                  color="#007F5F"
+                  style={styles.button}
+                >
+                  End time
+                </Button>
+              </View>
+              <View
+                style={{
+                  alignItems: "center",
+                }}
+              >
+                {!endDisplay.includes("Invalid date") && (
+                  <Text>{endDisplay}</Text>
+                )}
+              </View>
             </View>
           </View>
           <View>
@@ -173,6 +217,7 @@ const NewTimeslotScreen = (props) => {
               color="#007F5F"
               style={styles.submit}
               onPress={() => {
+                createTwoButtonAlert();
                 setDisabled(true);
                 doCreateTimeslots();
                 setTimeout(() => {
