@@ -20,6 +20,7 @@ import OnboardingScreen from "../Screens/OnBoarding/OnboardingScreen";
 import ProfileScreen from "../Screens/profile/ProfileScreen";
 import TimeslotDetails from "../components/Scheduler/TimeslotDetails";
 import DetailsVideo from "../components/Scheduler/DetailsVideo";
+import SetPrice from "../Screens/profile/SetPrice";
 // image
 import ImgForm from "../components/UserImg/ImgForm";
 import Recording from "../components/VideoCamera/Recording";
@@ -86,6 +87,7 @@ const RestOfApp = () => {
           />
           <Stack.Screen name="Upcoming" component={AgendaView} />
           <Stack.Screen name="Set Availability" component={NewTimeslotScreen} />
+          <Stack.Screen name="Set Price" component={SetPrice} />
           <Stack.Screen name="Categories" component={CategoryScreen} />
           <Stack.Screen name="Booking" component={Booking} />
           <Stack.Screen name="Confirmation" component={ConfirmationPage} />

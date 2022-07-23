@@ -64,19 +64,45 @@ const ProfileScreen = (props) => {
           <Text style={styles.expertise}>
             Expertise in: {profileData.interests?.join(", ")}
           </Text>
+          <Text style={styles.expertise}>
+            Cost of Appointment: ${profileData.price}
+          </Text>
 
-          <Button
-            style={styles.button}
-            color="#007F5F"
-            mode="contained"
-            onPress={() =>
-              navigation.navigate("Set Availability", {
-                profileData: profileData,
-              })
-            }
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            Set Availability
-          </Button>
+            <Button
+              style={styles.button}
+              color="#007F5F"
+              mode="contained"
+              onPress={() =>
+                navigation.navigate("Set Price", {
+                  profileData: profileData,
+                })
+              }
+            >
+              Set Price
+            </Button>
+
+            <Button
+              style={styles.button}
+              color="#007F5F"
+              mode="contained"
+              onPress={() => {
+                if (profileData.price) {
+                  navigation.navigate("Set Availability", {
+                    profileData: profileData,
+                  });
+                } else {
+                  Alert.alert(
+                    "Please set your price first before setting your availability."
+                  );
+                }
+              }}
+            >
+              Set Availability
+            </Button>
+          </View>
 
           <Card style={styles.card}>
             <Card.Content>
@@ -171,9 +197,10 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   button: {
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 15,
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    // marginTop: 15,
     width: "100%",
   },
   view: {

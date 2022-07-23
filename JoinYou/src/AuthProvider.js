@@ -109,6 +109,17 @@ const AuthProvider = (props) => {
     });
   };
 
+  //Updates the "price" for Firestore db user
+  //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
+  const updateUserPrice = async (selectedPrice) => {
+    const userRef = doc(db, "users", user.uid);
+
+    // Set the "interests" field of the user
+    await updateDoc(userRef, {
+      price: selectedPrice,
+    });
+  };
+
   //Updates the Timeslot document with the client's information
   //https://firebase.google.com/docs/firestore/manage-data/add-data#update-data
   const updateTimeslot = async (
@@ -189,6 +200,7 @@ const AuthProvider = (props) => {
     createUserData,
     updateUserData,
     updateUserInterests,
+    updateUserPrice,
     updateTimeslot,
   };
 
@@ -204,7 +216,6 @@ const AuthProvider = (props) => {
       return unsub;
     }
   }, [auth]);
-
 
   return (
     <AuthContext.Provider value={theValues}>{children}</AuthContext.Provider>

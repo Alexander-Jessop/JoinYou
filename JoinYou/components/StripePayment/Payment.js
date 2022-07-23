@@ -115,7 +115,7 @@ const Payment = (props) => {
         {"\n"} Start Time: {selectedSlot.startTime}
         {"\n"} Start Date: {selectedDate}
         {"\n"} Duration 15 minutes
-        {"\n"} Cost: $20
+        {"\n"} Cost: ${profileData.price}
         {"\n"}
       </Title>
       <View style={{ padding: 10 }}>
