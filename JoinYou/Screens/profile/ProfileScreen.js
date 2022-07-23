@@ -8,7 +8,7 @@ import AgendaView from "../../components/Scheduler/AgendaView";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
-  const [price, setPrice] = useState(20);
+  const [price, setPrice] = useState(null);
 
   const { navigation, route } = props;
   const profileID = route.params.profileID;
@@ -201,8 +201,8 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 5,
+    marginRight: 5,
     // marginTop: 15,
     width: "100%",
   },
