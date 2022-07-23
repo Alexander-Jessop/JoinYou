@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { Text, Button, Avatar, Card } from "react-native-paper";
@@ -8,6 +8,7 @@ import AgendaView from "../../components/Scheduler/AgendaView";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
+  const [price, setPrice] = useState(20);
 
   const { navigation, route } = props;
   const profileID = route.params.profileID;
@@ -38,6 +39,10 @@ const ProfileScreen = (props) => {
     getData();
   }, [profileID]);
 
+  useEffect(() => {
+    setPrice(profileData.price);
+  }, [profileData]);
+
   let avatarID = profileData?.displayName?.substring(0, 1);
   const profileAvatar = () => (
     <Avatar.Text size={100} label={avatarID} backgroundColor="#007F5F" />
@@ -64,9 +69,7 @@ const ProfileScreen = (props) => {
           <Text style={styles.expertise}>
             Expertise in: {profileData.interests?.join(", ")}
           </Text>
-          <Text style={styles.expertise}>
-            Cost of Appointment: ${profileData.price}
-          </Text>
+          <Text style={styles.expertise}>Cost of Appointment: ${price}</Text>
 
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -95,7 +98,7 @@ const ProfileScreen = (props) => {
                   });
                 } else {
                   Alert.alert(
-                    "Please set your price first before setting your availability."
+                    "Please set your price before setting your availability."
                   );
                 }
               }}
