@@ -36,7 +36,7 @@
       "bundleIdentifier": "com.ajeh.JoinYou"
     },
     "android": {
-      "versionCode": 4,
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/FN42_Logo_App_Size_Android.png",
         "backgroundColor": "#2c2c2c"
