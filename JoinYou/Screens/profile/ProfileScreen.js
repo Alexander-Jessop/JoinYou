@@ -95,15 +95,15 @@ const ProfileScreen = (props) => {
               color="#007F5F"
               mode="contained"
               onPress={() => {
-                // if (profileData.price) {
-                navigation.navigate("Set Availability", {
-                  profileData: profileData,
-                });
-                // } else {
-                //   Alert.alert(
-                //     "Please set your price before setting your availability."
-                //   );
-                // }
+                if (profileData.price) {
+                  navigation.navigate("Set Availability", {
+                    profileData: profileData,
+                  });
+                } else {
+                  Alert.alert(
+                    "Please set your price before setting your availability."
+                  );
+                }
               }}
             >
               Set Availability
