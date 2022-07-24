@@ -15,7 +15,7 @@ const ConfirmationPage = (props) => {
 
   const [meetingDescription, setMeetingDescription] = useState("");
 
-  console.log("videoUrl is: ", videoUrl);
+  // console.log("videoUrl is: ", videoUrl);
 
   const onPaymentHandler = () => {
     if (meetingDescription.length < 1) {

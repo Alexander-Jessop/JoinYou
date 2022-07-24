@@ -9,7 +9,7 @@ import { prodErrorMap } from "firebase/auth";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
-  const [price, setPrice] = useState(20);
+  const [price, setPrice] = useState(null);
 
   const { navigation, route } = props;
   const profileID = route.params.profileID;
@@ -95,15 +95,15 @@ const ProfileScreen = (props) => {
               color="#007F5F"
               mode="contained"
               onPress={() => {
-                if (profileData.price) {
-                  navigation.navigate("Set Availability", {
-                    profileData: profileData,
-                  });
-                } else {
-                  Alert.alert(
-                    "Please set your price before setting your availability."
-                  );
-                }
+                // if (profileData.price) {
+                navigation.navigate("Set Availability", {
+                  profileData: profileData,
+                });
+                // } else {
+                //   Alert.alert(
+                //     "Please set your price before setting your availability."
+                //   );
+                // }
               }}
             >
               Set Availability
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 5,
+    marginRight: 5,
     // marginTop: 15,
     width: "100%",
   },
