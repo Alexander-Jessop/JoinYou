@@ -16,6 +16,9 @@ import {
   RTCSessionDescription,
 } from "react-native-webrtc";
 import { FirebaseContext } from "../src/FirebaseProvider";
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../src/AuthProvider";
+
 const configuration = {
   iceServers: [
     {
@@ -26,6 +29,10 @@ const configuration = {
 };
 
 export default function CallScreen({ setScreen, screens, roomId }) {
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const navigation = useNavigation();
+
   const { db } = useContext(FirebaseContext);
 
   function onBackPress() {
@@ -33,11 +40,11 @@ export default function CallScreen({ setScreen, screens, roomId }) {
       cachedLocalPC.removeStream(localStream);
       cachedLocalPC.close();
     }
-    setLocalStream();
-    setRemoteStream();
-    setCachedLocalPC();
+    // setLocalStream();
+    // setRemoteStream();
+    // setCachedLocalPC();
     // cleanup
-    setScreen(screens.ROOM);
+    navigation.navigate("Profile", { profileID: user.uid });
   }
 
   const [localStream, setLocalStream] = useState();

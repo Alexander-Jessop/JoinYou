@@ -16,7 +16,9 @@ import {
   RTCIceCandidate,
   RTCSessionDescription,
 } from "react-native-webrtc";
+import { useNavigation } from "@react-navigation/native";
 import { FirebaseContext } from "../src/FirebaseProvider";
+import { AuthContext } from "../src/AuthProvider";
 // import { db } from "../utilities/firebase";
 
 const configuration = {
@@ -29,17 +31,21 @@ const configuration = {
 };
 
 export default function JoinScreen({ setScreen, screens, roomId }) {
+  const authContext = useContext(AuthContext);
+  const user = authContext.user;
+  const navigation = useNavigation();
+
   const { db } = useContext(FirebaseContext);
   function onBackPress() {
     if (cachedLocalPC) {
       cachedLocalPC.removeStream(localStream);
       cachedLocalPC.close();
     }
-    setLocalStream();
-    setRemoteStream();
-    setCachedLocalPC();
+    // setLocalStream();
+    // setRemoteStream();
+    // setCachedLocalPC();
     // cleanup
-    setScreen(screens.ROOM);
+    navigation.navigate("Profile", { profileID: user.uid });
   }
 
   const [localStream, setLocalStream] = useState();
@@ -168,23 +174,19 @@ export default function JoinScreen({ setScreen, screens, roomId }) {
       </View>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <Button
-            title="Click to stop call"
-            onPress={onBackPress}
-            color="#007F5F"
-          />
+          <Button title="Stop Call" onPress={onBackPress} color="#007F5F" />
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
             <Button
-              title="Click to start stream"
+              title="Start Stream"
               onPress={startLocalStream}
               color="#007F5F"
             />
           )}
           {localStream && (
             <Button
-              title="Click to join call"
+              title="Join Call"
               onPress={() => joinCall(roomId)}
               disabled={!!remoteStream}
               color="#007F5F"
