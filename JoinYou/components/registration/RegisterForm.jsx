@@ -67,7 +67,7 @@ const RegisterForm = () => {
         <Card style={styles.card}>
           <Card.Content>
             <Card.Title title="Sign Up" titleStyle={styles.cardTitle} />
-            <Text style={styles.text}>Enter your email address:</Text>
+
             <View>
               <TextInput
                 theme={{
@@ -88,7 +88,7 @@ const RegisterForm = () => {
                 Must be a valid e-mail address
               </HelperText>
             </View>
-            <Text style={styles.text}>Confirm your email address:</Text>
+
             <View>
               <TextInput
                 theme={{
@@ -110,7 +110,6 @@ const RegisterForm = () => {
               </HelperText>
             </View>
             <View>
-              <Text style={styles.text}>Enter your password:</Text>
               <TextInput
                 theme={{
                   colors: {
@@ -137,7 +136,7 @@ const RegisterForm = () => {
                 Password must be at least 7 characters
               </HelperText>
             </View>
-            <Text style={styles.text}>Confirm your password:</Text>
+
             <View>
               <TextInput
                 theme={{
@@ -208,7 +207,6 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "#FFF",
-    height: 45,
   },
   cardTitle: {
     color: "#007F5F",

@@ -5,6 +5,7 @@ import { FirebaseContext } from "../../src/FirebaseProvider";
 import { Text, Button, Avatar, Card } from "react-native-paper";
 import { AuthContext } from "../../src/AuthProvider";
 import AgendaView from "../../components/Scheduler/AgendaView";
+import { prodErrorMap } from "firebase/auth";
 
 const ProfileScreen = (props) => {
   const [profileData, setProfileData] = useState({});
@@ -41,6 +42,7 @@ const ProfileScreen = (props) => {
 
   useEffect(() => {
     setPrice(profileData.price);
+    console.log("price is here on refresh", price);
   }, [profileData]);
 
   let avatarID = profileData?.displayName?.substring(0, 1);
@@ -81,6 +83,7 @@ const ProfileScreen = (props) => {
               onPress={() =>
                 navigation.navigate("Set Price", {
                   profileData: profileData,
+                  setPrice: setPrice,
                 })
               }
             >

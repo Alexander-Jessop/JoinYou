@@ -120,11 +120,11 @@ const ConfirmationPage = (props) => {
                 Take a Photo
               </Button>
             </View>
+            <Button color="#007F5F" mode="contained" onPress={onPaymentHandler}>
+              Payment
+            </Button>
           </Card.Content>
         </Card>
-        <Button color="#007F5F" mode="contained" onPress={onPaymentHandler}>
-          Payment
-        </Button>
       </View>
     </View>
   );

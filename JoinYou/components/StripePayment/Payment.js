@@ -53,16 +53,6 @@ const Payment = (props) => {
   };
 
   const handlePayPress = async () => {
-    //1.Gather the customer's billing information (e.g., email)
-
-    //temporarily commented out to save time
-    // if (!cardDetails?.complete || !email) {
-    //   Alert.alert("Please enter Complete card details and Email");
-    //   return;
-    // } else {
-
-    //eventually replace this with cloud function
-
     updateTimeslot(
       selectedSlot.DOC_ID,
       profile,
@@ -77,34 +67,6 @@ const Payment = (props) => {
       selectedSlot,
       selectedDate,
     });
-    // }
-
-    // const billingDetails = {
-    //   name: name,
-    //   email: email,
-    // };
-    // //2.Fetch the intent client secret from the backend
-    // try {
-    //   const { clientSecret, error } = await fetchPaymentIntentClientSecret();
-    //   //2. confirm the payment
-    //   if (error) {
-    //     console.log("Unable to process payment");
-    //   } else {
-    //     const { paymentIntent, error } = await confirmPayment(clientSecret, {
-    //       type: "Card",
-    //       billingDetails: billingDetails,
-    //     });
-    //     if (error) {
-    //       alert(`Payment Confirmation Error ${error.message}`);
-    //     } else if (paymentIntent) {
-    //       alert("Payment Successful");
-    //       console.log("Payment successful ", paymentIntent);
-    //     }
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // //3.Confirm the payment with the card details
   };
 
   return (
@@ -169,7 +131,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#efefefef",
     borderRadius: 8,
     fontSize: 20,
-    height: 50,
     padding: 15,
     marginVertical: 5,
   },

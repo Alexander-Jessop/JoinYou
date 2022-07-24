@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
@@ -15,6 +15,12 @@ const SetPrice = (props) => {
     5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
     100,
   ];
+
+  useEffect(() => {
+    props.route.params.setPrice(selectedPrice);
+  }),
+    [selectedPrice];
+
   return (
     <Card style={{ alignItems: "center" }}>
       <Picker
@@ -34,6 +40,7 @@ const SetPrice = (props) => {
             updateUserPrice(selectedPrice);
             navigation.navigate("Profile", {
               profileID: user.uid,
+              price: selectedPrice,
             });
           }
         }}
