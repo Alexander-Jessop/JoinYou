@@ -35,14 +35,15 @@ expo start or expo start --dev-start
 👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
 ***
 ## Contact Us
-* LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/), * Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
-* LinkedIn: [@Nathely Pizarro](https://www.linkedin.com/in/nathalypizarro/)
-* LinkedIn: [@Zach Odio](https://www.linkedin.com/in/zach-odio-383a3616/)
+* LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/) || Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
+* LinkedIn: [@Nathely Pizarro](https://www.linkedin.com/in/nathalypizarro/) || Github: [@Nathely Pizarro](https://github.com/napizar8)
+* LinkedIn: [@Zach Odio](https://www.linkedin.com/in/zach-odio-383a3616/) || Github: [@Zach Odio](https://github.com/Odio9)
+* Github: [@DaveBartsch](https://github.com/DaveBartsch)
 ***
 
-* Github: [@DaveBartsch](https://github.com/DaveBartsch)
-* Github: [@Nathely Pizarro](https://github.com/napizar8)
-* Github: [@Zach Odio](https://github.com/Odio9)
+
+
+
 
 ## Show your support
 
