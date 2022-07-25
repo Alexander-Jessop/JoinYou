@@ -23,13 +23,6 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Button
-          color="#007F5F"
-          title="Filter By Category"
-          onPress={() => navigation.navigate("Categories")}
-        >
-          Filter By Category
-        </Button>
-        <Button
           title="Profile Page"
           color="#007F5F"
           icon="account-circle"
@@ -40,6 +33,13 @@ const HomeScreen = ({ navigation }) => {
           }
         >
           Profile Page
+        </Button>
+        <Button
+          color="#007F5F"
+          title="Filter By Category"
+          onPress={() => navigation.navigate("Categories")}
+        >
+          Filter By Category
         </Button>
       </View>
 
