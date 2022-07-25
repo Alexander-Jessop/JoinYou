@@ -19,7 +19,7 @@ OR
 To ensure a full experience of the application on the emulator download the apk from 
 [Join You APK](https://expo.dev/accounts/aj-eh/projects/JoinYou/builds/3cf42e11-df9c-40ca-bef4-c69142602e0d) 
 on the emulator and install application.
-Then Run 'Expo start --dev-client' in the JoinYou folder with your terminal. 
+Then Run `expo start --dev-client` in the JoinYou folder with your terminal. 
 
 
 ## Usage
