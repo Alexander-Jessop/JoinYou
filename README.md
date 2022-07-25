@@ -65,7 +65,7 @@ Password: `Test1234`
 | Alexander Jessop |  [GitHub](https://github.com/Alexander-Jessop) | [LinkedIn](https://www.linkedin.com/in/alexander-jessop/) |
 
 ## Screenshots
-<img scr="https://i.imgur.com/6JEc2em.jpeg" width="100" height="100">
+<img src="https://i.imgur.com/6JEc2em.jpeg" width="100" height="100">
 
 ## Show your support
 
