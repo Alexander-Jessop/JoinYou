@@ -50,9 +50,14 @@ expo start --dev-start
 expert@mail.com
 ```
 <p>Password:</p>
+
 ```sh
- Test1234
- ```
+
+expo start --dev-start
+
+```
+
+
 <p></p>
 
 
