@@ -7,7 +7,7 @@
 
 ## Install
 
-```sh
+
 npm install
 
 An emulator or a physical device connected to your computer via USB is needed to run this application. To install an emulator follow this Documentation that we configured https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing. 
@@ -22,7 +22,7 @@ To ensure a full experience of the application on the emulator download the apk 
 (https://expo.dev/accounts/aj-eh/projects/JoinYou/builds/3cf42e11-df9c-40ca-bef4-c69142602e0d) 
 on the emulator and install application.
 Then Run 'Expo start --dev-client'
-```
+
 
 ## Usage
 
