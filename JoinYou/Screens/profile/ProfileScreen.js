@@ -59,6 +59,7 @@ const ProfileScreen = (props) => {
             style={{ marginTop: 50 }}
             title="LOG OUT"
             color="#007F5F"
+            icon="logout"
             onPress={() => {
               logoutFn();
               //navigation.replace("Login");
@@ -131,6 +132,7 @@ const ProfileScreen = (props) => {
             style={{ padding: 25, marginTop: 25 }}
             title="LOG OUT"
             color="#007F5F"
+            icon="logout"
             onPress={() => {
               logoutFn();
               //navigation.replace("Login");

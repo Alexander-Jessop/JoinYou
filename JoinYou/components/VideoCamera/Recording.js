@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Text, Button, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import { useEffect, useState, useRef } from "react";
 import { Camera, CameraType } from "expo-camera";
 import { Video } from "expo-av";
@@ -9,6 +9,7 @@ import * as MediaLibrary from "expo-media-library";
 import { FirebaseContext } from "../../src/FirebaseProvider";
 import { fbUriToFirebaseStorage } from "./VideoUpload";
 import { useNavigation } from "@react-navigation/native";
+import { Button } from "react-native-paper";
 
 const Recording = (props) => {
   const navigation = useNavigation();
@@ -132,8 +133,10 @@ const Recording = (props) => {
           }}
         >
           <Button
-            color="#007F5F"
             title="Upload"
+            color="#007F5F"
+            mode="contained"
+            icon="upload"
             onPress={() => {
               if (video) {
                 setUploading(true);
@@ -141,15 +144,19 @@ const Recording = (props) => {
               shareVideo();
             }}
             disabled={uploading}
-          />
-          {/* {hasMediaLibraryPermission ? (
-          <Button title="Save" onPress={saveVideo} />
-        ) : undefined} */}
+          >
+            Upload
+          </Button>
+
           <Button
-            color="#007F5F"
             title="Trash"
+            color="#007F5F"
+            mode="contained"
+            icon="delete"
             onPress={() => setVideo(undefined)}
-          />
+          >
+            Trash
+          </Button>
         </View>
       </SafeAreaView>
     );
@@ -160,9 +167,13 @@ const Recording = (props) => {
       <View style={styles.buttonContainer}>
         <Button
           color="#007F5F"
+          mode="contained"
+          icon="video"
           title={isRecording ? "Stop Recording" : "Record Video"}
           onPress={isRecording ? stopRecording : recordVideo}
-        />
+        >
+          {isRecording ? "Stop Recording" : "Record Video"}
+        </Button>
       </View>
     </Camera>
   );

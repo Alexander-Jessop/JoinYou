@@ -32,6 +32,7 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="Profile Page"
           color="#007F5F"
+          icon="account-circle"
           onPress={() =>
             navigation.navigate("Profile", {
               profileID: user.uid,
