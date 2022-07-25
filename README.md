@@ -24,6 +24,11 @@ Then Run 'Expo start --dev-client' in the JoinYou folder with your terminal.
 ```sh
 git clone https://github.com/Alexander-Jessop/JoinYou.git
 ```
+`cd` into cloned repository
+```sh
+npm install
+```
+`cd` into `JoinYou`
 ```sh
 npm install
 ```
@@ -41,13 +46,13 @@ expo start --dev-start
 
 ## Authors
 
-👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
+👤 **Zach Odio, Nathaly Pizarro, Alexander Jessop, David Bartsch**
 ***
 ## Contact Us
 | Creators  |    GitHub Page's                   | LinkedIn Page's                                         |
 | --------- | ------------------------------ | ----------------------------------------------------- |
 | Dave Bartsch |  [GitHub](https://github.com/DaveBartsch) | [LinkedIn](https://www.linkedin.com/in/david-bartschak-b008a3141/)|
-| Nathely Pizarro |  [GitHub](https://github.com/napizar8) | [LinkedIn](https://www.linkedin.com/in/nathalypizarro/)|                          
+| Nathaly Pizarro |  [GitHub](https://github.com/napizar8) | [LinkedIn](https://www.linkedin.com/in/nathalypizarro/)|                          
 | Zach Odio |  [GitHub](https://github.com/Odio9) | [LinkedIn](https://www.linkedin.com/in/zach-odio-383a3616/) |
 | Alexander Jessop |  [GitHub](https://github.com/Alexander-Jessop) | [LinkedIn](https://www.linkedin.com/in/alexander-jessop/) |
 
