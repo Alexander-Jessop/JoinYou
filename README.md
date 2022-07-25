@@ -7,8 +7,6 @@
 
 ## Install
 
-npm install
-
 A physical device connected to your computer via USB or an emulator is needed to run this application. 
 To install an emulator follow this Documentation that we configured [Andriod Emulator installation guide](https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing). 
 
@@ -27,7 +25,9 @@ Then Run 'Expo start --dev-client'
 ## Usage
 
 ```sh
-expo start or expo start --dev-start
+git clone https://github.com/Alexander-Jessop/JoinYou.git
+npm install
+expo start --dev-start
 ```
 
 ## Authors
