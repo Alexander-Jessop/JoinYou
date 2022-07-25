@@ -26,7 +26,7 @@ expo start or expo start --dev-start
 * Github: [@DaveBartsch](https://github.com/DaveBartsch)
 * Github: [@Nathely Pizarro](https://github.com/napizar8)
 * Github: [@Zach Odio](https://github.com/Odio9)
-<hr/>
+***
 * LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/)
 * LinkedIn:[@Nathely Pizarro](https://www.linkedin.com/in/nathalypizarro/)
 * LinkedIn:[@Zach Odio](https://www.linkedin.com/in/zach-odio-383a3616/)
