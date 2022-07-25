@@ -8,7 +8,9 @@
 ## Install
 
 ```sh
-npm install, and insure you have android simulator installed as well 
+npm install
+
+This will install all necessary packages including *[expo](https://github.com/expo/expo) which is critical for view the application. 
 ```
 
 ## Usage
