@@ -6,7 +6,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import React, { useState, useEffect, useContext } from "react";
-import { Text, StyleSheet, Button, View } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 
 import {
   RTCPeerConnection,
@@ -18,6 +18,7 @@ import {
 import { FirebaseContext } from "../src/FirebaseProvider";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../src/AuthProvider";
+import { Button } from "react-native-paper";
 
 const configuration = {
   iceServers: [
@@ -183,7 +184,15 @@ export default function CallScreen({ setScreen, screens, roomId }) {
       </View>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <Button title="stop call" onPress={onBackPress} color="#007F5F" />
+          <Button
+            title="stop call"
+            onPress={onBackPress}
+            color="#007F5F"
+            mode="contained"
+            icon="stop"
+          >
+            Stop Call
+          </Button>
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
@@ -191,7 +200,10 @@ export default function CallScreen({ setScreen, screens, roomId }) {
               title="Click to start stream"
               onPress={startLocalStream}
               color="#007F5F"
-            />
+              mode="contained"
+            >
+              Start Stream
+            </Button>
           )}
           {localStream && (
             <Button
@@ -199,7 +211,12 @@ export default function CallScreen({ setScreen, screens, roomId }) {
               onPress={() => startCall(roomId)}
               disabled={!!remoteStream}
               color="#007F5F"
-            />
+              mode="contained"
+              icon="play"
+            >
+              {" "}
+              Start Call
+            </Button>
           )}
         </View>
       </View>
@@ -210,13 +227,19 @@ export default function CallScreen({ setScreen, screens, roomId }) {
             title="Switch camera"
             onPress={switchCamera}
             color="#007F5F"
-          />
+            mode="contained"
+            icon="camera-flip"
+          >
+            Switch Camera
+          </Button>
           <Button
             title={`${isMuted ? "Unmute" : "Mute"} stream`}
             onPress={toggleMute}
             disabled={!remoteStream}
             color="#007F5F"
-          />
+            mode="contained"
+            icon={isMuted ? "volume-high" : "volume-off"}
+          >{`${isMuted ? "Unmute" : "Mute"} stream`}</Button>
         </View>
       )}
     </>

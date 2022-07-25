@@ -44,6 +44,7 @@ const PaymentSuccess = (props) => {
         <Button
           color="#007F5F"
           mode="contained"
+          icon="home"
           onPress={() => {
             navigation.reset({
               routes: [{ name: "Home" }],

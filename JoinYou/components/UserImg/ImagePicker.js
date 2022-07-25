@@ -125,6 +125,7 @@ const ImagePicker = (props) => {
         onPress={takePhotoHandler}
         mode="contained"
         color="#007F5F"
+        icon="camera"
       >
         SNAP PHOTO
       </Button>
@@ -151,6 +152,7 @@ const ImagePicker = (props) => {
         color="#007F5F"
         title="Submit"
         disabled={uploading}
+        icon="upload"
       >
         Submit
       </Button>

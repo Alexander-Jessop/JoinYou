@@ -116,6 +116,7 @@ const Payment = (props) => {
         title="Pay"
         disabled={disabled}
         color="#007F5F"
+        // icon="check"
         style={{}}
       >
         Pay
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#efefefef",
-    borderRadius: 8,
+    borderRadius: 16,
   },
   cardContainer: {
     height: 57,
