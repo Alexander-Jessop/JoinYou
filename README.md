@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> A communication platform that will allow users of a variety of interests to engage with specialists in their field for quick 15-minute video calls.
+> A communication platform created for Felix Smart](https://www.felixsmart.com/) that will allow users of a variety of interests to engage with specialists in their field for quick 15-minute video calls.
 
 ## Install
 
