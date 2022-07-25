@@ -122,25 +122,35 @@ const Recording = (props) => {
           resizeMode="contain"
           isLoooping
         />
-        <Button
-          color="#007F5F"
-          title="Upload"
-          onPress={() => {
-            if (video) {
-              setUploading(true);
-            }
-            shareVideo();
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "90%",
           }}
-          disabled={uploading}
-        />
-        {/* {hasMediaLibraryPermission ? (
+        >
+          <Button
+            color="#007F5F"
+            title="Upload"
+            onPress={() => {
+              if (video) {
+                setUploading(true);
+              }
+              shareVideo();
+            }}
+            disabled={uploading}
+          />
+          {/* {hasMediaLibraryPermission ? (
           <Button title="Save" onPress={saveVideo} />
         ) : undefined} */}
-        <Button
-          color="#007F5F"
-          title="Trash"
-          onPress={() => setVideo(undefined)}
-        />
+          <Button
+            color="#007F5F"
+            title="Trash"
+            onPress={() => setVideo(undefined)}
+          />
+        </View>
       </SafeAreaView>
     );
   }
@@ -162,11 +172,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+
+    justifyContent: "flex-end",
   },
   buttonContainer: {
     backgroundColor: "#fff",
-    alignSelf: "flex-end",
+    // alignSelf: "flex-end",
   },
   video: {
     flex: 1,

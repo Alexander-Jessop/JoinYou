@@ -71,7 +71,9 @@ const ProfileScreen = (props) => {
           <Text style={styles.expertise}>
             Expertise in: {profileData.interests?.join(", ")}
           </Text>
-          <Text style={styles.expertise}>Cost of Appointment: ${price}</Text>
+          <Text style={{ marginBottom: 10 }}>
+            Cost of Appointment: ${price}
+          </Text>
 
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -126,7 +128,7 @@ const ProfileScreen = (props) => {
         // <View style={{ backgroundColor: "#D4F2EA" }}>
         <View style={styles.content}>
           <Button
-            style={{ marginTop: 50 }}
+            style={{ padding: 50 }}
             title="LOG OUT"
             color="#007F5F"
             onPress={() => {
