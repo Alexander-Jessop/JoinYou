@@ -31,7 +31,7 @@ Then Run 'Expo start --dev-client'
 expo start or expo start --dev-start
 ```
 
-## Author
+## Authors
 
 👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
 ***
@@ -42,6 +42,8 @@ expo start or expo start --dev-start
 | Nathely Pizarro |  [GitHub Profile](https://github.com/napizar8) | [LinkedIn Profile](https://www.linkedin.com/in/nathalypizarro/)|                          
 | Zach Odio |  [GitHub Profile](https://github.com/Odio9) | [LinkedIn Profile](https://www.linkedin.com/in/zach-odio-383a3616/) |
 | Alexander Jessop |  [GitHub Profile](https://github.com/Alexander-Jessop) | [LinkedIn Profile](https://www.linkedin.com/in/alexander-jessop/) |
+
+
 
 
 ## Show your support
