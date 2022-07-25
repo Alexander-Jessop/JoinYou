@@ -45,11 +45,11 @@ expo start --dev-start
 
 ## Credentials
 Expert   
-Email:`expert@mail.com`  
-Password:`Test1234`  
+Email: `expert@mail.com`  
+Password: `Test1234`  
   
 Client   
-Email:`client@mail.com`  
+Email: `client@mail.com`  
 Password: `Test1234`
 
 ## Authors
