@@ -10,7 +10,7 @@
 A physical device connected to your computer via USB or an emulator is needed to run this application. 
 To install an emulator follow this documentation that we configured [Andriod Emulator installation guide](https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing). 
 
-To run this project you have two choice ExpoGo a lightweight complied view use `expo start`. 
+To run this project you have two choices ExpoGo a lightweight complied view use `expo start`. 
 This will allow you to experice all the screens of the application but will prevent you from accessing the emulator's camera and audio devices. 
 ||
 To ensure a full experience of the application on the emulator download the apk from 
