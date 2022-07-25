@@ -12,7 +12,7 @@ To install an emulator follow this documentation that we configured [Andriod Emu
 
 To run this project:  
 ExpoGo a lightweight complied view use `expo start`. 
-This will allow you to experice all the screens of the application but will prevent you from accessing the emulator's camera and audio devices. 𝘚𝘰𝘮𝘦 𝘱𝘢𝘨𝘦𝘴 𝘯𝘦𝘦𝘥 𝘢𝘤𝘤𝘦𝘴𝘴 𝘵𝘰 𝘵𝘩𝘦 𝘥𝘦𝘷𝘪𝘤𝘦'𝘴 𝘤𝘢𝘮𝘦𝘳𝘢 𝘢𝘯𝘥 𝘢𝘶𝘥𝘪𝘰 𝘪𝘯 𝘰𝘳𝘥𝘦𝘳 𝘵𝘰 𝘱𝘳𝘰𝘱𝘦𝘳𝘭𝘺 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯   
+This will allow you to experice all the screens of the application but will prevent you from accessing the emulator's camera and audio devices. 𝘚𝘰𝘮𝘦 𝘱𝘢𝘨𝘦𝘴 𝘯𝘦𝘦𝘥 𝘢𝘤𝘤𝘦𝘴𝘴 𝘵𝘰 𝘵𝘩𝘦 𝘥𝘦𝘷𝘪𝘤𝘦'𝘴 𝘤𝘢𝘮𝘦𝘳𝘢 𝘢𝘯𝘥 𝘢𝘶𝘥𝘪𝘰 𝘪𝘯 𝘰𝘳𝘥𝘦𝘳 𝘵𝘰 𝘱𝘳𝘰𝘱𝘦𝘳𝘭𝘺 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯.   
   
 OR  
   
