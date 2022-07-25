@@ -24,6 +24,11 @@ Then Run 'Expo start --dev-client' in the JoinYou folder with your terminal.
 ```sh
 git clone https://github.com/Alexander-Jessop/JoinYou.git
 ```
+cd into cloned repository
+```sh
+npm install
+```
+cd into `JoinYou`
 ```sh
 npm install
 ```
