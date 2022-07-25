@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { View, StyleSheet, TextInput, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
-import { Card, Text, Title } from "react-native-paper";
+import { Button, Card, Text, Title } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../src/AuthProvider";
 import { doc, getDoc } from "firebase/firestore";
@@ -112,10 +112,14 @@ const Payment = (props) => {
           setDisabled(true);
           setTimeout(handlePayPress, 3500);
         }}
+        mode="contained"
         title="Pay"
         disabled={disabled}
         color="#007F5F"
-      />
+        style={{}}
+      >
+        Pay
+      </Button>
     </Card>
   );
 };
@@ -123,7 +127,8 @@ export default Payment;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    paddingBottom: 15,
     justifyContent: "center",
     margin: 20,
   },
