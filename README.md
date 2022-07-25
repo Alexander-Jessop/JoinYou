@@ -33,6 +33,10 @@ npm install
 ```sh
 expo start --dev-start
 ```
+Press 'A' on your keyboard to open Android Emulator
+Press 'A' on your keyboard after emulator loads to open application
+Press 'R' on your keyboard to reload the application
+
 
 ## Authors
 
