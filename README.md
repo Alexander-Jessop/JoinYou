@@ -46,9 +46,7 @@ expo start --dev-start
 ## Credentials
 <p>Expert</p>
 <p>Email:</p>
-```sh
-expert@mail.com
-```
+`expert@mail.com`
 <p>Password:</p>
 
 ```sh
@@ -58,7 +56,6 @@ expo start --dev-start
 ```
 
 
-<p></p>
 
 
 
