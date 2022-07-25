@@ -42,7 +42,6 @@ expo start or expo start --dev-start
 ***
 
 | Creators  |    GitHub Page's                   | LinkedIn Page's                                         |
-
 | --------- | ------------------------------ | ----------------------------------------------------- |
 | Dave Bartsch |  [GitHub Profile](https://github.com/DaveBartsch) | N/A |
 | Nathely Pizarro |  [GitHub Profile](https://github.com/napizar8)        | [LinkedIn Profile](https://www.linkedin.com/in/nathalypizarro/)|                          
