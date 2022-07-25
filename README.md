@@ -19,9 +19,11 @@ expo start or expo start --dev-start
 
 ## Author
 
-👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David**
+👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
 
 * Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
+* Github: [@DaveBartsch](https://github.com/DaveBartsch)
+* Github: [@Nathely Pizarro](https://github.com/napizar8)
 * LinkedIn: [@Alexander Jessop](https://linkedin.com/in/Alexander Jessop)
 
 ## Show your support
