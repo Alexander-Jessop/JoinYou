@@ -35,13 +35,23 @@ expo start or expo start --dev-start
 👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
 ***
 ## Contact Us
-* LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/) || Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
-* LinkedIn: [@Nathely Pizarro](https://www.linkedin.com/in/nathalypizarro/) || Github: [@Nathely Pizarro](https://github.com/napizar8)
-* LinkedIn: [@Zach Odio](https://www.linkedin.com/in/zach-odio-383a3616/) || Github: [@Zach Odio](https://github.com/Odio9)
-* Github: [@DaveBartsch](https://github.com/DaveBartsch)
+* LinkedIn: [@](https://www.linkedin.com/in/alexander-jessop/) || Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
+* LinkedIn: [@](https://www.linkedin.com/in/nathalypizarro/) || Github: [@Nathely Pizarro](https://github.com/napizar8)
+* LinkedIn: [@](https://www.linkedin.com/in/zach-odio-383a3616/) || Github: [@Zach Odio](https://github.com/Odio9)
+* Github: [@](https://github.com/DaveBartsch)
 ***
 
+| Creators  |    GitHub Page's                   | LinkedIn Page's                                         |
 
+| --------- | ------------------------------ | ----------------------------------------------------- |
+
+| Dave Bartsch |  [GitHub Profile](https://github.com/DaveBartsch) | N/A |
+
+| Nathely Pizarro |  [GitHub Profile](https://github.com/napizar8)        | [LinkedIn Profile](https://www.linkedin.com/in/nathalypizarro/)|                          
+
+| Zach Odio   |  [GitHub Profile](https://github.com/Odio9)     | [LinkedIn Profile](https://www.linkedin.com/in/zach-odio-383a3616/)         |
+
+| Alexander Jessop     |  [GitHub Profile](https://github.com/Alexander-Jessop)   | [LinkedIn Profile](https://www.linkedin.com/in/alexander-jessop/)     |
 
 
 
