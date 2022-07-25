@@ -12,7 +12,9 @@ To install an emulator follow this documentation that we configured [Andriod Emu
 
 To run this project you have two choices ExpoGo a lightweight complied view use `expo start`. 
 This will allow you to experice all the screens of the application but will prevent you from accessing the emulator's camera and audio devices.  
+  
 OR  
+  
 To ensure a full experience of the application on the emulator download the apk from 
 [Join You APK](https://expo.dev/accounts/aj-eh/projects/JoinYou/builds/3cf42e11-df9c-40ca-bef4-c69142602e0d) 
 on the emulator and install application.
