@@ -43,6 +43,8 @@ expo start --dev-start
 <p>Press 'A' on your keyboard after emulator loads to open application</p>
 <p>Press 'R' on your keyboard to reload the application</p>
 
+*Payment is disabled do not insert details just press pay to continue. 
+
 ## Credentials
 Expert   
 Email: `expert@mail.com`  
