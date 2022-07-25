@@ -291,6 +291,7 @@ const Booking = (props) => {
         <Button
           color="#007F5F"
           mode="contained"
+          icon="check"
           onPress={() => {
             navigation.navigate("Confirmation", {
               selectedSlot,
