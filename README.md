@@ -34,9 +34,9 @@ or
 ```sh
 expo start --dev-start
 ```
-Press 'A' on your keyboard to open Android Emulator
-Press 'A' on your keyboard after emulator loads to open application
-Press 'R' on your keyboard to reload the application
+<p>Press 'A' on your keyboard to open Android Emulator</p>
+<p>Press 'A' on your keyboard after emulator loads to open application</p>
+<p>Press 'R' on your keyboard to reload the application</p>
 
 
 ## Authors
