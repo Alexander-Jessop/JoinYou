@@ -26,7 +26,11 @@ Then Run 'Expo start --dev-client'
 
 ```sh
 git clone https://github.com/Alexander-Jessop/JoinYou.git
+```
+```sh
 npm install
+```
+```sh
 expo start --dev-start
 ```
 
