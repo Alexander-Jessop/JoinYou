@@ -10,6 +10,8 @@
 ```sh
 npm install
 
+An emulator or a physical device connected to your computer via USB is needed to run this application. To install an emulator follow this Documentation that we configured https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing. 
+
 This will install all necessary packages including Expo which is critical for viewing the application. 
 
 To run this project in ExpoGo a lightweight complied view use 'expo start'. 
