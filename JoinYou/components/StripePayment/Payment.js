@@ -141,9 +141,13 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#efefefef",
+    borderRadius: 8,
   },
   cardContainer: {
-    height: 50,
-    marginVertical: 30,
+    height: 57,
+    marginVertical: 5,
+    // padding: 15,
+    // marginVertical: 30,
+    // marginTop: 50,
   },
 });
