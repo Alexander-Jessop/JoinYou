@@ -52,14 +52,8 @@ Expert Password:
 ```sh
 Test1234
 ```
-Client Email:
-```sh
-client@mail.com
-```
-Client Password:
-```sh
-Test1234
-```
+Client Email: `client@mail.com`
+Client Password: `Test1234`
 
 ## Authors
 
