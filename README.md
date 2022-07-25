@@ -3,10 +3,9 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> A communication platform created for [Felix Smart](https://www.felixsmart.com/) that will allow users of a variety of interests to engage with specialists in their field for quick 15-minute video calls.
+> A 'MVP' video communication platform created for [Felix Smart](https://www.felixsmart.com/) that will allow users of a variety of interests to directly connect with an expert in a one on one experience.   
 
 ## Install
-
 
 npm install
 
@@ -38,7 +37,7 @@ expo start or expo start --dev-start
 ## Contact Us
 | Creators  |    GitHub Page's                   | LinkedIn Page's                                         |
 | --------- | ------------------------------ | ----------------------------------------------------- |
-| Dave Bartsch |  [GitHub Profile](https://github.com/DaveBartsch) | N/A |
+| Dave Bartsch |  [GitHub Profile](https://github.com/DaveBartsch) | [LinkedIn Profile](https://www.linkedin.com/in/david-bartschak-b008a3141/)|
 | Nathely Pizarro |  [GitHub Profile](https://github.com/napizar8) | [LinkedIn Profile](https://www.linkedin.com/in/nathalypizarro/)|                          
 | Zach Odio |  [GitHub Profile](https://github.com/Odio9) | [LinkedIn Profile](https://www.linkedin.com/in/zach-odio-383a3616/) |
 | Alexander Jessop |  [GitHub Profile](https://github.com/Alexander-Jessop) | [LinkedIn Profile](https://www.linkedin.com/in/alexander-jessop/) |
