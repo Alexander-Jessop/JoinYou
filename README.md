@@ -44,9 +44,15 @@ expo start --dev-start
 <p>Press 'R' on your keyboard to reload the application</p>
 
 ## Credentials
-<h2>Expert</h2>
-<p>Email: expert@mail.com</p>
-<p>Password: Test1234</p>
+<p>Expert</p>
+<p>Email:</p>
+```sh
+expert@mail.com
+```
+<p>Password:</p>
+```sh
+ Test1234
+ ```
 <p></p>
 
 
