@@ -10,7 +10,7 @@
 
 npm install
 
-An emulator or a physical device connected to your computer via USB is needed to run this application. To install an emulator follow this Documentation that we configured [@Andriod Emulator installation guide](https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing). 
+An emulator or a physical device connected to your computer via USB is needed to run this application. To install an emulator follow this Documentation that we configured [Andriod Emulator installation guide](https://docs.google.com/document/d/1ax_QZISI5WKFNMx5ajIG7K7FdY1mqsKN4Ert_dbC-AQ/edit?usp=sharing). 
 
 This will install all necessary packages including Expo which is critical for viewing the application. 
 
@@ -35,11 +35,11 @@ expo start or expo start --dev-start
 👤 **Zach Odio, Nathely Pizarro, Alexander Jessop, David Bartsch**
 ***
 ## Contact Us
-* LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/)
+* LinkedIn: [@Alexander Jessop](https://www.linkedin.com/in/alexander-jessop/), * Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
 * LinkedIn: [@Nathely Pizarro](https://www.linkedin.com/in/nathalypizarro/)
 * LinkedIn: [@Zach Odio](https://www.linkedin.com/in/zach-odio-383a3616/)
 ***
-* Github: [@Alexander-Jessop](https://github.com/Alexander-Jessop)
+
 * Github: [@DaveBartsch](https://github.com/DaveBartsch)
 * Github: [@Nathely Pizarro](https://github.com/napizar8)
 * Github: [@Zach Odio](https://github.com/Odio9)
